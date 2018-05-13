@@ -1,0 +1,812 @@
+if(RightNow.UI)
+    throw new Error("The RightNow.UI namespace variable has already been defined somewhere.");
+/**
+ * RightNow.UI
+ *
+ * @namespace This namespace contains functions which relate to DOM manipulation or retrieval.
+ */
+RightNow.UI = {
+    /**@type {?Node}*/
+    virtualBufferUpdateTrigger: null,
+    
+    /**
+    * Creates a hidden input tag used to encourage screen readers to update virtual buffer
+    */
+    prepareVirtualBufferUpdateTrigger: function()
+    {
+        var paragraph = document.createElement('p');
+        paragraph.style.display = "inline";
+        this.virtualBufferUpdateTrigger = document.createElement('input');
+        this.virtualBufferUpdateTrigger.type = 'hidden';
+        this.virtualBufferUpdateTrigger.value = '1';
+        this.virtualBufferUpdateTrigger.id = 'rn_VirtualBufferUpdateTrigger';
+        this.virtualBufferUpdateTrigger.name = 'rn_VirtualBufferUpdateTrigger';
+        paragraph.appendChild(this.virtualBufferUpdateTrigger);
+        YAHOO.util.Dom.insertBefore(paragraph,document.body.firstChild);
+    },
+
+    /**
+    * Adds aria-hidden attribute to various frames for better usability for screen reader users
+    */
+    ariaHideFrames: function()
+    {
+        if(RightNow.Interface.Constants.CAN_USE_ARIA)
+        {
+            var targetFrames = ["rn_History_Iframe", "_yuiResizeMonitor"];
+            YAHOO.util.Event.onAvailable(targetFrames, function()
+            {
+                this.setAttribute("role", "presentation");
+                this.tabIndex = -1;
+                if(this.id === "_yuiResizeMonitor")
+                {
+                    //IE doesn't allow setting innerHTML on an iframe
+                    //but we're doing this to try and appease AccVerify
+                    try {
+                        this.innerHTML = "&nbsp;";
+                    }
+                    catch(e) {
+                        //ignore
+                    }
+                }
+            });
+        }
+    },
+
+    /**
+     * Changes the value of the hidden input to trigger a virtual buffer update
+     */
+    updateVirtualBuffer: function()
+    {
+        var trigger = RightNow.UI.virtualBufferUpdateTrigger || document.getElementById('rn_VirtualBufferUpdateTrigger');
+
+        if(trigger)
+        {
+            if (trigger.getAttribute('value') === '1')
+                trigger.setAttribute('value', '0');
+            else
+                trigger.setAttribute('value', '1');
+        }
+    },
+    
+    /**
+     * Adds an error to the development header, ensuring that it exists first.
+     *
+     * @param {string} errorMessage The error message to add
+     */
+    addDevelopmentHeaderError: function(errorMessage)
+    {
+        if(RightNow.UI.DevelopmentHeader)
+            RightNow.UI.DevelopmentHeader.addJavascriptError(errorMessage);
+    },
+
+    /**
+     * Adds an warning to the development header, ensuring that it exists first.
+     *
+     * @param {string} warningMessage The warning message to add
+     */
+    addDevelopmentHeaderWarning: function(warningMessage)
+    {
+        if(RightNow.UI.DevelopmentHeader)
+            RightNow.UI.DevelopmentHeader.addJavascriptWarning(warningMessage);
+    },
+
+    /**
+     * Iterates over an elements children and adds the specified
+     * CSS class to them
+     *
+     * @param {Object} element The DOM object to modify
+     * @param {string} cssClass The CSS class to add
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    changeChildCssClass: function(element, cssClass)
+    {
+        if(element.hasChildNodes())
+        {
+            for(var i=0; i<element.childNodes.length; i++)
+            {
+                if(element.childNodes[i].hasChildNodes())
+                    RightNow.UI.changeChildCssClass(element.childNodes[i], cssClass);
+
+                if(element.childNodes[i].className)
+                    YAHOO.util.Dom.addClass(element.childNodes[i].id, cssClass);
+            }
+        }
+    },
+
+    /**
+     * Clears all span highlight tags from the give text
+     *
+     * @param {string} text The content to remove highlight tags from
+     * @return {string} Text with highlight classes removed
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    clearHighlights: function(text)
+    {
+        var regexp= new RegExp('<SPAN class="?highlight"?>([^<]+)<\/SPAN>', "gi");
+        return text.replace(regexp,"$1");
+    },
+
+    /**
+     * Find the parent form of an element if it exists
+     * @param {string} id The DOM id of the element
+     * @return {?string} The form element ID or null if not found
+     */
+    findParentForm: function(id)
+    {
+        var node = document.getElementById(id);
+        if(node)
+        {
+            while(node.parentNode.tagName !== "BODY")
+            {
+                node = node.parentNode;
+                if(node.tagName === "FORM")
+                {
+                    if(node.id === "")
+                        return null;
+                    return node.id;
+                }
+            }
+        }
+        return null;
+    },
+
+    /**
+     * Changes the element display style to hide/show its contents and also
+     * changes the image of the element specified by imageId
+     * @param {string} element The element id to hide or show
+     * @param {string} imageId The image ID to change
+     * @param {string} expandText The alt text for expand
+     * @param {string} collapseText The alt text for collapse
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    hideShow: function(element, imageId, expandText, collapseText)
+    {
+        if(imageId === undefined)
+            imageId = "opener_button";
+        var domElement = document.getElementById(element),
+            imagePath = "",
+            imageAlt = "";
+        if(domElement.style.display == "none")
+        {
+            domElement.style.display = "block";
+            imagePath = "/euf/assets/images/arrows_up.gif";
+            imageAlt = collapseText;
+        }
+        else if(domElement.style.display == "block")
+        {
+            domElement.style.display = "none";
+            imagePath = "/euf/assets/images/arrows_down.gif";
+            imageAlt = expandText;
+        }
+
+        if(imageId !== "" && imagePath !== "")
+        {
+            var imageElement = document.getElementById(imageId);
+            if(imageElement)
+            {
+                imageElement.src = imagePath;
+                if(imageAlt)
+                    imageElement.alt = imageAlt;
+            }
+        }
+    },
+
+    /**
+     * Function to add highlight tags to all searchTerms within content
+     * @param {string} content Content within which to add highlight tags
+     * @param {string} searchTerm Search term to look for
+     * @return {string} Content with span highlight tags on it
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    highlightElement: function(content, searchTerm)
+    {
+        var startTag = "<span class='highlight'>",
+            endTag = "</span>",
+            newText = "",
+            i = -1,
+            searchTermLC = searchTerm.toLowerCase().replace(/&/g, "&amp;"),
+            contentLC = content.toLowerCase();
+        
+        while (content.length > 0)
+        {
+            i = contentLC.indexOf(searchTermLC, i + 1);
+            if (i < 0)
+            {
+                newText += content;
+                content = "";
+            }
+            else
+            {
+                //Skip certain tag types
+                if (content.lastIndexOf(">", i) >= content.lastIndexOf("<", i))
+                {
+                    if (contentLC.lastIndexOf("/script>", i) >= contentLC.lastIndexOf("<script", i))
+                    {
+                        newText += content.substring(0, i) + startTag + content.substr(i, searchTerm.length) + endTag;
+                        content = content.substr(i + searchTerm.length);
+                        contentLC = content.toLowerCase();
+                        i = -1;
+                    }
+                }
+            }
+        }
+        return newText;
+    },
+
+    /**
+     * Get a form field element by name
+     * @param {string} name The name of the field
+     * @param {string|Object} parentForm The form ID or object to look within
+     */
+    getInputFieldByColumnName: function(name, parentForm)
+    {
+        var regex = new RegExp("^" + name);
+        if(typeof parentForm !== 'object' && parentForm !== null)
+            parentForm = document.getElementById(parentForm);
+        for(var i=0; i<parentForm.elements.length; i++)
+        {
+            if(parentForm.elements[i] && parentForm.elements[i].name && regex.test(parentForm.elements[i].name))
+                return i;
+        }
+        return null;
+    },
+
+    /**
+     * Subscribes an event to the object, ensuring that it doesn't already contain the
+     * event listener.
+     *
+     * @param {Object} nodes The node or object of nodes to add events to
+     * @param {string} eventName The name of the event to listen to
+     * @param {function()} handler The function handler for the event listener
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    subscribeOnce: function(nodes, eventName, handler)
+    {
+        var result = true;
+        if(YAHOO.lang.isObject(nodes))
+        {
+            for(var i=0; i < nodes.length; i++)
+                result = this.subscribeOnceHelper(nodes[i], eventName, handler) && result;
+        }
+        else
+        {
+            result = this.subscribeOnceHelper(nodes, eventName, handler);
+        }
+        return result;
+    },
+
+    /**
+     * Helper function to subscribe an event to a single element
+     *
+     * @param {Object} node The element to attach the event to
+     * @param {string} eventName The type of event to attach
+     * @param {function()} handler function The function handler for the event listener
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    subscribeOnceHelper: function(node, eventName, handler)
+    {
+        var listeners = YAHOO.util.Event.getListeners(node, eventName),
+            canAdd = true,
+            result = true;
+        if(listeners)
+        {
+            var j=0;
+            while(j < listeners.length && canAdd)
+            {
+               if(listeners[j].fn == handler)
+                    canAdd = false;
+               j++;
+            }
+        }
+        if(canAdd)
+            result = YAHOO.util.Event.addListener(node, eventName, handler);
+        return result;
+    },
+
+    /**
+     * Utility function to hide/show an element and update the text of
+     * the its controller link
+     *
+     * @param {string} dispElement The id of the element to hide/show
+     * @param {string} linkElement The id of the link to change text on
+     * @param {string} basicText The text to use when showing the dispElement
+     * @param {string} advancedText The text to use when hiding the dispElement
+     * @deprecated May 10 Will be removed in the May 12 release
+     */
+    toggleVisibilityAndText: function(dispElement, linkElement, basicText, advancedText)
+    {
+        var domElement = document.getElementById(dispElement);
+        if(domElement)
+        {
+            if(domElement.style.display === "none")
+            {
+                domElement.style.display = "block";
+                document.getElementById(linkElement).innerHTML = basicText;
+            }
+            else if(domElement.style.display === "block")
+            {
+                domElement.style.display = "none";
+                document.getElementById(linkElement).innerHTML = advancedText;
+            }
+        }
+    },
+
+    /**
+     * RightNow.UI.Form
+     *
+     * @namespace Defines a number of utility variables that are stored when
+     * submitting forms.
+     */
+    Form:
+    {
+        /**@property {number} chatSubmit*/
+        chatSubmit: 0,
+        /**@property {number} currentProduct*/
+        currentProduct: 0,
+        /**@property {number} errorCount*/
+        errorCount: 0,
+        /**@property {?Object} form*/
+        form: null,
+        /**@property {boolean} formError*/
+        formError: false,
+        /**@property {?string} formToken*/
+        formToken: null,
+        /**@property {Array} formFields*/
+        formFields: [],
+        /**@property {string} linkingFilter*/
+        linkingFilter: "",
+        /**@property {boolean} linkingOn*/
+        linkingOn: false,
+        /**@property {boolean} logoutInProgress*/
+        logoutInProgress: false,
+        /**@property {boolean} passwordReset*/
+        passwordReset: false,
+        /**@property {boolean|null} smartAssistant
+          *@type {boolean|null} smartAssistant
+         */
+        smartAssistant: null,
+        /**@property {number} widgetsToProcess*/
+        widgetsToProcess: 0,
+        /**@property {number} widgetsToValidate*/
+        widgetsToValidate: 0
+    }
+};
+    
+/**
+ * RightNow.UI.Dialog
+ *
+ * @namespace Defines a number of functions for creating dialogs
+ * to the user. Functions for showing and enabling/disabling
+ * dialog controls are contained here.
+ */
+RightNow.UI.Dialog = (function()
+{
+    var _dialogCount = 0,
+        _topRenderDiv = "",
+        /**
+         * Private utility function for building dialogs
+         * @param {string} title The string to use as the dialog title
+         * @param {Object} message The HTML element to put as the content of the dialog
+         * @param {Object=} [dialogOptions] Object Configuration options for the dialog. Valid keys are:
+         *      exitCallback: Function to be run when the dialog closes,
+         *      width: String Dialog width,
+         *      buttons: Array Array of buttons to use for the dialog,
+         *      cssClass: String A CSS class name to add to the dialog
+         *      dialogDescription: String An id of an element to use to describe the dialog. This makes it
+         *      more convenient for screen reader users to understand the purporse of the dialog
+         * @private
+         */
+        _createDialog = function(title, message, dialogOptions)
+        {
+            var elementName = 'rnDialog' + ++_dialogCount;
+            
+            if(dialogOptions === null || dialogOptions === undefined)
+                dialogOptions = {};
+            var accessibleMessage = message;
+            if(YAHOO.lang.isObject(message) && message.nodeValue)
+                accessibleMessage = message.nodeValue;
+            if(!dialogOptions.buttons)
+                dialogOptions.buttons = [{"text": RightNow.Interface.getMessage("OK_LBL"), "handler": (dialogOptions.exitCallback || function(){this.hide();}), isDefault:true}];
+            if(!('close' in dialogOptions))
+                dialogOptions.close = true;
+            
+            //mark boundaries of dialog for accessibility
+            title = '<span class="rn_ScreenReaderOnly">' + RightNow.Interface.getMessage("BEG_DIALOG_PLS_DISMISS_DIALOG_BEF_MSG") + "<br /></span>" + '<span id="rn_Dialog_' + _dialogCount + '_Title">' + title + '</span>';
+            var dialog = new YAHOO.widget.SimpleDialog(elementName,
+            {
+                "visible":false,
+                "zIndex": 9999,
+                "draggable": false,
+                "fixedcenter": "contained",
+                "modal": true,
+                "position": 'absolute',
+                "constraintoviewport": true,
+                "underlay": 'none',
+                "buttons": dialogOptions.buttons,
+                "close": dialogOptions.close
+            });
+            dialog.setHeader(title);
+            dialog.setBody(message);
+            if(dialogOptions.width)
+                dialog.cfg.setProperty('width', dialogOptions.width);
+                
+            dialog.renderEvent.subscribe(RightNow.UI.updateVirtualBuffer);
+            dialog.render(_topRenderDiv);
+            //Set ID's on the dialogs buttons since they're not set by default
+            var buttonArray = dialog.getButtons(), i;
+            if(buttonArray && buttonArray.length){
+                for(i=0; i<buttonArray.length; i++){
+                    buttonArray[i].id = elementName + "_Button_" + i;
+                }
+            }
+            //Backward compatability CSS rules
+            var Dom = YAHOO.util.Dom;
+            Dom.setStyle(dialog.close, "overflow", "hidden");
+            Dom.setStyle(dialog.close, "text-indent", "-10000em");
+            Dom.setStyle(dialog.close, "text-decoration", "none");
+            if(dialog.bringToTop)
+                dialog.bringToTop();
+            Dom.addClass(document.getElementById(elementName), 'rn_Dialog ' + (dialogOptions.cssClass || ""));
+            //mark end of dialog for accessibility (encourage user to dismiss dialog)
+            var tempSpan = document.createElement('span');
+            tempSpan.appendChild(document.createElement('br'));
+            tempSpan.appendChild(document.createTextNode(RightNow.Interface.getMessage("END_DIALOG_PLS_DISMISS_DIALOG_BEF_MSG")));
+            Dom.addClass(tempSpan, 'rn_ScreenReaderOnly');
+            dialog.appendToFooter(tempSpan);
+
+            if(document.activeElement)
+            {
+                /**@inner*/
+                var focusTrigger = function()
+                {
+                    try
+                    {
+                        if(this.focus)
+                            this.focus();
+                    }
+                    catch(ex)
+                    {
+                        //ignore
+                    }
+                };
+                dialog.hideEvent.subscribe(focusTrigger, document.activeElement, true);
+            }
+            dialog.innerElement.setAttribute("aria-labelledby", "rn_Dialog_" + _dialogCount + "_Title");
+            dialog.hideEvent.subscribe(RightNow.UI.updateVirtualBuffer);
+            dialog.showEvent.subscribe(RightNow.UI.updateVirtualBuffer);
+            YAHOO.util.Event.addListener(dialog.element, "keydown", function(e){ if(YAHOO.util.Event.getCharCode(e) === YAHOO.util.KeyListener.KEY.ESCAPE) dialog.cancel(); });
+            return dialog;
+        };
+
+    return {
+        /**
+         * Creates and returns a YUI SimpleDialog with the specified content and buttons.
+         *
+         * @param {string} title The title the dialog should have
+         * @param {Object} element Element to use as the content of the dialog
+         * @param {Object=} [dialogOptions] Object Configuration options for the dialog. Valid keys are:
+         *      {buttons: Array An array containing buttons specifications,
+         *       width: String Width parameter for dialog.  Ex: '250px',
+         *       hideOnEnterKeyPress: Boolean True if the dialog should be hidden when the enter key is pressed
+         *      dialogDescription: String An id of an element to use to describe the dialog. This makes it
+         *      more convenient for screen reader users to understand the purporse of the dialog }
+         * @return {Object} dialog The dialog instance. The show() method must be called before the dialog will be displayed
+         */
+        actionDialog: function(title, element, dialogOptions)
+        {
+            if(!title)
+                title = "";
+                
+            if(!element || !element.nodeType)
+                return null;
+                
+            var dialog = _createDialog(title, element, dialogOptions);
+            if(dialogOptions && dialogOptions.hideOnEnterKeyPress && dialogOptions.hideOnEnterKeyPress === true)
+                this.addDialogEnterKeyListener(dialog, dialog.hide);
+            //focus first form element
+            var firstInputOrTextarea = YAHOO.util.Dom.getElementBy(function(e){return ((e.tagName.toLowerCase() === "input" || e.tagName.toLowerCase() === "textarea") && e.type !== "hidden");}, null, dialog.element); 
+            if(firstInputOrTextarea.id)
+            {
+                //focus first form element
+                dialog.firstFormElement = firstInputOrTextarea;
+                //for accessibility, add some text (hidden offscreen) to the label
+                //of the first element we focus to provide context
+                //find this input element's label element
+                //maybe it's the previous sibling
+                var guess = YAHOO.util.Dom.getPreviousSibling(firstInputOrTextarea),
+                    firstLabel,
+                    /**@inner*/
+                    labelForMatchesID = function(elem)
+                    {
+                        return elem.tagName.toLowerCase() === "label" && YAHOO.util.Dom.getAttribute(elem, "for") === firstInputOrTextarea.id;
+                    };
+                if(guess && labelForMatchesID(guess))
+                {
+                    //we were lucky
+                    firstLabel = guess;
+                }
+                else
+                {
+                    //we must search
+                    firstLabel = YAHOO.util.Dom.getElementBy(labelForMatchesID, "label", dialog.element);
+                }
+                if(dialogOptions && dialogOptions.dialogDescription)
+                {   
+                    var description = document.getElementById(dialogOptions.dialogDescription);
+                    if(description)
+                        description.setAttribute("tabindex", -1);
+                    dialog.innerElement.setAttribute("aria-describedby", dialogOptions.dialogDescription);
+                }
+                //the above is the correct way to do aria dialogs. this is the fall back for non-aria and ie
+                if(firstLabel && (!RightNow.Interface.Constants.CAN_USE_ARIA || YAHOO.env.ua.ie))
+                {
+                    firstLabel.innerHTML = '<span class="rn_ScreenReaderOnly">' + title + " " + RightNow.Interface.getMessage("DIALOG_LBL") + ' </span>' + firstLabel.innerHTML;
+                    //help ie 9+ to explain the dialog
+                    if(dialogOptions && dialogOptions.dialogDescription)
+                        firstInputOrTextarea.setAttribute("aria-describedby", dialogOptions.dialogDescription);
+                }
+            }
+            else
+            {
+                //assume default button will get focus automatically
+                //add off screen text to button text to notify screen
+                //reader users of being in a dialog
+               if(dialog.defaultHtmlButton)
+               {
+                   var newHtml = '<span class="rn_ScreenReaderOnly">' + title + " ";
+            
+                   // It's possible for a dialog description to be specified, so check for it. Fall back on generic text if not found.
+                   if(dialogOptions && dialogOptions.dialogDescription && document.getElementById(dialogOptions.dialogDescription) !== null)
+                       newHtml += RightNow.Interface.getMessage("DIALOG_LBL") + "." + document.getElementById(dialogOptions.dialogDescription).innerHTML + "</span>" + dialog.defaultHtmlButton.innerHTML;
+                   else
+                       newHtml += RightNow.Interface.getMessage("DIALOG_PLEASE_READ_TEXT_DIALOG_MSG_MSG") + " </span>" + dialog.defaultHtmlButton.innerHTML;
+
+                   dialog.defaultHtmlButton.innerHTML = newHtml;
+                    dialog.showEvent.subscribe(dialog.focusDefaultButton);
+               }
+            }
+            dialog.innerElement.setAttribute("role", "dialog");
+            return dialog;
+        },
+
+        /**
+         * Creates a keylistener for a dialog, to respond to the 'enter' key
+         * @param {Object} dialog Dialog to which to add the keylistener
+         * @param {function()} functionName Function to be run when 'enter' is pressed
+         * @param {Object=} scope The scope to be within during function execution
+         * @return {Object} keyListener The instance of the keylistener
+        */
+        addDialogEnterKeyListener: function(dialog, functionName, scope)
+        {
+            if(!dialog || !functionName)
+                return null;
+
+            //Set up key listener for <enter> key to run function_name().
+            var keyListener = new YAHOO.util.KeyListener(document, {"keys":13 }, {"fn":functionName, "scope":scope, "correctScope":true});
+            // Use .setProperty(), not .queueProperty(), because we already rendered the dialog in actionDialog().
+            dialog.cfg.setProperty("keylisteners", keyListener);
+            return keyListener;
+        },
+
+        /**
+        * Disables buttons for dialog_id.
+        * @param {Object} dialog Instance of dialog to disable buttons on
+        */
+        disableDialogButtons: function(dialog)
+        {
+            var dialogButtons = dialog.getButtons();
+            for(var i=0; i<dialogButtons.length; i++)
+                dialogButtons[i].disabled = true;
+        },
+
+        /**
+         * Disable buttons and keylistener on a dialog
+         * @param {Object} dialog Dialog to be disabled
+         * @param {Object} keyListener Keylistener to be disabled
+        */
+        disableDialogControls: function(dialog, keyListener)
+        {
+            this.disableDialogKeyListener(dialog, keyListener);
+            this.disableDialogButtons(dialog);
+        },
+
+        /**
+         * Disable an existing key listener.
+         * @param {Object} dialog Dialog that uses the keylistener
+         * @param {Object} keyListener Keylistener to be disabled
+        */
+        disableDialogKeyListener: function(dialog, keyListener)
+        {
+            if(!dialog || !keyListener)
+                return null;
+
+            dialog.cfg.setProperty("keylisteners", null);
+            keyListener.disable();
+        },
+
+        /**
+        * Enables buttons for dialog_id.
+        * @param {Object} dialog Dialog the enable buttons on.
+        */
+        enableDialogButtons: function(dialog)
+        {
+            var dialogButtons = dialog.getButtons();
+            for(var i=0; i<dialogButtons.length; i++)
+                dialogButtons[i].disabled = false;
+        },
+
+        /**
+         * Enable buttons and keylistener on a dialog
+         * @param {Object} dialog Dialog to be enabled
+         * @param {Object} keyListener Keylistener to be enabled
+         * @param {boolean} focusElement Should object gain focus
+        */
+        enableDialogControls: function(dialog, keyListener, focusElement)
+        {
+            this.enableDialogKeyListener(dialog, keyListener);
+            this.enableDialogButtons(dialog);
+            if (focusElement)
+                focusElement.focus();
+        },
+
+        /**
+         * Enable an existing key listener.
+         * @param {Object} dialog Dialog that uses the keylistener
+         * @param {Object} keyListener Keylistener to be enabled
+        */
+        enableDialogKeyListener: function(dialog, keyListener)
+        {
+            if(!dialog || !keyListener)
+                return null;
+
+            dialog.cfg.setProperty("keylisteners", keyListener);
+            keyListener.enable();
+        },
+
+        /**
+         * Creates and shows an actionDialog with one OK button
+         *
+         * @param {string} message The message in the dialog body
+         * @param {Object=} [dialogOptions] Object Configuration options for the dialog. Valid keys are:
+         *     {icon: String Enumerated string denoting which YUI icon to display with the message,
+         *      exitCallback: Function to be run when the dialog closes--
+         *                   called with focusElement as the first parameter,
+         *      focusElement: Element to be focused after the dialog closes,
+         *      width: String Width parameter for dialog.  Ex: '250px',
+         *      title: String Title to display for the dialog}
+         * @return {Object} The dialog instance
+         */
+        messageDialog: function(message, dialogOptions)
+        {
+            if(!message)
+                return null;
+            if(dialogOptions === null || dialogOptions === undefined)
+                dialogOptions = {};
+
+            //Create the dialog title based on the enumerated icon
+            var title, icon, handleOk, SimpleDialog = YAHOO.widget.SimpleDialog;
+            switch(dialogOptions.icon) {
+                case "HELP":
+                    title = RightNow.Interface.getMessage("HELP_LBL");
+                    icon = SimpleDialog.ICON_HELP;
+                    break;
+                case "WARN":
+                    title = RightNow.Interface.getMessage("WARNING_LBL");
+                    icon = SimpleDialog.ICON_WARN;
+                    break;
+                case "TIP":
+                    title = "";
+                    icon = SimpleDialog.ICON_TIP;
+                    break;
+                case "ALARM":
+                    title = "";
+                    icon = SimpleDialog.ICON_ALARM;
+                    break;
+                case "BLOCK":
+                    title = "";
+                    icon = SimpleDialog.ICON_BLOCK;
+                    break;
+                default:
+                    title = RightNow.Interface.getMessage("INFORMATION_LBL");
+                    icon = SimpleDialog.ICON_INFO;
+                    break;
+            }
+            title = dialogOptions.title || title;
+            if(!dialogOptions.width)
+                dialogOptions.width = '20em';
+
+            //construct handler for OK button
+            if(dialogOptions.exitCallback || dialogOptions.focusElement) {
+                /**@inner*/
+                handleOk = function(arg) {
+                    this.hide();
+                    //call caller-defined function
+                    if(dialogOptions.exitCallback && typeof(dialogOptions.exitCallback) === "function")
+                        dialogOptions.exitCallback(dialogOptions.focusElement);
+                    else if(dialogOptions.exitCallback && dialogOptions.exitCallback.fn && dialogOptions.exitCallback.scope)
+                        dialogOptions.exitCallback.fn.call(dialogOptions.exitCallback.scope, dialogOptions.focusElement);
+                    //otherwise try to focus focusElement
+                    else if(dialogOptions.focusElement) {
+                        var focusElement = (typeof dialogOptions.focusElement === "string") ? document.getElementById(dialogOptions.focusElement) : dialogOptions.focusElement;
+                        if(focusElement && focusElement.focus)
+                            focusElement.focus();
+                    }
+                };
+            }
+            else {
+                /**@inner*/
+                handleOk = function() {
+                    this.hide();
+                };
+            }
+            var messageWrapper = document.createElement("span");
+            messageWrapper.id = "rn_Dialog_" + _dialogCount + "_Message";
+            messageWrapper.appendChild(document.createTextNode(message));
+            var dialog = _createDialog(title, messageWrapper, {"width" : dialogOptions.width, "exitCallback" : handleOk});
+
+            dialog.cfg.setProperty('icon', icon);
+            if((!RightNow.Interface.Constants.CAN_USE_ARIA || YAHOO.env.ua.ie) && dialog.defaultHtmlButton)
+            {
+                dialog.defaultHtmlButton.innerHTML = '<span class="rn_ScreenReaderOnly">' + title + " " + RightNow.Interface.getMessage("DIALOG_LBL") + ' ' + message +  " </span>" +  dialog.defaultHtmlButton.innerHTML;
+            }
+            else
+            {
+                dialog.innerElement.setAttribute("aria-describedby", messageWrapper.id);
+                dialog.innerElement.setAttribute("role", "alertdialog");
+            }
+            // Handle the close icon ('x') click
+            dialog.cancelEvent.subscribe(handleOk);
+            if(YAHOO.env.ua.ie)
+                YAHOO.lang.later(400, dialog, 'show');
+            else
+                dialog.show();
+            return dialog;
+        },
+
+        /**
+        * Sets the two html div elements where dialogs will be rendered. Divs are created on load
+        * alternating rendering between these two divs created on load helps with JAWS
+        * without it, JAWS' virtual buffer is not refreshed
+        */
+        setRenderDiv: function()
+        {
+            _topRenderDiv = document.createElement('div');
+            YAHOO.util.Dom.insertBefore(_topRenderDiv, document.body.firstChild); 
+        }
+    };
+}());
+
+if(YAHOO.widget.SimpleDialog){
+    /**@ignore*/
+    YAHOO.widget.SimpleDialog.prototype.focusFirst = YAHOO.widget.Panel.prototype.focusFirst;
+
+    /**
+     * @ignore
+     * @type Object
+     */
+    YAHOO.widget.SimpleDialog.prototype.disableButtons = function() {
+        var dialogButtons = this.getButtons();
+        for(var i=0; i<dialogButtons.length; i++)
+            dialogButtons[i].disabled = true;
+    };
+    
+    /**
+     * @ignore
+     * @type Object
+     */
+    YAHOO.widget.SimpleDialog.prototype.enableButtons = function() {
+        var dialogButtons = this.getButtons();
+        for(var i=0; i<dialogButtons.length; i++)
+            dialogButtons[i].disabled = false;
+    };
+    
+    /**
+     * @ignore
+     * @type Object
+     */
+    YAHOO.widget.SimpleDialog.prototype.enableSecondButton = function() {
+        var dialogButtons = this.getButtons();
+        if (dialogButtons[1])
+            dialogButtons[1].disabled = false;
+    };
+}

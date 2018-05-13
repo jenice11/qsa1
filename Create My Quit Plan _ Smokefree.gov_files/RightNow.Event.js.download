@@ -1,0 +1,2034 @@
+if(RightNow.Event)
+    throw new Error("The RightNow.Event namespace variable has already been defined somewhere.");
+/**
+ * RightNow.Event Namespace
+ *
+ * @namespace This namespace contains functions and classes related to the CP JavaScript event bus.
+ */
+RightNow.Event = (function(){
+    var _eventInstances = {},
+        _noSessionCookies = false;
+
+    return {
+        /**
+         * Creates a new YUI custom event
+         * @param {string} name The name of the custom event to create
+         * @param {Object} scope The scope that the event will fire from (window object if none is set)
+         */
+        create: function(name, scope)
+        {
+            if(!_eventInstances[name])
+                _eventInstances[name] = (scope) ? new YAHOO.util.CustomEvent(name, scope) : new YAHOO.util.CustomEvent(name);
+        },
+    
+        /**
+         * Method for firing custom events. If the event doesn't exist, no event will
+         * be fired
+         *
+         * @param {string} name The name of the custom event to fire
+         * @param {...*} oneOrMoreEventArguments One or more arguments you want passed to the callback
+         */
+        fire: function(name, oneOrMoreEventArguments)
+        {
+            if(_eventInstances[name])
+            {
+                // Create an array containing the second and following arguments to the function.
+                var eventArguments = [].slice.call(arguments, 1);
+                _eventInstances[name].fire.apply(_eventInstances[name], eventArguments);
+            }
+        },
+    
+        /**
+         * Returns an instance of a YUI custom event given the name of the event
+         * @param {string} name The name of the event to retrieve
+         * @return {?Object} The event instance or null if it doesn't exist
+         */
+        get: function(name)
+        {
+            return _eventInstances[name] || null;
+        },
+    
+        /**
+         * Returns the number of subscribers to the event
+         *
+         * @param {string} name The name of the event
+         * @return {number} The number of subscribers to the event
+         */
+        getSubscriberLength: function(name)
+        {
+            return (_eventInstances[name]) ? _eventInstances[name].subscribers.length : 0;
+        },
+    
+        /**
+         * Method for subscribing to a custom event If the event doesn't exist,
+         * it will be created first.
+         *
+         * @param {string} name The name of the custom event
+         * @param {function()} callback The callback function to be executed when the event is fired
+         * @param {Object} scope The scope of the callback
+         * @param {Object=} [parameter] Optional object that will be passed to the callbackwhen the event is later fired
+         */
+        subscribe: function(name, callback, scope, parameter)
+        {
+            if(!_eventInstances[name])
+                this.create(name, scope);
+    
+            _eventInstances[name].subscribe(callback, parameter, scope);
+        },
+    
+        /**
+         * Unsubscribes the function handler for the given event.
+         *
+         * @param {string} name The name of the event to unsubscribe from
+         * @param {function()} functionHandler The function handler to unsubscribe
+         * @param {Object=} customObject Custom object passed to subscribe function. Used to disambiguate multiple listeners to the same function
+         */
+        unsubscribe: function(name, functionHandler, customObject)
+        {
+            if(_eventInstances[name])
+                _eventInstances[name].unsubscribe(functionHandler, customObject || null);
+        },
+
+        /**
+         * Returns a function which will execute 'callback' with 'context' as its 'this'.
+         * Useful for replacing an event handler with a function that's a member of
+         * a different object.
+         * @param {Object} context object The context to execute the function within
+         * @param {function()} callback The function to execute
+         * @return {function()} The defined function
+         */
+        createDelegate: function(context, callback)
+        {
+            return function()
+            {
+                return callback.apply(context, arguments);
+            };
+        },
+    
+        /**
+        * Common method to check for correct report id
+        * @param {Object} eventArguments Report filters object
+        * @param {number} reportID The report ID to match against
+        * @return {boolean} True if reportIDs match
+        */
+        isSameReportID: function(eventArguments, reportID)
+        {
+            return (eventArguments && eventArguments[0] && eventArguments[0].filters && (eventArguments[0].filters.report_id == reportID));
+        },
+        
+        /**
+        * Used to get the correct data structure for search/report filters
+        * @param {Object} eventArguments Report filters object
+        * @param {string} searchName The array item being requested
+        * @param {number} reportID The report id of the requesting widget. It must match what is in the eventArguments[0].filters.report_id to get data back
+        * @return {*} The value that was in the filters.data structure for that item
+        */
+        getDataFromFiltersEventResponse: function(eventArguments, searchName, reportID)
+        {
+            var element = eventArguments[0];
+            var returnData = null;
+            if(element.filters && (element.filters.report_id == reportID))
+            {
+                if(element.filters.allFilters && element.filters.allFilters.filters && element.filters.allFilters.filters[searchName] && element.filters.allFilters.filters[searchName].filters)
+                {
+                    returnData = element.filters.allFilters.filters[searchName].filters.data;
+                }
+                else
+                {
+                    returnData = element.filters.data;
+                }
+            }
+            return returnData;
+        },
+        
+        /**
+         * Sets whether or not the user is allowing session cookies
+         * @param {boolean} value Value denoting if session cookies are enabled or not
+         */
+        setNoSessionCookies: function(value)
+        {
+            _noSessionCookies = value;
+        },
+    
+        /**
+        * Delimiter used for the history manager
+        * @type string
+        */
+        browserHistoryManagementKey: "s",
+    
+        /**
+        * Checks if a history management state for a report is within the URL.
+        * Use YAHOO.util.HistoryManager.getCurrentState() to actually get the state.
+        * Only use this to check that the fragment actually exists before the history manager is initialized.
+        * @return {boolean} Whether or not the current URL fragment is the historyManagementKey
+        */
+        isHistoryManagerFragment: function()
+        {
+            this.isHistoryManagerFragment._valueToMatch = this.isHistoryManagerFragment._valueToMatch ||
+                new RegExp("#" + this.browserHistoryManagementKey + "=[A-Za-z0-9\+\/]+");
+            return window.location.hash.match(this.isHistoryManagerFragment._valueToMatch) !== null;
+        },
+    
+        /**
+         * The EventObject object that is passed around with CP events.
+         * @constructor
+         * @class Object that is passed with all framework events
+         */
+        EventObject: function()
+        {
+            /**
+             * Unique ID of the widget that is generated from controller
+             * @type {?number}
+             */
+            this.w_id = null; 
+            /**
+             * Object of data to be passed
+             * @type {Object}
+             */
+            this.data = {};
+            /**
+             * Object of search filter specific data
+             * @type {Object}
+             */
+            this.filters = {}; // object of search filter specific data
+        },
+
+        /**
+         * Controls the event logic for the framework. All event handlers are within this class
+         * and it does the work of aggregating data and making requests to the server to get data, 
+         * which it then passes back to the widgets.
+         */
+        EventBus: function()
+        {
+            var _searchFilters = {},
+                _excludedFilters = {},
+                _searchFiltersResponding = {},
+                _searches = null,
+                _filterCount = {},
+                _productLinkingMap = null,
+                _incidentID = 0,
+                GET_DATA = 1,
+                CHANGE_PAGE = 2,
+                //Browser History Management Variables
+                _isBrowserHistoryManagementEnabled = false,
+                _initialHistoryState = "",
+                _emptyHistoryState = false,
+                _cachedReportData = {},
+                _lastFiredData = {},
+                _historyKey = "",
+                _nonReportDataSource = false,
+                _historyCounter = 0,
+                _isBrowserHistoryManagementInitialized = false,
+                _isHistoryNavigating = false,
+                _runningInIFrame = (top !== self),
+                _getPath = function(){
+                    //make sure page path & parameter segment work on subsequent page flip
+                    //when the current page is implicitly the home page
+                    var pathName = window.location.pathname;
+                    if(pathName === "/" || pathName === "/app" || pathName === "/app/")
+                        return "/app/" + RightNow.Interface.getConfig("CP_HOME_URL");
+                    else if(pathName === "/cx/facebook" || pathName === "/cx/facebook/") 
+                        return "/cx/facebook/home";
+                    return pathName;
+                };
+            
+            
+            /**
+             * Instantiates all events and hooks them up to their handler functions
+             * @private
+             */
+            this.initializeEventBus = function()
+            {
+                if(RightNow.Url.getSession() != "")
+                {
+                    _searches = RightNow.Url.getParameter("sno");
+                    if(!_searches)
+                        _searches = 0;
+                }
+                _incidentID = RightNow.Url.getParameter("i_id") || 0;
+        
+                //notifications
+                var s = 'subscribe';
+                this[s]("evt_answerNotificationUpdateRequest", onAnswerNotificationUpdateRequest, this);
+                this[s]("evt_menuFilterSelectRequest", onMenuFilterSelectRequest, this);
+                this[s]("evt_prodCatDeleteRequest", onProdCatDeleteRequest, this);
+                this[s]("evt_prodCatRenewRequest", onProdCatRenewRequest, this);
+                this[s]("evt_prodCatAddRequest", onProdCatAddRequest, this);
+                //forms
+                this[s]("evt_fileUploadRequest", onFileUploadRequest, this);
+                this[s]("evt_formButtonSubmitRequest", onFormButtonSubmitRequest, this);
+                this[s]("evt_formFieldValidateResponse", onFormFieldValidateResponse, this);
+                this[s]("evt_formFieldCountRequest", onFormFieldCountRequest, this);
+                this[s]("evt_formFieldProvinceRequest", onProvinceRequest, this);
+                this[s]("evt_formFieldAccountExistsRequest", onAccountExistsRequest, this);
+                this[s]("evt_passwordResetSubmitRequest", onSendPasswordResetRequest, this);
+                this[s]("evt_emailLinkRequest", onEmailLinkRequest, this);
+                this[s]("evt_emailPasswordRequest", onEmailPasswordRequest, this);
+                this[s]("evt_emailUsernameRequest", onEmailUsernameRequest, this);
+                this[s]("evt_answerFeedbackRequest", onAnswerFeedbackRequest, this);
+                this[s]("evt_siteFeedbackRequest", onSiteFeedbackRequest, this);
+                this[s]("evt_answerRatingRequest", onAnswerRatingRequest, this);
+                this[s]("evt_loginFormSubmitRequest", onLoginFormRequest, this);
+                this[s]("evt_logoutRequest", onLogoutRequest, this);
+                this[s]("evt_menuFilterRequest", onMenuFilterRequest, this);
+                this[s]("evt_menuFilterGetResponse", onMenuFilterReset, this);
+                this[s]("evt_resetFilterRequest", onMenuFilterReset, this);
+                this[s]("evt_accessibleTreeViewRequest", onAccessibleTreeViewRequest, this);
+                //search & reports
+                this[s]("evt_searchTypeRequest", onSearchTypeRequest, this);
+                this[s]("evt_sortTypeRequest", onSortTypeRequest, this);
+                this[s]("evt_orgTypeRequest", onOrgTypeRequest, this);
+                this[s]("evt_customMenuRequest", onCustomMenuRequest, this);
+                this[s]("evt_keywordChangedRequest", onKeywordChangedRequest, this);
+                this[s]("evt_searchRequest", onSearchRequest, this);
+                this[s]("evt_searchFiltersResponse", onSearchFiltersResponse, this);
+                this[s]("evt_searchInProgressRequest", onSearchInProgressRequest, this);
+                this[s]("evt_moreResultsRequest", onMoreResultsRequest, this);
+                this[s]("evt_pageRequest", onPageRequest, this);
+                this[s]("evt_setInitialFiltersRequest", onSetInitialFiltersRequest, this);
+                this[s]("evt_excludeFilterFromRequest", onExcludeFilterFromRequest, this);
+                //chat
+                this[s]("evt_chatQueueRequest", onCheckQueueRequest, this);
+                this[s]("evt_chatTranslateFormFieldsRequest", onChatTranslateData, this);
+                //guided assistance
+                this[s]("evt_GuidedAssistanceRequest", onGuidedAssistanceRequest, this);
+                //Community
+                this[s]("evt_communitySearchRequest", onCommunitySearchRequest, this);
+                this[s]("evt_answerCommentActionRequest", onAnswerCommentAction, this);
+                this[s]("evt_postCommentActionRequest", onPostCommentAction, this);
+                this[s]("evt_getAnswerRequest", onGetAnswerRequest, this);
+                this[s]("evt_getCommunityPostRequest", onGetCommunityPostRequest, this);
+                this[s]("evt_getCommentListRequest", onGetCommentListRequest, this);
+                this[s]("evt_submitCommunityPostRequest", onSubmitCommunityPostRequest, this);
+                this[s]("evt_pollSubmitRequest", onPollSubmitRequest, this);
+                //Intent Guide
+                this[s]("evt_intentGuideSearchRequest", onIntentGuideSearchRequest, this);
+                //Intent Guide + Community
+                this[s]("evt_combinedSearchRequest", onCombinedSearchRequest, this);
+            };
+            
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onGuidedAssistanceRequest(type, eventObject)
+            {
+                var postData = {guideID: eventObject[0].data.guideID, langID: eventObject[0].data.langID};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getGuidedAssistanceTree", postData, {data: {eventName: "evt_GuidedAssistanceResponse", data: eventObject[0]}, type: "GETPOST"});
+            }
+    
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onAnswerNotificationUpdateRequest(type, eventObject)
+            {
+                var callback = (eventObject[0].data.status === -4) ?  {"eventName": "evt_answerNotificationDeleteResponse"} : {"eventName": "evt_answerNotificationResponse"},
+                    postData = {"a_id" : eventObject[0].data.answerID, "status" : eventObject[0].data.status};
+                if(eventObject[0].data.contactID)
+                    postData.cid = eventObject[0].data.contactID;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/answerNotification", postData, {"data": callback});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onLoginFormRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var post = {"login": eventObject.data.username, "password": eventObject.data.password, "url": eventObject.data.url, "w_id": eventObject.w_id};
+                if(_noSessionCookies)
+                    document.cookie = "cp_login_start=1;path=/";
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/doLogin", post, {"data": {"eventName": "evt_loginFormSubmitResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onLogoutRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/doLogout", {"url": eventObject[0].data.currentUrl, "redirectUrl": eventObject[0].data.redirectUrl}, {"data": {"eventName": "evt_logoutResponse", data: eventObject[0]}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onFileUploadRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                try
+                {
+                    RightNow.Ajax.makeRequest("/ci/fattach/" + ((eventObject.data.upload_type === "chat") ? "uploadChat/" + eventObject.data.engagement_id + "/" + eventObject.data.chat_sid : "upload"), null, {
+                        data: {eventName: "evt_fileUploadResponse", data: eventObject},
+                        timeout: (RightNow.Interface.getConfig("CP_FILE_UPLOAD_MAX_TIME") || 300) * 1000,
+                        uploadHandler: RightNow.Ajax.genericSuccess,
+                        failureHandler: function() {
+                            RightNow.Event.fire("evt_fileUploadResponse", null, eventObject);
+                        }
+                    });
+                }
+                catch(e)
+                {
+                    // IE gives an access denied error if the user types an
+                    // invalid string into the file upload box.
+                    // So mimic a successful php request but
+                    // notify the user that it's an invalid filename
+                    this.fire("evt_fileUploadResponse", {error: 88}, eventObject);
+                }
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onFormButtonSubmitRequest(type, eventObject)
+            {
+                var Form = RightNow.UI.Form;
+                eventObject = eventObject[0];
+                Form.errorCount = 0;
+                Form.formFields = [];
+                Form.form = eventObject.data.form;
+                Form.widgetsToValidate = Form.widgetsToProcess = this.getSubscriberLength("evt_formFieldValidateRequest");
+                Form.formToken = eventObject.data.f_tok;
+        
+                // This allows us to store data to send to onSendFormRequest() later.
+                onFormButtonSubmitRequest._previousEventObject = eventObject;
+    
+                if(RightNow.UI.Form.widgetsToValidate !== 0)
+                    this.fire("evt_formFieldValidateRequest", eventObject);
+                else
+                    this.fire("evt_formValidatedResponse", eventObject);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onFormFieldValidateResponse(type, eventObject)
+            {
+                var Form = RightNow.UI.Form;
+                --Form.widgetsToValidate;
+                if(eventObject[0].data.form === Form.form)
+                {
+                    delete eventObject[0].data.form; //don't send form id to server
+                    Form.formFields.push(eventObject[0].data);
+                }
+                if(Form.widgetsToValidate === 0)
+                {
+                    this.fire("evt_formValidatedResponse");
+                    if(!Form.chatSubmit && !Form.passwordReset)
+                        onSendFormRequest();
+                }
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onFormFieldCountRequest(type, eventObject)
+            {
+                var Form = RightNow.UI.Form;
+                --Form.widgetsToProcess;
+                if(Form.widgetsToProcess === 0 && Form.widgetsToValidate !== 0)
+                    this.fire("evt_formFailValidationResponse");
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onProvinceRequest(type, eventObject)
+            {
+                if(onProvinceRequest.cache && onProvinceRequest.cache[eventObject[0].data.country_id])
+                {
+                    this.fire("evt_formFieldProvinceResponse", onProvinceRequest.cache[eventObject[0].data.country_id]);
+                    return;
+                }
+                var postData = {"country_id": eventObject[0].data.country_id};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequestMin/getCountryValues", postData, {"successHandler": onProvinceResponse, "scope": this, "data": eventObject, "type":"GETPOST"});
+            }
+        
+            /** 
+             * event handler
+             * @param eventObject object
+             * @private 
+             */
+            function onProvinceResponse(eventObject)
+            {
+                if(eventObject.argument && eventObject.argument[0])
+                {
+                    var origEventObj = eventObject.argument[0];
+                    if(eventObject.responseText !== undefined)
+                    {
+                        var results = RightNow.JSON.parse(eventObject.responseText);
+                        if(results)
+                        {
+                            if(!onProvinceRequest.cache)
+                                onProvinceRequest.cache = [];
+                            onProvinceRequest.cache[origEventObj.data.country_id] = results;
+                        }
+                    }
+                    this.fire("evt_formFieldProvinceResponse", results);
+                }
+            }
+
+            /**
+             * Event handler for combined search request
+             * @param {string} type The event name
+             * @param {Object} eventObject Event data
+             * @private
+             */
+            function onCombinedSearchRequest(type, eventObject) {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getCombinedSearchResults", eventObject[0].data, {data: {eventName: "evt_combinedSearchResponse", data: eventObject[0]}, type: "GETPOST"});
+            }
+
+            /** 
+             * Event handler for when a intent guide search is performed
+             * @param {string} type The event name
+             * @param {Object} eventObject Event data
+             * @private 
+             */
+            function onIntentGuideSearchRequest(type, eventObject)
+            {
+                var eventData = eventObject[0].data;
+                var postData = {
+                    keyword: eventData.searchTerm,
+                    limit: eventData.limit,
+                    highlight: eventData.highlight,
+                    truncate: eventData.truncate,
+                    cutoff: eventData.cutoff,
+                    category: eventData.category,
+                    siteref: eventData.siteref,
+                    referrer: eventData.referrer
+                };
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getIntentGuideData", postData, {"data": {"eventName": "evt_intentGuideSearchResponse", "data": eventObject[0]}, type: "GETPOST"});
+            }
+            
+            /** 
+             * Event handler for when a community search is performed
+             * @param {string} type The event name
+             * @param {Object} eventObject Event data
+             * @private 
+             */
+            function onCommunitySearchRequest(type, eventObject)
+            {
+                var eventData = eventObject[0].data;
+                var postData = {"keyword": eventData.searchTerm,
+                                "limit": eventData.limit,
+                                "highlight": eventData.highlight,
+                                "truncate": eventData.truncate,
+                                "start": eventData.start
+                               };
+                if(eventData.baseUrl)
+                    postData.baseUrl = eventData.baseUrl;
+                if(eventData.resource)
+                    postData.resource = eventData.resource;
+                if(eventData.paginateResults)
+                    postData.paginateResults = eventData.paginateResults;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getCommunityData", postData, {"data": {"eventName": "evt_communitySearchResponse", "data": eventObject[0]}, type: "GETPOST"});
+            }
+            
+            /**
+             * Event handler for when a answer comment action is performed
+             * @param {string} type The event name 
+             * @param {Object} eventObject Event data
+             * @private
+             */
+            function onAnswerCommentAction(type, eventObject)
+            {
+                var postData = {"action": eventObject[0].data.action,
+                                "data": RightNow.JSON.stringify(eventObject[0].data.content),
+                                "answerID": eventObject[0].data.answerID
+                               };
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitAnswerCommentAction", postData, {"data": {"eventName": "evt_answerCommentActionResponse"}});
+            }
+            
+            /**
+             * Event handler for when a post comment action is performed
+             * @param {string} type The event name 
+             * @param {Object} eventObject Event data
+             * @private
+             */
+            function onPostCommentAction(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitPostCommentAction", {
+                        action: eventObject.data.action,
+                        data: RightNow.JSON.stringify(eventObject.data.content),
+                        postID: eventObject.data.postID},
+                    {data: {eventName: "evt_postCommentActionResponse", data: eventObject}});
+            }
+            
+            /**
+            * Event handler. Requests a community post.
+            * @param type string the event type
+            * @param eventObject object
+            * @private
+            */
+            function onGetCommunityPostRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getCommunityPost", {postID: eventObject[0].data.postID}, {data: {eventName: "evt_getCommunityPostResponse", data: eventObject[0]}, type: "GETPOST"});
+            }
+            
+            /**
+            * Event handler. Requests comments for a given post.
+            * @param type string the event type
+            * @param eventObject object
+            * @private
+            */
+            function onGetCommentListRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getPostComments", {postID: eventObject[0].data.postID}, {data: {eventName: "evt_getCommentListResponse", data: eventObject[0]}});
+            }
+            
+            /**
+            * Event handler. Submits a community post.
+            * @param type string the event type
+            * @param eventObject object
+            * @private
+            */
+            function onSubmitCommunityPostRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitCommunityPost", {
+                    token: eventObject.data.token,
+                    title: RightNow.JSON.stringify(eventObject.data.title),
+                    body: RightNow.JSON.stringify(eventObject.data.body),
+                    postTypeID: eventObject.data.postTypeID,
+                    resourceHash: eventObject.data.resourceHash}, 
+                {data: {eventName: "evt_submitCommunityPostResponse", data: eventObject}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onAccountExistsRequest(type, eventObject)
+            {
+                var eventObjectData = eventObject[0].data,
+                    postData = {contactToken: eventObjectData.contactToken, pwReset: RightNow.UI.Form.passwordReset};
+                if(eventObjectData.email)
+                    postData.email = eventObjectData.email;
+                else if(eventObjectData.login)
+                    postData.login = eventObjectData.login;
+                if(eventObjectData.checkForChallenge)
+                    postData.checkForChallenge = true;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/checkForExistingContact", postData, {data: {eventName: "evt_formFieldAccountExistsResponse", ignoreFailure: true}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSearchTypeRequest(type, eventObject)
+            {
+                this.fire("evt_searchTypeResponse", eventObject[0]);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSortTypeRequest(type, eventObject)
+            {
+                this.fire("evt_sortTypeResponse", eventObject[0]);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onOrgTypeRequest(type, eventObject)
+            {
+                this.fire("evt_orgTypeResponse", eventObject[0]);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onCustomMenuRequest(type, eventObject)
+            {
+                this.fire("evt_customMenuResponse", eventObject[0]);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onEmailLinkRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/emailAnswer", eventObject[0].data, {"data": {"eventName": "evt_emailLinkSubmitResponse", "data": eventObject}});
+            }
+    
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onEmailPasswordRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/emailPassword", {"login": eventObject[0].data.value}, {"data": {"eventName": "evt_emailPasswordResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onEmailUsernameRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/emailUsername", {"email": eventObject[0].data.value}, {"data": {"eventName": "evt_emailUsernameResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSiteFeedbackRequest(type, eventObject)
+            {
+                var postData = {
+                        "email": eventObject[0].data.email,
+                        "message": eventObject[0].data.message,
+                        "a_id": eventObject[0].data.a_id,
+                        "rate": eventObject[0].data.rate,
+                        "submitfeedback": eventObject[0].data.submitfeedback};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitSiteFeedback", postData, {"data": {"eventName": "evt_siteFeedbackSubmitResponse", "data": eventObject}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onAnswerFeedbackRequest(type, eventObject)
+            {
+                var postData = {
+                        "email": eventObject[0].data.email,
+                        "message": eventObject[0].data.message,
+                        "summary": eventObject[0].data.summary,
+                        "a_id": eventObject[0].data.a_id,
+                        "rate": eventObject[0].data.rate,
+                        "threshold": eventObject[0].data.dialog_threshold,
+                        "submitfeedback": eventObject[0].data.submitfeedback,
+                        "options_count": eventObject[0].data.options_count};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitAnswerFeedback", postData, {"data": {"eventName": "evt_answerFeedbackSubmitResponse", "data": eventObject}});
+            }
+            
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onAnswerRatingRequest(type, eventObject)
+            {
+                var postData = {
+                        "a_id": eventObject[0].data.a_id,
+                        "rate": eventObject[0].data.rate,
+                        "threshold": eventObject[0].data.dialog_threshold,
+                        "options_count": eventObject[0].data.options_count};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitAnswerRating", postData, {"data": {"eventName": "evt_answerRatingSubmitResponse", "data": eventObject}});
+            }
+            
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onKeywordChangedRequest(type, eventObject)
+            {
+                 this.fire("evt_keywordChangedResponse", eventObject[0]);
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onAccessibleTreeViewRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var postData = {"hm_type": eventObject.data.hm_type, "linking_on": eventObject.data.linkingProduct};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequestMin/getAccessibleTreeView", postData, {"successHandler": accessibleTreeViewGetSuccess, "scope":this, "data": eventObject, "type":"GETPOST"});
+            }
+        
+            /** 
+             * event return handler
+             * @param o object
+             * @private 
+             */
+            function accessibleTreeViewGetSuccess(o)
+            {
+                if(o.argument!=null)
+                {
+                    var eventObject = o.argument;
+                    if(o.responseText !== undefined)
+                    {
+                        var results = RightNow.JSON.parse(o.responseText);
+                        if (results)
+                        {
+                            eventObject.data.accessibleLinks = results;
+                            this.fire("evt_accessibleTreeViewGetResponse", eventObject);
+                        }
+                        else
+                        {
+                            RightNow.UI.Dialog.messageDialog(RightNow.Interface.getMessage("ERROR_REQUEST_ACTION_COMPLETED_MSG"), {"icon": "WARN"});
+                        }
+                    }
+                }
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onMenuFilterRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var eo;
+        
+                if(eventObject.data.link_map)
+                    _productLinkingMap = eventObject.data.link_map;
+                //Currently only doing cache checking on non-linked menu filters
+                if(!eventObject.data.linking_on)
+                {
+                    if(eventObject.data.level > 5)
+                        return;
+        
+                    if(eventObject.data.value < 1)
+                    {
+                        eventObject.data.level = 1;
+                        eventObject.data.hier_data = [];
+                        this.fire("evt_menuFilterGetResponse", eventObject);
+                        return;
+                    }
+                    if(eventObject.data.cache[eventObject.data.value])
+                    {
+                        //create new evt obj so that request evt obj isn't modified
+                        eo = new this.EventObject();
+                        eo.data = {"hier_data" : eventObject.data.cache[eventObject.data.value], "level" : eventObject.data.level + 1};
+                        eo.w_id = eventObject.w_id;
+                        this.fire("evt_menuFilterGetResponse", eo);
+                        return;
+                    }
+                }
+                else if((eventObject.data.data_type.indexOf("cat") > -1) && _productLinkingMap && _productLinkingMap[eventObject.data.value])
+                {
+                        eo = RightNow.Lang.cloneObject(eventObject);
+                        if(!eo.data.reset)
+                            eo.data.level++;
+                        eo.data.hier_data = RightNow.Lang.cloneObject(_productLinkingMap[eo.data.value]);
+                        this.fire("evt_menuFilterGetResponse", eo);
+                        return;
+                }
+                
+                var postData = {"filter": eventObject.data.data_type, "lvl": (eventObject.data.level + 1), "id": eventObject.data.value, "linking": eventObject.data.linking_on};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequestMin/getHierValues", postData, {"successHandler": menuFilterGetSuccess, "scope":this, "data": eventObject, "type":"GETPOST"});
+            }
+
+            /** 
+             * event handler to reset _productLinkingMap
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onMenuFilterReset(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                if(eventObject.data.reset &&
+                    ((eventObject.data.reset_linked_category && eventObject.data.data_type === "categories")
+                        || (eventObject.data.name === "c")))
+                    _productLinkingMap = null;
+            }
+        
+            /**
+             * Function handler for successful hier menu ajax request
+             * @private
+             * @param o object Response from server
+             */
+            function menuFilterGetSuccess(o)
+            {
+                if(o.argument!=null)
+                {
+                    var eventObject = o.argument;
+                    if(o.responseText !== undefined)
+                    {
+                        //results[0] - Actual filter results
+                        //results[1] - Linking results if neccesary
+                        var results = RightNow.JSON.parse(o.responseText);
+                        if (results)
+                        {
+                            eventObject.data.cache[eventObject.data.value] = results[0];
+                            eventObject.data.hier_data = results[0];
+                            eventObject.data.level += 1;
+                            this.fire("evt_menuFilterGetResponse", eventObject);
+        
+                            //If linking is on, populate link_map and fire event to category hier menus
+                            if (eventObject.data.linking_on && eventObject.data.data_type.indexOf("prod") > -1)
+                            {
+                                _productLinkingMap = results.link_map;
+                                var linkingEvtObj = new this.EventObject();
+                                linkingEvtObj.data = {"level": 1,
+                                                      "hier_data": _productLinkingMap[0],
+                                                      "data_type": eventObject.data.data_type.replace("products", "categories"),
+                                                      "reset_linked_category": true};
+                                linkingEvtObj.filters.report_id = eventObject.filters.report_id;
+                                this.fire("evt_menuFilterGetResponse", linkingEvtObj);
+                                //If product changed to none selected, clear out link map
+                                if (eventObject.data.value === -1)
+                                    _productLinkingMap = null;
+                            }
+                        }
+                        else
+                        {
+                            RightNow.UI.Dialog.messageDialog(RightNow.Interface.getMessage("ERROR_REQUEST_ACTION_COMPLETED_MSG"), {"icon": "WARN"});
+                        }
+                    }
+                }
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onMenuFilterSelectRequest(type, eventObject)
+            {
+                //Build prodcat id chain
+                var hierValues = eventObject[0].data.hierSetData;
+                var chain = hierValues[1].id;
+                for(var i=2; i < hierValues.length; ++i)
+                {
+                    if(hierValues[i].id > 0)
+                        chain += ',' + hierValues[i].id;
+                }
+                var postData = {"chain": chain, "filter_type": eventObject[0].data.data_type};
+                this.fire("evt_menuFilterSettingResponse");
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/prodcatAddNotification", postData, {"data": {"eventName": "evt_menuFilterSelectResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onProdCatAddRequest(type, eventObject)
+            {
+                var postData = {"filter_type" : eventObject[0].data.filter_type, "chain" : eventObject[0].data.chain};
+                if(eventObject[0].data.c_id)
+                    postData.cid = eventObject[0].data.c_id;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/prodcatAddNotification", postData, {"data": {"eventName": "evt_prodCatAddResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onProdCatDeleteRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var postData = {"filter_type": eventObject.data.filter_type, "chain": eventObject.data.chain, "timestamp": eventObject.data.time};
+                if(eventObject.data.c_id)
+                    postData.cid = eventObject.data.c_id;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/prodcatDeleteNotification", postData, {"data": {"eventName": "evt_prodCatDeleteResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onProdCatRenewRequest(type, eventObject)
+            {
+                var postData = {"filter_type": eventObject[0].data.filter_type, "chain": eventObject[0].data.chain, "timestamp": eventObject[0].data.time};
+                if(eventObject[0].data.c_id)
+                    postData.cid = eventObject[0].data.c_id;
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/prodcatRenewNotification", postData, {"data": {"eventName": "evt_prodCatRenewResponse"}});
+            }
+
+            /**
+            * Event handler. Requests an answer.
+            * @param type string the event type
+            * @param eventObject object
+            * @private
+            */
+            function onGetAnswerRequest(type, eventObject)
+            {
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getAnswer", {answerID: eventObject[0].data.answerID}, {data: {eventName: "evt_getAnswerResponse", data: eventObject[0]}});
+            }
+
+            
+            //Form Fields Requests
+            /** 
+             * request for sending forms
+             * @private 
+             */
+            function onSendFormRequest()
+            {
+                var Form = RightNow.UI.Form;
+                //Attempt to set a login cookie if the form contains the contact
+                //login field
+                if(_noSessionCookies)
+                {
+                    for(var i=0, length = Form.formFields.length; i < length; i++)
+                    {
+                        var field = Form.formFields[i];
+                        if(field.table === 'contacts' && field.name === 'login')
+                        {
+                            document.cookie = "cp_login_start=1;path=/";
+                            break;
+                        }
+                    }
+                }
+                    
+                var formFields = RightNow.JSON.stringify(Form.formFields),
+                    postData = {"i_id": _incidentID, "f_tok": RightNow.UI.Form.formToken, "form": formFields};
+                if(RightNow.UI.Form.smartAssistant != null)
+                    postData.smrt_asst = RightNow.UI.Form.smartAssistant;
+                var requestOptions = {
+                    data: {"eventName": "evt_formButtonSubmitResponse"}, 
+                    timeout: (RightNow.Interface.getConfig("CP_FILE_UPLOAD_MAX_TIME") || 300) * 1000,
+                    /**@inner*/
+                    failureHandler: function(o) {
+                        //cleanse error: output a more useful message
+                        if(o.status === 418 && o.argument && o.argument.eventName)
+                            RightNow.Event.fire(o.argument.eventName, {"message": RightNow.Interface.getMessage("ERR_SUBMITTING_FORM_DUE_INV_INPUT_LBL")});
+                    }
+                };
+                if (onFormButtonSubmitRequest._previousEventObject) {
+                    requestOptions = 
+                        (function(target, source) {
+                            var members = ["challengeHandler", "challengeHandlerContext"],
+                                i, m;
+                            for (i = 0; i < members.length; ++i) {
+                                m = members[i];
+                                target[m] = source[m] || undefined;
+                            }
+                            return target;
+                        })(requestOptions, onFormButtonSubmitRequest._previousEventObject);
+                }
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/sendForm", postData, requestOptions);
+            }
+
+            //password reset
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSendPasswordResetRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var postData = {"pw_reset": eventObject.data.resetString};
+                try
+                {
+                    //these won't be defined until this subscriber function's event is fired
+                    //but this function also won't be called except when after the fields are defined...
+                    var formFields = RightNow.JSON.stringify(RightNow.UI.Form.formFields);
+                    postData.f_tok = RightNow.UI.Form.formToken;
+                    postData.form = formFields;
+                }
+                catch(e){}
+                if(_noSessionCookies)
+                    document.cookie = "cp_login_start=1;path=/";
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/resetPassword", postData, {"data": {"eventName": "evt_formButtonSubmitResponse"}});
+            }
+            
+            //polls
+             /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onPollSubmitRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var post = {"survey": eventObject.data.survey_id, 
+                            "flow_id": eventObject.data.flow_id, 
+                            "doc_id": eventObject.data.doc_id,
+                            "responses": eventObject.data.responses,
+                            "question_id": eventObject.data.question_id,
+                            "question_type": eventObject.data.question_type,
+                            "chart_type": eventObject.data.chart_type,
+                            "location": eventObject.data.location, 
+                            "w_id": eventObject.w_id,
+                            "results_only":eventObject.data.results_only,
+                            "include_results":eventObject.data.include_results,
+                            "test":eventObject.data.test};
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/submitPoll", post, {"data": {"eventName": "evt_pollSubmitResponse", "data": eventObject}});
+            }
+            
+            //Report Requests -------------------------------------------------------------------------
+            //Event Handlers
+            /** 
+             * Event handler that is called when a search begins.
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSearchRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+                var url = eventObject.filters.reportPage || "",
+                    reportID = eventObject.filters.report_id,
+                    customSourceID = eventObject.filters.custom_source_id,
+                    key = reportID || customSourceID,
+                    eo = new RightNow.Event.EventObject();
+                
+                if(_searches != null)
+                    _searches++;
+                
+                if(!_runningInIFrame && (url === "" || url === "{current_page}" || RightNow.Url.isSameUrl(url)))
+                {
+                    //ajax search
+                    if(!_searchFilters[key])
+                        _searchFilters[key] = {filters: {}, format: {}};
+        
+                    _searchFilters[key].filters.page = 1;
+                    _searchFilters[key].filters.search = 1;
+                    _filterCount.action = GET_DATA; // get report
+                    this.fire("evt_searchInProgressRequest", eventObject);
+                }
+                else
+                {
+                    //navigate to different page
+                    _filterCount.target = eventObject.filters.target || "_self";
+                    _filterCount.popupWindow = eventObject.filters.popupWindow;
+                    _filterCount.width = eventObject.filters.width;
+                    _filterCount.height = eventObject.filters.height;
+                    _filterCount.action = CHANGE_PAGE;
+                    _filterCount.url = url || _getPath();
+                    if(_searchFilters[key] && _searchFilters[key].filters)
+                        _searchFilters[key].filters.page = 1;
+                }
+                
+                _filterCount.subscribed = this.getSubscriberLength("evt_getFiltersRequest");
+                _filterCount.actual = 0;
+
+                if(reportID)
+                {
+                    _filterCount.report_id = reportID;
+                    eo.filters.report_id = reportID;
+                    _nonReportDataSource = false;
+                }
+                else if(customSourceID)
+                {
+                    _filterCount.custom_source_id = customSourceID;
+                    eo.filters.custom_source_id = customSourceID;
+                    _nonReportDataSource = true;
+                }
+                //request all of the search filters
+                RightNow.Event.fire("evt_getFiltersRequest", eo);
+            }
+
+            /**
+             *  Event handler called when the a search filter needs to be excluded from the report request
+             *  @param type string the event object type
+             *  @param eventObject object
+             *  @private
+             */
+            function onExcludeFilterFromRequest(type, eventObject)
+            {
+                //Make note of the filter that needs to be removed from this request if it's not found on the page. 
+                if(!_excludedFilters[eventObject[0].filters.report_id])
+                    _excludedFilters[eventObject[0].filters.report_id] = [];
+                _excludedFilters[eventObject[0].filters.report_id].push(eventObject[0].data.name);
+            }
+        
+            /** 
+             * Event handler called when ea. filter reports back in.
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onSearchFiltersResponse(type, eventObject)
+            {
+                //Populate the searchFiltersResponding array with all the filters that respond on the page.
+                var reportID = eventObject[0].filters.report_id;
+                if(!_searchFiltersResponding[reportID])
+                    _searchFiltersResponding[reportID] = {};
+                _searchFiltersResponding[reportID][eventObject[0].filters.searchName] = true;
+
+                setSearchFilter(eventObject[0]);
+
+                _filterCount.actual++;
+                if (_filterCount.subscribed === _filterCount.actual)
+                {
+                    this.fire("evt_beforeSearchRequest", _searchFilters[getFilterKey()]);
+                    if (_filterCount.action === GET_DATA)
+                        requestReport(getFilterKey());
+                    else if (_filterCount.action === CHANGE_PAGE)
+                        requestNewPage(_filterCount.target);
+                }
+            }
+            
+            /** 
+             * Event handler used for search trunaction only.
+             * Specific to reports only.
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+             function onMoreResultsRequest(type, eventObject)
+             {
+                eventObject = eventObject[0];
+                setSearchFilter(eventObject);
+                var reportID = eventObject.filters.report_id;
+                _searchFilters[reportID].filters.no_truncate = 1;
+                _searchFilters[reportID].filters.search = 0;
+                requestReport(reportID);
+             }
+             
+             /** 
+              * Event handler for search in progress event.
+              * @param type string the event object type
+              * @param eventObject object
+              * @private 
+              */
+             function onSearchInProgressRequest(type, eventObject)
+             {
+                 this.fire("evt_searchInProgressResponse", eventObject[0]);
+             }
+
+             /** 
+              * Event handler for requesting a new report page.
+              * Specific to reports only.
+              * @param type string the event object type
+              * @param eventObject object
+              * @private 
+              */
+             function onPageRequest(type, eventObject)
+             {
+                 eventObject = eventObject[0];
+                 this.fire("evt_searchInProgressRequest", eventObject);
+
+                 setSearchFilter(eventObject);
+                 var reportID = eventObject.filters.report_id;
+                 _searchFilters[reportID].filters.page = eventObject.data.page;
+                 delete _searchFilters[reportID].filters.search;
+                 if (eventObject.filters)
+                 {
+                    if (_runningInIFrame)
+                    {
+                        _filterCount.report_id = reportID;
+                        _filterCount.url = _getPath();
+                        requestNewPage('_self');
+                    }
+                    else
+                    {
+                        requestReport(reportID);
+                    }
+                 }
+             }
+             
+             /** 
+              * Event handler for setting initial filters event which should be called once
+              * per report on page load.
+              * @param type string the event object type
+              * @param eventObject object
+              * @private 
+              */
+             function onSetInitialFiltersRequest(type, eventObject)
+             {
+                 eventObject = eventObject[0];
+                 setSearchFilter(eventObject);
+                 var filterKey = eventObject.filters.report_id || eventObject.filters.custom_source_id;
+                 _searchFilters[filterKey].token = eventObject.filters.token;
+                 _searchFilters[filterKey].filters.no_truncate = 0;
+                 _searchFilters[filterKey].filters.page = 1;
+                 for(var node in eventObject.filters.format)
+                 {
+                     if (node != undefined && typeof eventObject.filters.format[node] !== 'function')
+                         _searchFilters[filterKey].format[node] = eventObject.filters.format[node];
+                 }
+                 for(node in eventObject.filters.allFilters)
+                 {
+                     if (node != undefined && typeof eventObject.filters.allFilters[node] !== 'function')
+                         _searchFilters[filterKey].filters[node] = eventObject.filters.allFilters[node];
+                 }
+
+                 // keep resetting _emptyHistoryState in case there is more than one report
+                 //  on the page
+                 _emptyHistoryState = getHistoryStateFor(filtersToHistoryStateObject());
+                 buildRequestParameters(filterKey);
+
+                 if (!_isBrowserHistoryManagementInitialized)
+                     initializeHistoryManager();
+             }
+        
+            // Private action functions
+            /**
+             * adds items from the event object to the search filters array 
+             * @private
+             * @param eventObject object event structure
+             */
+            function setSearchFilter(eventObject)
+            {
+                if (eventObject == null)
+                    return;
+                var filterKey = eventObject.filters.report_id || eventObject.filters.custom_source_id;
+                if (!_searchFilters[filterKey])
+                    _searchFilters[filterKey] = {filters: {}, format: {}};
+                if (eventObject.filters.searchName)
+                    _searchFilters[filterKey].filters[eventObject.filters.searchName] = eventObject;
+            }
+        
+            /**
+             * Called when the search needs go to a new page or the page is
+             * displayed in a new window.
+             * All search filters should be updated prior to this
+             * @private
+             * @param target
+             */
+            function requestNewPage(target)
+            {
+                var newUrl = RightNow.Url.convertSearchFiltersToParms(_filterCount.url, _searchFilters[getFilterKey()].filters, _searches),
+                    features = null;
+                // add info for clickstream & session info
+                newUrl = RightNow.Url.addParameter(RightNow.Url.addParameter(newUrl, "search", "1"), "session", RightNow.Url.getSession());
+                
+                if(_filterCount.popupWindow)
+                {
+                    //we are opening a popup window
+                    target = '_blank';
+                    //do some geometry management so the popup window does not eclipse the parent window completely
+                    var position = {left: window.screenX || window.screenLeft,
+                                    top: window.screenY || window.screenTop
+                                    };
+                    YAHOO.lang.augmentObject(position, {right: position.left + YAHOO.util.Dom.getViewportWidth(), bottom: position.top + YAHOO.util.Dom.getViewportHeight()});
+     
+                    var width = screen.width * _filterCount.width / 100,
+                        height = screen.height * _filterCount.height / 100,
+                        leftPos = ((position.left > (screen.width - position.right)) ? position.left - width - 15 : position.right + 15),
+                        topPos = window.screenY ? window.screenY : window.screenTop;
+                    if(leftPos < 0)
+                        leftPos = position.left + 100;
+                    if(topPos < 0)
+                        topPos = position.top + 100;
+     
+                    features = 'scrollbars=1,resizable=1,left=' + leftPos + ',top=' + topPos + ',width=' + width + 'px, height=' + height + 'px';
+                 }
+                 if(features !== null)
+                     window.open(newUrl, target, features);
+                 else
+                     window.open(newUrl, target);
+            }
+            
+             /**
+             * Called internally to request report data.
+             * All filters must be set before calling this.
+             * @param reportID string reportID of the report to request
+             * @private
+             */
+            function requestReport(reportID)
+            {
+                var i, filterName, searchFilter;
+                if(_excludedFilters[reportID] && _excludedFilters[reportID].length > 0)
+                {
+                    for(i = 0; i < _excludedFilters[reportID].length; i++)
+                    {
+                        //If the filter has been deleted and it didn't respond to the reset request - it must not be on the page, remove it from our list.
+                        filterName = _excludedFilters[reportID][i];
+                        if(!_searchFiltersResponding[reportID][filterName])
+                        {
+                            searchFilter = _searchFilters[reportID].filters[filterName];
+                            if(searchFilter && searchFilter.filters) 
+                            {
+                                if(searchFilter.filters.data[0])
+                                    searchFilter.filters.data[0] = null;
+                                else
+                                    searchFilter.filters.data = null;
+                            }
+                                
+                        }
+                    } 
+                }
+                _excludedFilters = _searchFiltersResponding = {};
+
+                var requestParameters = buildRequestParameters(reportID);
+                if (_isBrowserHistoryManagementEnabled)
+                {
+                    try
+                    {
+                        filtersToHistoryStateObject();
+                        if(YAHOO.env.ua.ie > 0)
+                        {
+                            var href = window.location.href,
+                                newLength = (href.indexOf('#') > -1) ? (href.substr(0, href.indexOf('#')).length + _historyKey.length) : (href.length + _historyKey.length);
+                            if(newLength > 2080)
+                            {
+                                //history manager will not track this change of state in ie
+                                requestReportWith(requestParameters);
+                                return;
+                            }
+                        }
+
+                        //Page navigation is happening, so clear the lastFired so it can be reset when the request comes back.
+                        _lastFiredData[reportID] = null;
+                        YAHOO.util.History.navigate(RightNow.Event.browserHistoryManagementKey, _historyKey);
+                    }
+                    catch(error)
+                    {
+                        alert("error: " + error.message);
+                    }
+                }
+                else
+                {
+                    requestReportWith(requestParameters);
+                }
+            }
+            
+            // History Management
+            /**
+            * Sets up history manager fun-ness.
+            * @private
+            */
+            function initializeHistoryManager()
+            {
+                if (!_runningInIFrame) // do not run this code in iframes
+                {
+                    _isBrowserHistoryManagementInitialized = true;
+                    _initialHistoryState = YAHOO.util.History.getBookmarkedState(RightNow.Event.browserHistoryManagementKey) || "";
+     
+                    YAHOO.util.History.register(RightNow.Event.browserHistoryManagementKey, _initialHistoryState, requestReportHistoryCallback);    
+                    YAHOO.util.History.onReady(function() {
+                                                           _isBrowserHistoryManagementEnabled = true; 
+                                                           if(YAHOO.util.History.getCurrentState(RightNow.Event.browserHistoryManagementKey) !== "")
+                                                           {
+                                                               // invalidate _cachedReportData and fetch everything from scratch
+                                                               _cachedReportData = {};
+                                                               requestReportHistoryCallback(YAHOO.util.History.getCurrentState(RightNow.Event.browserHistoryManagementKey));
+                                                           }
+                                                   });
+                   try
+                    {
+                        YAHOO.util.History.initialize("rn_History_Field", "rn_History_Iframe");                         
+                    }
+                    catch (e)
+                    {
+                        // The only exception that gets thrown here is when the browser is
+                        // not supported (Opera, or not A-grade) Degrade gracefully.
+                    }
+                }
+            }
+        
+            /**
+            * Called when the history manager's state changes and when the history manager is first ready.
+            * Converts the historyState back into the _searchFilters array
+            * also sets the current report being requested
+            * @param historyState array
+            * @private
+            */
+            function requestReportHistoryCallback(historyState)
+            {
+                if (window.location.hash !== "" && window.location.hash.indexOf("#" + RightNow.Event.browserHistoryManagementKey + "=") !== 0)
+                {
+                    // We only want to continue in this function if there's no URL fragment or if the fragment
+                    // contains (begins with, actually) the search history key.
+                    //
+                    // This happens when the fragment changes due to an event unrelated to search history management.
+                    // For example, if the user clicks the Skip Navigation link for accessibility users, the URL's fragment
+                    // is modified, which causes this code to get called; however we don't want to do anything in that case.
+                    return;
+                }
+                // if user hits back from a second page, we set _initialHistoryState,
+                //  but when the user navigates back all the way to the beginning
+                //  (e.g. /app/answers/list), the YUI history manager gives us that
+                //  _initialHistoryState value back
+                // bug fixed in 2.9.0 (http://yuilibrary.com/projects/yui2/ticket/2528969)
+                if(window.location.hash === "" && _initialHistoryState === historyState)
+                    historyState = "";
+                var historyObject = getRequestParametersFor(historyState),
+                    historyFilters = historyObject.sf;
+                _historyKey = getHistoryStateFor(historyObject);
+                resetSearchFiltersFilters();
+
+                //Merge the filters found in the history hash over the filters already on the page 
+                for(var reportID in historyFilters)
+                {
+                    if (typeof historyFilters[reportID] === 'function')
+                        continue;
+
+                    //This is to insure that a searchFilter exists for the given report id to 
+                    //fill in from the historyFilter of the given report id.
+                    if(!_searchFilters[reportID])
+                        _searchFilters[reportID] = {filters: {}, format: {}};
+
+                    var subFilters = _searchFilters[reportID].filters,
+                        subHistoryFilters = historyFilters[reportID].filters;
+                    for (var element in subHistoryFilters)
+                    {
+                        if (element === "no_truncate" || element === "page" || element == "parmList")
+                        {
+                            subFilters[element] = subHistoryFilters[element];
+                        }
+                        else if (subHistoryFilters[element] && subHistoryFilters[element].filters)
+                        {
+                            if (!subFilters[element])
+                            {
+                                subFilters[element] = {"filters" : {"data" : {}}};
+                            }
+                            if (subHistoryFilters[element].filters.rnSearchType)
+                            {
+                                subFilters[element].filters.rnSearchType = subHistoryFilters[element].filters.rnSearchType;
+                            }
+                            if (subHistoryFilters[element].filters.fltr_id)
+                            {
+                                subFilters[element].filters.fltr_id = subHistoryFilters[element].filters.fltr_id;
+                            }
+                            var filterData = subHistoryFilters[element].filters.data;
+                            if(typeof filterData === "object" && typeof filterData !== "function")
+                            {
+                                subFilters[element].filters.data = {};
+                                for(var node in subHistoryFilters[element].filters.data)
+                                {
+                                    if ((typeof node !== 'function') && node !== 'undefined' && subFilters[element].filters.data)
+                                        subFilters[element].filters.data[node] = subHistoryFilters[element].filters.data[node];
+                                }
+                            }
+                            else 
+                            {
+                                subFilters[element].filters.data = subHistoryFilters[element].filters.data;
+                            }
+                        }
+                        else if (subFilters && subFilters[element].filters)
+                        {
+                            subFilters[element].filters.data = null;
+                        }
+                    }
+                }
+               
+                var eo = new RightNow.Event.EventObject();
+                eo.data = _searchFilters;
+                RightNow.Event.fire("evt_searchFilterChangeResponse", eo);
+               
+                //Iterate through the reports on the page and check if any of them have new filters requiring an AJAX request 
+                for(var reportID in historyFilters)
+                {
+                    if (typeof historyFilters[reportID] === 'function')
+                        continue;
+
+                    var requestParameters = buildRequestParameters(reportID),
+                        searchFilterString = getSearchFilterString(_searchFilters[reportID]);
+                    if(_lastFiredData[reportID] === searchFilterString)
+                    {
+                        // report has not been modified, either from original render
+                        //  or last request, so do nothing
+                        continue;
+                    }
+                    else if(_cachedReportData[reportID] && _cachedReportData[reportID][searchFilterString])
+                    {
+                        // match found in cached data, so just fire report data
+                        //
+                        // NOTE: The reportID below will be a string when back or forward browser buttons are clicked.
+                        // Leaving that way to avoid compatibility defects. Use isSameReportID() for report_id comparison.
+                        fireReportEventData(_cachedReportData[reportID][searchFilterString],
+                                reportID, _searchFilters[reportID], searchFilterString);
+                    }
+                    else
+                    {
+                        // no match found so perform the search
+                        requestReportWith(requestParameters);
+                    }
+                }
+            }
+        
+            /**
+             * converts the search filter array into the trimmed down history filters array
+             * @return array
+             * @private
+             */
+            function filtersToHistoryStateObject()
+            {
+                var historyFilters = {},
+                    reportSearchFilters,
+                    reportSubFilters,
+                    historyObject;
+        
+                for(var reportID in _searchFilters)
+                {
+                    reportSearchFilters = _searchFilters[reportID];
+                    if(typeof reportSearchFilters === 'function')
+                        continue;
+                    historyFilters[reportID] = {filters: {}};
+                    reportSubFilters = reportSearchFilters.filters;
+                    for (var element in reportSubFilters)
+                    {
+                        if (typeof element !== "function")
+                        {
+                            var historySubFilters = historyFilters[reportID].filters;
+                            if (element === "no_truncate" || element === "page" || element == "parmList" || element == "rnSearchtype")
+                            {
+                                historySubFilters[element] = reportSubFilters[element];
+                            }
+                            else if (reportSubFilters[element] && reportSubFilters[element].filters)
+                            {
+                                historySubFilters[element] = {filters: {data: {}}};
+                                if (reportSubFilters[element].filters.rnSearchType)
+                                {
+                                    historySubFilters[element].filters.rnSearchType = reportSubFilters[element].filters.rnSearchType;
+                                }
+                                if (reportSubFilters[element].filters.fltr_id)
+                                {
+                                    historySubFilters[element].filters.fltr_id = reportSubFilters[element].filters.fltr_id;
+                                }
+                                if (typeof reportSubFilters[element].filters.data === "object")
+                                {
+                                    for (var node in reportSubFilters[element].filters.data)
+                                    {
+                                        historySubFilters[element].filters.data[node] = reportSubFilters[element].filters.data[node];
+                                    }
+                                }
+                                else
+                                {
+                                    historySubFilters[element].filters.data = reportSubFilters[element].filters.data;
+                                }
+                            }
+                        }
+                    }
+                }
+                // c field (_historyCounter) prevents duplicate keys from being created
+                // and confusing history manager about where we are
+                historyObject = {sf: historyFilters, c: _historyCounter++};
+                _historyKey = getHistoryStateFor(historyObject);
+                return historyObject;
+            }
+        
+            /**
+             * gets the report data either from the history manager cache or from an ajax request
+             * @param requestParameters object
+             * @private 
+             */
+            function requestReportWith(requestParameters)
+            {
+                if(_nonReportDataSource)
+                {
+                    //Custom data sources aren't making requests to the report model.
+                    //All necessary data has been saved off in the hist. manager at this point.
+                    _isHistoryNavigating = false;
+                    return;
+                }
+                
+                var callback = {
+                        "successHandler" : ajaxReportDataSuccess,
+                        "scope" : this
+                };           
+                if (!_isHistoryNavigating)
+                {
+                    callback.failureHandler  = ajaxReportDataFailure;
+                    callback.timeout = 10000; // Milliseconds 
+                }
+                var postData = {
+                        "filters": RightNow.JSON.stringify(requestParameters.sf),
+                        "report_id": requestParameters.report_id,
+                        "r_tok": requestParameters.token,
+                        "format": RightNow.JSON.stringify(requestParameters.fmt)
+                        };
+                RightNow.Ajax.makeRequest("/ci/ajaxRequest/getReportData", postData, callback);
+                _isHistoryNavigating = false;
+            }
+        
+             /**
+             * ajax handler for when a report is requested
+             *
+             * @param o object data from server
+             * @private
+             */
+            function ajaxReportDataSuccess(o)
+            {
+                if(o.responseText !== undefined)
+                {
+                    var results = RightNow.JSON.parse(o.responseText);
+                    if (results)
+                    {
+                        var searchFilterString = getSearchFilterString(_searchFilters[results.report_id]);
+                        if (results.error)
+                        {
+                            RightNow.UI.Dialog.messageDialog(results.error, {"icon": "WARN"});
+                        }
+                        else if(_isBrowserHistoryManagementEnabled)
+                        {
+                            if(!_cachedReportData[results.report_id])
+                                _cachedReportData[results.report_id] = {};
+                            _cachedReportData[results.report_id][searchFilterString] = results;
+                        }
+                        var allFilters = RightNow.Lang.cloneObject(_searchFilters[results.report_id]);
+                        fireReportEventData(results, results.report_id, _searchFilters[results.report_id], searchFilterString);
+                        _searchFilters[results.report_id] = allFilters;
+                        _searchFilters[results.report_id].filters.no_truncate = 0;
+                    }
+                }
+            }
+
+            /**
+             * returns a string used to uniquely identify a report search
+             * @return string JSON string of filter data
+             * @param searchFilters object search filters for a specific report
+             * @private
+             */
+            function getSearchFilterString(searchFilters)
+            {
+                var tempSearchFilters = RightNow.Lang.cloneObject(searchFilters);
+                for (var element in tempSearchFilters.filters)
+                {
+                    if(typeof element === 'function')
+                        continue;
+                    // filters[element].data isn't always kept up-to-date,
+                    //  resulting in filter strings not matching when they should
+                    if(tempSearchFilters.filters[element].data)
+                        tempSearchFilters.filters[element].data = "";
+                }
+                return RightNow.JSON.stringify(tempSearchFilters);
+            }
+            
+            /**
+             * ajax failure handler for when a report is requested
+             *
+             * @param o object data from server
+             * @private
+             */
+            function ajaxReportDataFailure(o)
+            {
+                if(o.status === 403 && o.responseText !== undefined) 
+                {    
+                    RightNow.UI.Dialog.messageDialog(o.responseText, {"icon": "WARN", exitCallback: {fn: function(){window.location.reload(true);}, scope: this}});
+                }
+                else
+                {
+                    RightNow.UI.Dialog.messageDialog(RightNow.Interface.getMessage("ERR_SUBMITTING_SEARCH_MSG"), {"icon": "WARN"});
+                    _isHistoryNavigating = true;
+                    window.history.back();
+                }
+            }
+            
+            /**
+             * Fires report data after a request
+             * @param data - array the report data
+             * @param reportID - int - the report id to fire
+             * @param allFilters array the search filters for the current state
+             * @private
+             */
+            function fireReportEventData(data, reportID, allFilters, searchFilterString)
+            {
+                _lastFiredData[reportID] = searchFilterString;
+                var eventObject = new RightNow.Event.EventObject();
+                eventObject.data = data;
+                eventObject.filters.report_id = reportID;
+                eventObject.filters.allFilters = allFilters;
+                RightNow.Event.fire("evt_reportResponse", eventObject);
+            }
+            
+            // Helper functions
+            /**
+            * Returns the index at which filters exist for _filterCount,
+            * Either report_id or custom_source_id
+            * @return {number|string} Either the report_id or the custom_source_id
+            * @private
+            */
+            function getFilterKey()
+            {
+                return _filterCount.report_id || _filterCount.custom_source_id;
+            }
+            
+            /**
+             * builds the ajax / history request parameters for the current requested report
+             * @param reportID int which report to encode
+             * @return Object
+             * @private
+             */
+            function buildRequestParameters(reportID)
+            {
+                _nonReportDataSource = isNaN(parseInt(reportID, 10));
+
+                for(var reportNode in _searchFilters)
+                {
+                    if (_searchFilters[reportNode].format)
+                        _searchFilters[reportNode].format.urlParms = RightNow.Url.buildUrlLinkString(_searchFilters[reportNode]);
+                }
+        
+                var reportFilters = _searchFilters[reportID],
+                    requestParameters = {
+                        c: _historyCounter++,
+                        sf: reportFilters.filters,                    
+                        fmt: reportFilters.format,
+                        token: reportFilters.token
+                    };
+                if(_nonReportDataSource)
+                    requestParameters.custom_data_source = reportID;
+                else
+                    requestParameters.report_id = reportID;
+                return requestParameters;
+            }
+            
+            /**
+             * resets the filters arrays for each _searchFilter[report_id][filters][*]
+             * these are refilled by the history array
+             * @private
+             */
+            function resetSearchFiltersFilters()
+            {
+                for (var reportID in _searchFilters)
+                {
+                    if (typeof _searchFilters[reportID] === 'function')
+                        continue;
+                    if (_searchFilters[reportID].filters)
+                    {
+                        for (var element in _searchFilters[reportID].filters)
+                        {
+                            if (typeof _searchFilters[reportID][element] === 'function')
+                                continue;
+                            if (_searchFilters[reportID].filters[element] && _searchFilters[reportID].filters[element].filters && _searchFilters[reportID].filters[element].filters.data)
+                                _searchFilters[reportID].filters[element].filters.data = null;
+                        }
+                    }
+                }
+            }
+            
+            /**
+             * decodes the history key to the history array
+             * @param historyState string
+             * @private
+             */
+            function getRequestParametersFor(historyState)
+            {
+                if (historyState === "")
+                {
+                    return getRequestParametersFor(_emptyHistoryState);
+                }
+                return RightNow.JSON.parse(RightNow.Text.Encoding.base64Decode(historyState));
+            }
+        
+            /**
+             * encodes the history array to the history key
+             * @param historyParameters array
+             * @private
+             */
+            function getHistoryStateFor(historyParameters)
+            {
+                // I serialize the request parameters into JSON so that I can store
+                // state as a string.  JSON in the URL gets URI encoded, which makes
+                // it really long.  I encode that result as base 64 to shorten the
+                // result by excluding characters which have to be URI encoded.
+                return RightNow.Text.Encoding.base64Encode(RightNow.JSON.stringify(historyParameters));
+            }
+            
+            // Chat
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onCheckQueueRequest(type, eventObject)
+            {
+                eventObject = eventObject[0];
+    
+                var postData = {"interface_id": eventObject.data.interface_id},
+                    data = eventObject.data;
+                if(data.avail_type)
+                    postData.avail_type = data.avail_type;
+                if(data.qid)
+                    postData.qid = data.qid;
+                if(data.c_id)
+                    postData.c_id = data.c_id;
+                if(data.org_id)
+                    postData.org_id = data.org_id;
+                if(data.contact_email)
+                    postData.contact_email = data.contact_email;
+                if(data.contact_fname)
+                    postData.contact_fname = data.contact_fname;
+                if(data.contact_lname)
+                    postData.contact_lname = data.contact_lname;
+                if(data.prod)
+                    postData.prod = data.prod;
+                if(data.cat)
+                    postData.cat = data.cat;
+                if(data.cacheable)
+                    postData.cacheable = data.cacheable;
+        
+                RightNow.Ajax.makeRequest("/ci/ajaxRequestOptional/checkChatQueue", postData, {"data": {"eventName": data.ccl ? "evt_chatQueueResponseCCL" : "evt_chatQueueResponse"}});
+            }
+        
+            /** 
+             * event handler
+             * @param type string the event object type
+             * @param eventObject object
+             * @private 
+             */
+            function onChatTranslateData(type, eventObject)
+            {
+                eventObject = eventObject[0];
+
+                var chatLandingUrl = eventObject.data.chatLandingUrl,
+                    Form = RightNow.UI.Form,
+                    Url = RightNow.Url,
+                    customFields = [],
+                    contactFields = [],
+                    contactFieldsSet = false,
+                    subject,
+                    formProductNotSet = true,
+                    formCategoryNotSet = true;
+
+                for(var i in Form.formFields)
+                {
+                    var fieldValue = YAHOO.lang.trim(Form.formFields[i].value);
+
+                    //Convert all custom fields to expected format
+                    if(Form.formFields[i].custom)
+                    {
+                        if(eventObject.data.returnCustomFieldsInArray)
+                            customFields["_icf_" + Form.formFields[i].customID] = fieldValue;
+                        else
+                            chatLandingUrl = Url.addParameter(chatLandingUrl, "_icf_" + Form.formFields[i].customID, fieldValue);
+                    }
+                    else
+                    {
+                        switch(Form.formFields[i].name)
+                        {
+                            case "prod":
+                            case "cat":
+                                var maxLvl = fieldValue.length - 1;
+        
+                                if(maxLvl >= 0)
+                                {
+                                    fieldValue = Form.formFields[i].value[maxLvl];
+                                    chatLandingUrl = Url.addParameter(chatLandingUrl, Form.formFields[i].name, fieldValue);
+                                    if(Form.formFields[i].name === "prod")
+                                        formProductNotSet = false;
+                                    else
+                                        formCategoryNotSet = false;
+                                }
+                                break;
+                            case "first_name":
+                            case "last_name":
+                            case "email":
+                                if(eventObject.data.returnContactInfoInArray)
+                                    contactFields[Form.formFields[i].name] = fieldValue;
+                                else
+                                    chatLandingUrl = Url.addParameter(chatLandingUrl, Form.formFields[i].name, fieldValue);
+                                contactFieldsSet = true;
+                                break;
+                            case "subject":
+                                if(eventObject.data.returnSubjectInEventObject)
+                                    subject = fieldValue;
+                                else
+                                    chatLandingUrl = Url.addParameter(chatLandingUrl, Form.formFields[i].name, fieldValue);
+                                break;
+                        }
+                    }
+                }
+                
+                //If contact fields are not set yet, use the contact data supplied. This is to make sure
+                //we pass in contact fields when logged-in and opening a new window. 
+                if(!contactFieldsSet)
+                {
+                    var returnContactInfoInArray = eventObject.data.returnContactInfoInArray,
+                        firstName = eventObject.data.firstName,
+                        lastName = eventObject.data.lastName,
+                        email = eventObject.data.email;
+                    firstName && (returnContactInfoInArray ? (contactFields['first_name'] = firstName) : (chatLandingUrl = Url.addParameter(chatLandingUrl, "first_name", firstName)));
+                    lastName && (returnContactInfoInArray ? (contactFields['last_name'] = lastName) : (chatLandingUrl = Url.addParameter(chatLandingUrl, "last_name", lastName)));
+                    email && (returnContactInfoInArray ? (contactFields['email'] = email) : (chatLandingUrl = Url.addParameter(chatLandingUrl, "email", email)));
+                }
+
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "i_id", Url.getParameter("i_id"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "q_id", Url.getParameter("q_id"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "pac", Url.getParameter("pac"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "request_source", Url.getParameter("request_source"));
+
+                // User preference takes precedence over the url product ids.
+                if(formProductNotSet)
+                    chatLandingUrl = Url.addParameter(chatLandingUrl, "prod", getLeafValue("p"));
+                // User preference takes precedence over the url category ids.
+                if(formCategoryNotSet)
+                    chatLandingUrl = Url.addParameter(chatLandingUrl, "cat", getLeafValue("c"));
+
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_send_id", Url.getParameter("survey_send_id"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_send_delay", Url.getParameter("survey_send_delay"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_send_auth", Url.getParameter("survey_send_auth"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_comp_id", Url.getParameter("survey_comp_id"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_term_id", Url.getParameter("survey_term_id"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_comp_auth", Url.getParameter("survey_comp_auth"));
+                chatLandingUrl = Url.addParameter(chatLandingUrl, "survey_term_auth", Url.getParameter("survey_term_auth"));
+
+                eventObject.data.chatLandingUrl = chatLandingUrl;
+                eventObject.data.customFields = customFields;
+                eventObject.data.contactFields = contactFields;
+                eventObject.data.subject = subject;
+                this.fire("evt_chatTranslateFormFieldsResponse", eventObject);
+            }
+
+            /**
+             * Parses out a comma separated list from the url and returns 
+             * the last entry of the list or null if no list exists for the 
+             * paramName. 
+             * @param paramName string
+             * @private 
+             * @return Last list entry or null if nothing exists.
+             */
+            function getLeafValue(paramName)
+            {
+                var list = RightNow.Url.getParameter(paramName);
+                if(list !== null)
+                {
+                    var listArray = list.split(",");
+                    return listArray[listArray.length - 1];
+                }
+                return null;
+            }
+        }
+    };
+}());
+
+//Initialize the EventBus after onDomReady so the session parameter is set
+YAHOO.util.Event.onDOMReady(function(){var E=RightNow.Event;E.EventBus=new E.EventBus();E.EventBus.initializeEventBus.call(E);});

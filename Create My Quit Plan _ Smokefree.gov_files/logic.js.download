@@ -1,0 +1,300 @@
+RightNow.Widget.nciChatLaunchButton = function(data, instanceID){
+    this.data = data;
+    this.instanceID = instanceID;
+    this._formButton = document.getElementById("rn_" + this.instanceID + "_Button");
+    this._parentForm = RightNow.UI.findParentForm("rn_" + this.instanceID);
+    this._isProactiveChat = RightNow.Url.getParameter('pac') !== null;
+
+    this._buttonClicked = false;
+
+    //error message div is either attribute-specified or created above the button
+    this._errorMessageDiv = document.getElementById(this.data.attrs.error_location);
+    if(!this._errorMessageDiv)
+    {
+        var errorNode = document.createElement("div");
+        errorNode.id = "rn_" + this.instanceID + "_ErrorLocation";
+        this._errorMessageDiv = YAHOO.util.Dom.insertBefore(errorNode, this._formButton);
+    }
+    if(!this._parentForm)
+    {
+        this._formButton.childNodes[0].nodeValue = RightNow.Interface.getMessage("CHAT_IS_NOT_AVAILABLE_MSG");
+        this._formButton.disabled = true;
+        RightNow.UI.addDevelopmentHeaderError("Widget Error - ChatLaunchButton - This widget must be placed within an HTML form element.");
+    }
+    else
+    {
+        this._enableClickListener();
+        RightNow.Event.subscribe("evt_formValidatedResponse", this._onChatValidated, this);
+        RightNow.Event.subscribe("evt_formFailValidationResponse", this._onFormValidationFail, this);
+        RightNow.Event.subscribe("evt_chatTranslateFormFieldsResponse", this._onFormFieldsTranslated, this);
+        
+        // The following is to support the method '_simulateChatRequestResponse'; we 
+        //  need to have a Validate Request subscription on it's behalf or validation
+        //  wouldn't wait until it checked it (fire it's event). 
+        //if( this.data.js.buttonType == 'quitting_smoking' )  //DEBUGGING -- doing this PROVED that the concept works but the click event is being fired twice...
+        RightNow.Event.subscribe("evt_formFieldValidateRequest", this._simulateChatRequestResponse, this);
+        
+        this._chatLandingUrl = null;
+
+        if(this.data.js.isLoggedIn && this._isProactiveChat)
+            this._onButtonClick();
+    }
+};
+
+RightNow.Widget.nciChatLaunchButton.prototype = {
+    /**
+     * Event handler for when button is clicked.
+     *
+     * PS Customization Note: The button gets disabled upon clicking 
+     *  and if successful is never renabled. This is out it's impl. 
+     *  OOTB and therefore is being left like this. The styling leaves a bit
+     *  to be desired around this though. 
+     * 
+     * @param type string Event name
+     * @param args object Event arguments
+     */
+    _onButtonClick: function(type, args)
+    {
+        this._disableClickListener();
+        
+        this._buttonClicked = true;
+        
+        //Reset form errors
+        YAHOO.util.Dom.addClass(this._errorMessageDiv, "rn_Hidden");
+        this._errorMessageDiv.innerHTML = "";
+
+        RightNow.UI.Form.chatSubmit = true;
+        var eo = new RightNow.Event.EventObject();
+        eo.w_id = this.instanceID;
+        eo.data = {"form" : this._parentForm, "error_location" : this._errorMessageDiv.id};
+        RightNow.Event.fire("evt_formButtonSubmitRequest", eo);
+    },
+
+    _simulateChatRequestResponse: function() {
+      //Bug, this ends up fired twice b/c it is subscribed twice b/c of object constructor.
+    
+      if( this._buttonClicked ) {
+      
+        var typeOfChat = 91;
+        if( this.data.js.buttonType == 'cancer_info' ) {
+          typeOfChat = 92; //cancer info button
+        } else {
+          typeOfChat = 91; //quitting button
+        }
+      
+        var eo = new RightNow.Event.EventObject(); 
+        eo.data = {
+          "form":this._parentForm,
+          "name":"chat_type_request",
+          "prev":null,
+          "required": false,
+          "table":"incidents",
+          "value":typeOfChat, 
+          
+          // "Modifications"
+          "custom":true,
+          "customID":22, //Is this the cf_id: Yes, appears to be.
+          "customType": 4
+        };
+        
+        if( this.data && this.data.info && this.data.info.w_id ) {
+          eo.w_id = this.data.info.w_id;
+        }
+        
+        //Ultimatly, this should set the queue.
+        
+        RightNow.Event.fire("evt_formFieldValidateResponse", eo);
+        RightNow.Event.fire("evt_formFieldCountRequest"); //Not sure we need to fire this but I believe we do but perhaps not b/c there is no real field on the form...?
+      } else {
+        // If we are on the version of the widget that was not clicked, fire this event
+        //  so as to "checkin" and let the system know it's been accounted for.
+        var eo = new RightNow.Event.EventObject();  //just send an empty one over.
+        RightNow.Event.fire("evt_formFieldValidateResponse", eo);
+        RightNow.Event.fire("evt_formFieldCountRequest");
+      }
+    },
+
+    /**
+     * Event handler for when form is submitted
+     */
+    _onChatValidated: function()
+    {
+        if (RightNow.UI.Form.form === this._parentForm)
+        {
+            YAHOO.util.Dom.removeClass(document.getElementById("rn_" + this.instanceID +"_LoadingIcon"), "rn_Hidden");
+            var eo = new RightNow.Event.EventObject();
+            eo.w_id = this.instanceID;
+            eo.data = {
+                "chatLandingUrl" : this.data.js.baseUrl + this.data.attrs.chat_landing_page,
+                "returnCustomFieldsInArray" : true,
+                "returnContactInfoInArray" : this.data.attrs.post_contact_fields
+            };
+            RightNow.Event.fire("evt_chatTranslateFormFieldsRequest", eo);
+        }
+    },
+
+    /**
+    * Event handler for when form fails validation check
+    */
+    _onFormValidationFail: function()
+    {
+        if (RightNow.UI.Form.form === this._parentForm)
+        {
+            //give error div a common error message CSS class
+            YAHOO.util.Dom.addClass(this._errorMessageDiv, "rn_MessageBox");
+            YAHOO.util.Dom.addClass(this._errorMessageDiv, "rn_ErrorMessage");
+            YAHOO.util.Dom.removeClass(this._errorMessageDiv, "rn_Hidden");
+            //focus first link in the error box
+            var firstField = YAHOO.util.Dom.getElementBy(function(e){return e.tagName === "A";}, "a", this._errorMessageDiv);
+            if(firstField && firstField.focus)
+            {
+                firstField.focus();
+            }
+            else
+            {
+                var errorDivCoord = YAHOO.util.Dom.getXY(this._errorMessageDiv),
+                      viewRegion = YAHOO.util.Dom.getClientRegion();
+                if(!viewRegion.contains(new YAHOO.util.Point(errorDivCoord[0], errorDivCoord[1])))
+                    window.scrollTo(0, errorDivCoord[1]);
+            }
+
+            this._enableClickListener();
+        }
+    },
+
+    /**
+     * Used to add values as hidden input types to forms intended to be submitted with the chat request.
+     * @param inputName string Name of the input field
+     * @param inputValue string Value of the input field
+     * @param form object Form element to append the field to
+     */
+    _addPostValueToForm : function(inputName, inputValue, form)
+    {
+        if(inputValue && typeof inputValue !== "undefined" && inputValue !== '')
+        {
+            var inputField = document.createElement('input');
+            inputField.type = "hidden";
+            inputField.id = inputField.name = inputName;
+            inputField.value = inputValue;
+            form.appendChild(inputField);
+        }
+    },
+
+    /**
+     * Event handler after Form Fields are translatetd to Chat Server expected format
+     * @param type string Event name
+     * @param args object Event arguments
+     */
+    _onFormFieldsTranslated : function(type, args)
+    {
+        var submitForm = document.createElement('form');
+        submitForm.action = args[0].data.chatLandingUrl;
+        submitForm.method = "post";
+
+        for(var customField in args[0].data.customFields)
+            this._addPostValueToForm(customField, args[0].data.customFields[customField], submitForm);
+
+        for(var contactField in args[0].data.contactFields)
+            this._addPostValueToForm(contactField, args[0].data.contactFields[contactField], submitForm);
+
+        this._addPostValueToForm('subject', args[0].data.subject, submitForm);
+
+        document.body.appendChild(submitForm);
+
+        if(!this._isProactiveChat)
+        {
+            // Position the chat window in the middle of the screen
+            // Note: Chrome does not honor the value 'left' and the value for height set in the controller.php gets here as 560
+            var leftPos = (screen.width / 2) - (this.data.attrs.launch_width / 2);
+            var topPos = (screen.height / 2) - (this.data.attrs.launch_height / 2);
+            topPos = '100';
+            var lhHeight = '750';
+            // alert(this.data.attrs.launch_height);
+
+            var url = '/euf/rightnow/blank.html';
+            if(navigator.userAgent.indexOf("MSIE 6.0") !== -1)
+                url = '';
+
+            var chatWindowName = this.data.js.chatWindowName || 'chatWindow';
+            try
+            {
+                if(this.data.attrs.open_in_new_window)
+                {
+                    // The value for launch_height is 560 regardless what's specified in controller.php.  Hard coding height for now.
+                    // var chatWindow = window.open(url, chatWindowName, 'status=1,toolbar=0,menubar=0,location=0,resizable=1,height=' +
+                    //    this.data.attrs.launch_height + ',width=' + this.data.attrs.launch_width + ',left=' + leftPos + ',top=' + topPos);
+                    var chatWindow = window.open(url, chatWindowName, 'status=1,toolbar=0,menubar=0,location=0,resizable=1,height=' +
+                        lhHeight + ',width=' + this.data.attrs.launch_width + ',left=' + leftPos + ',top=' + topPos);
+                    chatWindow.focus();
+                    submitForm.target = chatWindowName;
+                }
+            }
+            catch(e)
+            {
+                YAHOO.util.Dom.addClass(document.getElementById("rn_" + this.instanceID +"_LoadingIcon"), "rn_Hidden");
+                return;
+            }
+        }
+        else
+        {
+            // Let's try to resize the window to ideal chat size. If blocked, continue anyway, ignoring exception.
+            try
+            {
+                if(YAHOO.env.ua.ie > 0)
+                {
+                    resizeTo(this.data.attrs.launch_height, this.data.attrs.launch_height + 47);
+                }
+                else
+                {
+                    window.innerWidth = this.data.attrs.launch_width;
+                    window.innerHeight = this.data.attrs.launch_height;
+                }
+
+            }
+            catch(e) {}
+        }
+
+        try
+        {
+            submitForm.submit();
+        }
+        catch(e) {}
+
+        YAHOO.util.Dom.addClass(document.getElementById("rn_" + this.instanceID +"_LoadingIcon"), "rn_Hidden");
+    },
+
+    /**
+     * Enable the form submit control by enabling button and adding an onClick listener.
+     */
+    _enableClickListener: function()
+    {
+        this._formButton.disabled = false; 
+        
+        // Bug: Since there are two 'submit' buttons, both events are being fired...?  Lets test this by skipping
+        //  this part if we are not on the smoking button. 
+        //if( this.data.js.buttonType == 'quitting_smoking' ) 
+          //YAHOO.util.Event.addListener(this._parentForm, "submit", this._onButtonClick, null, this);
+        YAHOO.util.Event.addListener( this._formButton, "click", this._onButtonClick, null, this );
+        
+        YAHOO.util.Dom.removeClass(this._formButton, "ps_button_no_hand");
+        this._formButton.src = this.data.js.img;
+        
+        this._buttonClicked = false; //reset this flag (we are assuming any click related event is over of this is called.
+    },
+
+    /**
+     * Disable the form submit control by disabling button and removing the onClick listener.
+     */
+    _disableClickListener: function()
+    {
+        this._formButton.disabled = true;
+        
+        // Change the image (is it in data) and change the css so the 'hand' (class=ps_button_no_hand) isn't used.
+        YAHOO.util.Dom.addClass(this._formButton, "ps_button_no_hand");
+        this._formButton.src = this.data.js.disabled_img;
+        
+        //YAHOO.util.Event.removeListener(this._parentForm, "submit", this._onButtonClick);
+        YAHOO.util.Event.removeListener( this._formButton, "click", this._onButtonClick );
+    }
+};
+

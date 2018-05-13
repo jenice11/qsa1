@@ -1,0 +1,615 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"all",
+				"align-self"
+			],
+			[
+				"b",
+				"background-color"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"helathy",
+				"Healthy-Lifestyle1"
+			],
+			[
+				"fff",
+				"ffffff"
+			],
+			[
+				"bor",
+				"border-left"
+			],
+			[
+				"paddin",
+				"padding-bottom"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"st",
+				"style\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 21028,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "login.php",
+			"settings":
+			{
+				"buffer_size": 3338,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "register.php",
+			"settings":
+			{
+				"buffer_size": 3605,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Create My Quit Plan _ Smokefree.gov.php",
+			"settings":
+			{
+				"buffer_size": 84681,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fact.php",
+			"settings":
+			{
+				"buffer_size": 27117,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "@import url(\"font-awesome.min.css\");\n@import url(\"https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400\");\n\n/*\n\tRead Only by HTML5 UP\n\thtml5up.net | @ajlkn\n\tFree for personal and commercial use under the CCA 3.0 license (html5up.net/license)\n*/\n\n/* Reset */\n\n\thtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n\t\tmargin: 0;\n\t\tpadding: 0;\n\t\tborder: 0;\n\t\tfont-size: 100%;\n\t\tfont: inherit;\n\t\tvertical-align: baseline;\n\t}\n\n\tarticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n\t\tdisplay: block;\n\t}\n\n\tbody {\n\t\tline-height: 1;\n\t}\n\n\tol, ul {\n\t\tlist-style: none;\n\t}\n\n\tblockquote, q {\n\t\tquotes: none;\n\t}\n\n\tblockquote:before, blockquote:after, q:before, q:after {\n\t\tcontent: '';\n\t\tcontent: none;\n\t}\n\n\ttable {\n\t\tborder-collapse: collapse;\n\t\tborder-spacing: 0;\n\t}\n\n\tbody {\n\t\t-webkit-text-size-adjust: none;\n\t}\n\n\t/* adjust header */\n/* Containers */\n\n\t.container {\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t.container.\\31 25\\25 {\n\t\twidth: 100%;\n\t\tmax-width: 56.25em;\n\t\tmin-width: 45em;\n\t}\n\n\t.container.\\37 5\\25 {\n\t\twidth: 33.75em;\n\t}\n\n\t.container.\\35 0\\25 {\n\t\twidth: 22.5em;\n\t}\n\n\t.container.\\32 5\\25 {\n\t\twidth: 11.25em;\n\t}\n\n\t.container {\n\t\twidth: 45em;\n\t}\n\n\t@media screen and (max-width: 1680px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 56.25em;\n\t\t\tmin-width: 45em;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 33.75em;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 22.5em;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 11.25em;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 45em;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1280px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 52.5em;\n\t\t\tmin-width: 42em;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 31.5em;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 21em;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 10.5em;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 42em;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1024px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 106.25%;\n\t\t\tmin-width: 85%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 63.75%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 42.5%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 21.25%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 85% !important;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 736px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 112.5%;\n\t\t\tmin-width: 90%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 67.5%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 45%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 22.5%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 90% !important;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 480px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 112.5%;\n\t\t\tmin-width: 90%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 67.5%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 45%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 22.5%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 90% !important;\n\t\t}\n\n\t}\n\n/* Containers */\n\n\t.container {\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t.container.\\31 25\\25 {\n\t\twidth: 100%;\n\t\tmax-width: 56.25em;\n\t\tmin-width: 45em;\n\t}\n\n\t.container.\\37 5\\25 {\n\t\twidth: 33.75em;\n\t}\n\n\t.container.\\35 0\\25 {\n\t\twidth: 22.5em;\n\t}\n\n\t.container.\\32 5\\25 {\n\t\twidth: 11.25em;\n\t}\n\n\t.container {\n\t\twidth: 45em;\n\t}\n\n\t@media screen and (max-width: 1680px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 56.25em;\n\t\t\tmin-width: 45em;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 33.75em;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 22.5em;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 11.25em;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 45em;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1280px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 52.5em;\n\t\t\tmin-width: 42em;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 31.5em;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 21em;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 10.5em;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 42em;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1024px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 106.25%;\n\t\t\tmin-width: 85%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 63.75%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 42.5%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 21.25%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 85% !important;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 736px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 112.5%;\n\t\t\tmin-width: 90%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 67.5%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 45%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 22.5%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 90% !important;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 480px) {\n\n\t\t.container.\\31 25\\25 {\n\t\t\twidth: 100%;\n\t\t\tmax-width: 112.5%;\n\t\t\tmin-width: 90%;\n\t\t}\n\n\t\t.container.\\37 5\\25 {\n\t\t\twidth: 67.5%;\n\t\t}\n\n\t\t.container.\\35 0\\25 {\n\t\t\twidth: 45%;\n\t\t}\n\n\t\t.container.\\32 5\\25 {\n\t\t\twidth: 22.5%;\n\t\t}\n\n\t\t.container {\n\t\t\twidth: 90% !important;\n\t\t}\n\n\t}\n\n/* Grid */\n\n\t.row {\n\t\tborder-bottom: solid 1px transparent;\n\t\t-moz-box-sizing: border-box;\n\t\t-webkit-box-sizing: border-box;\n\t\tbox-sizing: border-box;\n\t}\n\n\t.row > * {\n\t\tfloat: left;\n\t\t-moz-box-sizing: border-box;\n\t\t-webkit-box-sizing: border-box;\n\t\tbox-sizing: border-box;\n\t}\n\n\t.row:after, .row:before {\n\t\tcontent: '';\n\t\tdisplay: block;\n\t\tclear: both;\n\t\theight: 0;\n\t}\n\n\t.row.uniform > * > :first-child {\n\t\tmargin-top: 0;\n\t}\n\n\t.row.uniform > * > :last-child {\n\t\tmargin-bottom: 0;\n\t}\n\n\t.row.\\30 \\25 > * {\n\t\tpadding: 0 0 0 0em;\n\t}\n\n\t.row.\\30 \\25 {\n\t\tmargin: 0 0 -1px 0em;\n\t}\n\n\t.row.uniform.\\30 \\25 > * {\n\t\tpadding: 0em 0 0 0em;\n\t}\n\n\t.row.uniform.\\30 \\25 {\n\t\tmargin: 0em 0 -1px 0em;\n\t}\n\n\t.row > * {\n\t\tpadding: 0 0 0 2em;\n\t}\n\n\t.row {\n\t\tmargin: 0 0 -1px -2em;\n\t}\n\n\t.row.uniform > * {\n\t\tpadding: 2em 0 0 2em;\n\t}\n\n\t.row.uniform {\n\t\tmargin: -2em 0 -1px -2em;\n\t}\n\n\t.row.\\32 00\\25 > * {\n\t\tpadding: 0 0 0 4em;\n\t}\n\n\t.row.\\32 00\\25 {\n\t\tmargin: 0 0 -1px -4em;\n\t}\n\n\t.row.uniform.\\32 00\\25 > * {\n\t\tpadding: 4em 0 0 4em;\n\t}\n\n\t.row.uniform.\\32 00\\25 {\n\t\tmargin: -4em 0 -1px -4em;\n\t}\n\n\t.row.\\31 50\\25 > * {\n\t\tpadding: 0 0 0 3em;\n\t}\n\n\t.row.\\31 50\\25 {\n\t\tmargin: 0 0 -1px -3em;\n\t}\n\n\t.row.uniform.\\31 50\\25 > * {\n\t\tpadding: 3em 0 0 3em;\n\t}\n\n\t.row.uniform.\\31 50\\25 {\n\t\tmargin: -3em 0 -1px -3em;\n\t}\n\n\t.row.\\35 0\\25 > * {\n\t\tpadding: 0 0 0 1em;\n\t}\n\n\t.row.\\35 0\\25 {\n\t\tmargin: 0 0 -1px -1em;\n\t}\n\n\t.row.uniform.\\35 0\\25 > * {\n\t\tpadding: 1em 0 0 1em;\n\t}\n\n\t.row.uniform.\\35 0\\25 {\n\t\tmargin: -1em 0 -1px -1em;\n\t}\n\n\t.row.\\32 5\\25 > * {\n\t\tpadding: 0 0 0 0.5em;\n\t}\n\n\t.row.\\32 5\\25 {\n\t\tmargin: 0 0 -1px -0.5em;\n\t}\n\n\t.row.uniform.\\32 5\\25 > * {\n\t\tpadding: 0.5em 0 0 0.5em;\n\t}\n\n\t.row.uniform.\\32 5\\25 {\n\t\tmargin: -0.5em 0 -1px -0.5em;\n\t}\n\n\t.\\31 2u, .\\31 2u\\24 {\n\t\twidth: 100%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\31 1u, .\\31 1u\\24 {\n\t\twidth: 91.6666666667%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\31 0u, .\\31 0u\\24 {\n\t\twidth: 83.3333333333%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\39 u, .\\39 u\\24 {\n\t\twidth: 75%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\38 u, .\\38 u\\24 {\n\t\twidth: 66.6666666667%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\37 u, .\\37 u\\24 {\n\t\twidth: 58.3333333333%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\36 u, .\\36 u\\24 {\n\t\twidth: 50%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\35 u, .\\35 u\\24 {\n\t\twidth: 41.6666666667%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\34 u, .\\34 u\\24 {\n\t\twidth: 33.3333333333%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\33 u, .\\33 u\\24 {\n\t\twidth: 25%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\32 u, .\\32 u\\24 {\n\t\twidth: 16.6666666667%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\31 u, .\\31 u\\24 {\n\t\twidth: 8.3333333333%;\n\t\tclear: none;\n\t\tmargin-left: 0;\n\t}\n\n\t.\\31 2u\\24 + *,\n\t.\\31 1u\\24 + *,\n\t.\\31 0u\\24 + *,\n\t.\\39 u\\24 + *,\n\t.\\38 u\\24 + *,\n\t.\\37 u\\24 + *,\n\t.\\36 u\\24 + *,\n\t.\\35 u\\24 + *,\n\t.\\34 u\\24 + *,\n\t.\\33 u\\24 + *,\n\t.\\32 u\\24 + *,\n\t.\\31 u\\24 + * {\n\t\tclear: left;\n\t}\n\n\t.\\-11u {\n\t\tmargin-left: 91.66667%;\n\t}\n\n\t.\\-10u {\n\t\tmargin-left: 83.33333%;\n\t}\n\n\t.\\-9u {\n\t\tmargin-left: 75%;\n\t}\n\n\t.\\-8u {\n\t\tmargin-left: 66.66667%;\n\t}\n\n\t.\\-7u {\n\t\tmargin-left: 58.33333%;\n\t}\n\n\t.\\-6u {\n\t\tmargin-left: 50%;\n\t}\n\n\t.\\-5u {\n\t\tmargin-left: 41.66667%;\n\t}\n\n\t.\\-4u {\n\t\tmargin-left: 33.33333%;\n\t}\n\n\t.\\-3u {\n\t\tmargin-left: 25%;\n\t}\n\n\t.\\-2u {\n\t\tmargin-left: 16.66667%;\n\t}\n\n\t.\\-1u {\n\t\tmargin-left: 8.33333%;\n\t}\n\n\t@media screen and (max-width: 1680px) {\n\n\t\t.row > * {\n\t\t\tpadding: 0 0 0 2em;\n\t\t}\n\n\t\t.row {\n\t\t\tmargin: 0 0 -1px -2em;\n\t\t}\n\n\t\t.row.uniform > * {\n\t\t\tpadding: 2em 0 0 2em;\n\t\t}\n\n\t\t.row.uniform {\n\t\t\tmargin: -2em 0 -1px -2em;\n\t\t}\n\n\t\t.row.\\32 00\\25 > * {\n\t\t\tpadding: 0 0 0 4em;\n\t\t}\n\n\t\t.row.\\32 00\\25 {\n\t\t\tmargin: 0 0 -1px -4em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 > * {\n\t\t\tpadding: 4em 0 0 4em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 {\n\t\t\tmargin: -4em 0 -1px -4em;\n\t\t}\n\n\t\t.row.\\31 50\\25 > * {\n\t\t\tpadding: 0 0 0 3em;\n\t\t}\n\n\t\t.row.\\31 50\\25 {\n\t\t\tmargin: 0 0 -1px -3em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 > * {\n\t\t\tpadding: 3em 0 0 3em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 {\n\t\t\tmargin: -3em 0 -1px -3em;\n\t\t}\n\n\t\t.row.\\35 0\\25 > * {\n\t\t\tpadding: 0 0 0 1em;\n\t\t}\n\n\t\t.row.\\35 0\\25 {\n\t\t\tmargin: 0 0 -1px -1em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 > * {\n\t\t\tpadding: 1em 0 0 1em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 {\n\t\t\tmargin: -1em 0 -1px -1em;\n\t\t}\n\n\t\t.row.\\32 5\\25 > * {\n\t\t\tpadding: 0 0 0 0.5em;\n\t\t}\n\n\t\t.row.\\32 5\\25 {\n\t\t\tmargin: 0 0 -1px -0.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 > * {\n\t\t\tpadding: 0.5em 0 0 0.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 {\n\t\t\tmargin: -0.5em 0 -1px -0.5em;\n\t\t}\n\n\t\t.\\31 2u\\28xlarge\\29, .\\31 2u\\24\\28xlarge\\29 {\n\t\t\twidth: 100%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 1u\\28xlarge\\29, .\\31 1u\\24\\28xlarge\\29 {\n\t\t\twidth: 91.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 0u\\28xlarge\\29, .\\31 0u\\24\\28xlarge\\29 {\n\t\t\twidth: 83.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\39 u\\28xlarge\\29, .\\39 u\\24\\28xlarge\\29 {\n\t\t\twidth: 75%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\38 u\\28xlarge\\29, .\\38 u\\24\\28xlarge\\29 {\n\t\t\twidth: 66.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\37 u\\28xlarge\\29, .\\37 u\\24\\28xlarge\\29 {\n\t\t\twidth: 58.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\36 u\\28xlarge\\29, .\\36 u\\24\\28xlarge\\29 {\n\t\t\twidth: 50%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\35 u\\28xlarge\\29, .\\35 u\\24\\28xlarge\\29 {\n\t\t\twidth: 41.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\34 u\\28xlarge\\29, .\\34 u\\24\\28xlarge\\29 {\n\t\t\twidth: 33.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\33 u\\28xlarge\\29, .\\33 u\\24\\28xlarge\\29 {\n\t\t\twidth: 25%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\32 u\\28xlarge\\29, .\\32 u\\24\\28xlarge\\29 {\n\t\t\twidth: 16.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 u\\28xlarge\\29, .\\31 u\\24\\28xlarge\\29 {\n\t\t\twidth: 8.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 2u\\24\\28xlarge\\29 + *,\n\t\t.\\31 1u\\24\\28xlarge\\29 + *,\n\t\t.\\31 0u\\24\\28xlarge\\29 + *,\n\t\t.\\39 u\\24\\28xlarge\\29 + *,\n\t\t.\\38 u\\24\\28xlarge\\29 + *,\n\t\t.\\37 u\\24\\28xlarge\\29 + *,\n\t\t.\\36 u\\24\\28xlarge\\29 + *,\n\t\t.\\35 u\\24\\28xlarge\\29 + *,\n\t\t.\\34 u\\24\\28xlarge\\29 + *,\n\t\t.\\33 u\\24\\28xlarge\\29 + *,\n\t\t.\\32 u\\24\\28xlarge\\29 + *,\n\t\t.\\31 u\\24\\28xlarge\\29 + * {\n\t\t\tclear: left;\n\t\t}\n\n\t\t.\\-11u\\28xlarge\\29 {\n\t\t\tmargin-left: 91.66667%;\n\t\t}\n\n\t\t.\\-10u\\28xlarge\\29 {\n\t\t\tmargin-left: 83.33333%;\n\t\t}\n\n\t\t.\\-9u\\28xlarge\\29 {\n\t\t\tmargin-left: 75%;\n\t\t}\n\n\t\t.\\-8u\\28xlarge\\29 {\n\t\t\tmargin-left: 66.66667%;\n\t\t}\n\n\t\t.\\-7u\\28xlarge\\29 {\n\t\t\tmargin-left: 58.33333%;\n\t\t}\n\n\t\t.\\-6u\\28xlarge\\29 {\n\t\t\tmargin-left: 50%;\n\t\t}\n\n\t\t.\\-5u\\28xlarge\\29 {\n\t\t\tmargin-left: 41.66667%;\n\t\t}\n\n\t\t.\\-4u\\28xlarge\\29 {\n\t\t\tmargin-left: 33.33333%;\n\t\t}\n\n\t\t.\\-3u\\28xlarge\\29 {\n\t\t\tmargin-left: 25%;\n\t\t}\n\n\t\t.\\-2u\\28xlarge\\29 {\n\t\t\tmargin-left: 16.66667%;\n\t\t}\n\n\t\t.\\-1u\\28xlarge\\29 {\n\t\t\tmargin-left: 8.33333%;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1280px) {\n\n\t\t.row > * {\n\t\t\tpadding: 0 0 0 1.5em;\n\t\t}\n\n\t\t.row {\n\t\t\tmargin: 0 0 -1px -1.5em;\n\t\t}\n\n\t\t.row.uniform > * {\n\t\t\tpadding: 1.5em 0 0 1.5em;\n\t\t}\n\n\t\t.row.uniform {\n\t\t\tmargin: -1.5em 0 -1px -1.5em;\n\t\t}\n\n\t\t.row.\\32 00\\25 > * {\n\t\t\tpadding: 0 0 0 3em;\n\t\t}\n\n\t\t.row.\\32 00\\25 {\n\t\t\tmargin: 0 0 -1px -3em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 > * {\n\t\t\tpadding: 3em 0 0 3em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 {\n\t\t\tmargin: -3em 0 -1px -3em;\n\t\t}\n\n\t\t.row.\\31 50\\25 > * {\n\t\t\tpadding: 0 0 0 2.25em;\n\t\t}\n\n\t\t.row.\\31 50\\25 {\n\t\t\tmargin: 0 0 -1px -2.25em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 > * {\n\t\t\tpadding: 2.25em 0 0 2.25em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 {\n\t\t\tmargin: -2.25em 0 -1px -2.25em;\n\t\t}\n\n\t\t.row.\\35 0\\25 > * {\n\t\t\tpadding: 0 0 0 0.75em;\n\t\t}\n\n\t\t.row.\\35 0\\25 {\n\t\t\tmargin: 0 0 -1px -0.75em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 > * {\n\t\t\tpadding: 0.75em 0 0 0.75em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 {\n\t\t\tmargin: -0.75em 0 -1px -0.75em;\n\t\t}\n\n\t\t.row.\\32 5\\25 > * {\n\t\t\tpadding: 0 0 0 0.375em;\n\t\t}\n\n\t\t.row.\\32 5\\25 {\n\t\t\tmargin: 0 0 -1px -0.375em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 > * {\n\t\t\tpadding: 0.375em 0 0 0.375em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 {\n\t\t\tmargin: -0.375em 0 -1px -0.375em;\n\t\t}\n\n\t\t.\\31 2u\\28large\\29, .\\31 2u\\24\\28large\\29 {\n\t\t\twidth: 100%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 1u\\28large\\29, .\\31 1u\\24\\28large\\29 {\n\t\t\twidth: 91.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 0u\\28large\\29, .\\31 0u\\24\\28large\\29 {\n\t\t\twidth: 83.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\39 u\\28large\\29, .\\39 u\\24\\28large\\29 {\n\t\t\twidth: 75%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\38 u\\28large\\29, .\\38 u\\24\\28large\\29 {\n\t\t\twidth: 66.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\37 u\\28large\\29, .\\37 u\\24\\28large\\29 {\n\t\t\twidth: 58.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\36 u\\28large\\29, .\\36 u\\24\\28large\\29 {\n\t\t\twidth: 50%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\35 u\\28large\\29, .\\35 u\\24\\28large\\29 {\n\t\t\twidth: 41.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\34 u\\28large\\29, .\\34 u\\24\\28large\\29 {\n\t\t\twidth: 33.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\33 u\\28large\\29, .\\33 u\\24\\28large\\29 {\n\t\t\twidth: 25%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\32 u\\28large\\29, .\\32 u\\24\\28large\\29 {\n\t\t\twidth: 16.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 u\\28large\\29, .\\31 u\\24\\28large\\29 {\n\t\t\twidth: 8.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 2u\\24\\28large\\29 + *,\n\t\t.\\31 1u\\24\\28large\\29 + *,\n\t\t.\\31 0u\\24\\28large\\29 + *,\n\t\t.\\39 u\\24\\28large\\29 + *,\n\t\t.\\38 u\\24\\28large\\29 + *,\n\t\t.\\37 u\\24\\28large\\29 + *,\n\t\t.\\36 u\\24\\28large\\29 + *,\n\t\t.\\35 u\\24\\28large\\29 + *,\n\t\t.\\34 u\\24\\28large\\29 + *,\n\t\t.\\33 u\\24\\28large\\29 + *,\n\t\t.\\32 u\\24\\28large\\29 + *,\n\t\t.\\31 u\\24\\28large\\29 + * {\n\t\t\tclear: left;\n\t\t}\n\n\t\t.\\-11u\\28large\\29 {\n\t\t\tmargin-left: 91.66667%;\n\t\t}\n\n\t\t.\\-10u\\28large\\29 {\n\t\t\tmargin-left: 83.33333%;\n\t\t}\n\n\t\t.\\-9u\\28large\\29 {\n\t\t\tmargin-left: 75%;\n\t\t}\n\n\t\t.\\-8u\\28large\\29 {\n\t\t\tmargin-left: 66.66667%;\n\t\t}\n\n\t\t.\\-7u\\28large\\29 {\n\t\t\tmargin-left: 58.33333%;\n\t\t}\n\n\t\t.\\-6u\\28large\\29 {\n\t\t\tmargin-left: 50%;\n\t\t}\n\n\t\t.\\-5u\\28large\\29 {\n\t\t\tmargin-left: 41.66667%;\n\t\t}\n\n\t\t.\\-4u\\28large\\29 {\n\t\t\tmargin-left: 33.33333%;\n\t\t}\n\n\t\t.\\-3u\\28large\\29 {\n\t\t\tmargin-left: 25%;\n\t\t}\n\n\t\t.\\-2u\\28large\\29 {\n\t\t\tmargin-left: 16.66667%;\n\t\t}\n\n\t\t.\\-1u\\28large\\29 {\n\t\t\tmargin-left: 8.33333%;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 1024px) {\n\n\t\t.row > * {\n\t\t\tpadding: 0 0 0 1.5em;\n\t\t}\n\n\t\t.row {\n\t\t\tmargin: 0 0 -1px -1.5em;\n\t\t}\n\n\t\t.row.uniform > * {\n\t\t\tpadding: 1.5em 0 0 1.5em;\n\t\t}\n\n\t\t.row.uniform {\n\t\t\tmargin: -1.5em 0 -1px -1.5em;\n\t\t}\n\n\t\t.row.\\32 00\\25 > * {\n\t\t\tpadding: 0 0 0 3em;\n\t\t}\n\n\t\t.row.\\32 00\\25 {\n\t\t\tmargin: 0 0 -1px -3em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 > * {\n\t\t\tpadding: 3em 0 0 3em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 {\n\t\t\tmargin: -3em 0 -1px -3em;\n\t\t}\n\n\t\t.row.\\31 50\\25 > * {\n\t\t\tpadding: 0 0 0 2.25em;\n\t\t}\n\n\t\t.row.\\31 50\\25 {\n\t\t\tmargin: 0 0 -1px -2.25em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 > * {\n\t\t\tpadding: 2.25em 0 0 2.25em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 {\n\t\t\tmargin: -2.25em 0 -1px -2.25em;\n\t\t}\n\n\t\t.row.\\35 0\\25 > * {\n\t\t\tpadding: 0 0 0 0.75em;\n\t\t}\n\n\t\t.row.\\35 0\\25 {\n\t\t\tmargin: 0 0 -1px -0.75em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 > * {\n\t\t\tpadding: 0.75em 0 0 0.75em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 {\n\t\t\tmargin: -0.75em 0 -1px -0.75em;\n\t\t}\n\n\t\t.row.\\32 5\\25 > * {\n\t\t\tpadding: 0 0 0 0.375em;\n\t\t}\n\n\t\t.row.\\32 5\\25 {\n\t\t\tmargin: 0 0 -1px -0.375em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 > * {\n\t\t\tpadding: 0.375em 0 0 0.375em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 {\n\t\t\tmargin: -0.375em 0 -1px -0.375em;\n\t\t}\n\n\t\t.\\31 2u\\28medium\\29, .\\31 2u\\24\\28medium\\29 {\n\t\t\twidth: 100%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 1u\\28medium\\29, .\\31 1u\\24\\28medium\\29 {\n\t\t\twidth: 91.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 0u\\28medium\\29, .\\31 0u\\24\\28medium\\29 {\n\t\t\twidth: 83.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\39 u\\28medium\\29, .\\39 u\\24\\28medium\\29 {\n\t\t\twidth: 75%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\38 u\\28medium\\29, .\\38 u\\24\\28medium\\29 {\n\t\t\twidth: 66.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\37 u\\28medium\\29, .\\37 u\\24\\28medium\\29 {\n\t\t\twidth: 58.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\36 u\\28medium\\29, .\\36 u\\24\\28medium\\29 {\n\t\t\twidth: 50%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\35 u\\28medium\\29, .\\35 u\\24\\28medium\\29 {\n\t\t\twidth: 41.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\34 u\\28medium\\29, .\\34 u\\24\\28medium\\29 {\n\t\t\twidth: 33.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\33 u\\28medium\\29, .\\33 u\\24\\28medium\\29 {\n\t\t\twidth: 25%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\32 u\\28medium\\29, .\\32 u\\24\\28medium\\29 {\n\t\t\twidth: 16.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 u\\28medium\\29, .\\31 u\\24\\28medium\\29 {\n\t\t\twidth: 8.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 2u\\24\\28medium\\29 + *,\n\t\t.\\31 1u\\24\\28medium\\29 + *,\n\t\t.\\31 0u\\24\\28medium\\29 + *,\n\t\t.\\39 u\\24\\28medium\\29 + *,\n\t\t.\\38 u\\24\\28medium\\29 + *,\n\t\t.\\37 u\\24\\28medium\\29 + *,\n\t\t.\\36 u\\24\\28medium\\29 + *,\n\t\t.\\35 u\\24\\28medium\\29 + *,\n\t\t.\\34 u\\24\\28medium\\29 + *,\n\t\t.\\33 u\\24\\28medium\\29 + *,\n\t\t.\\32 u\\24\\28medium\\29 + *,\n\t\t.\\31 u\\24\\28medium\\29 + * {\n\t\t\tclear: left;\n\t\t}\n\n\t\t.\\-11u\\28medium\\29 {\n\t\t\tmargin-left: 91.66667%;\n\t\t}\n\n\t\t.\\-10u\\28medium\\29 {\n\t\t\tmargin-left: 83.33333%;\n\t\t}\n\n\t\t.\\-9u\\28medium\\29 {\n\t\t\tmargin-left: 75%;\n\t\t}\n\n\t\t.\\-8u\\28medium\\29 {\n\t\t\tmargin-left: 66.66667%;\n\t\t}\n\n\t\t.\\-7u\\28medium\\29 {\n\t\t\tmargin-left: 58.33333%;\n\t\t}\n\n\t\t.\\-6u\\28medium\\29 {\n\t\t\tmargin-left: 50%;\n\t\t}\n\n\t\t.\\-5u\\28medium\\29 {\n\t\t\tmargin-left: 41.66667%;\n\t\t}\n\n\t\t.\\-4u\\28medium\\29 {\n\t\t\tmargin-left: 33.33333%;\n\t\t}\n\n\t\t.\\-3u\\28medium\\29 {\n\t\t\tmargin-left: 25%;\n\t\t}\n\n\t\t.\\-2u\\28medium\\29 {\n\t\t\tmargin-left: 16.66667%;\n\t\t}\n\n\t\t.\\-1u\\28medium\\29 {\n\t\t\tmargin-left: 8.33333%;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 736px) {\n\n\t\t.row > * {\n\t\t\tpadding: 0 0 0 1.25em;\n\t\t}\n\n\t\t.row {\n\t\t\tmargin: 0 0 -1px -1.25em;\n\t\t}\n\n\t\t.row.uniform > * {\n\t\t\tpadding: 1.25em 0 0 1.25em;\n\t\t}\n\n\t\t.row.uniform {\n\t\t\tmargin: -1.25em 0 -1px -1.25em;\n\t\t}\n\n\t\t.row.\\32 00\\25 > * {\n\t\t\tpadding: 0 0 0 2.5em;\n\t\t}\n\n\t\t.row.\\32 00\\25 {\n\t\t\tmargin: 0 0 -1px -2.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 > * {\n\t\t\tpadding: 2.5em 0 0 2.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 {\n\t\t\tmargin: -2.5em 0 -1px -2.5em;\n\t\t}\n\n\t\t.row.\\31 50\\25 > * {\n\t\t\tpadding: 0 0 0 1.875em;\n\t\t}\n\n\t\t.row.\\31 50\\25 {\n\t\t\tmargin: 0 0 -1px -1.875em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 > * {\n\t\t\tpadding: 1.875em 0 0 1.875em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 {\n\t\t\tmargin: -1.875em 0 -1px -1.875em;\n\t\t}\n\n\t\t.row.\\35 0\\25 > * {\n\t\t\tpadding: 0 0 0 0.625em;\n\t\t}\n\n\t\t.row.\\35 0\\25 {\n\t\t\tmargin: 0 0 -1px -0.625em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 > * {\n\t\t\tpadding: 0.625em 0 0 0.625em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 {\n\t\t\tmargin: -0.625em 0 -1px -0.625em;\n\t\t}\n\n\t\t.row.\\32 5\\25 > * {\n\t\t\tpadding: 0 0 0 0.3125em;\n\t\t}\n\n\t\t.row.\\32 5\\25 {\n\t\t\tmargin: 0 0 -1px -0.3125em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 > * {\n\t\t\tpadding: 0.3125em 0 0 0.3125em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 {\n\t\t\tmargin: -0.3125em 0 -1px -0.3125em;\n\t\t}\n\n\t\t.\\31 2u\\28small\\29, .\\31 2u\\24\\28small\\29 {\n\t\t\twidth: 100%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 1u\\28small\\29, .\\31 1u\\24\\28small\\29 {\n\t\t\twidth: 91.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 0u\\28small\\29, .\\31 0u\\24\\28small\\29 {\n\t\t\twidth: 83.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\39 u\\28small\\29, .\\39 u\\24\\28small\\29 {\n\t\t\twidth: 75%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\38 u\\28small\\29, .\\38 u\\24\\28small\\29 {\n\t\t\twidth: 66.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\37 u\\28small\\29, .\\37 u\\24\\28small\\29 {\n\t\t\twidth: 58.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\36 u\\28small\\29, .\\36 u\\24\\28small\\29 {\n\t\t\twidth: 50%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\35 u\\28small\\29, .\\35 u\\24\\28small\\29 {\n\t\t\twidth: 41.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\34 u\\28small\\29, .\\34 u\\24\\28small\\29 {\n\t\t\twidth: 33.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\33 u\\28small\\29, .\\33 u\\24\\28small\\29 {\n\t\t\twidth: 25%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\32 u\\28small\\29, .\\32 u\\24\\28small\\29 {\n\t\t\twidth: 16.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 u\\28small\\29, .\\31 u\\24\\28small\\29 {\n\t\t\twidth: 8.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 2u\\24\\28small\\29 + *,\n\t\t.\\31 1u\\24\\28small\\29 + *,\n\t\t.\\31 0u\\24\\28small\\29 + *,\n\t\t.\\39 u\\24\\28small\\29 + *,\n\t\t.\\38 u\\24\\28small\\29 + *,\n\t\t.\\37 u\\24\\28small\\29 + *,\n\t\t.\\36 u\\24\\28small\\29 + *,\n\t\t.\\35 u\\24\\28small\\29 + *,\n\t\t.\\34 u\\24\\28small\\29 + *,\n\t\t.\\33 u\\24\\28small\\29 + *,\n\t\t.\\32 u\\24\\28small\\29 + *,\n\t\t.\\31 u\\24\\28small\\29 + * {\n\t\t\tclear: left;\n\t\t}\n\n\t\t.\\-11u\\28small\\29 {\n\t\t\tmargin-left: 91.66667%;\n\t\t}\n\n\t\t.\\-10u\\28small\\29 {\n\t\t\tmargin-left: 83.33333%;\n\t\t}\n\n\t\t.\\-9u\\28small\\29 {\n\t\t\tmargin-left: 75%;\n\t\t}\n\n\t\t.\\-8u\\28small\\29 {\n\t\t\tmargin-left: 66.66667%;\n\t\t}\n\n\t\t.\\-7u\\28small\\29 {\n\t\t\tmargin-left: 58.33333%;\n\t\t}\n\n\t\t.\\-6u\\28small\\29 {\n\t\t\tmargin-left: 50%;\n\t\t}\n\n\t\t.\\-5u\\28small\\29 {\n\t\t\tmargin-left: 41.66667%;\n\t\t}\n\n\t\t.\\-4u\\28small\\29 {\n\t\t\tmargin-left: 33.33333%;\n\t\t}\n\n\t\t.\\-3u\\28small\\29 {\n\t\t\tmargin-left: 25%;\n\t\t}\n\n\t\t.\\-2u\\28small\\29 {\n\t\t\tmargin-left: 16.66667%;\n\t\t}\n\n\t\t.\\-1u\\28small\\29 {\n\t\t\tmargin-left: 8.33333%;\n\t\t}\n\n\t}\n\n\t@media screen and (max-width: 480px) {\n\n\t\t.row > * {\n\t\t\tpadding: 0 0 0 1.25em;\n\t\t}\n\n\t\t.row {\n\t\t\tmargin: 0 0 -1px -1.25em;\n\t\t}\n\n\t\t.row.uniform > * {\n\t\t\tpadding: 1.25em 0 0 1.25em;\n\t\t}\n\n\t\t.row.uniform {\n\t\t\tmargin: -1.25em 0 -1px -1.25em;\n\t\t}\n\n\t\t.row.\\32 00\\25 > * {\n\t\t\tpadding: 0 0 0 2.5em;\n\t\t}\n\n\t\t.row.\\32 00\\25 {\n\t\t\tmargin: 0 0 -1px -2.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 > * {\n\t\t\tpadding: 2.5em 0 0 2.5em;\n\t\t}\n\n\t\t.row.uniform.\\32 00\\25 {\n\t\t\tmargin: -2.5em 0 -1px -2.5em;\n\t\t}\n\n\t\t.row.\\31 50\\25 > * {\n\t\t\tpadding: 0 0 0 1.875em;\n\t\t}\n\n\t\t.row.\\31 50\\25 {\n\t\t\tmargin: 0 0 -1px -1.875em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 > * {\n\t\t\tpadding: 1.875em 0 0 1.875em;\n\t\t}\n\n\t\t.row.uniform.\\31 50\\25 {\n\t\t\tmargin: -1.875em 0 -1px -1.875em;\n\t\t}\n\n\t\t.row.\\35 0\\25 > * {\n\t\t\tpadding: 0 0 0 0.625em;\n\t\t}\n\n\t\t.row.\\35 0\\25 {\n\t\t\tmargin: 0 0 -1px -0.625em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 > * {\n\t\t\tpadding: 0.625em 0 0 0.625em;\n\t\t}\n\n\t\t.row.uniform.\\35 0\\25 {\n\t\t\tmargin: -0.625em 0 -1px -0.625em;\n\t\t}\n\n\t\t.row.\\32 5\\25 > * {\n\t\t\tpadding: 0 0 0 0.3125em;\n\t\t}\n\n\t\t.row.\\32 5\\25 {\n\t\t\tmargin: 0 0 -1px -0.3125em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 > * {\n\t\t\tpadding: 0.3125em 0 0 0.3125em;\n\t\t}\n\n\t\t.row.uniform.\\32 5\\25 {\n\t\t\tmargin: -0.3125em 0 -1px -0.3125em;\n\t\t}\n\n\t\t.\\31 2u\\28xsmall\\29, .\\31 2u\\24\\28xsmall\\29 {\n\t\t\twidth: 100%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 1u\\28xsmall\\29, .\\31 1u\\24\\28xsmall\\29 {\n\t\t\twidth: 91.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 0u\\28xsmall\\29, .\\31 0u\\24\\28xsmall\\29 {\n\t\t\twidth: 83.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\39 u\\28xsmall\\29, .\\39 u\\24\\28xsmall\\29 {\n\t\t\twidth: 75%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\38 u\\28xsmall\\29, .\\38 u\\24\\28xsmall\\29 {\n\t\t\twidth: 66.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\37 u\\28xsmall\\29, .\\37 u\\24\\28xsmall\\29 {\n\t\t\twidth: 58.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\36 u\\28xsmall\\29, .\\36 u\\24\\28xsmall\\29 {\n\t\t\twidth: 50%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\35 u\\28xsmall\\29, .\\35 u\\24\\28xsmall\\29 {\n\t\t\twidth: 41.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\34 u\\28xsmall\\29, .\\34 u\\24\\28xsmall\\29 {\n\t\t\twidth: 33.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\33 u\\28xsmall\\29, .\\33 u\\24\\28xsmall\\29 {\n\t\t\twidth: 25%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\32 u\\28xsmall\\29, .\\32 u\\24\\28xsmall\\29 {\n\t\t\twidth: 16.6666666667%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 u\\28xsmall\\29, .\\31 u\\24\\28xsmall\\29 {\n\t\t\twidth: 8.3333333333%;\n\t\t\tclear: none;\n\t\t\tmargin-left: 0;\n\t\t}\n\n\t\t.\\31 2u\\24\\28xsmall\\29 + *,\n\t\t.\\31 1u\\24\\28xsmall\\29 + *,\n\t\t.\\31 0u\\24\\28xsmall\\29 + *,\n\t\t.\\39 u\\24\\28xsmall\\29 + *,\n\t\t.\\38 u\\24\\28xsmall\\29 + *,\n\t\t.\\37 u\\24\\28xsmall\\29 + *,\n\t\t.\\36 u\\24\\28xsmall\\29 + *,\n\t\t.\\35 u\\24\\28xsmall\\29 + *,\n\t\t.\\34 u\\24\\28xsmall\\29 + *,\n\t\t.\\33 u\\24\\28xsmall\\29 + *,\n\t\t.\\32 u\\24\\28xsmall\\29 + *,\n\t\t.\\31 u\\24\\28xsmall\\29 + * {\n\t\t\tclear: left;\n\t\t}\n\n\t\t.\\-11u\\28xsmall\\29 {\n\t\t\tmargin-left: 91.66667%;\n\t\t}\n\n\t\t.\\-10u\\28xsmall\\29 {\n\t\t\tmargin-left: 83.33333%;\n\t\t}\n\n\t\t.\\-9u\\28xsmall\\29 {\n\t\t\tmargin-left: 75%;\n\t\t}\n\n\t\t.\\-8u\\28xsmall\\29 {\n\t\t\tmargin-left: 66.66667%;\n\t\t}\n\n\t\t.\\-7u\\28xsmall\\29 {\n\t\t\tmargin-left: 58.33333%;\n\t\t}\n\n\t\t.\\-6u\\28xsmall\\29 {\n\t\t\tmargin-left: 50%;\n\t\t}\n\n\t\t.\\-5u\\28xsmall\\29 {\n\t\t\tmargin-left: 41.66667%;\n\t\t}\n\n\t\t.\\-4u\\28xsmall\\29 {\n\t\t\tmargin-left: 33.33333%;\n\t\t}\n\n\t\t.\\-3u\\28xsmall\\29 {\n\t\t\tmargin-left: 25%;\n\t\t}\n\n\t\t.\\-2u\\28xsmall\\29 {\n\t\t\tmargin-left: 16.66667%;\n\t\t}\n\n\t\t.\\-1u\\28xsmall\\29 {\n\t\t\tmargin-left: 8.33333%;\n\t\t}\n\n\t}\n\n/* Basic */\n\n\tbody {\n\t\tbackground: #fff;\n\t}\n\n\tbody, input, select, textarea {\n\t\tcolor: #888;\n\t\tfont-family: \"Lato\", sans-serif;\n\t\tfont-size: 16pt;\n\t\tfont-weight: 400;\n\t\tline-height: 1.75em;\n\t}\n\n\ta {\n\t\t-moz-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;\n\t\t-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;\n\t\t-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;\n\t\ttransition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;\n\t\tborder-bottom: solid 1px #e4e4e4;\n\t\tcolor: inherit;\n\t\ttext-decoration: none;\n\t}\n\n\t\ta:hover {\n\t\t\tborder-bottom-color: transparent;\n\t\t\tcolor: #4acaa8 !important;\n\t\t}\n\n\tstrong, b {\n\t\tcolor: #777;\n\t\tfont-weight: 700;\n\t}\n\n\tem, i {\n\t\tfont-style: italic;\n\t}\n\n\tp {\n\t\tmargin: 0 0 2.25em 0;\n\t}\n\n\th1, h2, h3, h4, h5, h6 {\n\t\tcolor: #777;\n\t\tfont-weight: 700;\n\t\tline-height: 1em;\n\t\tmargin: 0 0 0.5625em 0;\n\t}\n\n\t\th1 a, h2 a, h3 a, h4 a, h5 a, h6 a {\n\t\t\tborder: 0;\n\t\t\tcolor: inherit;\n\t\t\ttext-decoration: none;\n\t\t}\n\n\th2 {\n\t\tfont-size: 2em;\n\t\tline-height: 1.5em;\n\t}\n\n\th3 {\n\t\tfont-size: 1.75em;\n\t\tline-height: 1.5em;\n\t}\n\n\th4 {\n\t\tfont-size: 1.25em;\n\t\tline-height: 1.5em;\n\t}\n\n\th5 {\n\t\tfont-size: 0.9em;\n\t\tline-height: 1.5em;\n\t}\n\n\th6 {\n\t\tfont-size: 0.7em;\n\t\tline-height: 1.5em;\n\t}\n\n\tsub {\n\t\tfont-size: 0.8em;\n\t\tposition: relative;\n\t\ttop: 0.5em;\n\t}\n\n\tsup {\n\t\tfont-size: 0.8em;\n\t\tposition: relative;\n\t\ttop: -0.5em;\n\t}\n\n\thr {\n\t\tborder: 0;\n\t\tborder-bottom: solid 2px #f4f4f4;\n\t\tmargin: 2.25em 0;\n\t}\n\n\t\thr.major {\n\t\t\tmargin: 3.375em 0;\n\t\t}\n\n\tblockquote {\n\t\tborder-left: solid 8px #e4e4e4;\n\t\tfont-style: italic;\n\t\tmargin: 0 0 2.25em 0;\n\t\tpadding: 0.5em 0 0.5em 2em;\n\t}\n\n\tcode {\n\t\tbackground: #555;\n\t\tborder-radius: 5px;\n\t\tcolor: #fff;\n\t\tfont-family: \"Source Code Pro\", monospace;\n\t\tfont-size: 0.9em;\n\t\tmargin: 0 0.25em;\n\t\tpadding: 0.25em 0.65em;\n\t}\n\n\tpre {\n\t\tfont-family: \"Source Code Pro\", monospace;\n\t\tfont-size: 0.9em;\n\t\tmargin: 0 0 2.25em 0;\n\t}\n\n\t\tpre code {\n\t\t\t-webkit-overflow-scrolling: touch;\n\t\t\tdisplay: block;\n\t\t\tline-height: 1.5em;\n\t\t\toverflow-x: auto;\n\t\t\tpadding: 1em 1.5em;\n\t\t}\n\n\t.align-left {\n\t\ttext-align: left;\n\t}\n\n\t.align-center {\n\t\ttext-align: center;\n\t}\n\n\t.align-right {\n\t\ttext-align: right;\n\t}\n\n/* Section/Article */\n\n\tsection.special, article.special {\n\t\ttext-align: center;\n\t}\n\n\theader p {\n\t\tcolor: #aaa;\n\t\tposition: relative;\n\t\tmargin: 0 0 1.6875em 0;\n\t}\n\n\theader h2 + p {\n\t\tfont-size: 1.25em;\n\t\tmargin-top: -0.5em;\n\t\tline-height: 1.5em;\n\t}\n\n\theader h3 + p {\n\t\tfont-size: 1.1em;\n\t\tmargin-top: -0.35em;\n\t\tline-height: 1.5em;\n\t}\n\n\theader h4 + p,\n\theader h5 + p,\n\theader h6 + p {\n\t\tfont-size: 0.9em;\n\t\tmargin-top: -0.25em;\n\t\tline-height: 1.5em;\n\t}\n\n\theader.major h2 {\n\t\tcolor: #4acaa8;\n\t\tfont-size: 3.5em;\n\t}\n\n\t\theader.major h2 + p {\n\t\t\tcolor: #777;\n\t\t\tfont-size: 1.75em;\n\t\t\tfont-weight: 700;\n\t\t\tmargin-top: -0.75em;\n\t\t}\n\n/* Form */\n\n\tform {\n\t\tmargin: 0 0 2.25em 0;\n\t}\n\n\tlabel {\n\t\tcolor: #777;\n\t\tdisplay: block;\n\t\tfont-size: 0.9em;\n\t\tfont-weight: 700;\n\t\tmargin: 0 0 1.125em 0;\n\t}\n\n\tinput::-moz-focus-inner {\n\t\tborder: 0;\n\t\tpadding: 0;\n\t}\n\n\tinput[type=\"text\"],\n\tinput[type=\"password\"],\n\tinput[type=\"email\"],\n\tselect,\n\ttextarea {\n\t\t-moz-appearance: none;\n\t\t-webkit-appearance: none;\n\t\t-ms-appearance: none;\n\t\tappearance: none;\n\t\tborder-radius: 5px;\n\t\tborder: none;\n\t\tborder: solid 2px #e4e4e4;\n\t\tcolor: inherit;\n\t\tdisplay: block;\n\t\toutline: 0;\n\t\tpadding: 0 1em;\n\t\ttext-decoration: none;\n\t\twidth: 100%;\n\t}\n\n\t\tinput[type=\"text\"]:invalid,\n\t\tinput[type=\"password\"]:invalid,\n\t\tinput[type=\"email\"]:invalid,\n\t\tselect:invalid,\n\t\ttextarea:invalid {\n\t\t\tbox-shadow: none;\n\t\t}\n\n\t\tinput[type=\"text\"]:focus,\n\t\tinput[type=\"password\"]:focus,\n\t\tinput[type=\"email\"]:focus,\n\t\tselect:focus,\n\t\ttextarea:focus {\n\t\t\tborder-color: #4acaa8;\n\t\t}\n\n\t.select-wrapper {\n\t\ttext-decoration: none;\n\t\tdisplay: block;\n\t\tposition: relative;\n\t}\n\n\t\t.select-wrapper:before {\n\t\t\t-moz-osx-font-smoothing: grayscale;\n\t\t\t-webkit-font-smoothing: antialiased;\n\t\t\tfont-family: FontAwesome;\n\t\t\tfont-style: normal;\n\t\t\tfont-weight: normal;\n\t\t\ttext-transform: none !important;\n\t\t}\n\n\t\t.select-wrapper:before {\n\t\t\tcolor: #e4e4e4;\n\t\t\tcontent: '\\f078';\n\t\t\tdisplay: block;\n\t\t\theight: 2.75em;\n\t\t\tline-height: 2.75em;\n\t\t\tpointer-events: none;\n\t\t\tposition: absolute;\n\t\t\tright: 0;\n\t\t\ttext-align: center;\n\t\t\ttop: 0;\n\t\t\twidth: 2.75em;\n\t\t}\n\n\t\t.select-wrapper select::-ms-expand {\n\t\t\tdisplay: none;\n\t\t}\n\n\tinput[type=\"text\"],\n\tinput[type=\"password\"],\n\tinput[type=\"email\"],\n\tselect {\n\t\theight: 2.75em;\n\t}\n\n\ttextarea {\n\t\tpadding: 0.75em 1em;\n\t}\n\n\tinput[type=\"checkbox\"],\n\tinput[type=\"radio\"] {\n\t\t-moz-appearance: none;\n\t\t-webkit-appearance: none;\n\t\t-ms-appearance: none;\n\t\tappearance: none;\n\t\tdisplay: block;\n\t\tfloat: left;\n\t\tmargin-right: -2em;\n\t\topacity: 0;\n\t\twidth: 1em;\n\t\tz-index: -1;\n\t}\n\n\t\tinput[type=\"checkbox\"] + label,\n\t\tinput[type=\"radio\"] + label {\n\t\t\ttext-decoration: none;\n\t\t\tcolor: #888;\n\t\t\tcursor: pointer;\n\t\t\tdisplay: inline-block;\n\t\t\tfont-size: 1em;\n\t\t\tfont-weight: 400;\n\t\t\tpadding-left: 2.4em;\n\t\t\tpadding-right: 0.75em;\n\t\t\tposition: relative;\n\t\t}\n\n\t\t\tinput[type=\"checkbox\"] + label:before,\n\t\t\tinput[type=\"radio\"] + label:before {\n\t\t\t\t-moz-osx-font-smoothing: grayscale;\n\t\t\t\t-webkit-font-smoothing: antialiased;\n\t\t\t\tfont-family: FontAwesome;\n\t\t\t\tfont-style: normal;\n\t\t\t\tfont-weight: normal;\n\t\t\t\ttext-transform: none !important;\n\t\t\t}\n\n\t\t\tinput[type=\"checkbox\"] + label:before,\n\t\t\tinput[type=\"radio\"] + label:before {\n\t\t\t\tbackground: #fafafa;\n\t\t\t\tborder-radius: 5px;\n\t\t\t\tborder: solid 2px #e4e4e4;\n\t\t\t\tcontent: '';\n\t\t\t\tdisplay: inline-block;\n\t\t\t\theight: 1.65em;\n\t\t\t\tleft: 0;\n\t\t\t\tline-height: 1.58125em;\n\t\t\t\tposition: absolute;\n\t\t\t\ttext-align: center;\n\t\t\t\ttop: 0;\n\t\t\t\twidth: 1.65em;\n\t\t\t}\n\n\t\tinput[type=\"checkbox\"]:checked + label:before,\n\t\tinput[type=\"radio\"]:checked + label:before {\n\t\t\tbackground: #989898;\n\t\t\tborder-color: #989898;\n\t\t\tcolor: #ffffff;\n\t\t\tcontent: '\\f00c';\n\t\t}\n\n\t\tinput[type=\"checkbox\"]:focus + label:before,\n\t\tinput[type=\"radio\"]:focus + label:before {\n\t\t\tborder-color: #4acaa8;\n\t\t}\n\n\tinput[type=\"checkbox\"] + label:before {\n\t\tborder-radius: 5px;\n\t}\n\n\tinput[type=\"radio\"] + label:before {\n\t\tborder-radius: 100%;\n\t}\n\n\t::-webkit-input-placeholder {\n\t\tcolor: #aaa !important;\n\t\tfont-style: italic;\n\t\topacity: 1.0;\n\t}\n\n\t:-moz-placeholder {\n\t\tcolor: #aaa !important;\n\t\tfont-style: italic;\n\t\topacity: 1.0;\n\t}\n\n\t::-moz-placeholder {\n\t\tcolor: #aaa !important;\n\t\tfont-style: italic;\n\t\topacity: 1.0;\n\t}\n\n\t:-ms-input-placeholder {\n\t\tcolor: #aaa !important;\n\t\tfont-style: italic;\n\t\topacity: 1.0;\n\t}\n\n\t.formerize-placeholder {\n\t\tcolor: #aaa !important;\n\t\tfont-style: italic;\n\t\topacity: 1.0;\n\t}\n\n/* Box */\n\n\t.box {\n\t\tborder-radius: 5px;\n\t\tborder: solid 2px #e4e4e4;\n\t\tmargin-bottom: 2.25em;\n\t\tpadding: 1.5em;\n\t}\n\n\t\t.box > :last-child,\n\t\t.box > :last-child > :last-child,\n\t\t.box > :last-child > :last-child > :last-child {\n\t\t\tmargin-bottom: 0;\n\t\t}\n\n\t\t.box.alt {\n\t\t\tborder: 0;\n\t\t\tborder-radius: 0;\n\t\t\tpadding: 0;\n\t\t}\n\n/* Icon */\n\n\t.icon {\n\t\ttext-decoration: none;\n\t\tborder-bottom: none;\n\t\tposition: relative;\n\t}\n\n\t\t.icon:before {\n\t\t\t-moz-osx-font-smoothing: grayscale;\n\t\t\t-webkit-font-smoothing: antialiased;\n\t\t\tfont-family: FontAwesome;\n\t\t\tfont-style: normal;\n\t\t\tfont-weight: normal;\n\t\t\ttext-transform: none !important;\n\t\t}\n\n\t\t.icon > .label {\n\t\t\tdisplay: none;\n\t\t}\n\n/* Image */\n\n\t.image {\n\t\tborder-radius: 5px;\n\t\tborder: 0;\n\t\tdisplay: inline-block;\n\t\tposition: relative;\n\t}\n\n\t\t.image img {\n\t\t\tborder-radius: 5px;\n\t\t\tdisplay: block;\n\t\t}\n\n\t\t.image.left {\n\t\t\tfloat: left;\n\t\t\tmargin: 0 2.5em 2em 0;\n\t\t\ttop: 0.25em;\n\t\t}\n\n\t\t.image.right {\n\t\t\tfloat: right;\n\t\t\tmargin: 0 0 2em 2.5em;\n\t\t\ttop: 0.25em;\n\t\t}\n\n\t\t.image.fit {\n\t\t\tdisplay: block;\n\t\t\tmargin: 0 0 2.25em 0;\n\t\t\twidth: 100%;\n\t\t}\n\n\t\t\t.image.fit img {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n\t\t.image.avatar {\n\t\t\tborder-radius: 100%;\n\t\t\toverflow: hidden;\n\t\t}\n\n\t\t\t.image.avatar img {\n\t\t\t\tborder-radius: 100%;\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n/* List */\n\n\tol {\n\t\tlist-style: decimal;\n\t\tmargin: 0 0 2.25em 0;\n\t\tpadding-left: 1.25em;\n\t}\n\n\t\tol li {\n\t\t\tpadding-left: 0.25em;\n\t\t}\n\n\tul {\n\t\tlist-style: disc;\n\t\tmargin: 0 0 2.25em 0;\n\t\tpadding-left: 1em;\n\t}\n\n\t\tul li {\n\t\t\tpadding-left: 0.5em;\n\t\t}\n\n\t\tul.alt {\n\t\t\tlist-style: none;\n\t\t\tpadding-left: 0;\n\t\t}\n\n\t\t\tul.alt li {\n\t\t\t\tborder-top: solid 2px #f4f4f4;\n\t\t\t\tpadding: 0.5em 0;\n\t\t\t}\n\n\t\t\t\tul.alt li:first-child {\n\t\t\t\t\tborder-top: 0;\n\t\t\t\t\tpadding-top: 0;\n\t\t\t\t}\n\n\t\tul.feature-icons {\n\t\t\tlist-style: none;\n\t\t\tpadding-left: 0;\n\t\t}\n\n\t\t\tul.feature-icons li {\n\t\t\t\ttext-decoration: none;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tmargin: 0 0 1.6875em 0;\n\t\t\t\tpadding: 0.35em 0 0 3.5em;\n\t\t\t\tposition: relative;\n\t\t\t\tvertical-align: top;\n\t\t\t\twidth: 48%;\n\t\t\t}\n\n\t\t\t\tul.feature-icons li:before {\n\t\t\t\t\t-moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t-webkit-font-smoothing: antialiased;\n\t\t\t\t\tfont-family: FontAwesome;\n\t\t\t\t\tfont-style: normal;\n\t\t\t\t\tfont-weight: normal;\n\t\t\t\t\ttext-transform: none !important;\n\t\t\t\t}\n\n\t\t\t\tul.feature-icons li:before {\n\t\t\t\t\tbackground: #4acaa8;\n\t\t\t\t\tborder-radius: 100%;\n\t\t\t\t\tcolor: #ffffff;\n\t\t\t\t\tdisplay: block;\n\t\t\t\t\theight: 2.5em;\n\t\t\t\t\tleft: 0;\n\t\t\t\t\tline-height: 2.5em;\n\t\t\t\t\tposition: absolute;\n\t\t\t\t\ttext-align: center;\n\t\t\t\t\ttop: 0;\n\t\t\t\t\twidth: 2.5em;\n\t\t\t\t}\n\n\t\tul.icons {\n\t\t\tcursor: default;\n\t\t\tlist-style: none;\n\t\t\tpadding-left: 0;\n\t\t}\n\n\t\t\tul.icons li {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tpadding: 0 1em 0 0;\n\t\t\t}\n\n\t\t\t\tul.icons li:last-child {\n\t\t\t\t\tpadding-right: 0 !important;\n\t\t\t\t}\n\n\t\t\t\tul.icons li .icon:before {\n\t\t\t\t\tfont-size: 1.25em;\n\t\t\t\t}\n\n\t\tul.actions {\n\t\t\tcursor: default;\n\t\t\tlist-style: none;\n\t\t\tpadding-left: 0;\n\t\t}\n\n\t\t\tul.actions li {\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tpadding: 0 1.125em 0 0;\n\t\t\t\tvertical-align: middle;\n\t\t\t}\n\n\t\t\t\tul.actions li:last-child {\n\t\t\t\t\tpadding-right: 0;\n\t\t\t\t}\n\n\t\t\tul.actions.small li {\n\t\t\t\tpadding: 0 0.5625em 0 0;\n\t\t\t}\n\n\t\t\tul.actions.vertical li {\n\t\t\t\tdisplay: block;\n\t\t\t\tpadding: 1.125em 0 0 0;\n\t\t\t}\n\n\t\t\t\tul.actions.vertical li:first-child {\n\t\t\t\t\tpadding-top: 0;\n\t\t\t\t}\n\n\t\t\t\tul.actions.vertical li > * {\n\t\t\t\t\tmargin-bottom: 0;\n\t\t\t\t}\n\n\t\t\tul.actions.vertical.small li {\n\t\t\t\tpadding: 0.5625em 0 0 0;\n\t\t\t}\n\n\t\t\t\tul.actions.vertical.small li:first-child {\n\t\t\t\t\tpadding-top: 0;\n\t\t\t\t}\n\n\t\t\tul.actions.fit {\n\t\t\t\tdisplay: table;\n\t\t\t\tmargin-left: -1.125em;\n\t\t\t\tpadding: 0;\n\t\t\t\ttable-layout: fixed;\n\t\t\t\twidth: calc(100% + 1.125em);\n\t\t\t}\n\n\t\t\t\tul.actions.fit li {\n\t\t\t\t\tdisplay: table-cell;\n\t\t\t\t\tpadding: 0 0 0 1.125em;\n\t\t\t\t}\n\n\t\t\t\t\tul.actions.fit li > * {\n\t\t\t\t\t\tmargin-bottom: 0;\n\t\t\t\t\t}\n\n\t\t\t\tul.actions.fit.small {\n\t\t\t\t\tmargin-left: -0.5625em;\n\t\t\t\t\twidth: calc(100% + 0.5625em);\n\t\t\t\t}\n\n\t\t\t\t\tul.actions.fit.small li {\n\t\t\t\t\t\tpadding: 0 0 0 0.5625em;\n\t\t\t\t\t}\n\n\tdl {\n\t\tmargin: 0 0 2.25em 0;\n\t}\n\n/* Table */\n\n\t.table-wrapper {\n\t\t-webkit-overflow-scrolling: touch;\n\t\toverflow-x: auto;\n\t}\n\n\ttable {\n\t\tmargin: 0 0 2.25em 0;\n\t\twidth: 100%;\n\t}\n\n\t\ttable tbody tr {\n\t\t\tborder: solid 2px #f4f4f4;\n\t\t\tborder-left: 0;\n\t\t\tborder-right: 0;\n\t\t}\n\n\t\t\ttable tbody tr:nth-child(2n + 1) {\n\t\t\t\tbackground-color: #fafafa;\n\t\t\t}\n\n\t\ttable td {\n\t\t\tpadding: 0.75em 0.75em;\n\t\t}\n\n\t\ttable th {\n\t\t\tcolor: #777;\n\t\t\tfont-size: 0.9em;\n\t\t\tfont-weight: 700;\n\t\t\tpadding: 0 0.75em 0.75em 0.75em;\n\t\t\ttext-align: left;\n\t\t}\n\n\t\ttable thead {\n\t\t\tborder-bottom: solid 4px #e4e4e4;\n\t\t}\n\n\t\ttable tfoot {\n\t\t\tborder-top: solid 4px #e4e4e4;\n\t\t}\n\n\t\ttable.alt {\n\t\t\tborder-collapse: separate;\n\t\t}\n\n\t\t\ttable.alt tbody tr td {\n\t\t\t\tborder: solid 2px #e4e4e4;\n\t\t\t\tborder-left-width: 0;\n\t\t\t\tborder-top-width: 0;\n\t\t\t}\n\n\t\t\t\ttable.alt tbody tr td:first-child {\n\t\t\t\t\tborder-left-width: 2px;\n\t\t\t\t}\n\n\t\t\ttable.alt tbody tr:first-child td {\n\t\t\t\tborder-top-width: 2px;\n\t\t\t}\n\n\t\t\ttable.alt thead {\n\t\t\t\tborder-bottom: 0;\n\t\t\t}\n\n\t\t\ttable.alt tfoot {\n\t\t\t\tborder-top: 0;\n\t\t\t}\n\n/* Button */\n\n\tinput[type=\"submit\"],\n\tinput[type=\"reset\"],\n\tinput[type=\"button\"],\n\t.button {\n\t\t-moz-appearance: none;\n\t\t-webkit-appearance: none;\n\t\t-ms-appearance: none;\n\t\tappearance: none;\n\t\t-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;\n\t\t-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;\n\t\t-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;\n\t\ttransition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;\n\t\tbackground-color: #989898;\n\t\tborder-radius: 5px;\n\t\tborder: 0;\n\t\tcolor: #ffffff !important;\n\t\tcursor: pointer;\n\t\tdisplay: inline-block;\n\t\tfont-weight: 700;\n\t\theight: 2.75em;\n\t\tline-height: 2.75em;\n\t\tpadding: 0 1.5em;\n\t\ttext-align: center;\n\t\ttext-decoration: none;\n\t\twhite-space: nowrap;\n\t}\n\n\t\tinput[type=\"submit\"]:hover,\n\t\tinput[type=\"reset\"]:hover,\n\t\tinput[type=\"button\"]:hover,\n\t\t.button:hover {\n\t\t\tbackground-color: #a5a5a5;\n\t\t\tcolor: #ffffff !important;\n\t\t}\n\n\t\tinput[type=\"submit\"]:active,\n\t\tinput[type=\"reset\"]:active,\n\t\tinput[type=\"button\"]:active,\n\t\t.button:active {\n\t\t\tbackground-color: #8b8b8b;\n\t\t}\n\n\t\tinput[type=\"submit\"].icon,\n\t\tinput[type=\"reset\"].icon,\n\t\tinput[type=\"button\"].icon,\n\t\t.button.icon {\n\t\t\tpadding-left: 1.35em;\n\t\t}\n\n\t\t\tinput[type=\"submit\"].icon:before,\n\t\t\tinput[type=\"reset\"].icon:before,\n\t\t\tinput[type=\"button\"].icon:before,\n\t\t\t.button.icon:before {\n\t\t\t\tmargin-right: 0.5em;\n\t\t\t}\n\n\t\tinput[type=\"submit\"].fit,\n\t\tinput[type=\"reset\"].fit,\n\t\tinput[type=\"button\"].fit,\n\t\t.button.fit {\n\t\t\tdisplay: block;\n\t\t\tmargin: 0 0 1.125em 0;\n\t\t\twidth: 100%;\n\t\t}\n\n\t\tinput[type=\"submit\"].small,\n\t\tinput[type=\"reset\"].small,\n\t\tinput[type=\"button\"].small,\n\t\t.button.small {\n\t\t\tfont-size: 0.8em;\n\t\t}\n\n\t\tinput[type=\"submit\"].big,\n\t\tinput[type=\"reset\"].big,\n\t\tinput[type=\"button\"].big,\n\t\t.button.big {\n\t\t\tfont-size: 1.35em;\n\t\t}\n\n\t\tinput[type=\"submit\"].alt,\n\t\tinput[type=\"reset\"].alt,\n\t\tinput[type=\"button\"].alt,\n\t\t.button.alt {\n\t\t\tbackground-color: transparent;\n\t\t\tbox-shadow: inset 0 0 0 2px #e4e4e4;\n\t\t\tcolor: #777 !important;\n\t\t}\n\n\t\t\tinput[type=\"submit\"].alt:hover,\n\t\t\tinput[type=\"reset\"].alt:hover,\n\t\t\tinput[type=\"button\"].alt:hover,\n\t\t\t.button.alt:hover {\n\t\t\t\tbackground-color: #f4f4f4;\n\t\t\t\tcolor: #777 !important;\n\t\t\t}\n\n\t\t\tinput[type=\"submit\"].alt:active,\n\t\t\tinput[type=\"reset\"].alt:active,\n\t\t\tinput[type=\"button\"].alt:active,\n\t\t\t.button.alt:active {\n\t\t\t\tbackground-color: #eaeaea;\n\t\t\t}\n\n\t\t\tinput[type=\"submit\"].alt.icon:before,\n\t\t\tinput[type=\"reset\"].alt.icon:before,\n\t\t\tinput[type=\"button\"].alt.icon:before,\n\t\t\t.button.alt.icon:before {\n\t\t\t\tcolor: #aaa;\n\t\t\t}\n\n\t\tinput[type=\"submit\"].special,\n\t\tinput[type=\"reset\"].special,\n\t\tinput[type=\"button\"].special,\n\t\t.button.special {\n\t\t\tbackground-color: #4acaa8;\n\t\t\tcolor: #ffffff !important;\n\t\t}\n\n\t\t\tinput[type=\"submit\"].special:hover,\n\t\t\tinput[type=\"reset\"].special:hover,\n\t\t\tinput[type=\"button\"].special:hover,\n\t\t\t.button.special:hover {\n\t\t\t\tbackground-color: #5ed0b1;\n\t\t\t}\n\n\t\t\tinput[type=\"submit\"].special:active,\n\t\t\tinput[type=\"reset\"].special:active,\n\t\t\tinput[type=\"button\"].special:active,\n\t\t\t.button.special:active {\n\t\t\t\tbackground-color: #39c29d;\n\t\t\t}\n\n\t\tinput[type=\"submit\"].disabled, input[type=\"submit\"]:disabled,\n\t\tinput[type=\"reset\"].disabled,\n\t\tinput[type=\"reset\"]:disabled,\n\t\tinput[type=\"button\"].disabled,\n\t\tinput[type=\"button\"]:disabled,\n\t\t.button.disabled,\n\t\t.button:disabled {\n\t\t\tbackground-color: #888 !important;\n\t\t\tbox-shadow: inset 0 -0.15em 0 0 rgba(0, 0, 0, 0.15);\n\t\t\tcolor: #fff !important;\n\t\t\tcursor: default;\n\t\t\topacity: 0.25;\n\t\t}\n\n/* Features */\n\n\t.features article {\n\t\tborder-top: solid 3px #f4f4f4;\n\t\tmargin-bottom: 2.25em;\n\t\tpadding-top: 2.25em;\n\t}\n\n\t\t.features article:first-child {\n\t\t\tborder-top: 0;\n\t\t\tpadding-top: 0;\n\t\t}\n\n\t\t.features article .image {\n\t\t\tdisplay: inline-block;\n\t\t\tpadding-right: 2.5em;\n\t\t\tvertical-align: middle;\n\t\t\twidth: 48%;\n\t\t}\n\n\t\t\t.features article .image img {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n\t\t.features article .inner {\n\t\t\tdisplay: inline-block;\n\t\t\tvertical-align: middle;\n\t\t\twidth: 50%;\n\t\t}\n\n\t\t\t.features article .inner > :last-child {\n\t\t\t\tmargin-bottom: 0;\n\t\t\t}\n\n/* Header */\n\n\t#header {\n\t\tdisplay: -moz-flex;\n\t\tdisplay: -webkit-flex;\n\t\tdisplay: -ms-flex;\n\t\tdisplay: flex;\n\t\t-moz-flex-direction: column;\n\t\t-webkit-flex-direction: column;\n\t\t-ms-flex-direction: column;\n\t\tflex-direction: column;\n\t\t-moz-justify-content: space-between;\n\t\t-webkit-justify-content: space-between;\n\t\t-ms-justify-content: space-between;\n\t\tjustify-content: space-between;\n\t\tbackground: #4acaa8;\n\t\tcolor: #d1f1e9;\n\t\theight: 100%;\n\t\toverflow-y: auto;\n\t\tposition: fixed;\n\t\ttext-align: center;\n\t\ttop: 0;\n\t\twidth: 23em;\n\t\tright: 0;\n\t}\n\n\t\t#header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {\n\t\t\tcolor: #ffffff;\n\t\t}\n\n\t\t\t#header h1 a, #header h2 a, #header h3 a, #header h4 a, #header h5 a, #header h6 a {\n\t\t\t\tcolor: #ffffff;\n\t\t\t}\n\n\t\t#header header p {\n\t\t\tcolor: #b6e9dc;\n\t\t}\n\n\t\t#header a {\n\t\t\tcolor: #d1f1e9;\n\t\t}\n\n\t\t\t#header a:hover {\n\t\t\t\tcolor: #ffffff !important;\n\t\t\t}\n\n\t\t#header > header {\n\t\t\t-moz-flex-shrink: 0;\n\t\t\t-webkit-flex-shrink: 0;\n\t\t\t-ms-flex-shrink: 0;\n\t\t\tflex-shrink: 0;\n\t\t\tpadding: 3em;\n\t\t}\n\n\t\t\t#header > header .avatar {\n\t\t\t\tdisplay: block;\n\t\t\t\tmargin: 0 auto 2.25em auto;\n\t\t\t\twidth: 8em;\n\t\t\t}\n\n\t\t\t#header > header h1 {\n\t\t\t\tfont-size: 1.75em;\n\t\t\t\tmargin: 0;\n\t\t\t}\n\n\t\t\t#header > header p {\n\t\t\t\tcolor: #d1f1e9;\n\t\t\t\tfont-style: italic;\n\t\t\t\tmargin: 1em 0 0 0;\n\t\t\t}\n\n\t\t#header > footer {\n\t\t\t-moz-flex-shrink: 0;\n\t\t\t-webkit-flex-shrink: 0;\n\t\t\t-ms-flex-shrink: 0;\n\t\t\tflex-shrink: 0;\n\t\t\tbottom: 0;\n\t\t\tleft: 0;\n\t\t\tpadding: 2em;\n\t\t\twidth: 100%;\n\t\t}\n\n\t\t\t#header > footer .icons {\n\t\t\t\tmargin: 0;\n\t\t\t}\n\n\t\t\t\t#header > footer .icons li a {\n\t\t\t\t\tcolor: #b6e9dc;\n\t\t\t\t}\n\n\t\t#header > nav {\n\t\t\t-moz-flex-grow: 1;\n\t\t\t-webkit-flex-grow: 1;\n\t\t\t-ms-flex-grow: 1;\n\t\t\tflex-grow: 1;\n\t\t}\n\n\t\t\t#header > nav ul {\n\t\t\t\tlist-style: none;\n\t\t\t\tmargin: 0;\n\t\t\t\tpadding: 0;\n\t\t\t}\n\n\t\t\t\t#header > nav ul li {\n\t\t\t\t\tborder-top: solid 2px #5ccfb0;\n\t\t\t\t\tdisplay: block;\n\t\t\t\t\tpadding: 0;\n\t\t\t\t}\n\n\t\t\t\t\t#header > nav ul li a {\n\t\t\t\t\t\t-moz-transition: none;\n\t\t\t\t\t\t-webkit-transition: none;\n\t\t\t\t\t\t-ms-transition: none;\n\t\t\t\t\t\ttransition: none;\n\t\t\t\t\t\tborder: 0;\n\t\t\t\t\t\tcolor: #ffffff !important;\n\t\t\t\t\t\tdisplay: block;\n\t\t\t\t\t\tpadding: 0.85em 0;\n\t\t\t\t\t\ttext-decoration: none;\n\t\t\t\t\t}\n\n\t\t\t\t\t\t#header > nav ul li a.active {\n\t\t\t\t\t\t\tbackground: #fff;\n\t\t\t\t\t\t\tcolor: #4acaa8 !important;\n\t\t\t\t\t\t}\n\n\t\t\t\t\t#header > nav ul li:first-child {\n\t\t\t\t\t\tborder-top: 0;\n\t\t\t\t\t}\n\n/* Wrapper */\n\n\t#wrapper {\n\t\tbackground: #fff;\n\t\tpadding-right: 23em;\n\t}\n\n/* Main */\n\n\t#main > section {\n\t\tborder-top: solid 6px #f4f4f4;\n\t}\n\n\t\t#main > section > .container {\n\t\t\tpadding: 6em 0 4em 0;\n\t\t}\n\n\t\t#main > section:first-child {\n\t\t\tborder-top: 0;\n\t\t}\n\n/* One */\n\n\t\n\n/* Footer */\n\n\t#footer {\n\t\tbackground: #fafafa;\n\t\tborder-top: 0;\n\t\tcolor: #c0c0c0;\n\t\toverflow: hidden;\n\t\tpadding: 4em 0 2em 0;\n\t}\n\n\t\t#footer .copyright {\n\t\t\tline-height: 1em;\n\t\t\tlist-style: none;\n\t\t\tpadding: 0;\n\t\t}\n\n\t\t\t#footer .copyright li {\n\t\t\t\tborder-left: solid 1px #d4d4d4;\n\t\t\t\tdisplay: inline-block;\n\t\t\t\tfont-size: 0.8em;\n\t\t\t\tmargin-left: 1em;\n\t\t\t\tpadding-left: 1em;\n\t\t\t}\n\n\t\t\t\t#footer .copyright li:first-child {\n\t\t\t\t\tborder-left: 0;\n\t\t\t\t\tmargin-left: 0;\n\t\t\t\t\tpadding-left: 0;\n\t\t\t\t}\n\n\t\t\t\t#footer .copyright li a {\n\t\t\t\t\tcolor: inherit;\n\t\t\t\t}\n\n/* XLarge */\n\n\t@media screen and (max-width: 1680px) {\n\n\t\t/* Basic */\n\n\t\t\tbody, input, select, textarea {\n\t\t\t\tfont-size: 13pt;\n\t\t\t}\n\n\t\t/* Header */\n\n\t\t\t#header {\n\t\t\t\twidth: 21em;\n\t\t\t}\n\n\t\t\t\t#header > header {\n\t\t\t\t\tpadding: 2em;\n\t\t\t\t}\n\n\t\t\t\t#header > footer {\n\t\t\t\t\tpadding: 1.5em;\n\t\t\t\t}\n\n\t\t/* Wrapper */\n\n\t\t\t#wrapper {\n\t\t\t\tpadding-right: 21em;\n\t\t\t}\n\n\t\t/* Main */\n\n\t\t\t#main > section > .container {\n\t\t\t\tpadding: 4em 0 2em 0;\n\t\t\t}\n\n\t}\n\n/* Large */\n\n\t@media screen and (max-width: 1280px) {\n\n\t\t/* Basic */\n\n\t\t\tbody, input, select, textarea {\n\t\t\t\tfont-size: 11pt;\n\t\t\t}\n\n\t\t/* Header */\n\n\t\t\t#header {\n\t\t\t\twidth: 20em;\n\t\t\t}\n\n\t\t/* Wrapper */\n\n\t\t\t#wrapper {\n\t\t\t\tpadding-right: 20em;\n\t\t\t}\n\n\t}\n\n/* Medium */\n\n\t#titleBar {\n\t\tdisplay: none;\n\t}\n\n\t@media screen and (max-width: 1024px) {\n\n\t\t/* Basic */\n\n\t\t\thtml, body {\n\t\t\t\toverflow-x: hidden;\n\t\t\t}\n\n\t\t\tbody, input, select, textarea {\n\t\t\t\tfont-size: 12pt;\n\t\t\t}\n\n\t\t/* Image */\n\n\t\t\t.image.left, .image.right {\n\t\t\t\tmax-width: 40%;\n\t\t\t}\n\n\t\t\t\t.image.left img, .image.right img {\n\t\t\t\t\twidth: 100%;\n\t\t\t\t}\n\n\t\t/* Header */\n\n\t\t\t#header {\n\t\t\t\t-moz-backface-visibility: hidden;\n\t\t\t\t-webkit-backface-visibility: hidden;\n\t\t\t\t-ms-backface-visibility: hidden;\n\t\t\t\tbackface-visibility: hidden;\n\t\t\t\t-moz-transition: -moz-transform 0.5s ease;\n\t\t\t\t-webkit-transition: -webkit-transform 0.5s ease;\n\t\t\t\t-ms-transition: -ms-transform 0.5s ease;\n\t\t\t\ttransition: transform 0.5s ease;\n\t\t\t\tdisplay: block;\n\t\t\t\theight: 100%;\n\t\t\t\toverflow-y: auto;\n\t\t\t\tposition: fixed;\n\t\t\t\ttop: 0;\n\t\t\t\twidth: 23em;\n\t\t\t\tz-index: 10002;\n\t\t\t\t-moz-transform: translateX(23em);\n\t\t\t\t-webkit-transform: translateX(23em);\n\t\t\t\t-ms-transform: translateX(23em);\n\t\t\t\ttransform: translateX(23em);\n\t\t\t\tright: 0;\n\t\t\t}\n\n\t\t\t\t#header > footer {\n\t\t\t\t\tbottom: auto;\n\t\t\t\t\tleft: auto;\n\t\t\t\t\tmargin: 0.5em 0 0 0;\n\t\t\t\t\tposition: relative;\n\t\t\t\t\tright: auto;\n\t\t\t\t\ttop: auto;\n\t\t\t\t}\n\n\t\t/* Wrapper */\n\n\t\t\t#wrapper {\n\t\t\t\t-moz-backface-visibility: hidden;\n\t\t\t\t-webkit-backface-visibility: hidden;\n\t\t\t\t-ms-backface-visibility: hidden;\n\t\t\t\tbackface-visibility: hidden;\n\t\t\t\t-moz-transition: -moz-transform 0.5s ease;\n\t\t\t\t-webkit-transition: -webkit-transform 0.5s ease;\n\t\t\t\t-ms-transition: -ms-transform 0.5s ease;\n\t\t\t\ttransition: transform 0.5s ease;\n\t\t\t\tpadding: 44px 0 1px 0;\n\t\t\t}\n\n\t\t/* One */\n\n\t\t\t#one:before {\n\t\t\t\theight: 10em;\n\t\t\t}\n\n\t\t/* Off-Canvas Navigation */\n\n\t\t\t#titleBar {\n\t\t\t\t-moz-backface-visibility: hidden;\n\t\t\t\t-webkit-backface-visibility: hidden;\n\t\t\t\t-ms-backface-visibility: hidden;\n\t\t\t\tbackface-visibility: hidden;\n\t\t\t\t-moz-transition: -moz-transform 0.5s ease;\n\t\t\t\t-webkit-transition: -webkit-transform 0.5s ease;\n\t\t\t\t-ms-transition: -ms-transform 0.5s ease;\n\t\t\t\ttransition: transform 0.5s ease;\n\t\t\t\tdisplay: block;\n\t\t\t\theight: 44px;\n\t\t\t\tleft: 0;\n\t\t\t\tposition: fixed;\n\t\t\t\ttop: 0;\n\t\t\t\twidth: 100%;\n\t\t\t\tz-index: 10001;\n\t\t\t\tbackground: #222;\n\t\t\t\tcolor: #fff;\n\t\t\t\tmin-width: 320px;\n\t\t\t}\n\n\t\t\t\t#titleBar .title {\n\t\t\t\t\tcolor: #fff;\n\t\t\t\t\tdisplay: block;\n\t\t\t\t\tfont-weight: 700;\n\t\t\t\t\theight: 44px;\n\t\t\t\t\tline-height: 44px;\n\t\t\t\t\tpadding: 0 1em;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\ttext-align: left;\n\t\t\t\t}\n\n\t\t\t\t\t#titleBar .title a {\n\t\t\t\t\t\tborder: 0;\n\t\t\t\t\t\ttext-decoration: none;\n\t\t\t\t\t}\n\n\t\t\t\t#titleBar .toggle {\n\t\t\t\t\ttext-decoration: none;\n\t\t\t\t\theight: 4em;\n\t\t\t\t\tposition: absolute;\n\t\t\t\t\ttop: 0;\n\t\t\t\t\twidth: 6em;\n\t\t\t\t\tborder: 0;\n\t\t\t\t\toutline: 0;\n\t\t\t\t\tright: 0;\n\t\t\t\t}\n\n\t\t\t\t\t#titleBar .toggle:before {\n\t\t\t\t\t\t-moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t\t-webkit-font-smoothing: antialiased;\n\t\t\t\t\t\tfont-family: FontAwesome;\n\t\t\t\t\t\tfont-style: normal;\n\t\t\t\t\t\tfont-weight: normal;\n\t\t\t\t\t\ttext-transform: none !important;\n\t\t\t\t\t}\n\n\t\t\t\t\t#titleBar .toggle:before {\n\t\t\t\t\t\tbackground: #4acaa8;\n\t\t\t\t\t\tcolor: #ffffff;\n\t\t\t\t\t\tcontent: '\\f0c9';\n\t\t\t\t\t\tdisplay: block;\n\t\t\t\t\t\tfont-size: 18px;\n\t\t\t\t\t\theight: 44px;\n\t\t\t\t\t\tline-height: 44px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\ttext-align: center;\n\t\t\t\t\t\ttop: 0;\n\t\t\t\t\t\twidth: 64px;\n\t\t\t\t\t\tright: 0;\n\t\t\t\t\t}\n\n\t\t\tbody.header-visible #wrapper, body.header-visible #titleBar {\n\t\t\t\t-moz-transform: translateX(-23em);\n\t\t\t\t-webkit-transform: translateX(-23em);\n\t\t\t\t-ms-transform: translateX(-23em);\n\t\t\t\ttransform: translateX(-23em);\n\t\t\t}\n\n\t\t\tbody.header-visible #header {\n\t\t\t\t-moz-transform: translateX(0);\n\t\t\t\t-webkit-transform: translateX(0);\n\t\t\t\t-ms-transform: translateX(0);\n\t\t\t\ttransform: translateX(0);\n\t\t\t}\n\n\t}\n\n/* Small */\n\n\t@media screen and (max-width: 736px) {\n\n\t\t/* Basic */\n\n\t\t\tbody, input, select, textarea {\n\t\t\t\tfont-size: 12pt;\n\t\t\t}\n\n\t\t\th1 br, h2 br, h3 br, h4 br, h5 br, h6 br {\n\t\t\t\tdisplay: none;\n\t\t\t}\n\n\t\t\th2 {\n\t\t\t\tfont-size: 1.75em;\n\t\t\t}\n\n\t\t\th3 {\n\t\t\t\tfont-size: 1.5em;\n\t\t\t}\n\n\t\t\th4 {\n\t\t\t\tfont-size: 1em;\n\t\t\t}\n\n\t\t/* Image */\n\n\t\t\t.image.left {\n\t\t\t\tmargin: 0 1.5em 1em 0;\n\t\t\t}\n\n\t\t\t.image.right {\n\t\t\t\tmargin: 0 0 1em 1.5em;\n\t\t\t}\n\n\t\t/* Section/Article */\n\n\t\t\theader br {\n\t\t\t\tdisplay: none;\n\t\t\t}\n\n\t\t\theader.major h2 {\n\t\t\t\tfont-size: 2.5em;\n\t\t\t}\n\n\t\t\t\theader.major h2 + p {\n\t\t\t\t\tfont-size: 1.5em;\n\t\t\t\t}\n\n\t\t/* Features */\n\n\t\t\t.features article .image {\n\t\t\t\tdisplay: block;\n\t\t\t\tmargin: 0 0 2.25em 0;\n\t\t\t\tpadding-right: 0;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n\t\t\t.features article .inner {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n\t\t/* Header */\n\n\t\t\t#header {\n\t\t\t\twidth: 17em;\n\t\t\t\t-moz-transform: translateX(17em);\n\t\t\t\t-webkit-transform: translateX(17em);\n\t\t\t\t-ms-transform: translateX(17em);\n\t\t\t\ttransform: translateX(17em);\n\t\t\t\tright: 0;\n\t\t\t}\n\n\t\t\t\t#header > header {\n\t\t\t\t\tpadding: 2em;\n\t\t\t\t}\n\n\t\t\t\t\t#header > header .avatar {\n\t\t\t\t\t\tmargin: 0 auto 1.6875em auto;\n\t\t\t\t\t\twidth: 6em;\n\t\t\t\t\t}\n\n\t\t\t\t\t#header > header h1 {\n\t\t\t\t\t\tfont-size: 1.5em;\n\t\t\t\t\t}\n\n\t\t\t\t\t#header > header p {\n\t\t\t\t\t\tmargin: 1em 0 0 0;\n\t\t\t\t\t}\n\n\t\t\t\t#header > footer {\n\t\t\t\t\tpadding: 1.5em;\n\t\t\t\t}\n\n\t\t/* Main */\n\n\t\t\t#main > section > .container {\n\t\t\t\tpadding: 2em 0 0 0;\n\t\t\t}\n\n\t\t/* One */\n\n\t\t\t#one:before {\n\t\t\t\theight: 7em;\n\t\t\t}\n\n\t\t/* Footer */\n\n\t\t\t#footer {\n\t\t\t\ttext-align: center;\n\t\t\t}\n\n\t\t\t\t#footer .copyright li {\n\t\t\t\t\tborder-left: 0;\n\t\t\t\t\tdisplay: block;\n\t\t\t\t\tline-height: 1.75em;\n\t\t\t\t\tmargin: 0.75em 0 0 0;\n\t\t\t\t\tpadding-left: 0;\n\t\t\t\t}\n\n\t\t\t\t\t#footer .copyright li:first-child {\n\t\t\t\t\t\tmargin-top: 0;\n\t\t\t\t\t}\n\n\t\t/* Off-Canvas Navigation */\n\n\t\t\t#titleBar .toggle {\n\t\t\t\theight: 4em;\n\t\t\t\twidth: 6em;\n\t\t\t}\n\n\t\t\t\t#titleBar .toggle:before {\n\t\t\t\t\tfont-size: 14px;\n\t\t\t\t\twidth: 44px;\n\t\t\t\t}\n\n\t\t\tbody.header-visible #wrapper, body.header-visible #titleBar {\n\t\t\t\t-moz-transform: translateX(-17em);\n\t\t\t\t-webkit-transform: translateX(-17em);\n\t\t\t\t-ms-transform: translateX(-17em);\n\t\t\t\ttransform: translateX(-17em);\n\t\t\t}\n\n\t}\n\n/* XSmall */\n\n\t@media screen and (max-width: 480px) {\n\n\t\t/* Basic */\n\n\t\t\thtml, body {\n\t\t\t\tmin-width: 320px;\n\t\t\t}\n\n\t\t\tbody, input, select, textarea {\n\t\t\t\tfont-size: 12pt;\n\t\t\t}\n\n\t\t/* List */\n\n\t\t\tul.actions {\n\t\t\t\tmargin: 0 0 2.25em 0;\n\t\t\t}\n\n\t\t\t\tul.actions li {\n\t\t\t\t\tdisplay: block;\n\t\t\t\t\tpadding: 1.125em 0 0 0;\n\t\t\t\t\ttext-align: center;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t}\n\n\t\t\t\t\tul.actions li:first-child {\n\t\t\t\t\t\tpadding-top: 0;\n\t\t\t\t\t}\n\n\t\t\t\t\tul.actions li > * {\n\t\t\t\t\t\twidth: 100%;\n\t\t\t\t\t\tmargin: 0 !important;\n\t\t\t\t\t}\n\n\t\t\t\t\t\tul.actions li > *.icon:before {\n\t\t\t\t\t\t\tmargin-left: -2em;\n\t\t\t\t\t\t}\n\n\t\t\t\tul.actions.small li {\n\t\t\t\t\tpadding: 0.5625em 0 0 0;\n\t\t\t\t}\n\n\t\t\t\t\tul.actions.small li:first-child {\n\t\t\t\t\t\tpadding-top: 0;\n\t\t\t\t\t}\n\n\t\t\tul.feature-icons li {\n\t\t\t\tdisplay: block;\n\t\t\t\twidth: 100%;\n\t\t\t}\n\n\t\t/* Button */\n\n\t\t\tinput[type=\"submit\"],\n\t\t\tinput[type=\"reset\"],\n\t\t\tinput[type=\"button\"],\n\t\t\t.button {\n\t\t\t\tpadding: 0;\n\t\t\t}\n\n\t}",
+			"file": "assets/css/main.css",
+			"file_size": 47838,
+			"file_write_time": 131682640929522933,
+			"settings":
+			{
+				"buffer_size": 51659,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "single-post.html",
+			"settings":
+			{
+				"buffer_size": 14223,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "contact.html",
+			"settings":
+			{
+				"buffer_size": 15044,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 490.0,
+		"last_filter": "github",
+		"selected_items":
+		[
+			[
+				"github",
+				"github: create fork"
+			],
+			[
+				"github s",
+				"GitHub: Switch Accounts"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"git a",
+				"Git: Add All"
+			],
+			[
+				"help",
+				"GitSavvy: help"
+			],
+			[
+				"instak",
+				"Package Control: Install Package"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 565.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/qsa",
+		"/C/xampp/htdocs/qsa/assets"
+	],
+	"file_history":
+	[
+		"/C/Users/Jenice/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/xampp/htdocs/qsa/Create My Quit Plan _ Smokefree.gov_files/css_S1fiIObLyk6c8FH916Ts8tfxyMtQcD9M31EZRGMDJy4.css",
+		"/C/xampp/htdocs/qsa/user_sign-upscript.php",
+		"/C/xampp/htdocs/qsa/effect-of-tabacco.html",
+		"/C/xampp/htdocs/qsa/user_sign-up.php",
+		"/C/xampp/htdocs/qsa/login2.php",
+		"/C/xampp/htdocs/qsa/blog-left-sidebar.html",
+		"/C/xampp/htdocs/qsa/assets/css/main.css",
+		"/C/xampp/htdocs/qsa/fact.html",
+		"/C/xampp/htdocs/qsa/css/main.css"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 134.0,
+		"where_history":
+		[
+			"C:\\xampp\\htdocs\\qsa\\Create My Quit Plan _ Smokefree.gov_files\\css_S1fiIObLyk6c8FH916Ts8tfxyMtQcD9M31EZRGMDJy4",
+			"C:\\xampp\\htdocs\\qsa"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"header",
+			"background-color:#",
+			"background-color",
+			"#",
+			"color",
+			"include",
+			"slider",
+			"#hero-area",
+			"slider.jpg",
+			"slider",
+			"navbar-brand",
+			"header",
+			"navbar",
+			"animated-header",
+			"navbar-fixed-top",
+			"navbar-fixed-top animated-header",
+			"header",
+			"banner.jpg",
+			"banner",
+			"banner.jpg",
+			"backg",
+			"banner.png",
+			"banner.jpg",
+			"banner",
+			"avatar",
+			"banner",
+			"png",
+			"jpg",
+			"about",
+			"thingns i can do",
+			"read only",
+			"<body class=\"has-nav effects-of-tobacco\" style=\"position: relative; min-height: 100%; top: 0px;\">\n\n\t<!-- Google Tag Manager (noscript) -->\n\t<noscript>&amp;lt;iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-5PKWNFV\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"&amp;gt;&amp;lt;/iframe&amp;gt;</noscript>\n\t<!-- End Google Tag Manager (noscript) -->\n\n\t<!--[if lt IE 9]>\n\t\t<div class=\"oldBrowserMsg\">\n\t\t\t<h2>Upgrade Your Browser</h2>\n\t\t\t<p>Your browser is more than six years old. Please take a few minutes to <a href=\"http://browsehappy.com/\">upgrade to a newer browser</a> so you can experience this website and the rest of the Internet more fully.</p>\n\t\t\t<a href=\"http://browsehappy.com/\" class=\"arrow\">Upgrade now</a>\n\t\t</div>\n\t<![endif]--><a class=\"skipToAccessibilityStatement\" href=\"https://www.quitplan.com/accessibility-statement.html\">Accessibility Statement</a>\n\n\t<div class=\"effects-overlay\"></div>\n\n\t<div class=\"close-overlay\"></div>\n\n\t<div id=\"wrapper\">\n\t\t<div id=\"login-area\">\n\t\t\t<a href=\"https://www.quitplan.com/#\" class=\"close-login\"><i class=\"fa fa-times-circle\"></i></a>\n\t\t\n\t\t<form id=\"login\" action=\"https://www.quitplanwebaccount.com/Account/ExternalLogin\" method=\"post\">\n\t\t\t<h4><strong>Already enrolled in QUITPLAN Services?</strong> <span class=\"doNotBreak\">Log on.</span></h4>\n\t\t\t<fieldset>\n\t\t\t\t<div class=\"fieldArea\">\n\t\t\t\t\t<label for=\"email\">Email Address</label>\n\t\t\t\t\t<input type=\"text\" name=\"user\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"fieldArea fieldAreaSubmit\">\n\t\t\t\t\t<label for=\"password\">Password</label>\n\t\t\t\t\t<input type=\"password\" name=\"pw\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"submit-area\">\n\t\t\t\t\t<input type=\"submit\" class=\"submit button\" value=\"Submit\">\n\t\t\t\t\t<a href=\"https://www.quitplanwebaccount.com/Account/ForgotPassword\" class=\"login-area-link\">Forgot password?</a>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/services-to-help/signup.html\" class=\"login-area-link\">Sign up</a>\n\t\t\t\t</div>\n\t\t\t\t\n\t\t\t</fieldset>\n\t\t</form>\n\t\t</div>\n\n\t\t<header id=\"header\" class=\"head\">\n\n\t\t\t<div class=\"header-top clearfix\">\n\n\t\t\t\t<div class=\"header-left clearfix\">\n\t\t\t\t\t<div class=\"logo ir\" id=\"logo\">\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/index.html\">QUITPLAN</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<p class=\"main-phone jaf\"><a href=\"tel:1-888-354-7526\">1-888-354-PLAN (7526)</a></p>\n\t\t\t\t</div>\n\n\n\t\t\t\t<div class=\"top-links\">\n\t\t\t\t\t<div class=\"sign-in-area\" id=\"menu-links\">\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/login.html\" class=\"loginBtn button\"><i class=\"fa fa-user mobile\"></i><span class=\"desktop tablet\">Log in</span></a>\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/services-to-help/signup.html\" target=\"_blank\" class=\"desktop tablet registerLink\">Sign up</a>\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/thinking-about-quitting/why-to-quit/effects-of-tobacco-on-health.html#main-menu\" id=\"grabber\" class=\"mobile button\"><i class=\"fa fa-bars\"></i></a>\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/thinking-about-quitting/why-to-quit/effects-of-tobacco-on-health.html#menu-links\" id=\"close-menu\" class=\"mobile button\"><i class=\"fa fa-times\"></i></a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"languages\">\n\t\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/sp/index.html?lang=sp\">Español</a>\n\t\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/other-languages.html\">Hmoob, Soomaali &amp; other languages</a>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\n\t\t</header>\n\t\t<!-- #header.head -->\n\n\t\t<div class=\"search-area\">\n\t\t<form class=\"search-form main-search-form\" action=\"https://www.quitplan.com/search.html\">\n\t\t\t<fieldset>\n\t\t\t\t<input class=\"search-query-input\" type=\"text\" name=\"query\" placeholder=\"Site Search...\">\n\t\t\t\t\t\t<input type=\"hidden\" name=\"c\" value=\"-/fr;-/sp;-sv\">\n\t\t\t\t<input type=\"submit\" id=\"submit\" class=\"search button\" value=\"Search\">\n\t\t\t</fieldset>\n\t\t</form>\n\t\t</div>\n\n\t\t<div id=\"main-menu\" class=\"main-navigation-style\">\n\t\t\t<nav id=\"nav\" role=\"navigation\">\n\t\t\t\t<div class=\"languages-mobile\">\n\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/sp/index.html?lang=sp\">Español</a>\n\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/other-languages.html\">Hmoob, Soomaali &amp; Other languages</a>\n\t\t\t\t</div>\n\t\t\t\t<div id=\"google_translate_element\"><div class=\"skiptranslate goog-te-gadget\" dir=\"ltr\" style=\"\"><div id=\":0.targetLanguage\" class=\"goog-te-gadget-simple\" style=\"white-space: nowrap;\"><img src=\"./effect-of-tabacco_files/cleardot.gif\" class=\"goog-te-gadget-icon\" alt=\"\" style=\"background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;\"><span style=\"vertical-align: middle;\"><a aria-haspopup=\"true\" class=\"goog-te-menu-value\" href=\"javascript:void(0)\"><span>Select Language</span><img src=\"./effect-of-tabacco_files/cleardot.gif\" alt=\"\" width=\"1\" height=\"1\"><span style=\"border-left: 1px solid rgb(187, 187, 187);\">​</span><img src=\"./effect-of-tabacco_files/cleardot.gif\" alt=\"\" width=\"1\" height=\"1\"><span aria-hidden=\"true\" style=\"color: rgb(118, 118, 118);\">▼</span></a></span><img src=\"https://www.google.com/images/cleardot.gif\" class=\"goog-te-gadget-icon\" alt=\"\" style=\"background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;\"><span style=\"vertical-align: middle;\"><a aria-haspopup=\"true\" class=\"goog-te-menu-value\" href=\"javascript:void(0)\"><span>Select Language</span><img src=\"https://www.google.com/images/cleardot.gif\" alt=\"\" width=\"1\" height=\"1\"><span style=\"border-left: 1px solid rgb(187, 187, 187);\">​</span><img src=\"https://www.google.com/images/cleardot.gif\" alt=\"\" width=\"1\" height=\"1\"><span aria-hidden=\"true\" style=\"color: rgb(118, 118, 118);\">▼</span></a></span></div></div><div class=\"skiptranslate goog-te-gadget\" dir=\"ltr\" style=\"\"><div id=\":0.targetLanguage\"></div></div></div>\n\n\t\t\n\t\n\t\t\t</nav>\n\n\t\t</div>\n\n\t\t<div class=\"content-body\">\n\t\t\t<div id=\"main\" class=\"body\">\n\t\t<div class=\"breadcrumbs has-nav\">\n\t\t\t\t\t\t<span itemscope=\"itemscope\" itemtype=\"http://data-vocabulary.org/Breadcrumb\" class=\"part\">\n\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/index.html?lang=en\" class=\"link\" itemprop=\"url\"><span itemprop=\"title\">Home</span></a>\n\t\t\t\t\t\t</span><span class=\"part\" itemscope=\"itemscope\" itemtype=\"http://data-vocabulary.org/Breadcrumb\"><span class=\"spacer\"> / </span><a class=\"link\" itemprop=\"url\" href=\"https://www.quitplan.com/thinking-about-quitting.html\">\n\t\t\t\t\t\t\t\t<span itemprop=\"title\">Thinking about quitting</span></a></span><span class=\"part\" itemscope=\"itemscope\" itemtype=\"http://data-vocabulary.org/Breadcrumb\"><span class=\"spacer\"> / </span><a class=\"link\" itemprop=\"url\" href=\"https://www.quitplan.com/thinking-about-quitting/why-to-quit.html\">\n\t\t\t\t\t\t\t\t<span itemprop=\"title\">Why to quit</span></a></span><span class=\"part\" itemscope=\"itemscope\" itemtype=\"http://data-vocabulary.org/Breadcrumb\"><span class=\"spacer\"> / </span><a class=\"link\" itemprop=\"url\" href=\"https://www.quitplan.com/thinking-about-quitting/why-to-quit/effects-of-tobacco-on-health.html\">\n\t\t\t\t\t\t\t\t<span itemprop=\"title\">Effects of tobacco on your health</span></a></span>\n\t\t</div>\n\n\t\t\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\n\t\t\t\t<section class=\"main-col clearfix\">\n\n\t\t\t\t\t<div class=\"main-content-area\">\n\t\t\t\t\t\t<article>\n\t\t\t\t\t\t\t\t<h1 class=\"pageHeader no-mast\">Effects of tobacco on your health</h1>\n\t\t\t\t\t\t\t\t<div class=\"summary\">\n\t\t<p>Most people know that smoking tobacco is bad for your lungs, but it actually hurts just about every part of your\n\t\t\tbody. Keep reading to learn about tobacco’s effects from head to toe so you can understand why quitting tobacco will\n\t\t\tbe the one of the best things you could ever do for your body.</p>\n\t\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<div class=\"effects-area clearfix\">\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t<div class=\"effects-column part-list\">\n\t\t\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"hair\" data-y=\"10\">Hair</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"brain\" data-y=\"38\">Brain</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"mouth-teeth\" data-y=\"95\">Mouth &amp; Teeth</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"throat\" data-y=\"119\">Throat</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"lungs\" data-y=\"188\">Lungs</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"heart\" data-y=\"197\">Heart</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"digestive-system\" data-y=\"298\">Digestive System</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"skin\" data-y=\"308\">Skin</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"hands\" data-y=\"395\">Hands</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"reproductive-system\" data-y=\"438\">Reproductive System</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"bones\" data-y=\"621\">Bones</a></li>\n\t\t\t\t\t\t\t\t\t\t\t <li><a href=\"https://www.quitplan.com/#\" class=\"jaf\" data-id=\"legs-feet\" data-y=\"700\">Legs &amp; Feet</a></li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t<div class=\"effects-column body-area\">\n\t\t\t\t\t\t\t\t\t<img src=\"./effect-of-tabacco_files/body-back.gif\" class=\"part-skin\">\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-hair\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-brain\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-mouth-teeth\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-throat\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-heart\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-lungs\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-reproductive-system\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-digestive-system\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-hands\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-bones\"></div>\n\t\t\t\t\t\t\t\t\t<div class=\"body-part part-legs-feet\"></div>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t<img src=\"./effect-of-tabacco_files/part-skin.png\" class=\"part-skin-overlay part-skin\">\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t<div class=\"effects-column description-area\">\n\t\t\t\t\t\t\t\t\t<div class=\"effects-descriptions inactive\">\n\t\t\t\t\t\t\t\t\t\t<img src=\"./effect-of-tabacco_files/effects-box-arrow.png\" class=\"effects-box-arrows\">\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t<div class=\"inner-box\">\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"https://www.quitplan.com/#\" class=\"close-effects-box tablet mobile\"><i class=\"fa fa-times-circle\"></i></a>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-hair\" style=\"display: none;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Hair</h3>\n\t\t\t<p>Just as nicotine has negative effects on lungs and circulation, it also has negative effects on hair. Smoking is linked to premature graying and loss of hair.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-brain\" style=\"display: none;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Brain</h3>\n\t\t\t<p>Nicotine changes your brain. The brain develops extra nicotine receptors in response to the nicotine in tobacco.\n\t\t\t\tWhen your brain stops getting the nicotine it’s used to, you experience nicotine withdrawal. Smoking also increases\n\t\t\t\tthe amount of build-up in your arteries, which may block the flow of blood to your brain, causing a stroke.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-mouth-teeth\" style=\"display: none;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Mouth &amp; Teeth</h3>\n\t\t\t<p>Mouth: Bad breath and losing your sense of taste are well known consequences of tobacco use for your mouth, but\n\t\t\t\tthere are even more serious ones. Using tobacco is the single greatest risk factor for oral cancer.&nbsp;</p>\n\t\t\t<p>Teeth: Yellow discoloration is only the first issue to occur in teeth. If you smoke a pack a day, you can lose two or more teeth every ten years, according to the Academy of General Dentists. </p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-throat\" style=\"display: none;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Throat</h3>\n\t\t\t<p>Cigarettes contain formaldehyde, ammonia and hydrogen sulfide, which can cause serious irritation to the nose and\n\t\t\t\tthroat. This results in a runny nose and causes ‘smoker’s cough.’ Continued exposure can produce unusual thickening\n\t\t\t\tin the throat lining, a condition that has been linked to throat cancer.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-lungs\" style=\"display: none;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Lungs</h3>\n\t\t\t<p>Cigarette smoke attacks the lung’s natural defenses and can completely paralyze the natural cleansing process.\n\t\t\t\tExcess mucus in the lungs will make you more likely to get colds, flu, bronchitis and other respiratory infections.\n\t\t\t\tContinued exposure can lead to lung cancer and lung diseases – including pneumonia and emphysema. Research indicates\n\t\t\t\tsmoking causes 90 percent of lung cancer in men and 80 percent in women. More women die from lung cancer than breast\n\t\t\t\tcancer.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-heart\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Heart</h3>\n\t\t\t<p>Cigarette smokers have a higher risk of developing cardiovascular disease. Smoking causes you to lose some of your\n\t\t\t\tgood cholesterol and raises your blood pressure. It also increases the risk of blood clotting. All of these can lead\n\t\t\t\tto coronary heart disease.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-digestive-system\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Digestive System</h3>\n\t\t\t<p>Smokers are at greater risk of developing peptic ulcers, Crohn’s disease and gallstones. They are also more likely\n\t\t\t\tto experience chronic heartburn. In addition, smoking changes the way the liver operates, including how it processes\n\t\t\t\talcohol.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-skin\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Skin</h3>\n\t\t\t<p>Smoking deprives the skin of oxygen and nutrients. This is why some smokers appear pale, while others develop uneven coloring. These changes can begin at a young age.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-hands\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Hands</h3>\n\t\t\t<p>The loss of blood circulation in your hands from smoking causes numbness, and makes your hands cold to the touch.\n\t\t\t\tThe nicotine in cigarettes can also leave you with permanently yellow-stained fingers and fingernails.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-reproductive-system\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Reproductive System</h3>\n\t\t\t<p>Male: The more you smoke the higher your risk of impotence. One study showed that men who smoked more than a pack\n\t\t\t\tof day had a 60 percent higher risk of erectile dysfunction, compared to men who never smoked.</p>\n\t\t\t<p>Female: Women who smoke may also have a harder time getting pregnant. They also have a higher chance of losing\n\t\t\t\ttheir baby before it is born. Studies show there is an increased risk of SIDS (sudden infant death syndrome, also\n\t\t\t\tcalled ‘crib death’) in babies born to female smokers.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-bones\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Bones</h3>\n\t\t\t<p>Ingredients in cigarette smoke disrupt the natural cycle of bone health. Your body is less able to form healthy\n\t\t\t\tnew bone tissue, and it breaks down existing bone tissue more rapidly. Over time, smoking leads to a thinning of\n\t\t\t\tbone tissue and loss of bone density. This causes bones to become weak and brittle. Compared to nonsmokers, smokers\n\t\t\t\thave a higher risk of bone fractures, and their broken bones take longer to heal.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"description-text description-legs-feet\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h3>Legs &amp; Feet</h3>\n\t\t\t<p>People who smoke one and a half packs a day or more are most likely to develop Buerger's disease. Buerger’s\n\t\t\t\tdisease affects blood vessels in the arms and legs. Blood vessels swell, which can prevent blood flow and cause\n\t\t\t\tclots to form. This can lead to pain, tissue damage and even gangrene (the death or decay of body tissues). In some\n\t\t\t\tcases, amputation may be required.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<h2>Long-term health conditions</h2>\n\t\t<p>If you have a long-term health condition, quitting smoking is even more important for you than for the average smoker. The health risks associated with smoking are more serious for people with long-term health conditions. Quitting is the best thing you can do for yourself.</p>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<table id=\"additional-effects\">\n\t\t\t\t\t\t\t\t\t<tbody><tr class=\"even\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Arthritis and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>There are two types of arthritis: osteoarthritis and rheumatoid arthritis. Both types can cause long-lasting pain, swelling and mobility issues that get worse as the condition progresses. Smoking doubles your risk of developing rheumatoid arthritis. </p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have arthritis and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Your arthritis symptoms may get worse.</li>\n\t\t\t\t<li>The more you smoke and the longer you have smoked, the more severe your arthritis is likely to be.</li>\n\t\t\t\t<li>You increase the risk of developing rheumatoid arthritis (note: the risk is greater for men than women).</li>\n\t\t\t\t<li>You reduce oxygen flow to all tissues, including your joints.</li>\n\t\t\t\t<li>Smoking weakens how well the drugs used to treat arthritis work.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Rheumatoid arthritis symptoms may improve.</li>\n\t\t\t\t<li>The medications you take for arthritis are likely to work better.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"odd\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Asthma and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>When you have asthma, your airways narrow and swell. They produce extra mucus and breathing becomes difficult. The\n\t\t\t\tmost common asthma signs and symptoms are coughing, wheezing and shortness of breath. Smoking only makes it worse.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have asthma and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You are more likely to have an asthma attack — smoke is a common trigger for asthma attacks.</li>\n\t\t\t\t<li>Asthma attacks may be more severe; you are more likely to be hospitalized because of your asthma.</li>\n\t\t\t\t<li>You have decreased lung function and capacity.</li>\n\t\t\t\t<li>You have increased risk of lung infection.</li>\n\t\t\t\t<li>You may require more medication to control your asthma.</li>\n\t\t\t\t<li>Your family and friends with asthma are at risk from secondhand smoke.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Your asthma may go into remission.</li>\n\t\t\t\t<li>Asthma attacks can become less frequent and less severe.</li>\n\t\t\t\t<li>Your lungs and airways stay clear of smoke, and it’s easier for you to breathe.\t</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"even\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Cancer and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>Cancer is an uncontrolled growth of cells. It can happen in many parts of the body and can spread to other parts\n\t\t\t\tof the body. Cigarette smoking causes 87 percent of lung cancer deaths, and is the leading cause of cancer death in\n\t\t\t\tboth men and women. The good news is that your chances of getting cancer decrease as soon as you quit smoking – even\n\t\t\t\tif you have been a heavy smoker for many years.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have cancer and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Smoking may make the side effects of cancer treatment worse and make it harder for your body to heal.</li>\n\t\t\t\t<li>Smoking while receiving radiation therapy, chemotherapy or surgery for cancer makes these treatments less effective.</li>\n\t\t\t\t<li>Smoking can cause mutations in genes, damaging the way your lungs work and causing your immune system to be less efficient.</li>\n\t\t\t\t<li>If you continue to smoke, you are more likely to develop a second cancer in the same place or another type of cancer.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You are more likely to survive the cancer than if you keep smoking.</li>\n\t\t\t\t<li>You have less chance of developing other cancers.</li>\n\t\t\t\t<li>Your body heals from cancer treatment more easily. </li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"odd\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Chronic pain and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>Chronic pain is pain that persists after an injury has healed. In some cases, the injury never heals, causing an\n\t\t\t\talmost constant state of pain. Chronic pain can disrupt your daily routine, get in the way of work and cause\n\t\t\t\tanxiety. If you’ve had the same pain for a few months or for much longer than expected, you may have chronic pain.\n\t\t\t\tSmokers are more likely than nonsmokers to experience chronic pain, especially chronic back pain.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have chronic pain and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You are likely to experience more intense feelings of pain than someone who doesn’t smoke.</li>\n\t\t\t\t<li>You may have increased fatigue.</li>\n\t\t\t\t<li>Pain medicines will be less effective, and you may require more medication.</li>\n\t\t\t\t<li>Your bones may not heal as fast and you may be at increased risk for chronic pain from osteoporosis or lumbar disk problems.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You increase the amount of oxygen that reaches your muscles, helping them to work and heal better.</li>\n\t\t\t\t<li>Your body will heal itself faster.</li>\t\t\t\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"even\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Chronic Obstructive Pulmonary Disease (COPD) and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>Chronic Obstructive Pulmonary Disease refers to two diseases that block airflow: emphysema and chronic bronchitis.\n\t\t\t\tMore than 92 percent of all emphysema cases are caused by smoking, and any damage cannot be reversed. Smokers are 10\n\t\t\t\ttimes more likely to die from these diseases than nonsmokers.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>Emphysema</h3>\n\t\t\t<p>Emphysema destroys the lungs’ ability to expand and contract, causing problems with the exchange of oxygen and\n\t\t\t\tcarbon dioxide and leading to less oxygen in the blood. Symptoms include coughing and shortness of breath, which\n\t\t\t\tlimit the ability to exercise and do everyday activities.</p>\n\t\t\t<h3>Chronic bronchitis </h3>\n\t\t\t<p>Chronic bronchitis is the result of swelling and scarring inside the bronchial tubes. It is more common in women\n\t\t\t\tthan in men. Symptoms include long-lasting cough, shortness of breath and repeated throat clearing.</p>\n\t\t\t<h3>When you have COPD and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Emphysema will continue to worsen because the smoke continues to damage your lungs.</li>\n\t\t\t\t<li>You have a higher risk of serious lung infections, like pneumonia.</li>\n\t\t\t\t<li>You are likely to need extra oxygen to help you breathe.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<p>While the damage to the lungs from smoking cannot be reversed, good things happen when you quit:</p>\n\t\t\t<ul>\n\t\t\t\t<li>Your COPD symptoms will likely improve; the damage will not get any worse.</li>\n\t\t\t\t<li>You will cough less and be less likely to get lung infections.</li>\n\t\t\t\t<li>Your breathing should get better, and you may not need extra oxygen to help you breathe.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"odd\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Coronary heart disease and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>Coronary heart disease&nbsp;(including coronary artery disease and cardiovascular disease) causes a build-up of plaque\n\t\t\t\tthat narrows the arteries. This process reduces the supply of oxygen and nutrients to the heart, which may cause\n\t\t\t\tsymptoms of chest pain, shortness of breath and tiredness – especially with physical activity or emotional stress.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have coronary heart disease and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You double the chances of having a heart attack or stroke. Smoking is the biggest risk factor for sudden cardiac death.</li>\n\t\t\t\t<li>You are 10 times more likely to die from heart disease and blood vessel disease than from cancer.</li>\n\t\t\t\t<li>You increase your blood pressure and heart rate, which causes damage (clogging and hardening) to your blood vessels.</li>\n\t\t\t\t<li>You increase your risk for blood clots.</li>\n\t\t\t\t<li>If you are taking birth control pills, you are at even greater risk for heart attacks and strokes.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You lower your risk of having a heart attack, and of dying from it if a heart attack does occur.</li>\n\t\t\t\t<li>You lower your blood pressure and heart rate.</li>\n\t\t\t\t<li>Your damaged blood vessels will start to repair themselves.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"even\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Diabetes and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>Diabetes is a chronic disease that affects how the body metabolizes and uses blood sugar, also known as glucose.\n\t\t\t\tDiabetes can damage eyes, kidneys, nerves and heart and blood vessels, and leads to poor circulation and increased\n\t\t\t\trisk of infection. Serious complications of diabetes include cardiovascular disease, blindness, kidney disease and\n\t\t\t\tamputation.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>Type I diabetes</h3>\n\t\t\t<p>With Type I diabetes, the body stops producing insulin (a hormone that regulates the amount of glucose in the blood). About 5-10 percent of people with diabetes in the United States have Type I.</p>\n\t\t\t<h3>Type II diabetes</h3>\n\t\t\t<p>Type II is the more common form of diabetes. The body still makes insulin, but doesn’t make enough or can’t use the insulin it makes. </p>\n\t\t\t<h3>When you have diabetes and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Your risk of a stroke is very high.</li>\n\t\t\t\t<li>You are more likely to get cancer of the lung, mouth, throat, esophagus, bladder, kidney and pancreas.</li>\n\t\t\t\t<li>You have a greater risk for breathing problems and lung diseases, such as COPD, asthma and pneumonia, than people who don’t have diabetes.</li>\n\t\t\t\t<li>Blood sugar medications and insulin may not work as well.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Your extra risk of stroke and heart attack decreases.</li>\n\t\t\t\t<li>You will be able to better control your blood sugar </li>\n\t\t\t\t<li>You have less risk of having the problems related to diabetes, including loss of vision, kidney disease, nerve damage and skin infections.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"odd\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">High blood pressure and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>High blood pressure, also known as hypertension, is a leading cause of heart disease, stroke and kidney disease.\n\t\t\t\tRoughly about 1 of every 3 adults in the United States currently suffer from high blood pressure and people who\n\t\t\t\tsmoke are more likely to develop it.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have high blood pressure and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You further increase your blood pressure and decrease the oxygen supply to your heart.</li>\n\t\t\t\t<li>You are more likely to develop heart disease and blood clots than people with high blood pressure who don’t smoke.</li>\n\t\t\t\t<li>You damage important cells, which speeds the process of hardening of the arteries.</li>\n\t\t\t\t<li>You have a greater risk of stroke and kidney disease than people with high blood pressure who don’t smoke.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You will lower your blood pressure.</li>\n\t\t\t\t<li>The oxygen supply to your heart increases.</li>\n\t\t\t\t<li>You lessen your risk of heart disease, heart attack and stroke.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"even\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">High cholesterol and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>High cholesterol is one of the most common risk factors for heart disease. Your total cholesterol level is the sum\n\t\t\t\tof two types of cholesterol ― LDL (low-density lipoprotein), known as “bad” cholesterol, and HDL (high-density\n\t\t\t\tlipoprotein), known as “good” cholesterol. Healthy lifestyle changes, such as quitting smoking and being physically\n\t\t\t\tactive, can help you improve your overall level.</p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<h3>When you have high cholesterol and smoke</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You have an increased risk of heart attack or stroke. The risk increases with the number of cigarettes you smoke, and the risk grows the longer you smoke.</li>\n\t\t\t\t<li>You double your risk of cardiovascular disease if you smoke a pack a day.</li>\n\t\t\t\t<li>You increase your risk of blood clots, which contributes to hardening of the arteries.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Your HDL levels may rise. This is especially true in women who quit smoking.</li>\n\t\t\t\t<li>Your levels of other blood fats may also improve.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t<tr class=\"odd\">\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-title jaf\">Stroke and smoking</td>\n\t\t\t\t\t\t\t\t\t\t<td class=\"effect-description\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-summary\">\n\t\t\t<p>A stroke occurs when a blood clot blocks an artery, or when a blood vessel breaks and interrupts the flow of blood to an area of the brain. This causes cells to die and brain damage to occur. </p>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"effects-more-text\">\n\t\t\t<p>The severity of a stroke depends on where in the brain it happened, and the level of brain damage. A small stroke may cause only minor problems, such as weakness in an arm or leg. A large stroke can cause paralysis or death. Smoking is a bigger risk factor for stroke than many other causes, including high cholesterol, obesity, high blood pressure or stress. </p>\n\t\t\t<h3>Effects of smoking on a stroke:</h3>\n\t\t\t<ul>\n\t\t\t\t<li>Smokers are about twice as likely to have a stroke as nonsmokers.</li>\n\t\t\t\t<li>About one fourth of all strokes in the United States are directly related to smoking.</li>\n\t\t\t</ul>\n\t\t\t<h3>When you stop smoking</h3>\n\t\t\t<ul>\n\t\t\t\t<li>You cut your risk of a stroke by 50 percent within one year of quitting smoking. Fifteen years after you quit, your risk is similar to that of a person who never smoked.</li>\n\t\t\t\t<li>Even if you’ve already had a stroke, quitting smoking may reduce your risk of having a second one.</li>\n\t\t\t</ul>\n\t\t\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<p><a href=\"https://www.quitplan.com/#\" class=\"jaf hide-show-effects\"><i class=\"fa fa-chevron-down\"></i> <span>Show more</span></a></p>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</tbody></table>\n\t\t<p><a href=\"https://www.quitplan.com/fact-list.html\">View fact list</a></p>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t</article>\n\t\t\t\t\t\n\t\t\t\t\t</div>\n\t\t\t\t\t\n\t\t\t\t</section>\n\n\t\t\t\n\n\t\t\t</div><!-- END .content -->\n\t\t\t\n\t\t\t<!-- #main.body -->\n\t\t\t\t<footer id=\"footer\" class=\"foot\">\n\t\t\t\t\t\t\t<div id=\"footer-menu\" class=\"main-navigation-style\">\n\t\t<ul class=\"nav horiz primary footer-nav-style clearfix\"><li id=\"menu-call-it-quits\" class=\"first-child\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/call-it-quits.html\" class=\"link\">\n \t\t\t\t\tCall it Quits referral program\n\t\t\t\t\t</a></span></li><li id=\"menu-about-us\" class=\"\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/about-us.html\" class=\"link\">\n \t\t\t\t\tAbout us\n\t\t\t\t\t</a></span></li><li id=\"menu-contact-us\" class=\"\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/contact-us.html\" class=\"link\">\n \t\t\t\t\tContact us\n\t\t\t\t\t</a></span></li><li id=\"menu-request-materials\" class=\"\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/request-materials.html\" class=\"link\">\n \t\t\t\t\tRequest materials\n\t\t\t\t\t</a></span></li><li id=\"menu-fact-list\" class=\"\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/fact-list.html\" class=\"link\">\n \t\t\t\t\tFact List\n\t\t\t\t\t</a></span></li><li id=\"menu-medical-assistance\" class=\"last-child\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/services-to-help/medical-assistance.html\" class=\"link\">\n \t\t\t\t\tMedical Assistance and MinnesotaCare\n\t\t\t\t\t</a></span></li>\n\t\t</ul>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t<p class=\"footer-info\">QUITPLAN® Services are provided by ClearWay Minnesota℠ and funded by a portion of the Minnesota Tobacco Settlement. Support is available to anyone who lives in Minnesota.</p>\n\n\t\t\t\t\t<div class=\"social-links\">\n\t\t\t\t\t\t<a href=\"https://www.facebook.com/quitplan\" target=\"_blank\"><i class=\"fa fa-facebook\"></i>Facebook</a>\n\t\t\t\t\t\t<a href=\"http://www.youtube.com/user/QUITPLAN\" target=\"_blank\"><i class=\"fa fa-youtube\"></i>youtube</a>\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/contact-us.html\"><i class=\"fa fa-envelope\"></i>Contact</a>\n\t\t\t\t\t\t<a href=\"tel:1-877-777-6534\">TTY: 1-877-777-6534</a>\n\t\t\t\t\t\t<a href=\"https://www.quitplan.com/search.html\" class=\"link ir search-link\">Site Search</a>\n\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"main-navigation-style\">\n\t\t<ul class=\"nav horiz primary footer-nav-style clearfix\"><li id=\"menu-accessibility-statement\" class=\"first-child\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/accessibility-statement.html\" class=\"link\">\n \t\t\t\t\tAccessibility Statement\n\t\t\t\t\t</a></span></li><li id=\"menu-privacy-policy\" class=\"\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/privacy-and-terms.html\" class=\"link\">\n \t\t\t\t\tTerms/Privacy\n\t\t\t\t\t</a></span></li><li id=\"menu-site-map\" class=\"last-child\"><span>\n\t\t\t\t\t<a href=\"https://www.quitplan.com/site-map.html\" class=\"link\">\n \t\t\t\t\tSite map\n\t\t\t\t\t</a></span></li>\n\t\t</ul>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t<p class=\"copyright\">© 2018 ClearWay Minnesota℠</p>\n\n\t\t\t\t\t<script type=\"text/javascript\">/*<![CDATA[*/\n\t\t\t\t\t\tfunction googleTranslateElementInit() {\n\t\t\t\t\t\t  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');\n\t\t\t\t\t\t}\n\t\t\t\t\t/*]]>*/</script>\n\t\t\t\t\t<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/element.js.download\"></script>\n\n\t\t\t\t</footer>\n\t\t\t<!-- #footer.foot -->\n\t\t\n\n\t<!-- #wrapper -->\n\n\t<script src=\"./effect-of-tabacco_files/jquery-1.10.2.min.js.download\"></script>\n\n\t<div id=\"fb-root\" class=\" fb_reset fb_reset\"><div style=\"position: absolute; top: -10000px; height: 0px; width: 0px;\"><div><iframe name=\"fb_xdm_frame_https\" frameborder=\"0\" allowtransparency=\"true\" allowfullscreen=\"true\" scrolling=\"no\" id=\"fb_xdm_frame_https\" aria-hidden=\"true\" title=\"Facebook Cross Domain Communication Frame\" tabindex=\"-1\" src=\"./effect-of-tabacco_files/Ms1VZf1Vg1J.html\" style=\"border: none;\" __idm_frm__=\"1840\"></iframe></div></div><div style=\"position: absolute; top: -10000px; height: 0px; width: 0px;\"><div><iframe name=\"f1c0045bdf035f\" frameborder=\"0\" allowtransparency=\"true\" allowfullscreen=\"true\" scrolling=\"no\" src=\"./effect-of-tabacco_files/ping.html\" style=\"display: none;\" __idm_frm__=\"1841\"></iframe></div></div><div style=\"position: absolute; top: -10000px; height: 0px; width: 0px;\"><div></div></div></div>\n\t<script>/*<![CDATA[*//**/\n\t  (function(d, s, id) {\n\t  var js, fjs = d.getElementsByTagName(s)[0];\n\t  if (d.getElementById(id)) return;\n\t  js = d.createElement(s); js.id = id;\n\t  js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1&appId=577862655616674\";\n\t  fjs.parentNode.insertBefore(js, fjs);\n\t}(document, 'script', 'facebook-jssdk'));\n\t  /**//*]]>*/</script>\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/plaudit.commons-1.x.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/plaudit.placeholder-1.0.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/plaudit.analytics-2.x.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/jquery-ui.min.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/plugins.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/jquery-ui.min.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/froogaloop.js.download\"></script>\n\n<script type=\"text/javascript\" src=\"./effect-of-tabacco_files/plaudit.site.js.download\"></script>\n\n\n<span id=\"gaReport\"><script type=\"text/javascript\">/*<![CDATA[*/\n(function() {\nga(\"require\", \"displayfeatures\");\nga(\"send\", \"pageview\", \"\\/thinking-about-quitting\\/why-to-quit\\/effects-of-tobacco-on-health.html\");\nif (typeof ga !== 'undefined') ga(function(tracker) {\tvar clientId = tracker.get('clientId');\tvar base = document.getElementsByTagName('base');\tif (typeof clientId === 'undefined' || base.length == 0)\t\treturn;\tvar baseHref = base[0].href;\tvar r = new XMLHttpRequest();\tr.onreadystatechange = function() { \tif (r.readyState == 4 && r.status != 200)\t\tconsole.log('Error clientId to server: ' + r.responseText);\t};\tr.open('GET', baseHref + 'core/api/ga/send-queue?' + 'clientId=' + encodeURIComponent(clientId), true);\tr.send(null);});else console.log('ga does not exist so cannot report clientId');})();\n/*]]>*/</script></span><!-- MYFACES JAVASCRIPT -->\n\n<div id=\"goog-gt-tt\" class=\"skiptranslate\" dir=\"ltr\"><div style=\"padding: 8px;\"><div><div class=\"logo\"><img src=\"./effect-of-tabacco_files/translate_24dp.png\" width=\"20\" height=\"20\" alt=\"Google Translate\"></div></div></div><div class=\"top\" style=\"padding: 8px; float: left; width: 100%;\"><h1 class=\"title gray\">Original text</h1></div><div class=\"middle\" style=\"padding: 8px;\"><div class=\"original-text\"></div></div><div class=\"bottom\" style=\"padding: 8px;\"><div class=\"activity-links\"><span class=\"activity-link\">Contribute a better translation</span><span class=\"activity-link\"></span></div><div class=\"started-activity-container\"><hr style=\"color: #CCC; background-color: #CCC; height: 1px; border: none;\"><div class=\"activity-root\"></div></div></div><div class=\"status-message\" style=\"display: none;\"></div></div><div class=\"gallery-tool-tip\" id=\"gallery-tool-tip\"></div><div class=\"goog-te-spinner-pos\"><div class=\"goog-te-spinner-animation\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"goog-te-spinner\" width=\"96px\" height=\"96px\" viewBox=\"0 0 66 66\"><circle class=\"goog-te-spinner-path\" fill=\"none\" stroke-width=\"6\" stroke-linecap=\"round\" cx=\"33\" cy=\"33\" r=\"30\"></circle></svg></div></div><iframe frameborder=\"0\" class=\"goog-te-menu-frame skiptranslate\" title=\"Language Translate Widget\" style=\"visibility: visible; box-sizing: content-box; width: 1027px; height: 274px; display: none;\" src=\"./effect-of-tabacco_files/saved_resource.html\" __idm_frm__=\"1842\"></iframe><div id=\"goog-gt-tt\" class=\"skiptranslate\" dir=\"ltr\"><div style=\"padding: 8px;\"><div><div class=\"logo\"><img src=\"https://www.gstatic.com/images/branding/product/1x/translate_24dp.png\" width=\"20\" height=\"20\" alt=\"Google Translate\"></div></div></div><div class=\"top\" style=\"padding: 8px; float: left; width: 100%;\"><h1 class=\"title gray\">Original text</h1></div><div class=\"middle\" style=\"padding: 8px;\"><div class=\"original-text\"></div></div><div class=\"bottom\" style=\"padding: 8px;\"><div class=\"activity-links\"><span class=\"activity-link\">Contribute a better translation</span><span class=\"activity-link\"></span></div><div class=\"started-activity-container\"><hr style=\"color: #CCC; background-color: #CCC; height: 1px; border: none;\"><div class=\"activity-root\"></div></div></div><div class=\"status-message\" style=\"display: none;\"></div></div><div class=\"gallery-tool-tip\" id=\"gallery-tool-tip\"></div><div class=\"goog-te-spinner-pos\"><div class=\"goog-te-spinner-animation\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"goog-te-spinner\" width=\"96px\" height=\"96px\" viewBox=\"0 0 66 66\"><circle class=\"goog-te-spinner-path\" fill=\"none\" stroke-width=\"6\" stroke-linecap=\"round\" cx=\"33\" cy=\"33\" r=\"30\"></circle></svg></div></div><iframe frameborder=\"0\" class=\"goog-te-menu-frame skiptranslate\" title=\"Language Translate Widget\" style=\"visibility: visible; box-sizing: content-box; width: 1027px; height: 274px; display: none;\"></iframe></body>",
+			"home",
+			"logo.png",
+			"logo",
+			"slider.jpg",
+			"jpg",
+			"html",
+			"contact"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21028,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								651,
+								651
+							]
+						],
+						"settings":
+						{
+							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 43.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "login.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3338,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								807,
+								807
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 83.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "register.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3605,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2466,
+								2430
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2964.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Create My Quit Plan _ Smokefree.gov.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 84681,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4047,
+								4047
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 283.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "fact.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								267,
+								267
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "assets/css/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 51659,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4946,
+								4949
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6933.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "single-post.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10127,
+								10127
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1122.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "contact.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15044,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								734,
+								737
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 46.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GitSavvy":
+	{
+		"height": 136.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 136.0
+	},
+	"pinned_build_system": "",
+	"project": "qsa.sublime-project",
+	"replace":
+	{
+		"height": 55.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 318.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

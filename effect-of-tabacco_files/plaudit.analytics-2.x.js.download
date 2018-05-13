@@ -1,0 +1,289 @@
+/**
+ * Causes a lot more to be tracked in Google Analytics.
+ * 
+ * Dependencies:
+ *  - jQuery
+ *  - plaudit.commons-1.x.js
+ */
+
+
+var plaudit = plaudit || {};
+
+
+_p_a = plaudit.analytics = (function($) {
+	
+	plaudit.assert.minJQueryVer( "1.7" ); 
+	
+	var $window = $(window);
+	var options = null;
+	var userOptions = null;
+	/**
+	 * options {
+	 * 	hostnames = array
+	 *  $contentArea = string (selector) -- DEPRICATED
+	 *  contentArea = string (selector)
+	 *  viewedBottom = {
+	 *  		enable: boolean(default true)
+	 *  		noninteraction: boolean (default true)
+	 *  	}
+	 *  }
+	 * */
+	
+	
+	var isClassicPageTrackerLoaded = function() {
+		return typeof(_gaq) != "undefined" && _gaq != null;
+	};
+
+	var isUniversalPageTrackerLoaded = function() {
+		return typeof(ga) != "undefined" && ga != null;
+	};
+	
+	var isInView = function( elem ) {
+	  	var $elem = $(elem);
+	  	
+	  	var docViewBottom = $window.scrollTop() + $window.height();
+		var elemBottom = $elem.offset().top + $elem.height();
+	
+		return (elemBottom <= docViewBottom);
+	};
+	
+	var self = {
+		DELIMITER: ' • ',
+		
+		trackPage: function(url) {
+			if ( url.substring(0,1) != '/' )
+				url = '/' + url;
+			if ( isClassicPageTrackerLoaded() ) {
+				_gaq.push(["_trackPageview", url]);
+			} else if ( isUniversalPageTrackerLoaded() ) {
+				ga('send', 'pageview');
+			} else {
+				console.log("Google Analytics not loaded. Trying to track page: " + url);
+			}
+		},
+
+		trackEvent: function(category, action, opt_label, opt_value, opt_noninteraction) {
+			// Google requires the label to be a number
+			if (typeof opt_label != 'undefined') {
+				opt_label = opt_label.toString();
+			}
+			
+			// Google requires opt_value to be a number so we log if it's not.
+			if (typeof opt_value != "undefined" && typeof opt_value != "number") {
+				console.error("Value provided for opt_value needs to be a number. opt_value: " + opt_value);
+			}
+			
+			if ( isClassicPageTrackerLoaded() ) {
+				_gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+			} else if ( isUniversalPageTrackerLoaded() ) {
+				ga('send', 'event', category, action, opt_label, opt_value, {'nonInteraction': opt_noninteraction});
+			} else {
+				var gaObject = {
+					category: category,
+					action: action,
+					opt_label: opt_label,
+					opt_value: opt_value,
+					opt_noninteraction: opt_noninteraction
+				};
+				
+				console.log("Google Analytics not loaded. Trying to tracked parameters: ", gaObject);
+			}
+			
+		},
+		
+		setOptions: function( _userOptions ) {
+			userOptions = _userOptions;
+			options = null;
+			
+		},
+		
+		getOptions: function() {
+			if ( options == null ) {
+				options = userOptions || {};
+				
+				if (typeof options.contentArea == "undefined") {
+					options.contentArea = 'body';
+				}
+				
+				if (typeof options.hostnames == "undefined") {
+					options.hostnames = new Array();
+				}
+				
+				if (typeof options.viewedBottom == "undefined") {
+					options.viewedBottom = {};
+				}
+				if(typeof options.viewedBottom.enable == "undefined") {
+					options.viewedBottom.enable = false;
+				}
+				if(typeof options.viewedBottom.noninteraction == "undefined") {
+					options.viewedBottom.noninteraction = true;
+				}
+				
+				
+	
+				// Add hostname of the site to the list.
+				options.hostnames.push( location.hostname );
+				if (location.hostname.startsWithIgnoreCase("www.")) {
+					options.hostnames.push( location.hostname.substring(4) );
+				} else {
+					options.hostnames.push( "www." + location.hostname );
+				}
+			}
+			return options;
+		},
+		
+		sendClientId: function() {
+			if ( isUniversalPageTrackerLoaded() ) {
+				var clientId;
+
+				ga(function(tracker) {
+					clientId = tracker.get('clientId');
+				});
+
+				if (typeof clientId !== "undefined") {
+					var baseHref = $('base').attr('href');
+					var data = 'clientId=' + encodeURIComponent(clientId);
+
+					$.ajax({
+						type: 'post',
+						url: baseHref + 'core/api/ga/send-queue',
+						data: data
+					}).fail(function(jqXHR, textStatus, errorThrown) {
+						console.log('Error sending clientId to server. Error: ' + textStatus + ' -- ' + errorThrown);
+					});
+				}
+			}
+		},
+		
+		determineLinkEventCategory: function(href) {
+			var category;
+			
+			if (href != null) {
+				// To ensure our tests below, like extension tests for 'html', work.
+				href = href.toLowerCase();
+				
+				var urlParts = href.match(/^((.*:)?\/\/([^\/:]+@)?([^\/:]+)(:[^\/]+)?)?([^\?]*)(\?.+)??$/);
+								
+				// Determine if outbound link --------------------------
+				var isOutbound;
+				var hrefhostname;
+				var hrefPath;
+				if (urlParts != null) {
+					hrefhostname = urlParts[4];
+					hrefPath = urlParts[6];
+					
+					// Old IEs return an emtpy string instead of undefined so make all treat as empty string.
+					if (typeof hrefPath == "undefined")
+						hrefPath = "";
+					if (typeof hrefhostname == "undefined")
+						hrefhostname = "";
+
+					if ( hrefhostname == "" || $.inArray(hrefhostname, options.hostnames) > -1 ) {
+						// hostname is one of our domains
+						isOutbound = false;
+					} else {
+						isOutbound = true;
+					}
+				} else {
+					isOutbound = false;
+					hrefPath = href;
+				}
+
+				// Now determine the category we want to use --------------------------
+				if ( isOutbound ) {
+					category = "Outbound Link";
+				} else if ( href.startsWith("mailto:") ) {
+					category = "Email Link";
+				} else if(href.startsWith("tel:")){
+					category = "Telephone Link";
+				} else if ( hrefPath.length > 0 && hrefPath.charAt(href.length - 1)  != '/') {
+					var extIndexOf = hrefPath.lastIndexOf('.');
+					if (extIndexOf != -1) {
+						var ext = hrefPath.substring(extIndexOf + 1);
+						
+						if (ext != "html" && ext != "htm" && !(new RegExp('#')).test(ext)) {
+							category = "Download Link";
+						}
+						
+					}
+				}
+			}
+			
+			return category;
+		},
+		
+		_setupBinding: function() {
+			var options = self.getOptions(),
+				$window = $(window);
+			
+			$('a').on('click', function() {
+				/*
+				 * Tracks links with Google. We determine if one of these
+				 *  - outbound links
+				 *  - download links
+				 *  - email links
+				 * Otherwise its considered an on site link. We don't track on site links since google is already notified of those in a nother way.
+				 */
+
+				var href = $(this).attr('href');
+				if (href != null) {
+					var category = self.determineLinkEventCategory(href);
+					var nonInteract = category == 'Outbound Link' ? true : false;
+					
+					if (category != null) {
+						plaudit.analytics.trackEvent(category, "Click", href, undefined, nonInteract );
+					}
+				}
+			});
+			
+			$("form").filter("[action^='http://'], [action^='https://']").filter(":not([action*='://"+location.hostname+"'])").submit(function(){
+				plaudit.analytics.trackEvent("Outbound Form Submissions", "Submit", $(this).attr("action"));
+			});
+			
+			
+			if (options.viewedBottom.enable) {
+				
+				// Report to Google when the user has scrolled to the bottom.
+				var hasHitBottom = false;
+				var options = self.getOptions();
+				
+				//Allows setting content area as either string (selector) or object.
+				
+				var $contentArea;
+				
+				if ( typeof options.$contentArea != 'undefined' ) {
+					$contentArea = $(options.$contentArea);
+				} else {
+					$contentArea = $(options.contentArea);
+				}
+				
+				var scrollingHitsBottomTest = function(event) {
+					if (!hasHitBottom) {
+						if (isInView($contentArea)) {
+							$(window).unbind(event);
+							hasHitBottom = true;
+							plaudit.analytics.trackEvent("Viewed", "Window Scroll: Viewed Bottom", location.href, undefined, options.viewedBottom.noninteraction);
+						}
+					}
+				};
+				
+				$window.bind('scroll', scrollingHitsBottomTest);
+				
+				var windowHeight = $window.height(),
+					contentHeight = $contentArea.height();
+				
+				if ( contentHeight <= windowHeight ) {
+					plaudit.analytics.trackEvent("Viewed", "Document Ready: Viewed Bottom", location.href, undefined, options.viewedBottom.noninteraction);
+				}
+			
+			}
+			
+		}
+	};
+	return self;
+})(jQuery);
+
+
+jQuery(function(){
+	plaudit.analytics._setupBinding();
+});

@@ -1,0 +1,1541 @@
+jQuery.noConflict();
+
+
+var plauditUI = (function($){
+	
+	var isSpanishPage;
+	
+	return {
+		common: function(){
+			var $window = $(window),
+				ww = $window.width();
+			var device = ww >= 960 ? 'desktop' : ww >= 640 ? 'tablet' : 'mobile';
+			
+			isSpanishPage = $(document.body).hasClass("spanish-page");
+			
+			var sizeContent = function(){
+				var $contentBody = $('.content-body'),
+					contentHeight = $contentBody.height(),
+					windowHeight = $window.height();
+				
+				if (device == 'mobile' && contentHeight < windowHeight) {
+					$contentBody.css('height', windowHeight + 'px');
+				}
+			};
+			
+			
+			var placeCallouts = function(){
+				var $callouts = $('.widget-callouts');
+				var $videos = $('.widget-videos-sidebar');
+				var clonedCalloutClass = "cloned-callouts";
+				var clonedVideoClass = "cloned-videos";
+
+				if (device == 'mobile') {
+					clone($callouts, clonedCalloutClass);
+					clone($videos, clonedVideoClass);
+				} else {
+					$("." + clonedCalloutClass).remove();
+					$("." + clonedVideoClass).remove();
+				}
+				
+				function clone(callouts, styleClass) {
+					var $clone = callouts.clone();
+					if ($("." + styleClass).size() < 1) {
+						$clone.appendTo('.main-content-area').css('display', 'block').addClass(styleClass);
+					}
+				}
+			};
+			
+			placeCallouts();
+			
+			$window.resize(function(){
+				ww = $window.width();
+				device = ww >= 960 ? 'desktop' : ww >= 640 ? 'tablet' : 'mobile';
+				sizeContent();
+				placeCallouts();
+				if (device != 'mobile') {
+					$('#main-menu  ul.nav>li.hasChild').find('> ul').css('display', 'none');
+					$('.search-link').removeClass('active');
+				} else {
+					$('#main-menu ul.nav>li.hasChild.active').find('> ul').css('display', 'block');
+				}
+			});
+			
+			
+			
+			sizeContent();
+			
+			
+			$("tr:odd").addClass("odd");
+			$("tr:even").addClass("even");
+			
+			
+			
+			if ($('html').hasClass('IE8, IE7')) {
+				// Some versions of ie do not submit the form using the first submit if the field only contains
+				// one input field. We must have it use the first button so the correct JSF action runs.
+				$('input').keypress(function(event){
+					var input = $(this);
+					if (event.keyCode == 13) {
+						var submitButtons = input.closest("form").find(":submit:first, input.submit:first, input[type='image']:first");
+						if ( submitButtons.length > 0 ) {
+							// handle the submit
+							submitButtons.first().click();
+							return false;
+						}
+						return true;
+					}
+				});
+			}
+			
+			/*
+			 * 
+			 * Search button functionality
+			 * 
+			 */
+			
+			$('#menu-search .search-link').on('click', function(){
+				var $this = $(this),
+					searchArea = $('.search-area ');
+				$this.toggleClass('active');
+				var removeStyle = function() {
+					$(this).removeAttr('style');
+				};
+				
+				if ( $this.hasClass('active') ) {
+					searchArea.slideDown(200);
+					$('.search-query-input', searchArea).focus();
+					$('.content').animate( {'padding-top' : '64px'}, 200 );
+					if (device == 'desktop'){
+						$('.breadcrumbs').css( {'padding-right' : '330px'} );
+					} else {
+						$('.breadcrumbs').animate( {'top' : '52px'}, 200 );
+					}
+				} else {
+					searchArea.slideUp(200, removeStyle);
+					$('.content').animate( {'padding-top' : (device == 'desktop' ? 34 : 0) + 'px'}, 200, removeStyle );
+					if (device == 'desktop') {
+						window.setTimeout(function(){
+							$('.breadcrumbs').css( {'padding-right' : '40px'} );
+						}, 200);
+					} else {
+						$('.breadcrumbs').animate( {'top' : '0'}, 200, removeStyle );
+					}
+				}
+				
+				return false;
+			});
+			
+		
+			
+			/*
+			 * 
+			 * Login area functionality
+			 * 
+			 * */
+			
+			var $loginArea = $('#login-area'),
+				$loginButton = $('.loginBtn'),
+				$loginClose = $('.close-login');
+			
+			var toggleLogin = function(){
+				$loginArea.toggleClass('opened').slideToggle(300, 'easeOutQuad');
+				$loginButton.toggleClass('opened');
+			}
+			
+			$('.close-login, .loginBtn').on('click', function(){
+				toggleLogin();
+				return false;
+			});
+			
+			
+			/*
+			 * 
+			 * Responsive Menu
+			 * 
+			 */
+			
+			//open close functionality
+			var $grabber = $('#grabber'),
+				$contentArea = $('.header-top, .content-body'),
+				$closeOverlay = $('.close-overlay');
+			
+			var menuOpen = false;
+			
+			$('.main-navigation-style ul li ul').css('display', 'none')
+			
+			var responsiveMenu = {
+					open: function(){
+						$contentArea.stop().animate({
+							'left' : '-80%'
+						}, 500, 'easeOutBack');
+						$('html, body').stop().animate({'scrollTop' : 0}, 1000, 'easeOutQuint');
+						$closeOverlay.css('display', 'block');
+						menuOpen = true;
+					},
+					close: function(){
+						$contentArea.stop().animate({
+							'left' : '0'
+						}, 300, 'easeOutQuad');
+						$closeOverlay.css('display', 'none');
+						menuOpen = false;
+					}
+			}
+			
+			$closeOverlay.click(function(){
+				responsiveMenu.close();
+			});
+			
+			$grabber.on('click', function(){
+				if (menuOpen) {
+					responsiveMenu.close();
+				} else {
+					responsiveMenu.open();
+				}
+				return false;
+			});
+			
+			
+			//List functionality
+			var showNestedLists = function($this){
+				if ( $this.hasClass('active') ) {
+				
+					if (device == 'mobile') {
+						$this.find('> ul').css('display', 'block');
+						$this.find('.nav-expand i').removeClass('fa-plus-square').addClass('fa-minus-square');
+					} else {
+						
+						$this.find('> ul').css('display', 'none');
+						$this.find('.nav-expand i').addClass('fa-plus-square').removeClass('fa-minus-square');
+					}
+					
+				}
+			};
+			
+			$('#main-menu ul.nav>li.hasChild').each(function(){
+				var $this = $(this);
+				$this.prepend('<a href="#" class="nav-expand"><i class="fa fa-plus-square"></i></a>');
+				showNestedLists($this);
+				
+			});
+			
+			$('.nav-expand, .hasChild>a').on('click', function(){
+				if (device == 'mobile') {
+					var $this = $(this);
+					$this.parent().find('i').toggleClass('fa-plus-square').toggleClass('fa-minus-square');
+					
+					$this.parent().find('> ul').slideToggle(300);
+					
+					return false;
+				}
+				
+			});
+			
+			/*
+			 * 
+			 * Sahre page (email) functionality
+			 * 
+			 * */
+			
+			var $emailButton = $('.emailArticle');
+			
+			$emailButton.on('click', function(){
+				$(this).addClass('active')
+				$('.emailDropDown').slideDown(300, 'easeOutQuad');
+				return false;
+			});
+			
+			$('.cancelText').on('click', function(){
+				$('.emailDropDown').slideUp(300, 'easeOutQuad');
+				$emailButton.removeClass('active');
+				return false;
+			});
+			
+			
+		}, // End common
+		calculator: function(){
+			
+				
+				function daysLost(numPerDay, totalDays) {
+					//multiply the remainder by 24 to get the # of hours if needed 
+					return Math.ceil(numPerDay * totalDays * 11 / 60 / 24);
+				}
+				
+				function cleanString(str) {
+					return str.replace(/[^0-9.]/g, "");
+				}
+
+				function formatCurrency(num) {
+					var num = num.toString().replace(/\$|\,/g,'');
+					if(isNaN(num)) {
+						num = "0";
+					}
+					
+					sign = (num == (num = Math.abs(num)));
+					num = Math.floor(num*100+0.50000000001);
+					cents = num % 100;
+					num = Math.floor(num/100).toString();
+					if(cents < 10 ) {
+						cents = "0" + cents;
+					}
+					for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++) {
+						var position = num.length-(4*i+3);
+						num = num.substring( 0, position ) + ',' + num.substring( position );
+					}
+					
+					return (((sign)?'':'-') + num + '.' + cents);
+				}
+				
+				
+				var calculatorPage = $('.calculator-page').size() > 0 ? true : false,
+					cigPerPack = 20;
+				
+				var $results = $('#calculatorResults:hidden');
+				
+				
+				var runCalculator = function(numPerDay, costPerPack){
+					
+					if (numPerDay != '' && numPerDay > 0) {
+						var costPerDay = numPerDay * costPerPack;
+						var oneMonthAmount = costPerDay * 30 / cigPerPack;
+						var sixMonthAmount = costPerDay * 182 / cigPerPack;
+						var oneYearAmount = costPerDay * 365 / cigPerPack;
+						var fiveYearAmount = costPerDay * 1825 / cigPerPack;
+						
+						$('.numPerDay').val( numPerDay );
+						$('.costPerPack').val( costPerPack );
+	
+						$('#oneMonthAmount').text( formatCurrency(oneMonthAmount) );
+						$('#oneMonthDays').text( daysLost(numPerDay, 30) );
+						
+						$('#sixMonthAmount').text( formatCurrency(sixMonthAmount) );
+						$('#sixMonthDays').text( daysLost(numPerDay, 182) );
+						
+						$('#oneYearAmount').text( formatCurrency(oneYearAmount) );
+						$('#oneYearDays').text( daysLost(numPerDay, 365) );
+						
+						$('#fiveYearAmount').text( formatCurrency(fiveYearAmount) );
+						$('#fiveYearDays').text( daysLost(numPerDay, 1825) );
+						
+						if( $results && $('.numPerDay').val() != '' && $('.costPerPack').val() != '' ) {
+							$results.fadeIn();
+						}
+					} else {
+						$results.fadeOut();
+					}
+					
+				};
+				
+				if (calculatorPage) {
+					function getURLParameter(param) {
+					    return decodeURI(
+					        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+					    );
+					}
+					
+					var updateCalc = function() {
+						var numPerDay = cleanString( $('.numPerDay').val() );		
+						var costPerPack = cleanString( $('.costPerPack').val() );		
+						runCalculator(numPerDay, costPerPack);
+					};
+					
+					// Update once right away
+					updateCalc();
+					
+					// Update when fields change
+					$('.numPerDay, .costPerPack').keyup(updateCalc);
+					
+					$('.calculateButton').css('display', 'none');
+				}
+			
+		}, // END calculator
+		
+		
+		sliders: function(){
+			var $sliders = $('.slider');
+			if ( $sliders.length <= 0 ) return;
+				
+			var speed = 600,
+				easing = 'easeOutQuad';
+			
+			var adjustSize = function($slider){
+				var $activeSlide = $slider.find('.slide.active');
+				var $slide = $slider.find('.slide')
+				$activeSlide.css('z-index', '500');
+				$slide.removeAttr('style').css('height', 'auto');
+				var slideHeight = $activeSlide.height();
+
+				
+				$slider.css('height', slideHeight + 'px');
+				$slider.find('.slider-nav').css('height', slideHeight + 'px');
+				$slider.find('.nav-arrow').css({
+					'height' : slideHeight + 'px',
+					'line-height' : slideHeight + 'px'
+				});
+				
+				var sliderWidth = $activeSlide.width()
+				
+				if ( $slide.width() < sliderWidth ) {
+					$slide.css({
+						'position' : 'relative',
+						'left' : ((sliderWidth - $slide.width()) / 2) + 'px'
+					});
+				}
+				
+			};
+			
+			var animator = {
+				change: function(slider, targetId, dir){
+					var $sliderContainer	= $('.slider-' + slider),
+						$circles			= $sliderContainer.find('.nav-circles'),
+						sliderWidth			= $sliderContainer.width(),
+						move				= (dir == 'forward')? (sliderWidth * -1) : sliderWidth,
+						$oldSlide			= $sliderContainer.find('.slide.active'),
+						$newSlide			= $sliderContainer.find('.slide-' + targetId);
+					
+					adjustSize($sliderContainer);
+						
+					$oldSlide.stop(true).animate(
+						{ 'margin-left' : move + 'px' },
+						speed, easing,
+						function(){
+							$(this).removeClass('active').removeAttr('style');
+						}
+					);
+					
+					$newSlide.css({
+						'display' : 'block',
+						'margin-left' : -move + 'px'
+					});
+					
+					$newSlide.stop(true).animate(
+						{ 'margin-left' : '0px' }, 
+						speed, easing, 
+						function(){
+							$(this).addClass('active');
+						}
+					);
+					
+					$circles.find('.circle.active').removeClass('active');
+					$circles.find('.circle-'  + targetId).addClass('active');
+					
+					$('.slider-' + slider).data('currentSlide', targetId);
+					
+					var slideCount = $('.slider-' + slider).find('.slide').size(),
+						$counter = $('.slideshow-count');
+					
+					if ( slideCount >= 15 && $counter.size() > 0 ) {
+						$counter.find('.current-slide').text(targetId);
+					}
+					
+					
+					
+				},
+				next: function(slider, count) {
+					var curSlide = $('.slider-' + slider).data('currentSlide');
+					var targetId = (curSlide + 1) > count ? 1 : curSlide + 1;
+					animator.change(slider, targetId, 'forward');
+				}, 
+				previous: function(slider, count) {
+					var curSlide = $('.slider-' + slider).data('currentSlide');
+					var targetId = (curSlide - 1) < 1 ? count : curSlide - 1;
+					animator.change(slider, targetId, 'back');
+				}
+			};
+			
+			
+			$sliders.each(function(){
+				
+				var $slider = $(this),
+					slider = $slider.data('slider'),
+					$slide = $slider.find('.slide'),
+					$window = $(window);
+				
+				$slider.data('currentSlide', 1);
+				
+				
+				/*
+				 * Auto progress code
+				 */
+				var autoProgress = (function(){
+					
+					if ($slide.length < 2) return false;
+					
+					var timeoutId = null,
+						fullDelayTime = 4000,
+						lastProgressTime = (new Date()).getTime();
+					
+					var timeToProgress = function(){
+						if ( timeoutId !== null ) {
+							lastProgressTime = (new Date()).getTime();
+							animator.next(slider, $slide.length);
+							play();
+						}
+					};
+
+					var reset = function( andPlay ){
+						lastProgressTime = (new Date()).getTime();
+						if( andPlay ) {
+							play();
+						} else {
+							pause();
+						}
+					};
+
+					var play = function(){
+						if ( timeoutId !== null ) {
+							clearTimeout(timeoutId);
+						}
+						
+						var countDownTime;
+						if( lastProgressTime !== null ) {
+							var nowTime = (new Date()).getTime();
+							var diff = nowTime - lastProgressTime;
+							countDownTime = fullDelayTime - diff;
+							countDownTime = ( countDownTime < 0 )? 0 : countDownTime;
+						} else {
+							countDownTime = fullDelayTime;
+						}
+						timeoutId = setTimeout( timeToProgress, countDownTime );
+					};
+
+					var pause = function(){
+						if ( timeoutId !== null ) {
+							clearTimeout(timeoutId);
+						}
+						timeoutId = null;
+					};
+					
+					var videoPlaying = false;
+					
+					$slider.on( 'mouseover', function(){
+						if( !videoPlaying ) {
+							pause();
+						}
+					});
+					$slider.on( 'mouseleave', function(){
+						if( !videoPlaying ) {
+							reset(true);
+						}
+					});
+				
+					play();
+					
+					var setUpEvents = function(froogaloop, player_id){
+						froogaloop.addEvent('play', function(data) {
+							videoPlaying = true;
+							plaudit.analytics.trackEvent("Video", "Started", player_id);
+							pause();
+						});
+
+						froogaloop.addEvent('pause', function(data) {
+							plaudit.analytics.trackEvent("Video", "Paused", player_id);
+							videoPlaying = false;
+							reset(true);
+						});
+
+						froogaloop.addEvent('finish', function(data) {
+							plaudit.analytics.trackEvent("Video", "Finished", player_id);
+							videoPlaying = false;
+							reset(true);
+						});
+					};
+					
+					var $video = $slide.find('iframe');
+					$video.each(function(){
+						$(this).load(function(){
+							  var player = $video[0];
+					            $f(player).addEvent('ready', ready);
+
+					            function addEvent(element, eventName, callback) {
+					                if (element.addEventListener) {
+					                    element.addEventListener(eventName, callback, false);
+					                }
+					                else {
+					                    element.attachEvent(eventName, callback, false);
+					                }
+					            }
+
+					            function ready(player_id) {
+					                var froogaloop = $f(player_id);
+					                setUpEvents(froogaloop, player_id);
+					            }
+						});
+					});
+					
+					return {
+						play : play,
+						pause : pause,
+						reset : reset
+					};
+				})();
+				
+				
+				
+				/*
+				 * Controls: Arrows and bullets
+				 */
+				$('.nav-arrow', $slider).on('click', function(ev){
+					ev.preventDefault();
+					var $this = $(this),
+						count = $('.slider-' + slider).find('.slide').size();
+					if (autoProgress.reset !== undefined) {
+						autoProgress.reset( false );
+					}
+					if ( $this.hasClass('nav-arrow-next') ){
+						animator.next(slider, count);
+					} else {
+						animator.previous(slider, count);
+					}
+				});
+				$('.nav-circles a', $slider).on('click', function(ev){
+					ev.preventDefault();
+					var $this = $(this),
+						id = $this.data('id');
+					var curSlide = $('.slider-' + slider).data('currentSlide');
+					if ( !$this.hasClass('active') ){
+						if (autoProgress.reset !== undefined) {
+							autoProgress.reset( false );
+						}
+						var dir = id > curSlide ? 'forward' : 'back';
+						animator.change(slider, id, dir);
+					}
+				});
+				
+			
+			
+				/*
+				 *  Size and position nav for responsive
+				 */
+
+				
+				
+				var $sliderImages = $slider.find('img');
+				
+				var loadedCount = 0;
+				var imgLoaded = function() { 
+					loadedCount++;
+					if ( loadedCount === 1 || loadedCount >= $sliderImages.length ) {
+						adjustSize($slider);
+					}
+				};
+				
+				$sliderImages.load(imgLoaded);
+				
+				$window.resize(function(){
+					adjustSize($slider);
+				});
+				adjustSize($slider);
+			});
+			
+			
+			
+			
+		}, // EOF sliders()
+		
+		gallery: function(){
+			var pager = $("[data-pager='true']");
+			if ( pager.length < 0 ) {
+				return;
+			}
+
+			// vars
+
+			var pagerItems = pager.children();
+			var pagerImageCount = pagerItems.find("img").length
+			var pagerActiveClass = "active-pager";
+			var galleryCount = $("#gallery-count");
+			var toolTipContent = "<div class=\"gallery-tool-tip\" id=\"gallery-tool-tip\"></div>";
+
+			// Run code that should be run on page load
+
+			init();
+
+			// Attach DOM-related events 
+
+			$(".gallery-media").on('cycle-prev', function(e,opts){
+				setActivePager(opts.currSlide);
+				setActiveCount(opts.currSlide);
+			});
+
+			$(".gallery-media").on('cycle-next', function(e,opts){
+				setActivePager(opts.currSlide);
+				setActiveCount(opts.currSlide);
+			});
+			
+			pagerItems.on('click',function(){
+				var index = $(this).index();
+				setActiveSlider(index);
+				setActivePager(index);
+			});
+			
+			pager.scroll(function () {
+				$("#gallery-tool-tip").text("").fadeTo(0, 200, function(){
+					$(this).css({
+						top: -1000,
+						left: -1000
+					});
+				});
+			})
+			
+			// Set up caption tool tip code
+			
+			if ( pagerImageCount > 0 ) {
+				pagerItems.hover(function(){
+					var image = $(this).find("img")
+					if ( image.length > 0 ) {
+						var title = image.prop("title");
+						if ( title.length > 0 ) {
+							$("#gallery-tool-tip").text(title).fadeTo(1, 200);
+						}
+					}
+				}, function(){
+					$("#gallery-tool-tip").text("").fadeTo(0, 200, function(){
+						$(this).css({
+							top: -1000,
+							left: -1000
+						});
+					});
+				}).mousemove(function (e){
+					var image = $(this).find("img")
+					if ( image.length > 0 ) {
+						var title = image.prop("title");
+						if ( title.length > 0 ) {
+							var mouseX = e.pageX + 20;
+							var mouseY = e.pageY + 10;
+							$("#gallery-tool-tip").css({
+								top: mouseY,
+								left: mouseX
+							})
+						}
+					}
+				});
+			}
+			
+			// Functions
+			
+			function init() {
+				$(".gallery-media").cycle({
+					fx: "scrollHorz",
+					timeout: 0,
+					prev: "#gallery-prev",
+					next: "#gallery-next",
+					slides: "> div",
+					autoHeight: "calc"
+				});
+
+				setActivePager(0);
+				setActiveCount(0);
+				addToolTipToPage();
+			}
+			
+			function setActivePager(index) {
+				pagerItems.removeClass(pagerActiveClass)
+				pagerItems.eq(index).addClass(pagerActiveClass);
+			}
+			
+			function setActiveSlider(index) {
+				$(".gallery-media").cycle('goto',index);
+			}
+			
+			function setActiveCount(index) {
+				galleryCount.text(index+1);
+			}
+			
+			function addToolTipToPage() {
+				$("body").append(toolTipContent);
+			}
+		}, // End Gallery
+		
+		quizzes:function(){
+			
+			if ( $('.quiz-area').size() > 0 ) {
+				
+				var $window = $(window),
+					ww = $window.width();
+				var device = ww >= 960 ? 'desktop' : ww >= 640 ? 'tablet' : 'mobile';
+				
+				
+				var $option = $('a.quiz-option'),
+					$checkAnswer = $('.checkAnswer'),
+					$nextButton = $('.nextQuestion'),
+					questionCount = $('.quiz-item').size(),
+					currentQuestion = 1;
+				
+				$('.score-card').css('display', 'block');
+				
+				var hasCorrectAnswers = $('.quiz-area').hasClass('quiz-right-wrong') ? true : false;
+				
+				$option.each(function(){
+					var $this = $(this),
+						correct = $this.hasClass('ca') ? true : false,
+						$quiz = $this.parent().parent().parent().parent();
+					
+					if (hasCorrectAnswers) { $this.data('correct', correct).removeClass('ca'); }
+					
+					
+					$this.on('click', function(){
+						if ( !$this.hasClass('selected') ){
+							$('a.quiz-option.selected').find('i').removeClass('fa-circle').addClass('fa-circle-o');
+							$('a.quiz-option.selected').removeClass('selected');
+							$this.find('i').removeClass('fa-circle-o').addClass('fa-circle');
+							$this.addClass('selected');
+						}
+						
+						$quiz.find('.checkAnswer').removeClass('static');
+						
+						return false;
+					});
+				});
+				
+				
+				$checkAnswer.each(function(){
+					var $this = $(this),
+						id = $this.data('id'),
+						$parent = $('.quiz-item-' + id),
+						$icon = $('.score-icon-' + id);
+						
+					
+					$this.on('click', function(){
+						
+						//only do stuff if an option has been selected
+						if ( !$this.hasClass('static') ) {
+							var $selected = $parent.find('.quiz-option.selected');
+							
+							var $questionArea;
+							
+							// For quizzes with correct answers
+							if (hasCorrectAnswers) {
+								if ( $selected.data('correct') ) {
+									$parent.find('h2.right-wrong').addClass('correct').html( '<i class="fa fa-check-circle"></i> ' + ((isSpanishPage)? '¡Correcto!' : 'Correct') );
+									$icon.addClass('correct-answer').find('span.score-text').text( ((isSpanishPage)? 'correcto' : 'correct') );
+								} else {
+									$parent.find('h2.right-wrong').addClass('not-correct').html( '<i class="fa fa-times-circle"></i> ' + ((isSpanishPage)? 'Incorrecto' : 'Incorrect') );
+									$icon.addClass('not-correct').find('span.score-text').text( ((isSpanishPage)? 'incorrecto' : 'incorrect') );
+								}
+								
+								$questionArea = $parent.find('.question-area');
+								
+							/// For quizes with no right answer	
+							} else {
+								$icon.addClass('correct-answer').find('span.score-text').css('display','none');
+								$questionArea = $parent.find('.question-area .quiz-options');
+							}
+							
+							$icon.removeClass('not-answered');
+							
+							var $completedText = $parent.find('.completed-text');
+							
+							$questionArea.css('display', 'none');
+							
+							$completedText.css('display', 'block');
+							
+							var $staticQuizImage = $('.static-quiz-image'),
+								quizImageHeight = $staticQuizImage.height(),
+								nextItemHeight = $('.active .completed-text').height();
+							
+							var newHeight =  ($staticQuizImage.size() > 0 && nextItemHeight < quizImageHeight) ? quizImageHeight : nextItemHeight;
+								
+							if ( $selected.hasClass('yes-answer') ) {
+								$completedText.find('.answered-yes').css('display', 'block').prepend('<p>You chose: <strong>Yes</strong></p>');
+							} else if ($selected.hasClass('no-answer')) {
+								$completedText.find('.answered-no').css('display', 'block').prepend('<p>You chose: <strong>No</strong></p>');;
+							}
+							
+//							$parent.css('height', ($completedText.height() + 100) + 'px')
+							
+							//hide/show appropriate buttons
+							
+							$parent.find('.nextQuestion').css({
+								'display' : 'inline-block',
+								'opacity' : '1'
+							});
+							
+							$this.css('display', 'none');
+						}
+						
+						return false;
+					});
+					
+				});
+				
+				
+				
+				$nextButton.on('click', function(){
+					
+					//proceed to next question
+					if ( (currentQuestion + 1) <= questionCount ) {
+						
+						var $activeItem = $('.quiz-item.active'),
+							$nextItem = $activeItem.next(),
+							$activeIcon = $('.score-icon.active'),
+							$nextIcon = $activeIcon.next();
+						
+						$activeItem.removeClass('active');
+						$nextItem.addClass('active');
+						
+						var $staticQuizImage = $('.static-quiz-image'),
+							quizImageHeight = $staticQuizImage.height(),
+							nextItemHeight = $nextItem.height();
+						
+						var newHeight =  ($staticQuizImage.size() > 0 && nextItemHeight < quizImageHeight) ? quizImageHeight : nextItemHeight;
+						
+						$activeIcon.removeClass('active');
+						
+						currentQuestion = currentQuestion + 1;
+						
+						
+					} else {
+						
+						var correctAnswers = $('.score-card .correct-answer').size(),
+							incorrectAnswers = $('.score-card .not-correct').size(),
+							scorePercent = Math.round((correctAnswers / questionCount) * 100),
+							$results = $('.quiz-results'),
+							$finalScore = $('.final-score'),
+							scoreTitle;
+						
+						if (hasCorrectAnswers) {
+							if ( scorePercent >= 80 ) {
+								scoreTitle = 'You know your stuff!';
+								$finalScore.addClass('excellent');
+								$('.score-excellent').css('display', 'block');
+							} else if ( scorePercent >= 50 ) {
+								scoreTitle = 'Not too shabby!';
+								$finalScore.addClass('good');
+								$('.score-good').css('display', 'block');
+							} else {
+								scoreTitle = 'Don’t worry!';
+								$finalScore.addClass('bad');
+								$('.score-bad').css({
+									'display' : 'block'
+								});
+							}
+							
+							$results.find('.score-number').text(correctAnswers + '/' + questionCount);
+							$results.find('.score-percent').text('(' + scorePercent + '%' + ')');
+							$results.find('.score-title').text(scoreTitle);
+						} else {
+							$('.rediness-results').css('display', 'block');
+
+							$('.quiz-area').css({
+								'min-height': '440px'
+							});
+						}
+						$('.score-card').css({
+							'clear' : 'both',
+							'position' : 'relative',
+							'top' : '20px'
+						});
+						
+						$('.test-area').css('display', 'none');
+						$results.css('display', 'block');
+						
+					}
+					
+					return false;
+					
+					
+				});
+				
+				/*
+				
+				$window.resize(function(){
+					
+					$('.test-area').css({
+						'height' : ($('.quiz-item.active').height() + 20) + 'px'
+					});
+				});
+				*/
+				
+			} //End quizzes if
+			
+			
+		}, // End quizzes
+		
+		faq: function(){
+			
+			var toggleQA = function($elem, animate){
+				
+				animSpeed = animate ? 300 : 0;
+				$elem.next('.faq-target').slideToggle(animSpeed);
+				
+				$elem.find('i').toggleClass('fa-plus-square').toggleClass('fa-minus-square');
+			}
+			
+			if ( $('.faq-category').length == 1 ) {
+				toggleQA($('.faq-category').find('.faq-cat-title'), false);
+				
+			}
+			
+			
+			$('.faq-cat-title, .faq-question').on('click', function(){
+				toggleQA($(this), true);
+			});
+			
+			$('.faq-cat-title a, .faq-question a').on('click', function(ev){
+				ev.preventDefault();
+			});
+			
+			var hash = window.location.href.split('#')[1],
+				$target = $('#' + hash);
+			
+			if ( (hash != '' || hash != undefined) && $('#' + hash).size() > 0 ) {
+				
+				if ( $target.hasClass('faq-category') ) {
+					toggleQA( $target.find('.faq-cat-title'), true );
+				} else if ( $target.hasClass('qa-area') ) {
+					toggleQA( $target.parent().parent().find('.faq-cat-title'), true );
+					toggleQA( $target.find('.faq-question'),  true );
+				}
+				
+				
+			}
+			
+		}, //end FAQ
+		
+		effectsOfTobacco: function(){
+			
+			var $window = $(window),
+				ww = $window.width();
+			var device = ww >= 960 ? 'desktop' : ww >= 640 ? 'tablet' : 'mobile';
+			
+			var curDevice = device;
+			
+			$window.resize(function(){
+				ww = $window.width();
+				device = ww >= 960 ? 'desktop' : ww >= 640 ? 'tablet' : 'mobile';
+				if (device != curDevice) {
+					$('.description-area, .description-area *').removeAttr('style');
+					 curDevice = device;
+				}
+			});
+			
+			//interactive body
+			
+			var $partLink = $('.part-list ul li a'),
+				$box = $('.effects-descriptions'),
+				containerHeight = $('.effects-area').height(),
+				$arrow = $('.effects-box-arrows');
+			
+			
+			var interaction = {
+					clicked: function($this, id, y, $text){
+						$('.description-area').removeAttr('style');
+						$box.removeAttr('style');
+						$('.body-part.active').removeClass('active');
+						$('.description-text.active').removeClass('active').css('display', 'none');
+						$('.cloned-part').css('display', 'none')
+						$box.removeAttr('style');
+						
+						$('.part-' + id).addClass('active');
+						
+						if (id != 'skin') {
+							var $partClone = $('.part-' + id).clone();
+							
+							$partClone.prependTo($text).addClass('cloned-part').css({
+								'float': 'left',
+								'margin': '0 20px 10px 0',
+								'background-position': 'bottom left'
+							});
+						}
+						
+						$('.effects-overlay').fadeIn(200);
+						
+						$text.css('display',  'block').addClass('active');
+						$box.css({
+							'display' : 'block',
+							'z-index' : '999'
+						});
+						
+						var descriptionHeight = $('.description-area').height();
+						
+						$('.description-area').css('margin-top' , -(descriptionHeight/2) + 'px');
+					},
+					mouseentered: function($this, id, y, $text){
+						$('.part-' + id).addClass('active');
+						$text.css('display',  'block');
+						$box.css({
+							'display' : 'block',
+							'top' : y + 'px'
+						});
+						
+						var boxHeight = $box.height();
+						
+						if ( (boxHeight + y) > containerHeight ) {
+							$arrow.css({
+								'top': 'auto',
+								'bottom' : '15px'
+							});
+							$box.css('top', (y - boxHeight) + 'px');
+						}
+					},
+					mouseleft: function($this, id, y, $text){
+						$('.part-' + id).removeClass('active');
+						$text.css('display', 'none');
+						$box.removeAttr('style');
+						$arrow.removeAttr('style');
+					}
+			}
+			
+			
+			$partLink.each(function(){
+				var $this = $(this),
+					id = $this.data('id'),
+					y = $this.data('y') - 15,
+					$text = $('.description-' + id);
+				
+				
+				$this.hover(function(){
+					if ( device == 'desktop' ) {
+						interaction.mouseentered($this, id, y, $text)
+					}
+				}, function(){
+					if ( device == 'desktop' ) {
+						interaction.mouseleft($this, id, y, $text)
+					}
+				});
+				
+				$this.on('click', function(){
+					if ( device != 'desktop' ) {
+						interaction.clicked($this, id, y, $text)
+					}
+					return false;
+				});
+				
+				
+				var closeEffectsOverlay = function(){
+					$('.description-area').fadeOut(200);
+					$('.effects-overlay').fadeOut(200);
+				};
+				
+				$('.effects-overlay, a.close-effects-box').on('click', function(){
+					closeEffectsOverlay();
+					return false;
+				});
+				
+			});
+			
+			
+			
+			//Additional Effects area
+			
+			var $hideShow = $('a.hide-show-effects');
+			
+			$hideShow.each(function(){
+				var $this = $(this),
+					$text = $this.parent().parent().find('.effects-more-text'),
+					opened = false;
+				
+				$this.on('click', function(){
+					$text.slideToggle(350, 'easeOutQuad');
+					
+					$this.find('i').toggleClass('fa-chevron-up').toggleClass('fa-chevron-down')
+					
+					if (opened){
+						$this.find('span').text('Show more');
+						opened = false;
+					} else {
+						$this.find('span').text('Show less');
+						opened = true;
+					}
+					return false;
+				});
+			});
+			
+			
+			
+		}, // End effects of Tobacco
+		
+		quitcashChallenge:function(){
+			
+			function getQueryVariable(variable) {
+			       var query = window.location.search.substring(1);
+			       var vars = query.split("&");
+			       for (var i=0;i<vars.length;i++) {
+			               var pair = vars[i].split("=");
+			               if(pair[0] == variable){return pair[1];}
+			       }
+			       return(false);
+			};
+			
+			var userId = getQueryVariable('id'),
+				$registerForm = $('#challenge-register');
+			/*
+			if ( (userId != '' || userId != undefined ) && $registerForm.length > 0 && userId != false) {
+				
+				
+				$registerForm.addClass('pre-filled');
+				
+				$('.firstNameFieldArea input').val('Dan').attr('readonly', 'readonly');
+				$('.lastNameFieldArea input').val('Feller').attr('readonly', 'readonly');
+				$('.emailFieldArea input').val('dan.feller@plaudit.com').attr('readonly', 'readonly');
+				$('.zipFieldArea input').val('55110').attr('readonly', 'readonly');
+				
+				$('.static-name-area').text($('.firstNameFieldArea input').val() + ' ' + $('.lastNameFieldArea input').val() ).append('<a href="#" class="resetRegistration">Not you? Click here</a>');
+			
+			}
+				*/
+			
+			$('.resetRegistration').on('click', function(ev){
+				ev.preventDefault();
+				$registerForm.removeClass('pre-filled');
+				$registerForm.find('input').removeAttr('readonly')
+			});
+			
+			
+			$('#email-in-use').css('display', 'block');
+			$('#email-in-use').find('a').on('click', function(ev){
+				ev.preventDefault();
+				$('#email-in-use').css('display', 'none');
+			});
+			
+			var message = getQueryVariable('message');
+			if ( (message != '' || message != undefined ) && message != false) {
+				var $messageContainer = $('#completion-message, .message-inner');
+				$messageContainer.css('display', 'block');
+				var messageHeight = $('.message-inner').height();
+//				$('.message-inner').css('margin-top', -((messageHeight/2)+320));
+			}
+			
+			$('.close-message').on('click', function(ev){
+				ev.preventDefault();
+				$('#completion-message, .message-inner').css('display', 'none');
+			});
+			
+			var hookUpDropdownsWithOther = function(form) {
+				$(form + ' input[data-has-other]').each(function(index, item) {
+					var $freeFormInput = $(item);
+					var prefix = form + '\\:' + $freeFormInput.data('hasOther');
+					var $valueOptions = $(prefix + 'Options');
+					var $valueInput = $(prefix);
+					var $freeFormInputFieldArea = $($freeFormInput.closest('div.fieldArea'));
+					if ($valueOptions.find('option[value="' + $valueInput.val() + '"]').length > 0) {
+						$valueOptions.val($valueInput.val());
+					} else {
+						$freeFormInput.val($valueInput.val());
+						$valueOptions.val('OTHER');
+					}
+					if ($valueOptions.val() == 'OTHER') {
+						$valueInput.val($freeFormInput.val());
+					} else {
+						$valueInput.val($valueOptions.val());
+						$freeFormInputFieldArea.hide();
+					}
+					$freeFormInput.on('change', function(event) {
+						$valueInput.val($freeFormInput.val());
+					});
+					$valueOptions.on('change', function(event) {
+						if ($valueOptions.val() == 'OTHER') {
+							$valueInput.val($freeFormInput.val());
+							$freeFormInputFieldArea.show();
+						} else {
+							$freeFormInputFieldArea.hide();
+							$valueInput.val($valueOptions.val());
+						}
+					});
+				});
+			};
+			hookUpDropdownsWithOther('#challenge-register');
+			hookUpDropdownsWithOther('#edit-user');
+			
+			// Survey Result - Recent Changes to Smoking Habit "Other" checkbox
+			var recentChangesFreeForm = $("#challenge-register .recentChangesToSmokingHabitFreeFormFieldArea, #edit-user .recentChangesToSmokingHabitFreeFormFieldArea");
+			var otherCheckBox = $('#challenge-register\\:recentChangesToSmokingHabit input[value="Other"], #edit-user\\:recentChangesToSmokingHabit input[value="Other"]');
+			
+			if ( recentChangesFreeForm.length > 0 && otherCheckBox.length > 0 ) {
+				if (recentChangesFreeForm.find("input").val().length == 0 && !otherCheckBox.is(":checked")) {
+					recentChangesFreeForm.hide();
+					otherCheckBox.prop('checked', false);
+				} else {
+					otherCheckBox.prop('checked', true);
+				}
+			
+				$(otherCheckBox).change(function(){
+					var input = $(this);
+					var freeFormInput = recentChangesFreeForm.find("input");
+					
+					var isChecked = input.is(":checked");
+					if ( isChecked && !recentChangesFreeForm.is(":visible") ) {
+						recentChangesFreeForm.show();
+						if (freeFormInput.val().length == 0) {
+							freeFormInput.focus();
+						} else {
+							freeFormInput.select();
+						}
+					} else {
+						recentChangesFreeForm.hide();
+					}
+				});
+			}
+			
+			/*
+			 * 
+			 * 
+			 * Admin Area
+			 * 
+			 * 
+			 */
+			
+			$( ".fromDateFieldArea input, .toDateFieldArea input, .sendDateFieldArea input").datepicker({
+				showOn: "both",
+				buttonImage: "assets/images/icons/calendar-icon.png",
+				buttonImageOnly: true,
+				dateFormat: "yy-mm-dd"
+			});
+			
+			$('.fromTimeFieldArea input, .toTimeFieldArea input, .sendTimeFieldArea input').timepicker({
+				template: false,
+				showInputs: false,
+				minuteStep: 5
+			});
+			
+			
+			/*
+			 * 
+			 * 
+			 * responsive
+			 * 
+			 * 
+			 */
+			
+			var $window = $(window),
+				ww = $window.width();
+			
+			var $aside = $('.quitCash-aside');
+			
+			var updateLayout = function(){
+				ww = $window.width();
+				if ( ww <= 660 && $aside.length > 0 ) {
+					$aside.appendTo('.main-content-area');
+					$aside.css({
+						'display' : 'block !important',
+						'width' : '100%',
+						'float' : 'none',
+						'margin' : '20px 0'
+					});
+					$aside.stop(true).fadeIn(10);
+				} else {
+					$aside.stop().clearQueue().removeAttr('style');
+					$aside.prependTo('.main-col')
+				}
+			};
+			
+			updateLayout();
+			
+			$window.resize(updateLayout)
+			
+			
+			/*
+			 * 
+			 * 
+			 * Countdown timer
+			 * 
+			 * 
+			 */
+			
+			var $countdown = $('#countdown');
+			
+			if ( $countdown.length > 0 ) {
+				
+				var startDate = $countdown.data('startdate');
+				var target_date = new Date(startDate).getTime();
+				var countdown = document.getElementById("countdown");
+				var days, hours, minutes, seconds;
+				 
+console.log(startDate);				
+				
+				setInterval(function () {
+				 
+				    // find the amount of "seconds" between now and target
+				    var current_date = new Date().getTime();
+				    var seconds_left = (target_date - current_date) / 1000;
+				 
+				    // do some time calculations
+				    days = parseInt(seconds_left / 86400);
+				    seconds_left = seconds_left % 86400;
+				     
+				    hours = parseInt(seconds_left / 3600);
+				    seconds_left = seconds_left % 3600;
+				     
+				    minutes = parseInt(seconds_left / 60);
+				    seconds = parseInt(seconds_left % 60);
+				     
+				    // format countdown string + set tag value
+//				    countdown.innerHTML = days + "d, " + hours + "h, " + minutes + "m, " + seconds + "s";  
+				    
+				    $countdown.find('.days').text(days)
+				    $countdown.find('.hours').text(hours)
+				    $countdown.find('.minutes').text(minutes)
+				    $countdown.find('.seconds').text(seconds)
+				 
+				}, 1000);
+			
+			}
+			
+			
+			/*
+			 * 
+			 * 
+			 * Form errors (scrolling)
+			 * 
+			 * 
+			 */
+			
+			var $messages = $('#messages');
+			
+			if ( $('body').hasClass('quitcash-template') && $messages.length > 0 ) {
+				var messageTop = $messages.offset().top;
+				$('html, body').stop().animate({'scrollTop' : messageTop-20}, 1000, 'easeOutQuint');
+			}
+			
+			
+		},// end quitcashChallenge
+		
+		lightbox: function() {
+			var $video = $('.widget-video');
+			if ($video.length == 0){
+				return;
+			}
+			
+			$("body").on('click','#mfp-close-icon',function(){
+				$.magnificPopup.close();
+			})
+			
+			$video.each(function(){
+				var videoContainer = $(this);
+				var buttonText = videoContainer.data("button-text");
+				var buttonLink = videoContainer.data("button-link");
+				
+				var lightboxMarkUp =  
+					'<div class="mfp-iframe-scaler ">'+
+						'<div class="mfp-close"></div>'+
+							'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>';
+				
+				if ( buttonText.length > 0 && buttonLink.length > 0 ) {
+					lightboxMarkUp += 
+						'<div class="mfp-external-button">' + 
+							'<a href="' + buttonLink + '">' + buttonText + '</a>' +
+						'</div>';
+				}
+
+				lightboxMarkUp += '</div>';
+				
+				videoContainer.find('a').magnificPopup({
+					type:'iframe',
+					disableOn: 540,
+					closeMarkup: "<button title=\"%title%\" class=\"mfp-close\">Close Player<i id=\"mfp-close-icon\" class=\"mfp-close-icn\">&times;</i></button>",
+					iframe: {
+						markup: lightboxMarkUp,
+						patterns: {
+							vimeo: {
+								src: "https://player.vimeo.com/video/%id%?autoplay=1&api=1"
+							}
+						},
+					},
+					callbacks: {
+						open: function() {
+							var iframe = this.content.find("iframe");
+							var src = this.currItem.src;
+
+							// Wait until the iframe is loaded
+							iframe.load(function(){
+								var player = $f(iframe[0]);
+
+								player.addEvent("ready", function(){
+									player.addEvent("play", function(){
+										plaudit.analytics.trackEvent("Video", "Started", src);
+									});
+
+									player.addEvent("finish", function(){
+										plaudit.analytics.trackEvent("Video", "Finished", src);
+									});
+
+									player.addEvent("pause", function(){
+										plaudit.analytics.trackEvent("Video", "Paused", src);
+									});
+
+									player.addEvent("seek", function(data){
+										plaudit.analytics.trackEvent("Video", "Seek: " + Math.floor(data.percent*100) + "% (" +data.seconds+ " of " +data.duration+ " seconds)", src);
+									});
+								});
+							});
+						}
+					}
+				});
+			});
+		}, // lightbox
+		
+		galleryVideo: function() {
+			var galleryVideos = $(".gallery-area").find("iframe");
+			galleryVideos.each(function(){
+				var iframe = $(this);
+				var src = iframe.prop("src");
+
+				// Wait until the iframe is loaded
+				iframe.load(function(){
+					var player = $f(iframe[0]);
+
+					player.addEvent("ready", function(){
+						try {
+							player.addEvent("play", function(){
+								plaudit.analytics.trackEvent("Video", "Started", src);
+							});
+
+							player.addEvent("finish", function(){
+								plaudit.analytics.trackEvent("Video", "Finished", src);
+							});
+
+							player.addEvent("pause", function(){
+								plaudit.analytics.trackEvent("Video", "Paused", src);
+							});
+
+							player.addEvent("seek", function(data){
+								plaudit.analytics.trackEvent("Video", "Seek: " + Math.floor(data.percent*100) + "% (" +data.seconds+ " of " +data.duration+ " seconds)", src);
+							});
+						} catch (e) {
+							// swallow error
+						}
+					});
+				});
+			});
+		}, // galleryVideo
+		
+		resizeHandler: function(callback) {
+			var rtime;
+			var timeout = false;
+			var delta = 200;
+			
+			$(window).resize(function(){
+				rtime = new Date();
+				if ( timeout === false ) {
+					timeout = true;
+					setTimeout(resizeEnd,delta);
+				}
+			});
+			
+			function resizeEnd() {
+				if ( new Date() - rtime < delta ) {
+					setTimeout(resizeEnd,delta);
+				} else {
+					timeout = false;
+					callback();
+				}
+			}
+		} // resizeHandler()
+	};
+})(jQuery);
+
+plaudit.analytics.setOptions( {$contentArea:"#main"} );
+
+jQuery(function(){
+	plauditUI.common();
+	plauditUI.calculator();
+	plauditUI.sliders();
+	plauditUI.gallery();
+	plauditUI.quizzes();
+	plauditUI.faq();
+	plauditUI.effectsOfTobacco();
+	plauditUI.quitcashChallenge();
+	plauditUI.lightbox();
+	plauditUI.galleryVideo();
+});
