@@ -147,16 +147,18 @@
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
     
   </div>
-   <div class="form">
+  <div class="form">
+    <form method="POST" action="user_register_script.php" enctype="multipart/form-data">
+    <form action="cust_sign-upscript.php" method="post">
     <h1>Create an account</h1>
-    <form>
-      <input type="text" placeholder="Name" name="name" />
-      <input type="password" placeholder="Password" name="password" />
-      <input type="email" placeholder="Email Address" name="email" />
-      <input type="tel" placeholder="Phone Number" name="phonenumber" />
-      <input type="number" placeholder="Age" name="age">
-      <input type="text" placeholder="Gender" name="gender">
-      <button>Register</button>
+        <input type="text" name="user_name" placeholder="Name" required>
+        <input type="password" placeholder="Password" name="password" required>
+        <input type="email" placeholder="Email Address" name="email" required>
+        <input type="tel" placeholder="Phone Number" name="phonenumber" required>
+        <input type="number" placeholder="Age" name="age" required>
+        <input type="text" placeholder="Gender" name="gender" required>
+
+        <button>Register</button>
     </form>
   </div>
                    
@@ -165,21 +167,5 @@
         </div>
     </div>
 </section><!--/#main-slider-->
-
-
-<body style="padding-top: 5%">
-
-  
-<!-- Form Mixin-->
-<!-- Input Mixin-->
-<!-- Button Mixin-->
-<!-- Pen Title-->
-
-  
-
-
-
-
-</body>
 
 </html>
