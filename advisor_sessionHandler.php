@@ -13,13 +13,13 @@ session_start();
 $errflag = false;
 
 //Input Validations
-if ($_POST['c_matricNum'] == '')
+if ($_POST['user_email'] == '')
 {
-    $errmsg_arr[] = 'Login ID missing';
+    $errmsg_arr[] = 'Email address missing';
     $errflag = true;
 }
 
-if ($_POST['c_password'] == '')
+if ($_POST['user_password'] == '')
 {
     $errmsg_arr[] = 'Password missing';
     $errflag = true;
@@ -39,12 +39,12 @@ if ($errflag)
 $conn = mysqli_connect("localhost", "root", "") or die (mysqli_error()); 
 
 // To select one particular database to be used 
-mysqli_select_db($conn,"foodsystem") or die(mysqli_error());
+mysqli_select_db($conn,"qsadatabase") or die(mysqli_error());
 
 // to create a query to be executed in sql
-$matricnum = $_POST['c_matricNum'];
-$password = $_POST['c_password'];
-$query = "SELECT * FROM customer_info WHERE c_matricNum = '$matricnum' AND c_password = '$password'";
+$matricnum = $_POST['user_email'];
+$password = $_POST['user_password'];
+$query = "SELECT * FROM user_info WHERE user_email = '$user_email' AND user_password = '$user_password'";
     
 // to run sql query in database
 $result = mysqli_query($conn,$query) or die('Error: ' . mysqli_error($conn));
@@ -57,12 +57,12 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_CUSTOMER_ID'] = $member['customer_id'];
-        $_SESSION ['SESS_NAME'] = $member['c_name'];
+        $_SESSION ['SESS_CUSTOMER_ID'] = $member['user_email'];
+        $_SESSION ['SESS_NAME'] = $member['user_name'];
         $_SESSION ['STATUS'] = true;
 
         session_write_close();
-        header("location: cust_login-successful.php");
+        header("location: user_login-successful.php");
         exit();
     }
     else
