@@ -77,9 +77,12 @@
             .form-module button {
               cursor: pointer;
               background: #33b5e5;
-              width: 100%;
+              width: 30%;
               border: 0;
               padding: 10px 15px;
+              margin-left: 5%;
+              margin-right: 5%;
+              font-size: 1.5em;
               color: #ffffff;
               -webkit-transition: 0.3s ease;
               transition: 0.3s ease;
@@ -188,9 +191,10 @@ Global Page Section Start
                         </fieldset>
 
               
-           
-            <button type="submit">Save changes</button>  
-            <button >Cancel</button>  
+            <div style="text-align: center;">
+            <button type="submit">Submit</button>  
+            <button type="reset" >Reset</button>  
+        </div>
         </fieldset>  
 </form>  
          
