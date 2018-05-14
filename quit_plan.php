@@ -33,48 +33,76 @@
         <link rel="stylesheet" href="plugins/facncybox/jquery.fancybox.css">
         <!-- template main css file -->
         <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-
-
+    
         <?php  include("/header.php");   ?> 
         <style>
-            .header1 {
-              position: fixed;
-              top: 0;
-              z-index: 1;
+            /* Form Module */
+            .form-module {
+              position: relative;
+              background: #FCFCFC;
+              max-width: 800px;
               width: 100%;
-              background-color: #f1f1f1;
+              border-top: 10px solid #33b5e5;
+              -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+                      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+              margin: 0 auto;
             }
 
-            .header1 h2 {
-              text-align: center;
+            .form-module .form {
+              display: none;
+              padding: 30px ;
             }
+            .form-module .form:nth-child(2) {
+              display: block;
+            }
+            .form-module h2 {
+              margin: 0 0 20px;
+              color: #33b5e5;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 1;
+            }
+            .form-module input {
 
-            .progress-container {
               width: 100%;
-              height: 8px;
-              background: #ccc;
+              border: 1px solid #d9d9d9;
+              margin: 0 0 20px;
+              padding: 10px 15px;
+              -webkit-box-sizing: border-box;
+                      box-sizing: border-box;
+              font-wieght: 400;
+             
             }
 
-            .progress-bar {
-              height: 8px;
-              background: #4caf50;
-              width: 0%;
+            .form-module button {
+              cursor: pointer;
+              background: #33b5e5;
+              width: 100%;
+              border: 0;
+              padding: 10px 15px;
+              color: #ffffff;
+              -webkit-transition: 0.3s ease;
+              transition: 0.3s ease;
+            }
+            .form-module button:hover {
+              background: #178ab4;
             }
 
-            .content {
-              padding: 100px 0;
-              margin: 50px auto 0 auto;
-              width: 80%;
+            .form-module .cta a {
+              color: #333333;
+              text-decoration: none;
             }
+
+           
+
+
         </style>
+
     </head>
 
 <?php
 session_start(); ?>
         
-
 <!--
 ==================================================
 Global Page Section Start
@@ -91,7 +119,6 @@ Global Page Section Start
     </div>
 </section><!--/#Page header-->
 
-
 <section class="single-post" >
     <div class="container" >
         <div class="row" >
@@ -100,49 +127,117 @@ Global Page Section Start
                     <img class="img-responsive" alt="" src="images/white-sign-love-heart-line-red.jpg" style="margin-left: 34%; padding-bottom:1em;">
                 </div>
                 <div class="post-content">
-                    <p>
-                        <button>Test</button>
-                        Cigarette smoking and the use of tabacco products caused numerous diseases and health condition. Here are more info about how these will affect your health.
-                    </p>
-                    <blockquote>
-                        Smoking and the use of other tobacco products, including cigars and smokeless tobacco, causes or worsens numerous diseases and conditions. Some products also expose nearby people to toxic secondhand smoke.
-                    </blockquote>
-                    <p>
-                        <b>Brain</b> <br>
-                        Nicotine, the drug that makes tobacco addictive, goes to your brain. It makes you feel good when you are smoking, but it can make you anxious, nervous, moody and depressed after you smoke. Using tobacco also causes headaches and dizziness.<br><br>
+                    <!-- Form Module-->
+                    <div class="module form-module">
+                      <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                        
+                      </div>
+                      <div class="form">
+                        <form method="POST" action="quit_plan_script.php" enctype="multipart/form-data">
+                        <h1 style="text-align: center; margin-top: -1%;">First Step On Quit Plan</h1>
 
-                        <b>Mouth</b> <br>
-                        Tobacco stains your teeth and gives you bad breath. You won't be able to taste your favorite foods as well either, because some of your taste buds are ruined. Tobacco use also causes bleeding gums (gum disease) and cancer.<br><br>
+                            <fieldset> 
+                            <div  style="color:black; text-align: left;">
+                            <label for="date" class="labelform"><b>Select A Quit Date :</b></label>
+                            <input type="date" placeholder="Preferably within 2 weeks" name="date" required>
 
-                        <b>Heart</b> <br>
-                        Smoking increases your heart rate and blood pressure. If you try to do activities like exercise or play sports, your heart has to work harder to keep up.<br><br>
+                            <label for="reason" class="labelform"><b>What is your reason for quitting :</b></label>
+                            <input type="textarea" placeholder="As a message to remind yourself the reason of you quitting" name="reason" required>
 
-                        <b>Lungs</b> <br>
-                        Smokers have trouble breathing because smoking damages the lungs. If you have asthma, you can have more frequent and more serious attacks. Smoking causes a lot of coughing with phlegm (mucous). Tobacco can also increase emphysema (lung disease) and lung cancer.<br><br>
+                            <label for="frequency_smoke_week">How often do you smoke?</label> <br>  
+                              <select id="frequency_smoke" style="width: 40%; font-size: 12pt; ">  
+                                <option>0 day in a week</option>  
+                                <option>1 days in a week </option>  
+                                <option>2 days in a week</option>  
+                                <option>3 days in a week</option>  
+                                <option>4 days in a week</option>
+                                <option>5 days in a week</option>  
+                                <option>6 days in a week</option>  
+                                <option>Everyday</option>  
+                              </select>   
+                              <br><br>
+                            
+                            <label for="frequency_smoke_daily">When you smoke, how many a day?</label> <br>  
+                            <input type="number" placeholder="1" name="frequency_smoke_daily" required>
 
-                        <b>Skin</b> <br>
-                        Smoking causes dry, yellow skin and wrinkles. The smell sticks to your skin too.<br><br>
+                            <label for="when_craving">How often do you smoke?</label> <br>  
+                              <select id="when_craving" style="width: 40%; font-size: 12pt; ">  
+                                <option>Morning</option>  
+                                <option>Afternoon</option>  
+                                <option>Evening</option>  
+                              </select>   
+                              <br><br>
 
-                        <b>Muscles</b> <br>
-                        Less blood and oxygen flow to your muscles, which causes them to hurt more when you exercise or play sports.<br><br>
-                    </p>
-                    <blockquote>
-                    <ol>
-                        <li>Smoking is the leading cause of preventable death in the U.S., causing over 438,000 deaths per year.</li>
-                        <li>Secondhand smoke is a serious health hazard for people of all ages, causing more than 41,000 deaths each year.</li>
-                        <li>Marijuana smoke contains many of the same toxins, irritants and carcinogens as tobacco smoke..</li>
-                        <li>Electronic cigarettes are a new tobacco product, and the potential health consequences and safety of these products are unknown.</li>
-                        <li>Smokeless Tobacco products are a known cause of cancer, and are not a safe alternative to cigarettes.</li>
-                        <li>Cigars have many of the same health risks as cigarettes, including causing certain cancers.</li>
-                    </ol>
-                </blockquote>
-                   
+                            <label for="frequency_smoke_daily">How much do you pay per pack of cigarettes?</label> <br>  
+                            <p>$<input type="number" min="1" step="any" placeholder="10.40" name="price_cigarette"></p>
+
+                            </div>
+                        </fieldset>
+
+              <input type="text" class="input-xlarge" id="input01">  
+              <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="optionsCheckbox">Checkbox</label>  
+            <div class="controls">  
+              <label class="checkbox">  
+                <input type="checkbox" id="optionsCheckbox" value="option1">  
+                Option one is this and that—be sure to include why it's great  
+              </label>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="select01">Select list</label>  
+            <div class="controls">  
+              <select id="select01">  
+                <option>something</option>  
+                <option>2</option>  
+                <option>3</option>  
+                <option>4</option>  
+                <option>5</option>  
+              </select>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="multiSelect">Multicon-select</label>  
+            <div class="controls">  
+              <select multiple="multiple" id="multiSelect">  
+                <option>1</option>  
+                <option>2</option>  
+                <option>3</option>  
+                <option>4</option>  
+                <option>5</option>  
+              </select>  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="fileInput">File input</label>  
+            <div class="controls">  
+              <input class="input-file" id="fileInput" type="file">  
+            </div>  
+          </div>  
+          <div class="control-group">  
+            <label class="control-label" for="textarea">Textarea</label>  
+            <div class="controls">  
+              <textarea class="input-xlarge" id="textarea" rows="3"></textarea>  
+            </div>  
+          </div>  
+          <div class="form-actions">  
+            <button type="submit" class="btn btn-primary">Save changes</button>  
+            <button class="btn">Cancel</button>  
+          </div>  
+        </fieldset>  
+</form>  
+         
                 </div>
             </div>
         </div>
     </div>
+   
                 
-
+</div>
+</section>
 	<!-- Template Javascript Files
 	================================================== -->
 	<!-- jquery -->

@@ -134,6 +134,8 @@
     </style>
 
 <?php  include("/header.php");   ?> 
+</head>
+<body>
 
 <section id="hero-area" >
 <div class="container">
@@ -179,6 +181,9 @@
             </div>
         </div>
     </div>
-</section><!--/#main-slider-->
+</div>
+</section>
+</body>
+
 
 </html>
