@@ -127,7 +127,80 @@
   font-family: 'Roboto', sans-serif;
   margin-top: 25px;
 }
+
+  /* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+
+
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: #333333;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    color: #333333;
+}
+
+.ermsg {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding-right: 100px;
+      font-size: 16pt;
+    }
+
+
     </style>
+<?php
+/*
+  Filename: login.php
+  Purpose: Login interface
+*/
+ //Start Session
+ session_start();
+
+?>
+    <?php
+            // to display error message if username and password is invalid
+                if (isset($_SESSION['ERRMSG_ARR']))
+                {
+                    echo "<h1 class='ermsg'>Error found: ";
+                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
+                    {
+                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
+                    }
+                    echo "</h1>";
+                    unset($_SESSION['ERRMSG_ARR']);
+                }  
+            ?>
 
 <?php  include("/header.php");   ?> 
 
@@ -139,6 +212,7 @@
                 <div class="pen-title">
   <h1></h1>
 </div>
+</head>
 <!-- Form Module-->
 <div class="module form-module">
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
@@ -146,10 +220,61 @@
   </div>
   <div class="form">
     <h1>Login in Now</h1>
-    <form>
-      <div  style="color:black; text-align: left;">
-      <input type="email" placeholder="Email Address"/>
-      <input type="password" placeholder="Password"/>
+          <!-- for tab -->
+          <div class="tab">
+          <button class="tablinks" onclick="openAccount(event, 'User')" style="background-color: #33b5e5; margin-bottom: 2%;"  >User</button>    
+          <button class="tablinks" onclick="openAccount(event, 'Advisor')" style="background-color: #E5334B; margin-bottom: 2%;">Advisor</button>
+        </div>
+
+        <div id="User" class="tabcontent" style="text-align: left;" >
+          <form method="post" action="user_sessionHandler.php">
+              <h3 style="text-align: center; padding-bottom: 2%;">As User</h3>
+
+              <label for="user_email" class="labelform"><b>Email Address :</b></label>
+              <input type="email" placeholder="example@gmail.com" name="user_email" required>
+
+              <label for="user_password" class="labelform"><b>Password :</b></label>
+              <input type="password" placeholder="Password" name="user_password" required>
+
+              <p style="text-align: center">Don't have an account yet?  <a href="user_register.html"><br>Register Now as User</a></p> 
+
+              <button type="submit">User Login</button>
+
+            </form>
+        </div>
+
+        <div id="Advisor" class="tabcontent"style="text-align: left;" >
+          <form method="post" action="advisor_sessionHandler.php">
+              <h3 style="text-align: center; padding-bottom: 2%;">As Advisor</h3>
+
+              <label for="email" class="labelform"><b>Email Address :</b></label>
+              <input type="email" placeholder="example@gmail.com" name="email" required>
+
+              <label for="password" class="labelform"><b>Password :</b></label>
+              <input type="password" placeholder="Password" name="password" required>
+
+              <p style="text-align: center;">Don't have an account yet?  <a href="advisor_register.html"><br>Register Now as Advisor</a></p> 
+
+          <button type="submit">Advisor Login</button>
+
+        </form>
+        </div>
+
+        <script>
+        function openAccount(evt, accountName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(accountName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        </script>
 
        <?php
             // to display error message if username and password is invalid
@@ -164,34 +289,13 @@
                     unset($_SESSION['ERRMSG_ARR']);
                 }  
             ?>
-            
-      </div>
-
-      <button>Login</button>
-
-    </form>
-  </div>
-                   
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section><!--/#main-slider-->
-
-
-<body style="padding-top: 5%">
-
-  
-<!-- Form Mixin-->
-<!-- Input Mixin-->
-<!-- Button Mixin-->
-<!-- Pen Title-->
-
-  
-
-
-
-
-</body>
-
+  </div>
+</div>
+</section>
+</head>
 </html>
+

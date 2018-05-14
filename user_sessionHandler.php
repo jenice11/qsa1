@@ -42,8 +42,8 @@ $conn = mysqli_connect("localhost", "root", "") or die (mysqli_error());
 mysqli_select_db($conn,"qsadatabase") or die(mysqli_error());
 
 // to create a query to be executed in sql
-$matricnum = $_POST['user_email'];
-$password = $_POST['user_password'];
+$user_email = $_POST['user_email'];
+$user_password = $_POST['user_password'];
 $query = "SELECT * FROM user_info WHERE user_email = '$user_email' AND user_password = '$user_password'";
     
 // to run sql query in database
@@ -57,7 +57,7 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_CUSTOMER_ID'] = $member['user_email'];
+        $_SESSION ['SESS_USER_EMAIL'] = $member['user_email'];
         $_SESSION ['SESS_NAME'] = $member['user_name'];
         $_SESSION ['STATUS'] = true;
 
@@ -68,7 +68,7 @@ if (isset($result))
     else
     {
         //Login Failed
-        header("location: login-failed.html");
+        header("location: login-failed.php");
         exit();    
     }
 }
