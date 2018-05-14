@@ -101,8 +101,9 @@
     </head>
 
 <?php
+include("authenticator.php");
 session_start(); ?>
-        
+       
 <!--
 ==================================================
 Global Page Section Start
@@ -130,7 +131,19 @@ Global Page Section Start
                     <!-- Form Module-->
                     <div class="module form-module">
                       <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-                        
+
+                <?php
+                include("dbase.php");
+                 $id = $_GET['id'];
+                 
+
+                // $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id = $id )) "; 
+                 $query ="SELECT user_id, user_name, user_age, user_gender FROM user_info, quit_plan_mapping WHERE  user_info.user_id = quit_plan_mapping.user_fk AND user_info.user_id='$id'";
+                $result = mysqli_query($conn,$query);
+                ?>
+
+
+
                       </div>
                       <div class="form">
                         <form method="POST" action="quit_plan_script.php" enctype="multipart/form-data">
@@ -174,59 +187,10 @@ Global Page Section Start
                             </div>
                         </fieldset>
 
-              <input type="text" class="input-xlarge" id="input01">  
-              <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
-            </div>  
-          </div>  
-          <div class="control-group">  
-            <label class="control-label" for="optionsCheckbox">Checkbox</label>  
-            <div class="controls">  
-              <label class="checkbox">  
-                <input type="checkbox" id="optionsCheckbox" value="option1">  
-                Option one is this and that—be sure to include why it's great  
-              </label>  
-            </div>  
-          </div>  
-          <div class="control-group">  
-            <label class="control-label" for="select01">Select list</label>  
-            <div class="controls">  
-              <select id="select01">  
-                <option>something</option>  
-                <option>2</option>  
-                <option>3</option>  
-                <option>4</option>  
-                <option>5</option>  
-              </select>  
-            </div>  
-          </div>  
-          <div class="control-group">  
-            <label class="control-label" for="multiSelect">Multicon-select</label>  
-            <div class="controls">  
-              <select multiple="multiple" id="multiSelect">  
-                <option>1</option>  
-                <option>2</option>  
-                <option>3</option>  
-                <option>4</option>  
-                <option>5</option>  
-              </select>  
-            </div>  
-          </div>  
-          <div class="control-group">  
-            <label class="control-label" for="fileInput">File input</label>  
-            <div class="controls">  
-              <input class="input-file" id="fileInput" type="file">  
-            </div>  
-          </div>  
-          <div class="control-group">  
-            <label class="control-label" for="textarea">Textarea</label>  
-            <div class="controls">  
-              <textarea class="input-xlarge" id="textarea" rows="3"></textarea>  
-            </div>  
-          </div>  
-          <div class="form-actions">  
-            <button type="submit" class="btn btn-primary">Save changes</button>  
-            <button class="btn">Cancel</button>  
-          </div>  
+              
+           
+            <button type="submit">Save changes</button>  
+            <button >Cancel</button>  
         </fieldset>  
 </form>  
          
@@ -234,10 +198,13 @@ Global Page Section Start
             </div>
         </div>
     </div>
-   
-                
+
 </div>
 </section>
+</div>
+</section>
+
+
 	<!-- Template Javascript Files
 	================================================== -->
 	<!-- jquery -->
@@ -257,5 +224,4 @@ Global Page Section Start
 	<script src="plugins/facncybox/jquery.fancybox.js"></script>
 	<!-- template main js -->
 	<script src="js/main.js"></script>
- 	</body>
 </html>

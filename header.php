@@ -73,13 +73,13 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li><a href="health_effects.html">Health Effects</a></li>
-                                        <li><a href="cigarette_contains_what.html">Cigarette contains what?</a></li>
-                                        <li><a href="why_smoke.html">Why Teenagers or Children Smoke</a></li>
+                                        <li><a href="health_effects.php">Health Effects</a></li>
+                                        <li><a href="cigarette_contains_what.php">Cigarette contains what?</a></li>
+                                        <li><a href="why_smoke.php">Why Teenagers or Children Smoke</a></li>
                                     </ul>
                                 </div>
                             </li>         
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="contact.php">Contact Us</a></li>
                             <?php
 
         if(isset($_GET['status'])) {
@@ -91,8 +91,17 @@
         }
         else  {
         }
-        ?>
-                            <li><a href="login.php">Login</a></li>
+        ?>                  
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="logout.php">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
                                 <div class="dropdown-menu">

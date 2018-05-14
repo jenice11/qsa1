@@ -1,107 +1,118 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>UMP Dinner Ordering</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300:700' rel='stylesheet' type='text/css'>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/modernizr.custom.js" type="text/javascript"></script>
-<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
-<script src="js/fwslider.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        $('#slider').fwslider({
-            auto:     true,  //auto start
-            speed:    300,   //transition speed
-            pause:    4000,  //pause duration
-            panels:   5,     //number of image panels
-            width:    1680,
-            height:   500,
-            nav:      true   //show navigation
-        });
-    });
-    </script>       
- <!---- animated-css ---->
-<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="js/wow.min.js"></script>
-    <script>
-         new WOW().init();
-    </script>
-    <script>
-        $(function() {
-        var button = $('#loginButton');
-        var box = $('#loginBox');
-        var form = $('#loginForm');
-        button.removeAttr('href');
-        button.mouseup(function(login) {
-            box.toggle();
-            button.toggleClass('active');
-        });
-        form.mouseup(function() { 
-            return false;
-        });
-        $(this).mouseup(function(login) {
-            if(!($(login.target).parent('#loginButton').length > 0)) {
-                button.removeClass('active');
-                box.hide();
-            }
-        });
-    });
-   </script>
-  
-<link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <style type="text/css">
+      body {
+  background: #e9e9e9;
+  color: #666666;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Form Module */
+.form-module {
+  position: relative;
+  background: #FCFCFC;
+  max-width: 400px;
+  padding-bottom: 20px;
+  width: 100%;
+  border-top: 10px solid #33b5e5;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.form-module .form {
+  display: none;
+  padding: 30px;
+}
+.form-module .form:nth-child(2) {
+  display: block;
+}
+.form-module h2 {
+  margin: 0 0 20px;
+  color: #33b5e5;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+.form-module input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-wieght: 400;
+ 
+}
+.form-module button {
+  cursor: pointer;
+  background: #33b5e5;
+  width: 100%;
+  border: 0;
+  padding: 10px 15px;
+  color: #ffffff;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.form-module button:hover {
+  background: #178ab4;
+}
+
+.form-module .cta a {
+  color: #333333;
+  text-decoration: none;
+}
+
+/* slide */
+#hero-area {
+  background: url('../images/slider.jpg') no-repeat 20%;
+  background-size: cover;
+  background-attachment: fixed;
+  margin-top: -215px;
+  padding: 50px 0;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+
+#hero-area h1 {
+  font-size: 40px;
+  line-height: 50px;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+#hero-area h2 {
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 38px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #666;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 25px;
+}
+
+    </style>
+
+
+  <?php  include("/header.php");   ?> 
 
 
 </head>
-<body>
-
-        <div class="header_bottom">
-              <div class="container">               
-                <div class="logo">
-                    <h1><a href="index.php">UMP DINNER<span>Ordering</span></a></h1>
-                </div>              
-            <div class="navigation">    
-            <div>
-              <label class="mobile_menu" for="mobile_menu">
-              <span>Menu</span>
-              </label>
-              <input id="mobile_menu" type="checkbox">
-                <ul class="nav">
-              <li><a href="index.php">Home</a></li>                  
-                     
-              <li><a href="cust_viewOrder.php">View Order</a></li>
-                  
-
-            <li><a href="index.html">Logout</a></li>
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>          
-     </div>
-     <div class="clearfix"></div>          
-    </div>
-   </div>   
-<!--    <div id="slider">
-      <div><img src="images/carousel1.jpg" class="img-responsive" alt="img01"/></div>
-      <div><img src="images/carousel2.jpg" class="img-responsive" alt="img02"/></div>
-      <div><img src="images/carousel3.jpg" class="img-responsive" alt="img03"/></div>
-    </div> -->
-  </div>
-   <!-- Ends Header -->
 
 <?php
 /*
@@ -116,25 +127,30 @@ session_start();
 session_destroy();
 
 ?>
-<html>
     <body>
-        <!------------ Start Content ---------------->
-        <div class="main">
-                <div class="order_banner">
-                <div class="main_title">Log Out</div>
-                <div class="divider"></div>
-                </div> 
+        <section id="hero-area" >
+<div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="block wow fadeInUp" data-wow-delay=".3s">
+</head>
+<!-- Form Module-->
+<div class="module form-module">
+  <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+    
+  </div>
+  <div class="form">
+    <h1>You have logged out<br><br>Have a nice day</h1><br>
+                    <p style="font-size: 20pt;"><a href="index.php"> Redirect to the home page</a></p>
+                    <hr>
+                    <p style="font-size: 16pt;"><a href="login.php"> Login Again</a></p><br>
+       
+          </div>
         </div>
-
-        <div align="center">
-          <p><br></p>
-          <h2> You have been logged out. </h2>
-            <p><br></p>
-            <h2> See you again!!!</h2>
-                <p><br></p>
-                <p><br></p>
-                <p><br></p>
-
-            <button class="btn btn-primary btn2 btn-normal btn-inline"><h1><a href="login.php">     Login Again     </a> </h1></button>
-    </body>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</body>
 </html>
