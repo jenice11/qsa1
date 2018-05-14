@@ -188,7 +188,11 @@
  session_start();
 
 ?>
-    <?php
+    
+
+<?php  include("/header.php");   ?> 
+
+<?php
             // to display error message if username and password is invalid
                 if (isset($_SESSION['ERRMSG_ARR']))
                 {
@@ -202,7 +206,28 @@
                 }  
             ?>
 
-<?php  include("/header.php");   ?> 
+<div class="side side-right" >
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success_alert" style="margin-bottom:-50px; visibility :hidden">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Sign Up successfull!</strong> You can login now!! Enjoy!!
+      </div>
+
+
+      <?php
+
+        if(isset($_GET['status'])) {
+          // echo "<script type='text/javascript'> $('.alert').alert() </script>";
+
+          echo "<script type='text/javascript'> 
+          document.getElementById('success_alert').style.visibility = 'visible'
+          </script>";
+        }
+        else  {
+        }
+        ?>
 
 <section id="hero-area" >
 <div class="container">
@@ -243,15 +268,15 @@
             </form>
         </div>
 
-        <div id="Advisor" class="tabcontent"style="text-align: left;" >
+        <div id="Advisor" class="tabcontent" style="text-align: left;" >
           <form method="post" action="advisor_sessionHandler.php">
               <h3 style="text-align: center; padding-bottom: 2%;">As Advisor</h3>
 
-              <label for="email" class="labelform"><b>Email Address :</b></label>
-              <input type="email" placeholder="example@gmail.com" name="email" required>
+              <label for="advisor_email" class="labelform"><b>Email Address :</b></label>
+              <input type="email" placeholder="example@gmail.com" name="advisor_email" required>
 
-              <label for="password" class="labelform"><b>Password :</b></label>
-              <input type="password" placeholder="Password" name="password" required>
+              <label for="advisor_password" class="labelform"><b>Password :</b></label>
+              <input type="password" placeholder="Password" name="advisor_password" required>
 
               <p style="text-align: center;">Don't have an account yet?  <a href="advisor_register.html"><br>Register Now as Advisor</a></p> 
 

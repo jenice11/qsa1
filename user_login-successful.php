@@ -148,8 +148,7 @@
  Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
 -->
 
- <?php include("authenticator.php");
-echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </center></h3><br/>"; ?>
+ <?php include("authenticator.php"); ?>
 
 
 <section id="hero-area" >
@@ -167,13 +166,12 @@ echo "<h3><center>Welcome ".$_SESSION['SESS_NAME']." , Login Successfully </cent
     
   </div>
   <div class="form">
-    <h1>Sorry <br> Login Failed</h1><br>
-                    <p style="font-size: 20pt;"><a href="login.php"> Redirect to the login page</a></p>
+    <?php echo "<h1><center>Welcome ".$_SESSION['SESS_NAME']." <br/><br/> Login Successfully </center></h3><br/>"; ?>
+                    <p style="font-size: 20pt;"><a href="index.html"> Redirect to the homepage</a></p>
                     <hr>
-                    <h2> Don't have an account yet?</h2>
-                    <p style="font-size: 16pt;"><a href="user_register.php"> Register as User </a></p><br>
-                    <p style="font-size: 16pt;"><a href="advisor_register.php"> Register as Advisor </a></p>
-       
+                    <h2> Quicklinks</h2>
+                    <p style="font-size: 16pt;"><a href="quit_plan.php"> Quit Plan </a></p>
+                    <p style="font-size: 16pt;"><a href="health_effects.html"> Info Wall, Health Effects </a></p>
           </div>
         </div>
       </div>
