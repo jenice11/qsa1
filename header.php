@@ -20,7 +20,18 @@
         ================================================== -->
         <!-- Twitter Bootstrs CSS -->
         <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-
+        <!-- Ionicons Fonts Css -->
+        <link rel="stylesheet" href="plugins/ionicons/ionicons.min.css">
+        <!-- animate css -->
+        <link rel="stylesheet" href="plugins/animate-css/animate.css">
+        <!-- Hero area slider css-->
+        <link rel="stylesheet" href="plugins/slider/slider.css">
+        <!-- owl craousel css -->
+        <link rel="stylesheet" href="plugins/owl-carousel/owl.carousel.css">
+        <link rel="stylesheet" href="plugins/owl-carousel/owl.theme.css">
+        <!-- Fancybox -->
+        <link rel="stylesheet" href="plugins/facncybox/jquery.fancybox.css">
+        <!-- template main css file -->
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -44,7 +55,7 @@
                     
                     <!-- logo -->
                     <div class="navbar-brand">
-                        <a href="index.html" >
+                        <a href="index.php" >
                             <img src="images/logo.png" alt="">
                         </a>
                     </div>
@@ -55,19 +66,32 @@
                     <div class="main-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="index.html" >Home</a>
+                                <a href="index.php" >Home</a>
                             </li>
-                            <li><a href="service.html">Quit Plan</a></li>
+                            <li><a href="quit_plan.php">Quit Plan</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li><a href="404.html">404 Page</a></li>
+                                        <li><a href="health_effects.html">Health Effects</a></li>
+                                        <li><a href="cigarette_contains_what.html">Cigarette contains what?</a></li>
+                                        <li><a href="why_smoke.html">Why Teenagers or Children Smoke</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            
+                            </li>         
                             <li><a href="contact.html">Contact Us</a></li>
+                            <?php
+
+        if(isset($_GET['status'])) {
+          // echo "<script type='text/javascript'> $('.alert').alert() </script>";
+
+          echo "<script type='text/javascript'> 
+          document.getElementById('success_alert').style.visibility = 'visible'
+          </script>";
+        }
+        else  {
+        }
+        ?>
                             <li><a href="login.php">Login</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
@@ -85,4 +109,5 @@
                 </nav>
                 <!-- /main nav -->
             </div>
-        </header>
+        </header>   
+        

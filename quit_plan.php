@@ -5,8 +5,8 @@
         ================================================== -->
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="icon" href="favicon.ico">
-        <title>Timer Agency Template</title>
+        <link rel="icon" href="home.png">
+        <title>Quit Plan</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -37,67 +37,42 @@
     <body>
 
 
-        <!--
-        ==================================================
-        Header Section Start
-        ================================================== -->
-        <header id="top-bar" class="navbar-fixed-top animated-header">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- responsive nav button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <!-- /responsive nav button -->
-                    
-                    <!-- logo -->
-                    <div class="navbar-brand">
-                        <a href="index.html" >
-                            <img src="images/logo.png" alt="">
-                        </a>
-                    </div>
-                    <!-- /logo -->
-                </div>
-                <!-- main menu -->
-                <nav class="collapse navbar-collapse navbar-right" role="navigation">
-                    <div class="main-menu">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="index.html" >Home</a>
-                            </li>
-                            <li><a href="service.html">Quit Plan</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
-                                <div class="dropdown-menu">
-                                    <ul>
-                                        <li><a href="health_effects.html">Health Effects</a></li>
-                                        <li><a href="cigarette_contains_what.html">Cigarette contains what?</a></li>
-                                        <li><a href="why_smoke.html">Why Teenagers or Children Smoke</a></li>
-                                    </ul>
-                                </div>
-                            </li>         
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="login.php">Login</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
-                                <div class="dropdown-menu">
-                                    <ul>
-                                        <li><a href="user_register.html">As User</a></li>
-                                        <li><a href="advisor_register.html">As Advisor</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </nav>
-                <!-- /main nav -->
-            </div>
-        </header>
+        <?php  include("/header.php");   ?> 
+        <style>
+            .header1 {
+              position: fixed;
+              top: 0;
+              z-index: 1;
+              width: 100%;
+              background-color: #f1f1f1;
+            }
+
+            .header1 h2 {
+              text-align: center;
+            }
+
+            .progress-container {
+              width: 100%;
+              height: 8px;
+              background: #ccc;
+            }
+
+            .progress-bar {
+              height: 8px;
+              background: #4caf50;
+              width: 0%;
+            }
+
+            .content {
+              padding: 100px 0;
+              margin: 50px auto 0 auto;
+              width: 80%;
+            }
+        </style>
+    </head>
+
+<?php
+session_start(); ?>
         
 
 <!--
@@ -107,10 +82,9 @@ Global Page Section Start
 <section class="global-page-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block">
-                    <h2>Info Wall</h2>
-                    <h3>Health Effects caused by cigarettes</h3>
+                    <h2>Create Quit Plan</h2>
                 </div>
             </div>
         </div>
@@ -118,15 +92,16 @@ Global Page Section Start
 </section><!--/#Page header-->
 
 
-<section class="single-post">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<section class="single-post" >
+    <div class="container" >
+        <div class="row" >
+            <div class="col-md-12" >
                 <div class="post-img">
-                    <img class="img-responsive" alt="" src="images/Tobacco_diagram.png" style="margin-left: 25%" style="padding-bottom:1em;" >
+                    <img class="img-responsive" alt="" src="images/white-sign-love-heart-line-red.jpg" style="margin-left: 34%; padding-bottom:1em;">
                 </div>
                 <div class="post-content">
                     <p>
+                        <button>Test</button>
                         Cigarette smoking and the use of tabacco products caused numerous diseases and health condition. Here are more info about how these will affect your health.
                     </p>
                     <blockquote>
@@ -163,6 +138,9 @@ Global Page Section Start
                 </blockquote>
                    
                 </div>
+            </div>
+        </div>
+    </div>
                 
 
 	<!-- Template Javascript Files

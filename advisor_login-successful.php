@@ -167,7 +167,7 @@
   </div>
   <div class="form">
     <?php echo "<h1><center>Welcome ".$_SESSION['SESS_NAME']." <br/><br/> Login Successfully </center></h3><br/>"; ?>
-                    <p style="font-size: 20pt;"><a href="index.html"> Redirect to the homepage</a></p>
+                    <p style="font-size: 20pt;"><a href="index.php"> Redirect to the homepage</a></p>
                     <hr>
                     <h2> Quicklinks</h2>
                     <p style="font-size: 16pt;"><a href="quit_plan.php"> Quit Plan </a></p>
