@@ -1,7 +1,7 @@
 <?php
 /*
  Filename: sessionHandler.php
- Purpose: To handle login information and create a session for that user.
+ Purpose: To handle login information and create a session for that advisor.
 */
 
 //Start session
@@ -13,13 +13,13 @@ session_start();
 $errflag = false;
 
 //Input Validations
-if ($_POST['user_email'] == '')
+if ($_POST['advisor_email'] == '')
 {
     $errmsg_arr[] = 'Email address missing';
     $errflag = true;
 }
 
-if ($_POST['user_password'] == '')
+if ($_POST['advisor_password'] == '')
 {
     $errmsg_arr[] = 'Password missing';
     $errflag = true;
@@ -42,9 +42,9 @@ $conn = mysqli_connect("localhost", "root", "") or die (mysqli_error());
 mysqli_select_db($conn,"qsadatabase") or die(mysqli_error());
 
 // to create a query to be executed in sql
-$matricnum = $_POST['user_email'];
-$password = $_POST['user_password'];
-$query = "SELECT * FROM user_info WHERE user_email = '$user_email' AND user_password = '$user_password'";
+$matricnum = $_POST['advisor_email'];
+$password = $_POST['advisor_password'];
+$query = "SELECT * FROM advisor_info WHERE advisor_email = '$advisor_email' AND advisor_password = '$advisor_password'";
     
 // to run sql query in database
 $result = mysqli_query($conn,$query) or die('Error: ' . mysqli_error($conn));
@@ -57,12 +57,12 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_CUSTOMER_ID'] = $member['user_email'];
-        $_SESSION ['SESS_NAME'] = $member['user_name'];
+        $_SESSION ['SESS_CUSTOMER_ID'] = $member['advisor_email'];
+        $_SESSION ['SESS_NAME'] = $member['advisor_name'];
         $_SESSION ['STATUS'] = true;
 
         session_write_close();
-        header("location: user_login-successful.php");
+        header("location: advisor_login-successful.php");
         exit();
     }
     else

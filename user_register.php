@@ -150,7 +150,6 @@
   </div>
   <div class="form">
     <form method="POST" action="user_register_script.php" enctype="multipart/form-data">
-    <form action="cust_sign-upscript.php" method="post">
     <h1>Create an account <br> As User</h1>
 
         <div  style="color:black; text-align: left;">

@@ -77,10 +77,6 @@
   font-wieght: 400;
  
 }
-.form-module input:focus {
-  border: 1px solid #33b5e5;
-  color: #333333;
-}
 .form-module button {
   cursor: pointer;
   background: #33b5e5;
@@ -151,9 +147,28 @@
   <div class="form">
     <h1>Login in Now</h1>
     <form>
+      <div  style="color:black; text-align: left;">
       <input type="email" placeholder="Email Address"/>
       <input type="password" placeholder="Password"/>
+
+       <?php
+            // to display error message if username and password is invalid
+                if (isset($_SESSION['ERRMSG_ARR']))
+                {
+                    echo "<h1 class='ermsg'>Error found: ";
+                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
+                    {
+                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
+                    }
+                    echo "</h1>";
+                    unset($_SESSION['ERRMSG_ARR']);
+                }  
+            ?>
+            
+      </div>
+
       <button>Login</button>
+
     </form>
   </div>
                    

@@ -44,7 +44,7 @@
   background: #FCFCFC;
   max-width: 500px;
   width: 100%;
-  border-top: 10px solid #33b5e5;
+  border-top: 10px solid #E5334B;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
@@ -78,7 +78,7 @@
 
 .form-module button {
   cursor: pointer;
-  background: #33b5e5;
+  background: #E5334B;
   width: 100%;
   border: 0;
   padding: 10px 15px;
@@ -87,7 +87,7 @@
   transition: 0.3s ease;
 }
 .form-module button:hover {
-  background: #178ab4;
+  background: #FF4A62;
 }
 
 .form-module .cta a {
@@ -149,13 +149,12 @@
     
   </div>
   <div class="form">
-    <form method="POST" action="user_register_script.php" enctype="multipart/form-data">
-    <form action="cust_sign-upscript.php" method="post">
-    <h1>Create an account <br> As User</h1>
+    <form method="POST" action="advisor_register_script.php" enctype="multipart/form-data">
+    <h1>Create an account <br> As Advisor</h1>
 
         <div  style="color:black; text-align: left;">
-        <label for="username" class="labelform"><b>Name :</b></label>
-        <input type="text" placeholder="Name" name="username"  required>
+        <label for="advisorname" class="labelform"><b>Name :</b></label>
+        <input type="text" placeholder="Name" name="advisorname"  required>
 
         <label for="password" class="labelform"><b>Password :</b></label>
         <input type="password" placeholder="Password" name="password" required>
@@ -171,6 +170,10 @@
 
         <label for="gender" class="labelform"><b>Gender :</b></label>
         <input type="text" placeholder="Male or Female" name="gender" required>
+
+        <label for="experience" class="labelform"><b>Any Experience as a medical practitioner:</b></label>
+        <input type="text" placeholder="e.g: Resident in Hospital AAA for 5 years/ Private doctor" name="experience" required>
+
       </div>
         <button>Register</button>
     </form>

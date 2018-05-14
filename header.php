@@ -73,8 +73,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li><a href="user_register.html">As User</a></li>
-                                        <li><a href="advisor_register.html">As Advisor</a></li>
+                                        <li><a href="user_register.php">As User</a></li>
+                                        <li><a href="advisor_register.php">As Advisor</a></li>
                                     </ul>
                                 </div>
                             </li>

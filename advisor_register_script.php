@@ -2,18 +2,19 @@
 
   include('dbase.php');
 
-  $user_name=$_POST['username'];
-  $user_password=$_POST['password'];
-  $user_email=$_POST['email'];
-  $user_phone=$_POST['phonenumber'];
-  $user_age=$_POST['age'];
-  $user_gender=$_POST['gender'];
+  $advisor_name=$_POST['advisorname'];
+  $advisor_password=$_POST['password'];
+  $advisor_email=$_POST['email'];
+  $advisor_phone=$_POST['phonenumber'];
+  $advisor_age=$_POST['age'];
+  $advisor_gender=$_POST['gender'];
+  $advisor_experience=$_POST['experience'];
  
 
   
   
  
- $query = "INSERT INTO user_info (user_name, user_password, user_email, user_phone, user_age, user_gender) VALUES ('$user_name', '$user_password', '$user_email', '$user_phone', '$user_age','$user_gender')";
+ $query = "INSERT INTO advisor_info (advisor_name, advisor_password, advisor_email, advisor_phone, advisor_age, advisor_gender, advisor_experience) VALUES ('$advisor_name', '$advisor_password', '$advisor_email', '$advisor_phone', '$advisor_age','$advisor_gender', '$advisor_experience=')";
   $result = mysqli_query($conn,$query) or die ("Could not execute query");
 
 if($result){
