@@ -58,6 +58,20 @@
                         <a href="index.php" >
                             <img src="images/logo.png" alt="">
                         </a>
+
+                        <div style="margin-top: -52%; margin-left: 129%; color: black;">
+
+                        <?php
+                    /*
+                     Filename: login-successful.php
+                     Purpose: To display protected web page if user is valid.
+                     Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
+                    */
+                        echo "<h2>Welcome, ".$_SESSION['SESS_NAME']." </h2>";
+                    
+                    ?>
+                         </div>
+                        
                     </div>
                     <!-- /logo -->
                 </div>

@@ -34,13 +34,23 @@
         <!-- template main css file -->
         <link rel="stylesheet" href="css/style.css">
     
-        <?php  include("/header.php");   ?> 
+        <?php  
+        include("authenticator.php");
+        include("/header.php");   ?> 
+
+        <?php 
+        include("dbase.php");
+                 $id = $_GET['id'];
+
+                 $query ="SELECT user_id='$id' FROM user_info,";
+                 ?>
+
         <style>
             /* Form Module */
             .form-module {
               position: relative;
               background: #FCFCFC;
-              max-width: 800px;
+              max-width: 1200px;
               width: 100%;
               border-top: 10px solid #33b5e5;
               -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -96,16 +106,40 @@
               text-decoration: none;
             }
 
+            /* column */
+            /* Create 5 equal columns that floats next to each other */
+            .column1 {
+                float: left;
+                width: 18.4%;
+                padding: 1px;
+
+            }
+            .column2 {
+                float: left;
+                width: 8%;
+                padding: 1px;
+            }
+
+            /* Clear floats after the columns */
+            .row1:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+                .column1 {
+                    width: 100%;
+                }
+            }
+
            
 
 
         </style>
 
     </head>
-
-<?php
-include("authenticator.php");
-session_start(); ?>
        
 <!--
 ==================================================
@@ -114,6 +148,9 @@ Global Page Section Start
 <section class="global-page-header">
     <div class="container">
         <div class="row">
+            <div id="user"> 
+                
+                </div>
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block">
                     <h2>Create Quit Plan</h2>
@@ -135,16 +172,6 @@ Global Page Section Start
                     <div class="module form-module">
                       <div class="toggle"><i class="fa fa-times fa-pencil"></i>
 
-                <?php
-                include("dbase.php");
-                 $id = $_GET['id'];
-                 
-
-                // $query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info WHERE food_id IN (SELECT food_fk FROM business_food_mapping WHERE business_fk IN (SELECT business_id FROM business_info WHERE business_id = $id )) "; 
-                 $query ="SELECT user_id, user_name, user_age, user_gender FROM user_info, quit_plan_mapping WHERE  user_info.user_id = quit_plan_mapping.user_fk AND user_info.user_id='$id'";
-                $result = mysqli_query($conn,$query);
-                ?>
-
 
 
                       </div>
@@ -161,7 +188,7 @@ Global Page Section Start
                             <input type="textarea" placeholder="As a message to remind yourself the reason of you quitting" name="reason" required>
 
                             <label for="frequency_smoke_week">How often do you smoke?</label> <br>  
-                              <select id="frequency_smoke" style="width: 40%; font-size: 12pt; ">  
+                              <select id="frequency_smoke_weekly" style="width: 40%; font-size: 12pt; ">  
                                 <option>0 day in a week</option>  
                                 <option>1 days in a week </option>  
                                 <option>2 days in a week</option>  
@@ -187,8 +214,84 @@ Global Page Section Start
                             <label for="frequency_smoke_daily">How much do you pay per pack of cigarettes?</label> <br>  
                             <p>$<input type="number" min="1" step="any" placeholder="10.40" name="price_cigarette"></p>
 
+                            <label for="frequency_smoke_daily">Choose one advisor</label> <br>  
+                            <div class="row1">
+                                    <div class=column2>
+                                        <p><b>Select one</b></p>
+                                    </div>
+                                    <div class=column1>
+                                        <p><b>Advisor Name</b></p>
+                                    </div>
+                                    <div class=column1>
+                                        <p><b>Advisor Email</b></p>
+                                    </div>
+                                    <div class=column1>
+                                        <p><b>Advisor Age</b></p>
+                                    </div>
+                                    <div class=column1>
+                                        <p><b>Advisor Gender</b></p>
+                                    </div>
+                                    <div class=column1>
+                                        <p><b>Advisor Experience</p>
+                                    </div>
+                                </div>
+
+                            <div>
+                                <?php
+
+                                $query ="SELECT advisor_id, advisor_name, advisor_email, advisor_age, advisor_gender, advisor_experience from advisor_info"; 
+                                $result = mysqli_query($conn,$query);
+                                if (mysqli_num_rows($result) > 0){ 
+                                // output data of each row
+                                while($row = mysqli_fetch_assoc($result)){
+
+                                $advisor_id = $row["advisor_id"];
+                                $advisor_name = $row["advisor_name"];
+                                $advisor_email = $row["advisor_email"];
+                                $advisor_age = $row["advisor_age"];
+                                $advisor_gender = $row["advisor_gender"];
+                                $advisor_experience = $row["advisor_experience"]; 
+                                ?>
+
+                                
+
+                                <div class="row1" style="font-size: ">
+                                   <!-- List -->
+                                   <div class=column2>
+                                       <input type="radio" name="gender" value="<?php $advisor_id; ?>"> <br>
+                                 </div>
+                                    <div class=column1 style="">
+                                       <p> <?php echo $advisor_name; ?></p>
+                                   </div>
+
+                                       <div class=column1>
+                                       <p> <?php echo $advisor_email; ?></p>
+                                   </div>
+
+                                       <div class=column1>
+                                       <p> <?php echo $advisor_age; ?></p>
+                                   </div>
+
+                                       <div class=column1>
+                                       <p> <?php echo $advisor_gender; ?></p>
+                                   </div>
+
+                                       <div class=column1>
+                                       <p> <?php echo $advisor_experience; ?></p>
+                                   </div>
+                                </div>
+
+                                <?php
+                                }
+                }else{
+                    echo "No results";
+                }
+                ?>
+
+
                             </div>
-                        </fieldset>
+                        </div>
+                    </fieldset>
 
               
             <div style="text-align: center;">

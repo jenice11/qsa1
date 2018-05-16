@@ -14,7 +14,7 @@
   
   
  
- $query = "INSERT INTO advisor_info (advisor_name, advisor_password, advisor_email, advisor_phone, advisor_age, advisor_gender, advisor_experience) VALUES ('$advisor_name', '$advisor_password', '$advisor_email', '$advisor_phone', '$advisor_age','$advisor_gender', '$advisor_experience=')";
+ $query = "INSERT INTO advisor_info (advisor_name, advisor_password, advisor_email, advisor_phone, advisor_age, advisor_gender, advisor_experience) VALUES ('$advisor_name', '$advisor_password', '$advisor_email', '$advisor_phone', '$advisor_age','$advisor_gender', '$advisor_experience')";
   $result = mysqli_query($conn,$query) or die ("Could not execute query");
 
 if($result){

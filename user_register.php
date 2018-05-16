@@ -142,9 +142,6 @@
       <div class="row">
         <div class="col-md-12 text-center">
             <div class="block wow fadeInUp" data-wow-delay=".3s">
-                <div class="pen-title">
-  <h1></h1>
-</div>
 <!-- Form Module-->
 <div class="module form-module">
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
