@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
+
+        <?php  
+        include("authenticator.php");  ?> 
         <!-- Basic Page Needs
         ================================================== -->
         <meta charset="utf-8">
@@ -33,6 +36,8 @@
         <link rel="stylesheet" href="plugins/facncybox/jquery.fancybox.css">
         <!-- template main css file -->
         <link rel="stylesheet" href="css/style.css">
+
+        
     </head>
     <body>
 
@@ -56,21 +61,9 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="index.php" >
-                            <img src="images/logo.png" alt="">
+                            <img src="images/logo.png" alt="" >
                         </a>
 
-                        <div style="margin-top: -52%; margin-left: 129%; color: black;">
-
-                        <?php
-                    /*
-                     Filename: login-successful.php
-                     Purpose: To display protected web page if user is valid.
-                     Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
-                    */
-                        echo "<h2>Welcome, ".$_SESSION['SESS_NAME']." </h2>";
-                    
-                    ?>
-                         </div>
                         
                     </div>
                     <!-- /logo -->
@@ -79,6 +72,7 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="main-menu">
                         <ul class="nav navbar-nav navbar-right">
+                            <li> <a><?php echo "Welcome, ".$_SESSION['SESS_NAME']?></a> </li>
                             <li>
                                 <a href="index.php" >Home</a>
                             </li>

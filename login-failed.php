@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html class="no-js">
+    <head> 
+        <!-- Basic Page Needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="icon" href="home.png">
+        <title>Quit Smoking Advisor</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <!-- Mobile Specific Metas
+        ================================================== -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  
-    <style type="text/css">
+        
+        <!-- Template CSS Files
+        ================================================== -->
+        <!-- Twitter Bootstrs CSS -->
+        <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+        <!-- Ionicons Fonts Css -->
+        <link rel="stylesheet" href="plugins/ionicons/ionicons.min.css">
+        <!-- animate css -->
+        <link rel="stylesheet" href="plugins/animate-css/animate.css">
+        <!-- Hero area slider css-->
+        <link rel="stylesheet" href="plugins/slider/slider.css">
+        <!-- owl craousel css -->
+        <link rel="stylesheet" href="plugins/owl-carousel/owl.carousel.css">
+        <link rel="stylesheet" href="plugins/owl-carousel/owl.theme.css">
+        <!-- Fancybox -->
+        <link rel="stylesheet" href="plugins/facncybox/jquery.fancybox.css">
+        <!-- template main css file -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <style type="text/css">
       body {
   background: #e9e9e9;
   color: #666666;
@@ -129,8 +158,83 @@
 }
 
     </style>
+    </head>
+    <body>
 
-<?php  include("/header.php");   ?> 
+
+ <!--
+        ==================================================
+        Header Section Start
+        ================================================== -->
+        <header id="top-bar" class="navbar-fixed-top animated-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                    
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="index.php" >
+                            <img src="images/logo.png" alt="">
+                        </a>
+                        
+                    </div>
+                    <!-- /logo -->
+                </div>
+                <!-- main menu -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="index.php" >Home</a>
+                            </li>
+                            <li><a href="quit_plan.php">Quit Plan</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="health_effects.php">Health Effects</a></li>
+                                        <li><a href="cigarette_contains_what.php">Cigarette contains what?</a></li>
+                                        <li><a href="why_smoke.php">Why Teenagers or Children Smoke</a></li>
+                                    </ul>
+                                </div>
+                            </li>         
+                            <li><a href="contact.php">Contact Us</a></li>
+             
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="logout.php">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Register <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="user_register.php">As User</a></li>
+                                        <li><a href="advisor_register.php">As Advisor</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+            </div>
+        </header>   
+         
 
 <section id="hero-area" >
 <div class="container">
@@ -146,8 +250,8 @@
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
     
   </div>
-  <div class="form">
-    <h1>Sorry <br> Login Failed</h1><br>
+  <div class="form" style="padding-top: 40%">
+    <h1>Sorry <br> Please Login Again</h1><br>
                     <p style="font-size: 20pt;"><a href="login.php"> Redirect to the login page</a></p>
                     <hr>
                     <h2> Don't have an account yet?</h2>

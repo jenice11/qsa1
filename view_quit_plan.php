@@ -39,17 +39,12 @@
         include("/header.php");   
         ?> 
 
-        <?php 
-        include("dbase.php");
-                 $id = $_GET['id'];
-                 ?>
-
         <style>
             /* Form Module */
             .form-module {
               position: relative;
               background: #FCFCFC;
-              max-width: 1200px;
+              max-width: 400px;
               width: 100%;
               border-top: 10px solid #33b5e5;
               -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -152,7 +147,7 @@ Global Page Section Start
                 </div>
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
-                    <h2>Create Quit Plan</h2>
+                    <h2>Quit Plan</h2>
                 </div>
             </div>
         </div>
@@ -179,119 +174,51 @@ Global Page Section Start
                         <h1 style="text-align: center; margin-top: -1%;">First Step On Quit Plan</h1>
 
                             <fieldset> 
+                              <?php include("dbase.php"); 
 
-                            <div  style="color:black; text-align: left;">
-                            <label for="date" class="labelform"><b>Select A Quit Date :</b></label>
-                            <input type="date" placeholder="Preferably within 2 weeks" name="date" required>
+                              $query ="SELECT quit_plan_id, tarikh, reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette FROM quit_plan WHERE quit_plan_id=1";
 
-                            <label for="reason" class="labelform"><b>What is your reason for quitting :</b></label>
-                            <input type="textarea" placeholder="As a message to remind yourself the reason of you quitting" name="reason" required>
-
-                            <label for="frequency_smoke_weekly">How often do you smoke?</label> <br>  
-                              <select name="frequency_smoke_weekly" style="width: 40%; font-size: 12pt; "> 
-                                <option value="" disabled selected>Select</option> 
-                                <option value="0 day in a week">0 day in a week</option>  
-                                <option value="1 day in a week">1 days in a week </option>  
-                                <option value="2 day in a week">2 days in a week</option>  
-                                <option value="3 day in a week">3 days in a week</option>  
-                                <option value="4 day in a week">4 days in a week</option>
-                                <option value="5 day in a week">5 days in a week</option>  
-                                <option value="6 day in a week">6 days in a week</option>  
-                                <option value="Everyday">Everyday</option>  
-                              </select>   
-                              <br><br>
-                            
-                            <label for="frequency_smoke_daily">When you smoke, how many a day?</label> <br>  
-                            <input type="number" placeholder="1" name="frequency_smoke_daily" required>
-
-                            <label for="when_craving">When do you carve?</label> <br>  
-                              <select name="when_craving" style="width: 40%; font-size: 12pt; ">  
-                                <option value="" disabled selected>Select a time</option>
-                                <option value="Morning">Morning</option>  
-                                <option value="Afternoon">Afternoon</option>  
-                                <option value="Evening">Evening</option>  
-                              </select>   
-                              <br><br>
-
-                            <label for="price_cigarette">How much do you pay per pack of cigarettes?</label> <br>  
-                            <p>$<input type="number" min="1" step="any" placeholder="10.40" name="price_cigarette"></p>
-
-                            <label for="frequency_smoke_daily">Choose one advisor</label> <br>  
-                            <div class="row1">
-                                    <div class=column2>
-                                        <p><b>Select one</b></p>
-                                    </div>
-                                    <div class=column1>
-                                        <p><b>Advisor Name</b></p>
-                                    </div>
-                                    <div class=column1>
-                                        <p><b>Advisor Email</b></p>
-                                    </div>
-                                    <div class=column1>
-                                        <p><b>Advisor Age</b></p>
-                                    </div>
-                                    <div class=column1>
-                                        <p><b>Advisor Gender</b></p>
-                                    </div>
-                                    <div class=column1>
-                                        <p><b>Advisor Experience</p>
-                                    </div>
-                                </div>
-
-                            <div>
-                                <?php
-
-                                
-
-
-
-                                $query ="SELECT advisor_id, advisor_name, advisor_email, advisor_age, advisor_gender, advisor_experience FROM advisor_info"; 
-
-                                $id = $id;
-
-                                $result = mysqli_query($conn,$query);
+                              $result = mysqli_query($conn,$query);
                                 if (mysqli_num_rows($result) > 0){ 
                                 // output data of each row
                                 while($row = mysqli_fetch_assoc($result)){
 
 
-                                $advisor_id = $row["advisor_id"];
-                                $advisor_name = $row["advisor_name"];
-                                $advisor_email = $row["advisor_email"];
-                                $advisor_age = $row["advisor_age"];
-                                $advisor_gender = $row["advisor_gender"];
-                                $advisor_experience = $row["advisor_experience"]; 
+                                $quit_plan_id = $row["quit_plan_id"];
+                                $tarikh = $row["tarikh"];
+                                $reason = $row["reason"];
+                                $frequency_smoke_weekly = $row["frequency_smoke_weekly"];
+                                $frequency_smoke_daily = $row["frequency_smoke_daily"];
+                                $when_craving = $row["when_craving"]; 
+                                $price_cigarette = $row["price_cigarette"]; 
                                 ?>
 
-                                
 
-                                <div class="row1" style="font-size: ">
-                                   <!-- List -->
-                                   <div class=column2>
-                                       <input type="radio" name="advisor_id" value="<?php echo $advisor_id; ?>"><?php echo $advisor_id; ?><br>
-                                 </div>
-                                    <div class=column1 style="">
-                                       <p> <?php echo $advisor_name; ?></p>
-                                   </div>
+                            <div  style="color:black; text-align: left;">
 
-                                       <div class=column1>
-                                       <p> <?php echo $advisor_email; ?></p>
-                                   </div>
+                            <label for="date" class="labelform"><b>Quit Date :</b></label>
+                            <p> <?php echo $tarikh; ?></p>
 
-                                       <div class=column1>
-                                       <p> <?php echo $advisor_age; ?></p>
-                                   </div>
+                            <label for="reason" class="labelform"><b>What is your reason for quitting :</b></label>
+                            <p> <?php echo $reason; ?></p>
 
-                                       <div class=column1>
-                                       <p> <?php echo $advisor_gender; ?></p>
-                                   </div>
+                            <label for="frequency_smoke_weekly">How often do you smoke?</label> <br>  
+                             <p> <?php echo $frequency_smoke_weekly; ?></p>
+                            
+                            <label for="frequency_smoke_daily">When you smoke, how many a day?</label> <br>  
+                            <p> <?php echo $frequency_smoke_daily; ?></p>
 
-                                       <div class=column1>
-                                       <p> <?php echo $advisor_experience; ?></p>
-                                   </div>
-                                </div>
+                            <label for="when_craving">When do you carve?</label> <br>  
+                              <p> <?php echo $when_craving; ?></p> 
 
+
+                            <label for="price_cigarette">How much do you pay per pack of cigarettes?</label> <br>  
+                            <p> <?php echo $price_cigarette; ?></p>
+
+                            <label for="frequency_smoke_daily">Advisor</label> <br>  
+                            <p> Dr. A </p>
                                 <?php
+
                                 }
                 }else{
                     echo "No results";
@@ -305,8 +232,7 @@ Global Page Section Start
 
               
             <div style="text-align: center;">
-            <button type="submit">Submit</button>  
-            <button type="reset" >Reset</button>  
+            <p style="font-size: 20pt;"><a href="index.php"> Redirect to the home page</a></p>
         </div>
         </fieldset>  
 </form>  

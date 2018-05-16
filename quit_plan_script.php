@@ -2,19 +2,19 @@
   session_start();
  include("dbase.php");
 
-
-  $quit_plan_id = $_POST['id'];
-  $date = date("d-m-Y");
+  $advisor_id = $_POST['advisor_id'];
+  $tarikh = date("d-m-Y");
   $reason = $_POST['reason'];
+  $frequency_smoke_weekly = $_POST['frequency_smoke_weekly'];
   $frequency_smoke_daily = $_POST['frequency_smoke_daily'];
   $when_craving = $_POST['when_craving'];
   $price_cigarette = $_POST['price_cigarette'];
-  $u_id = $_SESSION['SESS_USER_ID'];
-  $advisor_fk = $_POST['advisor_id'];
-             
+    
 
 
-  $query = "INSERT into quit_plan (quit_plan_id,tarikh,reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving,price_cigarette, user_fk, advisor_fk  ) VALUES($c_id, $foodid, $quantity, '$date')";
+  $query = "INSERT into quit_plan (advisor_fk, tarikh,reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette )      VALUES($advisor_id, $tarikh, '$reason', '$frequency_smoke_weekly', '$frequency_smoke_daily', '$when_craving', '$price_cigarette')
+            ";
+
   $result = mysqli_query($conn,$query) or die ("Could not execute query");
 
 if($result){

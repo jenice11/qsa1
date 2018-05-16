@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <?php  include("/header.php");   ?> 
+        <?php  
+        include("authenticator.php");
+        include("/header.php");   ?> 
         
     </head>
 
