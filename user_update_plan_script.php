@@ -13,19 +13,21 @@
   $advisor_id = $_POST['advisor_id'];
 
   $query = "SELECT advisor_id, from advisor_info WHERE advisor_id='$advisor_id'";
-    $query = "SELECT user_id from user_info WHERE user_id='$user_id'";
-  $query = "INSERT into quit_plan (quit_date, reason,  frequency_smoke_weekly,  frequency_smoke_daily, when_craving, price_cigarette, user_fk, advisor_fk)
-            VALUES ('$quitdate', '$reason', '$frequency_smoke_weekly', '$frequency_smoke_daily', '$when_craving', '$price_cigarette','$user_id', '$advisor_id')";
 
-  $result = mysqli_query($conn,$query) or die ("Could not execute 1query");
+  $query = "UPDATE quit_plan SET quit_date='$quitdate', reason='$reason', 
+            frequency_smoke_weekly='$frequency_smoke_weekly',  frequency_smoke_daily='frequency_smoke_daily',
+            when_craving='$when_craving', price_cigarette='$price_cigarette', advisor_fk='$advisor_id'
+            WHERE user_fk='$user_id'";
+            
 
+
+  $result = mysqli_query($conn,$query) or die ("Could not execute query");
 
 
 if($result){
-        
-  echo "<script type= 'text/javascript'> alert('Quit Plan Created')
+         
+  echo "<script type= 'text/javascript'> alert('Plan Details Updated'); 
   window.location='user_view_plan.php'</script>";
-  // echo $c_id;
 }
 ?>
   

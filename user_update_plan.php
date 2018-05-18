@@ -1,48 +1,10 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <!-- Basic Page Needs
-        ================================================== -->
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="icon" href="home.png">
-        <title>Quit Plan</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="author" content="">
-        <!-- Mobile Specific Metas
-        ================================================== -->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        
-        <!-- Template CSS Files
-        ================================================== -->
-        <!-- Twitter Bootstrs CSS -->
-        <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-        <!-- Ionicons Fonts Css -->
-        <link rel="stylesheet" href="plugins/ionicons/ionicons.min.css">
-        <!-- animate css -->
-        <link rel="stylesheet" href="plugins/animate-css/animate.css">
-        <!-- Hero area slider css-->
-        <link rel="stylesheet" href="plugins/slider/slider.css">
-        <!-- owl craousel css -->
-        <link rel="stylesheet" href="plugins/owl-carousel/owl.carousel.css">
-        <link rel="stylesheet" href="plugins/owl-carousel/owl.theme.css">
-        <!-- Fancybox -->
-        <link rel="stylesheet" href="plugins/facncybox/jquery.fancybox.css">
-        <!-- template main css file -->
-        <link rel="stylesheet" href="css/style.css">
     
         <?php  
         include("authenticator.php");
         include("/user_header.php");   
         ?> 
 
-        <?php 
-        include("dbase.php");
-                 $id = $_GET['id'];
-                 ?>
 
         <style>
             /* Form Module */
@@ -148,8 +110,7 @@ Global Page Section Start
                 </div>
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
-                    <h2>Create Quit Plan</h2>
-                    $id = $_SESSION['SESS_USER_ID']; ?>
+                    <h2>Edit Quit Plan</h2>
                 </div>
             </div>
         </div>
@@ -160,26 +121,50 @@ Global Page Section Start
     <div class="container" >
         <div class="row" >
             <div class="col-md-12" >
-                <div class="post-img">
-                    <img class="img-responsive" alt="" src="images/white-sign-love-heart-line-red.jpg" style="margin-left: 34%; padding-bottom:1em;">
-                </div>
+
                 <div class="post-content">
                     <!-- Form Module-->
                     <div class="module form-module">
+        <?php
+          include("dbase.php");
+         $user_id = $_SESSION['SESS_USER_ID'];
+
+                      $query ="SELECT quit_date, reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette, advisor_fk, user_fk, advisor_name,advisor_email, advisor_phone FROM quit_plan, advisor_info, user_info WHERE advisor_info.advisor_id=quit_plan.advisor_fk AND 
+                        user_info.user_id=quit_plan.user_fk AND quit_plan.user_fk='$user_id'";
+
+                         $result = mysqli_query($conn,$query);
+                      if (mysqli_num_rows($result) > 0){ 
+                      // output data of each row
+                      while($row = mysqli_fetch_assoc($result)){
+                      $quit_date = $row ["quit_date"];
+                      $reason = $row ["reason"];
+                      $frequency_smoke_weekly = $row ["frequency_smoke_weekly"];
+                      $frequency_smoke_daily = $row["frequency_smoke_daily"];
+                      $when_craving = $row["when_craving"];
+                      $price_cigarette = $row["price_cigarette"];
+                      $advisor_name = $row["advisor_name"];
+                      $advisor_email = $row["advisor_email"];
+                      $advisor_phone = $row["advisor_phone"];
+          ?>
+
 
                       <div class="form">
-                        <form method="POST" action="quit_plan_script.php" enctype="multipart/form-data">
+                        <form method="POST" action="user_update_plan_script.php" enctype="multipart/form-data">
+                          <table>            
+                              <tr>
+                                <td >Your Quit Date </p></td>
+                                <td><input type="date" name="quitdate">  </td>
+                              </tr>
+                              
+                              <tr>
+                                <td >Your reason for quitting </p></td>
+                                <td><input type="text" name="reason" value="<?php echo $reason ?>"> </td>
+                              </tr>
 
-
-                            <div  style="color:black; text-align: left;">
-                            <label for="date" class="labelform"><b>Select A Quit Date :</b></label>
-                            <input type="date" placeholder="Preferably within 2 weeks" name="quitdate" id="quitdate" required>
-
-                            <label for="reason" class="labelform"><b>What is your reason for quitting :</b></label>
-                            <input type="text" placeholder="As a message to remind yourself the reason of you quitting" name="reason" id="reason" required>
-
-                            <label for="frequency_smoke_weekly">How often do you smoke?</label> <br>  
-                              <select name="frequency_smoke_weekly" id="frequency_smoke_weekly" style="width: 40%; font-size: 12pt; "> 
+                              <tr>
+                                <td >Day(s) you smoke in a week </p></td>
+                                <td>
+                                  <select name="frequency_smoke_weekly" id="frequency_smoke_weekly" style="width: 100%; font-size: 12pt; "> 
                                 <option value="" disabled selected>Select</option> 
                                 <option value="0 day in a week">0 day in a week</option>  
                                 <option value="1 day in a week">1 days in a week </option>  
@@ -189,25 +174,46 @@ Global Page Section Start
                                 <option value="5 day in a week">5 days in a week</option>  
                                 <option value="6 day in a week">6 days in a week</option>  
                                 <option value="Everyday">Everyday</option>  
-                              </select>   
-                              <br><br>
+                              </select>  
                             
-                            <label for="frequency_smoke_daily">When you smoke, how many a day?</label> <br>  
-                            <input type="number" placeholder="1" name="frequency_smoke_daily" min="0" id="frequency_smoke_daily" required>
+                              </tr>
 
-                            <label for="when_craving">When do you carve?</label> <br>  
-                              <select name="when_craving" id="when_craving" style="width: 40%; font-size: 12pt; ">  
+                              <tr>
+                                <td >Frequency of smoking daily </p></td>
+                                <td><input type="number" name="frequency_smoke_daily" min="0" value="<?php echo $frequency_smoke_daily  ?>"> </td>
+                              </tr>
+
+                              <tr>
+                                <td >Time in the day when craving </p></td>
+                                <td><select name="when_craving" id="when_craving" style="width: 100%; font-size: 12pt; ">  
                                 <option value="" disabled selected>Select a time</option>
                                 <option value="Morning">Morning</option>  
                                 <option value="Afternoon">Afternoon</option>  
                                 <option value="Evening">Evening</option>  
-                              </select>   
-                              <br><br>
+                              </select>     
+                              </td>
+                              </tr>
 
-                            <label for="price_cigarette">How much do you pay per pack of cigarettes?</label> <br>  
-                            <p>$<input type="number" min="0" step="any" placeholder="10.40" name="price_cigarette" id="price_cigarette"></p>
+                              <tr>
+                                <td >Price per cigarettes </p></td>
+                                <td><input type="number" name="price_cigarette" min="0" value="<?php echo $price_cigarette ?>"> </td>
+                              </tr>
 
-                            <label for="frequency_smoke_daily">Choose one advisor</label> <br>  
+                              <tr>
+                                <td>Your Advisor Name </p></td>
+                                <td>: <?php echo $advisor_name ?></td>
+                              </tr>
+                          </table>
+                          <?php
+                                }
+                }else{
+                    echo "No results";
+                }
+                ?>
+
+                            
+                          <br/>
+                            <label style="font-size: 1.2em;">Choose one below, if you would like to change advisor</label> <br>  
                             <div class="row1">
                                     <div class=column2>
                                         <p><b>Select one</b></p>
@@ -232,8 +238,6 @@ Global Page Section Start
                             <div>
                                 <?php
                                 $query ="SELECT advisor_id, advisor_name, advisor_email, advisor_age, advisor_gender, advisor_experience FROM advisor_info"; 
-
-                                $id = $id;
 
                                 $result = mysqli_query($conn,$query);
                                 if (mysqli_num_rows($result) > 0){ 
@@ -283,10 +287,10 @@ Global Page Section Start
                     echo "No results";
                 }
                 ?>
-
-
-                            </div>
-                        </div>
+</div>
+</div>
+</div>
+</div>
 
               
             <div style="text-align: center;">
@@ -295,35 +299,8 @@ Global Page Section Start
         </div>
         </fieldset>  
 </form>  
-         
-                </div>
-            </div>
-        </div>
-    </div>
 
-</div>
-</section>
-</div>
-</section>
-
-
-	<!-- Template Javascript Files
-	================================================== -->
-	<!-- jquery -->
-	<script src="plugins/jQurey/jquery.min.js"></script>
-	<!-- Form Validation -->
-    <script src="plugins/form-validation/jquery.form.js"></script> 
-    <script src="plugins/form-validation/jquery.validate.min.js"></script>
-	<!-- owl carouserl js -->
-	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="plugins/bootstrap/bootstrap.min.js"></script>
-	<!-- wow js -->
-	<script src="plugins/wow-js/wow.min.js"></script>
-	<!-- slider js -->
-	<script src="plugins/slider/slider.js"></script>
-	<!-- Fancybox -->
-	<script src="plugins/facncybox/jquery.fancybox.js"></script>
-	<!-- template main js -->
-	<script src="js/main.js"></script>
+</body>
 </html>
+
+

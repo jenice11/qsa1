@@ -164,8 +164,12 @@ Global Page Section Start
                       $advisor_phone = $row["advisor_phone"];
                         ?>
                         <div style="font-size: 1.15em;">
-                          <h1 style="text-align: center">Well done on your first step!</h1>
+                          <table>
+                              <h1 style="text-align: center">Your Quit Plan Information</h1>
                           <h2 style="text-align: center; font-size: 1.3em;">Contact your advisor for further discussion</h2>
+
+                          </table>
+                          
                             <table>
 
                              <tr>
@@ -217,8 +221,13 @@ Global Page Section Start
                                 <td>Your Advisor Phone</td>
                                 <td>: <?php echo $advisor_phone ?></td>
                               </tr>
+                            </table>
+                            <br>
+                            <input type="button" value="Edit Plan" onclick="window.location.href='user_update_plan.php'" style="background-color: #33B5E5;" />
 
-                            </table>   
+                            <input type="button" value="Return to homepage" onclick="window.location.href='http://www.hyperlinkcode.com/button-links.php' " style="background-color: #33B5E5;" />
+
+                             
 
                             
                                 
