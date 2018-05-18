@@ -4,12 +4,80 @@
 		"selected_items":
 		[
 			[
+				"quit_l",
+				"quit_plan_id"
+			],
+			[
+				"quit",
+				"quit_plan_id"
+			],
+			[
+				"qu",
+				"quit_plan_id"
+			],
+			[
+				"qui",
+				"quit_plan_id"
+			],
+			[
+				"advis",
+				"advisor_id"
+			],
+			[
+				"quit_",
+				"quit_plan_fk"
+			],
+			[
+				"adviso",
+				"advisor_info"
+			],
+			[
+				"adv",
+				"advisor_quitplan_mapping"
+			],
+			[
+				"user",
+				"user_fk"
+			],
+			[
+				"advisor",
+				"advisor_id"
+			],
+			[
+				"user_",
+				"user_quitplan_mapping"
+			],
+			[
+				"advi",
+				"advisor_info"
+			],
+			[
 				"mar",
-				"margin-right"
+				"margin-top"
+			],
+			[
+				"ad",
+				"advisor_fk"
+			],
+			[
+				"u",
+				"user_id"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"font",
+				"font-weight"
 			],
 			[
 				"margin",
 				"margin-left"
+			],
+			[
+				"c",
+				"cpassword"
 			],
 			[
 				"padd",
@@ -18,10 +86,6 @@
 			[
 				"fre",
 				"frequency_smoke_daily"
-			],
-			[
-				"font",
-				"font-size"
 			],
 			[
 				"o",
@@ -52,10 +116,6 @@
 				"margin-top"
 			],
 			[
-				"user_",
-				"user_password"
-			],
-			[
 				"co",
 				"color"
 			],
@@ -66,10 +126,6 @@
 			[
 				"background-c",
 				"background-color"
-			],
-			[
-				"user",
-				"user_email"
 			],
 			[
 				"ph",
@@ -86,10 +142,6 @@
 			[
 				"padding",
 				"padding-top"
-			],
-			[
-				"pa",
-				"padding-left"
 			],
 			[
 				"all",
@@ -127,33 +179,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 16997,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "login-failed.php",
-			"settings":
-			{
-				"buffer_size": 3352,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "header.php",
-			"settings":
-			{
-				"buffer_size": 5710,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "logout.php",
-			"settings":
-			{
-				"buffer_size": 2999,
+				"buffer_size": 17044,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -162,30 +188,26 @@
 			"file": "quit_plan.php",
 			"settings":
 			{
-				"buffer_size": 9010,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "quit_plan_script.php",
-			"settings":
-			{
-				"buffer_size": 1185,
+				"buffer_size": 13514,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\" >\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Register As User</title>\n  \n    <style type=\"text/css\">\n      body {\n  background: #e9e9e9;\n  color: #000000;\n  font-family: 'RobotoDraft', 'Roboto', sans-serif;\n  font-size: 14px;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n/* Pen Title */\n.pen-title {\n  padding: 50px 0 30px 0;\n  text-align: center;\n  letter-spacing: 2px;\n}\n.pen-title h1 {\n  margin: 0 0 20px;\n  font-size: 48px;\n  font-weight: 300;\n}\n.pen-title span {\n  font-size: 12px;\n}\n.pen-title span .fa {\n  color: #33b5e5;\n}\n.pen-title span a {\n  color: #33b5e5;\n  font-weight: 600;\n  text-decoration: none;\n}\n\n/* Form Module */\n.form-module {\n  position: relative;\n  background: #FCFCFC;\n  max-width: 500px;\n  width: 100%;\n  border-top: 10px solid #33b5e5;\n  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);\n          box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);\n  margin: 0 auto;\n}\n\n.form-module .form {\n  display: none;\n  padding: 30px ;\n}\n.form-module .form:nth-child(2) {\n  display: block;\n}\n.form-module h2 {\n  margin: 0 0 20px;\n  color: #33b5e5;\n  font-size: 18px;\n  font-weight: 400;\n  line-height: 1;\n}\n.form-module input {\n\n  width: 100%;\n  border: 1px solid #d9d9d9;\n  margin: 0 0 20px;\n  padding: 10px 15px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  font-wieght: 400;\n \n}\n\n.form-module button {\n  cursor: pointer;\n  background: #33b5e5;\n  width: 100%;\n  border: 0;\n  padding: 10px 15px;\n  color: #ffffff;\n  -webkit-transition: 0.3s ease;\n  transition: 0.3s ease;\n}\n.form-module button:hover {\n  background: #178ab4;\n}\n\n.form-module .cta a {\n  color: #333333;\n  text-decoration: none;\n}\n\n/* slide */\n#hero-area {\n  background: url('../images/slider.jpg') no-repeat 20%;\n  background-size: cover;\n  background-attachment: fixed;\n  margin-top: -215px;\n  padding: 50px 0;\n  color: #fff;\n  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);\n  position: relative;\n}\n\n\n#hero-area h1 {\n  font-size: 40px;\n  line-height: 50px;\n  color: #333;\n  font-weight: 700;\n  margin-bottom: 15px;\n  text-transform: uppercase;\n}\n#hero-area h2 {\n  font-size: 18px;\n  font-weight: 300;\n  margin-bottom: 38px;\n  line-height: 27px;\n  text-transform: uppercase;\n  color: #666;\n  font-family: 'Roboto', sans-serif;\n  margin-top: 25px;\n}\n\n.labelform{\n  font-size: 12pt;\n  color:#262626;\"\n}\n    </style>\n\n<?php  include(\"/header.php\");   ?> \n</head>\n<body>\n\n<section id=\"hero-area\" >\n<div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-md-12 text-center\">\n            <div class=\"block wow fadeInUp\" data-wow-delay=\".3s\">\n<!-- Form Module-->\n<div class=\"module form-module\">\n  <div class=\"toggle\"><i class=\"fa fa-times fa-pencil\"></i>\n    \n  </div>\n  <div class=\"form\">\n    <form method=\"POST\" action=\"user_register_script.php\" enctype=\"multipart/form-data\">\n    <h1>Create an account <br> As User</h1>\n\n        <div  style=\"color:black; text-align: left;\">\n        <label for=\"username\" class=\"labelform\"><b>Name :</b></label>\n        <input type=\"text\" placeholder=\"Name\" name=\"username\"  required>\n\n        <label for=\"password\" class=\"labelform\"><b>Password :</b></label>\n        <input type=\"password\" placeholder=\"Password\" name=\"password\" required>\n\n        <label for=\"email\" class=\"labelform\"><b>Email Address :</b></label>\n        <input type=\"email\" placeholder=\"example@gmail.com\" name=\"email\" required>\n\n        <label for=\"phonenumber\" class=\"labelform\"><b>Phone Number :</b></label>\n        <input type=\"tel\" placeholder=\"0191234567\" name=\"phonenumber\" required>\n\n        <label for=\"age\" class=\"labelform\"><b>Age :</b></label>\n        <input type=\"number\" placeholder=\"Age\" name=\"age\" required>\n\n        <label for=\"gender\" class=\"labelform\"><b>Gender :</b></label>\n        <input type=\"text\" placeholder=\"Male or Female\" name=\"gender\" required>\n      </div>\n        <button>Register</button>\n    </form>\n  </div>\n                   \n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n</section>\n</body>\n\n\n</html>\n",
-			"file": "user_register.php",
-			"file_size": 4098,
-			"file_write_time": 131707619223164143,
+			"file": "advisor_addInfo.php",
 			"settings":
 			{
-				"buffer_size": 4039,
+				"buffer_size": 3057,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "advisor_addInfo_script.php",
+			"settings":
+			{
+				"buffer_size": 1329,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -255,31 +277,32 @@
 	[
 		"/C/xampp/htdocs/qsa",
 		"/C/xampp/htdocs/qsa/assets",
-		"/C/xampp/htdocs/qsa/css",
-		"/C/xampp/htdocs/qsa/custom range slider",
-		"/C/xampp/htdocs/qsa/custom range slider/css"
+		"/C/xampp/htdocs/qsa/css"
 	],
 	"file_history":
 	[
-		"/C/xampp/htdocs/qsa/custom range slider/index.html",
-		"/C/xampp/htdocs/qsa/header.php",
+		"/C/xampp/htdocs/qsa/user_register_script.php",
+		"/C/xampp/htdocs/qsa/user_register.php",
+		"/C/xampp/htdocs/qsa/advisor_register_script.php",
+		"/C/xampp/htdocs/qsa/logout.php",
 		"/C/xampp/htdocs/qsa/user_sessionHandler.php",
-		"/C/xampp/htdocs/qsa/authenticator.php",
+		"/C/xampp/htdocs/qsa/quit_plan_script.php",
+		"/C/xampp/htdocs/qsa/view_quit_plan.php",
+		"/C/xampp/htdocs/qsa/header.php",
 		"/C/xampp/htdocs/qsa/login.php",
-		"/C/xampp/htdocs/qsa/gallery.html",
 		"/C/xampp/htdocs/qsa/login-failed.php",
+		"/C/xampp/htdocs/qsa/authenticator.php",
+		"/C/xampp/htdocs/qsa/dbase.php",
+		"/C/xampp/htdocs/qsa/custom range slider/index.html",
+		"/C/xampp/htdocs/qsa/gallery.html",
 		"/C/xampp/htdocs/qsa/user_login-successful.php",
 		"/C/xampp/htdocs/qsa/advisor_sessionHandler.php",
 		"/C/xampp/htdocs/qsa/advisor_register.php",
-		"/C/xampp/htdocs/qsa/advisor_register_script.php",
 		"/C/xampp/htdocs/qsa/advisor_login-successful.php",
 		"/C/xampp/htdocs/qsa/login-failed.html",
 		"/C/xampp/htdocs/qsa/loginss.php",
-		"/C/xampp/htdocs/qsa/user_register.php",
-		"/C/xampp/htdocs/qsa/user_register_script.php",
 		"/C/xampp/htdocs/qsa/cust_sessionHandler.php",
 		"/C/xampp/htdocs/qsa/cust_sign-up.php",
-		"/C/xampp/htdocs/qsa/dbase.php",
 		"/C/xampp/htdocs/qsa/contact.html",
 		"/C/xampp/htdocs/qsa/single-post.html",
 		"/C/xampp/htdocs/qsa/assets/css/main.css",
@@ -319,6 +342,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"width",
+			"index",
+			"ref",
+			"p> 1",
+			"?>",
+			"dbase",
+			"conn",
+			"create",
+			"header",
+			"SEES",
+			"head",
+			"SESS_USER_ID ",
+			"frequency_smoke_weekly",
+			"user_id",
+			"dbase",
+			"session",
+			"confirm_password",
 			"button",
 			"body",
 			"control",
@@ -386,7 +426,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -395,15 +435,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16997,
+						"buffer_size": 17044,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								55,
-								92
+								320,
+								836
 							]
 						],
 						"settings":
@@ -414,58 +454,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "login-failed.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 3352,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								3352
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1380.0,
+						"translation.y": 180.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "header.php",
+					"buffer": 1,
+					"file": "quit_plan.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5710,
+						"buffer_size": 13514,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4761,
-								4761
+								5338,
+								4394
 							]
 						],
 						"settings":
@@ -476,7 +485,38 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1740.0,
+						"translation.y": 2700.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "advisor_addInfo.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3057,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2548,
+								2548
+							]
+						],
+						"settings":
+						{
+							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 820.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -484,19 +524,19 @@
 				},
 				{
 					"buffer": 3,
-					"file": "logout.php",
+					"file": "advisor_addInfo_script.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2999,
+						"buffer_size": 1329,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2610,
-								2610
+								260,
+								260
 							]
 						],
 						"settings":
@@ -507,103 +547,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2187.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "quit_plan.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9010,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6221,
-								6221
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2763.0,
+						"translation.y": 120.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "quit_plan_script.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1185,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								204,
-								204
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 300.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "user_register.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4039,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1954,
-								1705
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1827.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
 					"type": "text"
 				}
 			]

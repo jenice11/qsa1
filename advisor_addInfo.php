@@ -66,8 +66,10 @@ Global Page Section Start
   </div>
   <br>
   <div class="form-group" >
-                           <label for="pagedata"><b>Page Text:</b></label>
-                           <input type="text" name="pagedata" class="form-control " placeholder="e.g : An apple a day, keeps the doctor away">
+                           <label for="pagedata"><b>Page Text:</b></label><br>
+
+                           <textarea name="pagedata" cols="87" rows="8" id="pagedata">
+                </textarea>
   </div>
                           <br>
 
