@@ -36,7 +36,7 @@
     
         <?php  
         include("authenticator.php");
-        include("/header.php");   
+        include("/user_header.php");   
         ?> 
 
         <?php 
@@ -58,7 +58,7 @@
             }
 
             .form-module .form {
-              display: none;
+
               padding: 30px ;
             }
             .form-module .form:nth-child(2) {
@@ -132,10 +132,6 @@
                     width: 100%;
                 }
             }
-
-           
-
-
         </style>
 
     </head>
@@ -153,6 +149,8 @@ Global Page Section Start
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
                     <h2>Create Quit Plan</h2>
+                    <?php echo  $_SESSION['SESS_NAME'];
+                    $id = $_SESSION['SESS_USER_ID']; ?>
                 </div>
             </div>
         </div>
@@ -169,26 +167,20 @@ Global Page Section Start
                 <div class="post-content">
                     <!-- Form Module-->
                     <div class="module form-module">
-                      <div class="toggle"><i class="fa fa-times fa-pencil"></i>
 
-
-
-                      </div>
                       <div class="form">
                         <form method="POST" action="quit_plan_script.php" enctype="multipart/form-data">
-                        <h1 style="text-align: center; margin-top: -1%;">First Step On Quit Plan</h1>
 
-                            <fieldset> 
 
                             <div  style="color:black; text-align: left;">
                             <label for="date" class="labelform"><b>Select A Quit Date :</b></label>
-                            <input type="date" placeholder="Preferably within 2 weeks" name="date" required>
+                            <input type="date" placeholder="Preferably within 2 weeks" name="quitdate" id="quitdate" required>
 
                             <label for="reason" class="labelform"><b>What is your reason for quitting :</b></label>
-                            <input type="textarea" placeholder="As a message to remind yourself the reason of you quitting" name="reason" required>
+                            <input type="text" placeholder="As a message to remind yourself the reason of you quitting" name="reason" id="reason" required>
 
                             <label for="frequency_smoke_weekly">How often do you smoke?</label> <br>  
-                              <select name="frequency_smoke_weekly" style="width: 40%; font-size: 12pt; "> 
+                              <select name="frequency_smoke_weekly" id="frequency_smoke_weekly" style="width: 40%; font-size: 12pt; "> 
                                 <option value="" disabled selected>Select</option> 
                                 <option value="0 day in a week">0 day in a week</option>  
                                 <option value="1 day in a week">1 days in a week </option>  
@@ -202,10 +194,10 @@ Global Page Section Start
                               <br><br>
                             
                             <label for="frequency_smoke_daily">When you smoke, how many a day?</label> <br>  
-                            <input type="number" placeholder="1" name="frequency_smoke_daily" required>
+                            <input type="number" placeholder="1" name="frequency_smoke_daily" id="frequency_smoke_daily" required>
 
                             <label for="when_craving">When do you carve?</label> <br>  
-                              <select name="when_craving" style="width: 40%; font-size: 12pt; ">  
+                              <select name="when_craving" id="when_craving" style="width: 40%; font-size: 12pt; ">  
                                 <option value="" disabled selected>Select a time</option>
                                 <option value="Morning">Morning</option>  
                                 <option value="Afternoon">Afternoon</option>  
@@ -214,7 +206,7 @@ Global Page Section Start
                               <br><br>
 
                             <label for="price_cigarette">How much do you pay per pack of cigarettes?</label> <br>  
-                            <p>$<input type="number" min="1" step="any" placeholder="10.40" name="price_cigarette"></p>
+                            <p>$<input type="number" min="1" step="any" placeholder="10.40" name="price_cigarette" id="price_cigarette"></p>
 
                             <label for="frequency_smoke_daily">Choose one advisor</label> <br>  
                             <div class="row1">
@@ -240,11 +232,6 @@ Global Page Section Start
 
                             <div>
                                 <?php
-
-                                
-
-
-
                                 $query ="SELECT advisor_id, advisor_name, advisor_email, advisor_age, advisor_gender, advisor_experience FROM advisor_info"; 
 
                                 $id = $id;
@@ -268,7 +255,7 @@ Global Page Section Start
                                 <div class="row1" style="font-size: ">
                                    <!-- List -->
                                    <div class=column2>
-                                       <input type="radio" name="advisor_id" value="<?php echo $advisor_id; ?>"><?php echo $advisor_id; ?><br>
+                                       <input type="radio" name="advisor_id" id="advisor_id" value="<?php echo $advisor_id; ?>"><br>
                                  </div>
                                     <div class=column1 style="">
                                        <p> <?php echo $advisor_name; ?></p>
@@ -301,7 +288,6 @@ Global Page Section Start
 
                             </div>
                         </div>
-                    </fieldset>
 
               
             <div style="text-align: center;">

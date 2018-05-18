@@ -135,7 +135,7 @@
         <h2 class="card-title">Existing Entry</h2>
         <p class="card-text">View what you have posted so far in system</p>
         <br>
-        <a href="bis_view_foodonsale.php" class="btn btn-warning">View Entry</a>
+        <a href="advisor_view_infopage.php" class="btn btn-warning">View Entry</a>
       </div>
 
     </div>
@@ -148,7 +148,7 @@
         <h2 class="card-title">Quit Plan List</h2>
         <p class="card-text">View who is under your care on the quit plan</p>
         <br>
-        <a href="bis_view_cust.php" class="btn btn-info">View List</a>
+        <a href="advisor_view_quitplan.php" class="btn btn-info">View List</a>
       </div>
     </div>
   </div>
