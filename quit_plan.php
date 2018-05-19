@@ -255,7 +255,7 @@ Global Page Section Start
                                    <div class=column2>
                                        <input type="radio" name="advisor_id" id="advisor_id" value="<?php echo $advisor_id; ?>"><br>
                                  </div>
-                                    <div class=column1 style="">
+                                    <div class=column1>
                                        <p> <?php echo $advisor_name; ?></p>
                                    </div>
 

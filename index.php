@@ -5,6 +5,10 @@
         include("authenticator.php");
         include("user_header.php");   ?> 
         
+        <style type="text/css">
+            
+
+        </style>
     </head>
 
 <?php
@@ -50,64 +54,54 @@ Portfolio Section Start
         <div class="section-heading">
             <h1 class="title wow fadeInDown" data-wow-delay=".3s">Information posted by our Advisors</h1>
             <p class="wow fadeInDown" data-wow-delay=".5s">
-                Choose your type of quit plan that you will conquer for that duration of time.
+                These information may be useful!
             </p>
         </div>
-        <div class="row">
-            <div class="col-sm-4 col-xs-12">
-                <?php
+        
+                <div class="col-md-8" style="margin-left: 20%;" >
+                    <?php
                 include("dbase.php");
 
-                $query ="SELECT business_id, b_name, b_location, b_timeStart, b_timeEnd, b_photo from business_info"; 
+                $query ="SELECT page_id, page_name, page_text, page_photo, page_date, advisor_name, advisor_id, advisor_fk from page_info, advisor_info WHERE advisor_info.advisor_id=page_info.advisor_fk";
+
                 $result = mysqli_query($conn,$query);
                 if (mysqli_num_rows($result) > 0){ 
                 // output data of each row
                 while($row = mysqli_fetch_assoc($result)){
 
-                $id = $row["business_id"];
-                $b_photo = $row["b_photo"];
-                $b_name = $row["b_name"];
-                $b_location = $row["b_location"];
-                $b_timeStart = $row["b_timeStart"];
-                $b_timeEnd = $row["b_timeEnd"]; 
+                $id = $row["page_id"];
+                $page_name = $row["page_name"];
+                $page_text = $row["page_text"];
+                $page_photo = $row["page_photo"];
+                $page_date = $row["page_date"];
+                $advisor_name = $row["advisor_name"];
 
                 
                 ?>
-                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
-                    <div class="img-wrapper">
-                        <img src="<?php echo $b_photo; ?>" style="width:100%;" class="img-responsive" alt=""/>
-                        <div class="overlay">
-
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="column" style="display: block;">
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms" >
+                    <div class="img-wrapper" style="width:100%;" align="center" >
+                        <img src="<?php echo $page_photo; ?>" class="img-responsive" width="300px" height="300px"/>    
                     <figcaption>
                     <h4>
                     <a href="#">
-                        <a href="cust_orderFood.php?id=<?php echo $id; ?>">
+                        <a href="user_view_pageEntry?id=<?php echo $id; ?>">
                            <div class="inner_content clearfix">
-                            <div class="product_image" id="photo">
-                                
-
-                                <div class="label-product">
-                                <span class="new">From RM 5++</span> </div>
-                                <div class="mask" >
-
-                                    <h2> <?php echo $b_name; ?></h2>
-                                    
-                                    <h3> One of the UMP best food ordering. Don't miss the chance to eat good food</h3>
-                                    <div class="info"><i class="fa fa-search-plus"></i> </div>
-                                </div>
-                    </a>
-                    </h4>
-                    <p>
-                        <h3><a href="cust_orderFood.php?id=<?php echo $id?> <?php $b_location?>"> <?php echo $b_name; ?></a></h3>
-                          <div class="underheader-line"></div><br>
-                     
-                          <p><?php echo $b_location; ?></p>
-                          <p><?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></p>
+                                    <h2> <?php echo $page_name; ?></h2>
+                                     <h3>By <?php echo $advisor_name; ?></h3>
+                                     <p><?php echo $page_text; ?></p>
+                                      <p>Posted at <?php echo $page_date ?></p>
+                            </div>
+                        </a>
+                    </h4>   
                     </figcaption>
                 </figure>
             </div>
+        </div>
+</div>
+</div>
+</div>
 
              <?php
 
