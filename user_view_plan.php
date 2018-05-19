@@ -225,7 +225,7 @@ Global Page Section Start
                             <br>
                             <input type="button" value="Edit Plan" onclick="window.location.href='user_update_plan.php'" style="background-color: #33B5E5;" />
 
-                            <input type="button" value="Return to homepage" onclick="window.location.href='http://www.hyperlinkcode.com/button-links.php' " style="background-color: #33B5E5;" />
+                            <input type="button" value="Return to homepage" onclick="window.location.href='index.php' " style="background-color: #33B5E5;" />
 
                              
 

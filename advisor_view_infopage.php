@@ -1,4 +1,7 @@
-<?php 
+<!DOCTYPE html>
+<html>
+<head>
+  <?php 
 include("advisor_header.php");
 include("authenticator.php");
 
@@ -34,82 +37,45 @@ include("authenticator.php");
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
-#user {
-      padding-top: 45px;
-      padding-left: 250px;
-      position: absolute;
-    }
-    /* Form Module */
-            .form-module {
-              position: relative;
-              margin-left: 20%;
-              background: #FCFCFC;
-              max-width: 800px; 
-              width: 100%;
-              border-top: 10px solid #33b5e5;
-              -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-                      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-            }
+
+   
+            td{
+            padding:0px;
+            font-size: 16.5px;
+            padding-bottom: 5px;
+          }
+          .first{
+            font-weight: 600;
+          }
+          h4{
+            font-weight: bold;
+          }
+          .btn{
+            color:white;
+          }
+
+          #photo {
+            height: 200px; 
+            width: 200px;
+            overflow: hidden;
+             float: left;
+          }
+
+          #display {
+            width: 110%;
+            margin-left: 50%;
+            padding: 30px;
+            position: relative;
+            margin-top: -3%;
 
 
-            .form-module h2 {
-              margin: 0 0 20px;
-              color: #33b5e5;
-              font-size: 18px;
-              font-weight: 400;
-              line-height: 1;
-            }
-            .form-module input {
-
-              width: 100%;
-              border: 1px solid #d9d9d9;
-              margin: 0 0 20px;
-              padding: 10px 15px;
-              -webkit-box-sizing: border-box;
-                      box-sizing: border-box;
-              font-wieght: 400;
-             
-            }
-
-            .form-module button {
-              cursor: pointer;
-              background: #33b5e5;
-              width: 30%;
-              border: 0;
-              padding: 10px 15px;
-              margin-left: 5%;
-              margin-right: 5%;
-              font-size: 1.5em;
-              color: #ffffff;
-              -webkit-transition: 0.3s ease;
-              transition: 0.3s ease;
-            }
-            .form-module button:hover {
-              background: #178ab4;
-            }
-
-            .form-module .cta a {
-              color: #333333;
-              text-decoration: none;
-            }
+          }
 
 </style>
 
+
 </head>
 <body>
-
-     
-        <?php
-          /*
-           Filename: login-successful.php
-           Purpose: To display protected web page if user is valid.
-           Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
-          */
-          echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
-          $id = $_SESSION['SESS_MEMBER_ID'];
-          ?>
-        </div>
-      
 
     <!------------ Start Content ---------------->
     <!--
@@ -119,9 +85,12 @@ Global Page Section Start
 <section class="global-page-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="block" style="margin-top: -8%; margin-bottom: -5%;">
-                    <h2>View Page Entry</h2>
+            <div id="user"> 
+                
+                </div>
+            <div class="col-md-12" style="margin-top:  -4%;">
+                <div class="block" style="margin-top: -2%;">
+                    <h2>View Quit Plan</h2>
                 </div>
             </div>
         </div>
@@ -129,75 +98,89 @@ Global Page Section Start
 </section><!--/#Page header-->
 
 
-<section class="single-post">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-               <div class="post-content">
-			<?php
-			    include("dbase.php");
-			    $business_id = $_SESSION['SESS_MEMBER_ID'];
 
-				$query ="SELECT food_id, f_name, f_photo, f_price, b_location, b_timeStart, b_timeEnd FROM food_info, business_info, business_food_mapping WHERE  food_info.food_id = business_food_mapping.food_fk AND business_info.business_id=business_food_mapping.business_fk AND business_info.business_id='$business_id'"; 
+<section class="single-post" >
+    <div class="container" align="right">
+                    
+                        <?php
+                        include("dbase.php");                     
+                        $advisor_id = $_SESSION['SESS_MEMBER_ID'];
 
-				$result = mysqli_query($conn,$query);
-				if (mysqli_num_rows($result) > 0){ 
-				// output data of each row
-				while($row = mysqli_fetch_assoc($result)){
-				$id = $row["food_id"];
-				$f_name = $row["f_name"];
-				$f_photo = $row["f_photo"];
-			 	$f_price = $row["f_price"];
-			  	$b_location = $row["b_location"];
-			   	$b_timeStart = $row["b_timeStart"];
-			    $b_timeEnd = $row["b_timeEnd"]; 
-			    ?>
-				<div class="card card-padding">
-					  <div class="card-block">
-					  	<div class="row">
-					  		<div class="col-sm-6" align="center" id="photo">
-					  			<img src="<?php echo $f_photo; ?>" width="100%">
-					 	 	</div>
+                      $query ="SELECT page_id, advisor_name, advisor_fk, page_name, page_photo, page_text, page_date FROM page_info, advisor_info WHERE advisor_fk=$advisor_id AND advisor_info.advisor_id=page_info.advisor_fk"; 
 
-					  		<div class="col-sm-6" align="left">
-					  		<h4 class="card-title"> <?php echo $f_name; ?> </h4>
-					  		<hr>
-					  			<table>
-					  				<tr>
-					  					<td style="width:30%" class="first"><p class="card-text">Posted By:</p></td>
-					  					<td style="width:70%" >: <?php echo $_SESSION['SESS_NAME']; ?></td>
-					  				</tr>
-					  				
-					  				<tr>
-					  					<td class="first"><p class="card-text">Time  </p></td>
-					  					<td>: <?php echo date('g:ia ', strtotime($b_timeStart)); ?> - <?php echo date('g:ia ', strtotime($b_timeEnd)); ?></td>
-					  				</tr>
-					  				
-					  				<tr>
-					  					<td class="first"><p class="card-text">Price  </p></td>
-					  					<td>: <?php echo "RM ".$f_price; ?></td>
-					  				</tr>
-					  			</table>   
-							    
-							    <br>
-							    <div align="right">
-								    <a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a>
-								    <a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a>
-							    </div>
-						    </div>
+                      $result = mysqli_query($conn,$query);
+                      if (mysqli_num_rows($result) > 0){ 
+                      // output data of each row
 
-				    </div>
-				  </div>
-				</div>
-				<?php
-				}
-				}else{
-					echo "No results";
-				}
-				?>
+                      while($row = mysqli_fetch_assoc($result)){
+                      $id = $row["page_id"];
+                      $advisor_name = $row["advisor_name"];
+                      $page_name = $row["page_name"];
+                      $page_photo = $row["page_photo"];
+                      $page_text = $row["page_text"];
+                      $page_date = $row["page_date"];
+                      ?>
+                      
+                      <!-- Form Module-->
+                      <div style="display: block;" >
+                    <div class="row">
+                
 
-			</div>
-		</div>
+                <div class="col-sm-6" align="center">
+                
+                <div id="display">
+                  <hr>
+                  <table >
+                      <tr>
+                        <div class="col-sm-6" align="center" id="photo">
+                  <img src="<?php echo $page_photo; ?>" width="100%">
+              </div>
+                              <td width="40%">Page Name: </td>
+                              <td> <?php echo $page_name; ?></td>
 
+                            </tr>
+                              
+                             <tr>
+                              <td>Posted By: </td>
+                              <td><?php echo $advisor_name; ?></td>
+                              
+                            </tr>
+                              
+                              <tr>
+                                <td> Page Text: </td>
+                              <td style="padding-top: 10px;"> <textarea name="page_text" form="pageform" style="resize: none" readonly ><?php echo $page_text; ?></textarea></td>
+
+                            </tr>
+
+                              <tr>
+                              <td>Posted Time: </td>
+                                <td><?php echo $page_date;?></td>
+                            </tr>
+
+                            <tr>
+                              <td ><a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a></td>
+                              <td ><a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a></td>
+                            </tr> 
+                  </table>   
+                  </div>
+
+
+            </div>
+          </div>
+        </div>
+        <?php
+        }
+        }else{
+          echo "No results";
+        }
+        ?>
+
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </section>
 </body>
+
 </html>

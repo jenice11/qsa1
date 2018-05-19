@@ -111,7 +111,6 @@
           include("authenticator.php");
 
           echo "<h2>Welcome, Advisor ".$_SESSION['SESS_NAME']." </h2>";
-          echo  $_SESSION ['SESS_MEMBER_ID'];
           ?>
         </div>
 
