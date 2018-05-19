@@ -9,13 +9,13 @@
   $frequency_smoke_daily = $_POST['frequency_smoke_daily'];
   $when_craving = $_POST['when_craving'];
   $price_cigarette = $_POST['price_cigarette'];
-  $user_id = $_SESSION['SESS_USER_ID'];
+  $user_id = $_SESSION['SESS_MEMBER_ID'];
   $advisor_id = $_POST['advisor_id'];
 
   $query = "SELECT advisor_id, from advisor_info WHERE advisor_id='$advisor_id'";
 
   $query = "UPDATE quit_plan SET quit_date='$quitdate', reason='$reason', 
-            frequency_smoke_weekly='$frequency_smoke_weekly',  frequency_smoke_daily='frequency_smoke_daily',
+            frequency_smoke_weekly='$frequency_smoke_weekly',  frequency_smoke_daily='$frequency_smoke_daily',
             when_craving='$when_craving', price_cigarette='$price_cigarette', advisor_fk='$advisor_id'
             WHERE user_fk='$user_id'";
             

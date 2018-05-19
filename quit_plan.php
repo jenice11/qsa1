@@ -149,7 +149,6 @@ Global Page Section Start
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
                     <h2>Create Quit Plan</h2>
-                    $id = $_SESSION['SESS_USER_ID']; ?>
                 </div>
             </div>
         </div>

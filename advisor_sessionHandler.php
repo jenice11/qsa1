@@ -54,10 +54,11 @@ if (isset($result))
 {
     if (mysqli_num_rows($result) == 1)
     {
+
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_ADVISOR_EMAIL'] = $member['advisor_email'];
+        $_SESSION ['SESS_MEMBER_ID'] = $member['advisor_id'];
         $_SESSION ['SESS_NAME'] = $member['advisor_name'];
         $_SESSION ['STATUS'] = true;
 

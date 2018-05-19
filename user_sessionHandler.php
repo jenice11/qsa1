@@ -57,12 +57,12 @@ if (isset($result))
         //Login Successful
         session_regenerate_id();
         $member = mysqli_fetch_assoc ($result);
-        $_SESSION ['SESS_USER_ID'] = $member['user_id'];
+        $_SESSION ['SESS_MEMBER_ID'] = $member['user_id'];
         $_SESSION ['SESS_NAME'] = $member['user_name'];
         $_SESSION ['STATUS'] = true;
 
         session_write_close();
-        header("location: user_login-successful.php");
+        header("location: advisor_login-successful.php");
         exit();
     }
     else

@@ -144,7 +144,7 @@ Global Page Section Start
                       <div class="form">
                         <?php
                         include("dbase.php");                     
-                        $user_id = $_SESSION['SESS_USER_ID'];
+                        $user_id = $_SESSION['SESS_MEMBER_ID'];
 
                       $query ="SELECT quit_date, reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette, advisor_fk, user_fk, advisor_name,advisor_email, advisor_phone FROM quit_plan, advisor_info, user_info WHERE advisor_info.advisor_id=quit_plan.advisor_fk AND 
                         user_info.user_id=quit_plan.user_fk AND quit_plan.user_fk='$user_id'"; 

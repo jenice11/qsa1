@@ -148,8 +148,6 @@
  Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
 -->
 
- <?php include("authenticator.php"); ?>
-
 
 <section id="hero-area" >
 <div class="container">

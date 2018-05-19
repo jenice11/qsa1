@@ -1,6 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+</body>
+</html>
 <?php 
 include("advisor_header.php");
-include("authenticator.php");
 
 ?>
   <script>
@@ -42,7 +46,7 @@ include("authenticator.php");
     /* Form Module */
             .form-module {
               position: relative;
-              margin-left: 20%;
+              margin-left: 32%;
               background: #FCFCFC;
               max-width: 800px; 
               width: 100%;
@@ -67,7 +71,7 @@ include("authenticator.php");
               padding: 10px 15px;
               -webkit-box-sizing: border-box;
                       box-sizing: border-box;
-              font-wieght: 400;
+              font-weight: 400;
              
             }
 
@@ -98,19 +102,6 @@ include("authenticator.php");
 </head>
 <body>
 
-     
-        <?php
-          /*
-           Filename: login-successful.php
-           Purpose: To display protected web page if user is valid.
-           Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
-          */
-          echo "<h3>Welcome, Seller ".$_SESSION['SESS_NAME']." </h3>";
-          $id = $_SESSION['SESS_MEMBER_ID'];
-          ?>
-        </div>
-      
-
     <!------------ Start Content ---------------->
     <!--
 ==================================================
@@ -120,7 +111,7 @@ Global Page Section Start
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="block" style="margin-top: -8%; margin-bottom: -5%;">
+                <div class="block">
                     <h2>Add New Entry</h2>
                 </div>
             </div>
@@ -133,18 +124,17 @@ Global Page Section Start
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-               <div class="post-content">
+               <div class="post-content" style="margin-top: -3%;">
                <!-- Form Module-->
-                    
 
+               
                       <div class="form" style="margin-top: -2%;">
-                        <form method="POST" action="advisor_addEntry_script.php" enctype="multipart/form-data">
+                        <form method="POST" action="advisor_addEntry_script.php" enctype="multipart/form-data" id="pageform">
 <div class="col-md-3">
-                <label class="control-label"><b>Add food image here:</b></label><br>
+                <label class="control-label"><b>Add page image here:</b></label><br>
                                   <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
-                                  <input type="hidden" name="id" value="<?php echo $id; ?>">
                                   <br><br>
-                            <img  id="output" width="300px"/>
+                            <img  id="output" width="200px"/>
                               <script>
                                 var loadFile = function(event) {
                                   var output = document.getElementById('output');
@@ -153,29 +143,32 @@ Global Page Section Start
                               </script>
               </div>
 
-                   <div class="col-md-7" align="center">
-                                  
-  <div class="form-group" >
-                           <label for="foodname"><b>Food Name :</b></label>
-                          <input type="text" name="foodname" class="form-control " placeholder="e.g : Nasi Goreng">
-  </div>
-  <br>
-  <div class="form-group" >
-                           <label for="price"><b>Price (RM):</b></label>
-                           <input type="number" name="price" class="form-control " placeholder="e.g : 5">
-  </div>
-                          <br>
+                    <!-- Form Module-->
+                    <div class="module form-module">
 
-                          <input type="submit" class="btn btn-primary" value="Sell Food">
+                      <div class="form" >
+                        
+                          <table style="margin: 2.5%;">  
+                          <h1 style="text-align: center"> Page Info </h1>          
+                                <td width="19%" >Page Name </p></td>
+                                <td><input type="text" name="pagename" placeholder="Page Name">  </td>
+                              </tr>
+                              
+                              <tr>
+                                <td >Page Text </p></td>
+                                <td><textarea name="page_text" rows="10" cols="79"  form="pageform" style="resize: none" placeholder="Enter Here" ></textarea></td>
+                              </tr>
 
-                    <div class="clearfix"></div> 
+                              <?php 
+                include("dbase.php"); 
+                $id = $_SESSION['SESS_MEMBER_ID'];
+                ?>
 
-                    <div class="clearfix"></div>
-                         </div>
-                         </div>
-              </div>
-
-
+                              
+                          </table>
+                          <div style="text-align: center;">
+                          <input type="submit" name="submit" value="Submit"/>
+                          </div>
 
                     
             </form>

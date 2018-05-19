@@ -1,8 +1,8 @@
-`<?php
+<?php
 
   include('dbase.php');
 
-  $advisor_name=$_POST['advisorname'];
+  $advisor_name=$_POST['advisor_name'];
   $advisor_password=$_POST['password'];
   $advisor_email=$_POST['email'];
   $advisor_phone=$_POST['phonenumber'];

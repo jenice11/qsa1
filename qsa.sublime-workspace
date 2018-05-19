@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"pr",
+				"price_cigarette"
+			],
+			[
+				"fr",
+				"frequency_smoke_daily"
+			],
+			[
+				"quit",
+				"quitdate"
+			],
+			[
+				"text",
+				"text"
+			],
+			[
+				"background-c",
+				"background-color\tproperty"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"tex",
+				"text-align\tproperty"
+			],
+			[
 				"font-s",
 				"font-size\tproperty"
 			],
@@ -50,10 +78,6 @@
 			[
 				"user",
 				"user_id"
-			],
-			[
-				"quit",
-				"quit_plan"
 			],
 			[
 				"when",
@@ -124,10 +148,6 @@
 				"option\tTag"
 			],
 			[
-				"text",
-				"text-align"
-			],
-			[
 				"max",
 				"max-width"
 			],
@@ -148,20 +168,12 @@
 				"font-size"
 			],
 			[
-				"background-c",
-				"background-color"
-			],
-			[
 				"ph",
 				"phonenumber"
 			],
 			[
 				"fon",
 				"font-size"
-			],
-			[
-				"tex",
-				"text-align"
 			],
 			[
 				"padding",
@@ -186,116 +198,16 @@
 			[
 				"bor",
 				"border-left"
-			],
-			[
-				"st",
-				"style\tTag"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "<!--A Design by W3layouts\nAuthor: W3layout\nAuthor URL: http://w3layouts.com\nLicense: Creative Commons Attribution 3.0 Unported\nLicense URL: http://creativecommons.org/licenses/by/3.0/\n-->\n\n<!DOCTYPE HTML>\n<html>\n<head>\n<?php  \n        include(\"authenticator.php\");\n        include(\"/header.php\");   \n        $id = $_SESSION['SESS_MEMBER_ID'];\n        ?> \n\n</head>\n<!--\n==================================================\nGlobal Page Section Start\n================================================== -->\n<section class=\"global-page-header\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div id=\"user\"> \n                \n                </div>\n            <div class=\"col-md-12\" style=\"margin-top:  -4%;\">\n                <div class=\"block\" style=\"margin-top: -3%;\">\n                    <h2>Add Info Page</h2>\n                </div>\n            </div>\n        </div>\n    </div>\n</section><!--/#Page header-->\n\n<section class=\"single-post\" >\n    <div class=\"container\" >\n        <div class=\"row\" >\n            <div class=\"col-md-12\" >\n                <div class=\"post-content\">\n        \n            <div class=\"sign-up-form\">\n            <form method=\"POST\" action=\"advisor_addInfo_script.php\" enctype=\"multipart/form-data\">\n              <div class=\"row\" align=\"center\">\n                <div class=\"col-md-2\"></div>\n              <div class=\"col-md-3\">\n                <label class=\"control-label\"><b>Add image here:</b></label><br>\n                                  <input type=\"file\" name=\"photo\" onchange=\"loadFile(event)\" accept=\"image/*\">\n                                  <input type=\"hidden\" name=\"id\" value=\"<?php echo $id; ?>\">\n                                  <br><br>\n                            <img  id=\"output\" width=\"300px\"/>\n                              <script>\n                                var loadFile = function(event) {\n                                  var output = document.getElementById('output');\n                                    output.src = URL.createObjectURL(event.target.files[0]);\n                                };\n                              </script>\n              </div>\n\n                   <div class=\"col-md-7\" align=\"center\">\n                                  \n  <div class=\"form-group\" >\n                           <label for=\"pagename\"><b>Page Name :</b></label>\n                          <input type=\"text\" name=\"pagename\" class=\"form-control \" placeholder=\"e.g : Story 1\">\n  </div>\n  <br>\n  <div class=\"form-group\" >\n                           <label for=\"pagedata\"><b>Page Text:</b></label><br>\n\n                           <textarea name=\"pagedata\" cols=\"87\" rows=\"8\" id=\"pagedata\">\n                </textarea>\n  </div>\n                          <br>\n\n                          <input type=\"submit\" class=\"btn btn-primary\" value=\"Add page\">\n\n                    <div class=\"clearfix\"></div>\n                         </div>\n                         </div>\n\n                    \n            </form>\n            </div>\n         </div>\n      </div>\n</body>\n</html>\n\n\n",
-			"file": "advisor_addInfo.php",
-			"file_size": 3124,
-			"file_write_time": 131711252839243421,
+			"file": "advisor_sessionHandler.php",
 			"settings":
 			{
-				"buffer_size": 3034,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 7702,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "advisor_addEntry.php",
-			"settings":
-			{
-				"buffer_size": 5609,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "advisor_view_infopage.php",
-			"settings":
-			{
-				"buffer_size": 5903,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "advisor_addEntry_script.php",
-			"settings":
-			{
-				"buffer_size": 1333,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "logout.php",
-			"settings":
-			{
-				"buffer_size": 3003,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "advisor_delete_pageEntry.php",
-			"settings":
-			{
-				"buffer_size": 306,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "advisor_home.php",
-			"settings":
-			{
-				"buffer_size": 3643,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<?php\n\n  include('dbase.php');\n\n  $pagename=$_POST['pagename'];\n  $pagedata=$_POST['pagedata'];\n  $id=$_POST['id'];\n\n$fileinfo=PATHINFO($_FILES['photo']['name']);\n\n  if(empty($fileinfo['filename'])){\n    $location=\"\";\n  }\n  else{\n  $newFilename=$fileinfo['filename'] . \".\" . $fileinfo['extension'];\n  move_uploaded_file($_FILES[\"photo\"][\"tmp_name\"],\"images/pageinfo/\" . $newFilename);\n  $location=\"images/pageinfo/\" . $newFilename;\n\n \n  }\n $query = \"INSERT into page_info(p_name,p_photo,p_data) VALUES('$pagename', '$location', $pagedata)\";\n  $result = mysqli_query($conn,$query) or die (\"Could not execute query\");\n\nif($result){\n  $query = \"SELECT page_id FROM page_info ORDER BY page_id DESC LIMIT 1\";\n        $result = mysqli_query($conn,$query);\n        $row = mysqli_fetch_assoc($result);\n        $page_id = $row[\"page_id\"];\n\n $result = mysqli_query($conn,$query) or die (\"Could not execute query\");\n echo \"<script type= 'text/javascript'> window.location='advisor_view_infopage.php'</script>\";\n}\n\n\n\n?>",
-			"file": "advisor_addInfo_script.php",
-			"file_size": 1042,
-			"file_write_time": 131710994107893731,
-			"settings":
-			{
-				"buffer_size": 1007,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "quit_plan.php",
-			"settings":
-			{
-				"buffer_size": 13376,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "quit_plan_script.php",
-			"settings":
-			{
-				"buffer_size": 1158,
+				"buffer_size": 1875,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -310,22 +222,45 @@
 			}
 		},
 		{
-			"contents": "<!DOCTYPE html>\n<html class=\"no-js\">\n    <head>\n        <!-- Basic Page Needs\n        ================================================== -->\n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n        <link rel=\"icon\" href=\"home.png\">\n        <title>Quit Plan</title>\n        <meta name=\"description\" content=\"\">\n        <meta name=\"keywords\" content=\"\">\n        <meta name=\"author\" content=\"\">\n        <!-- Mobile Specific Metas\n        ================================================== -->\n        <meta name=\"format-detection\" content=\"telephone=no\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n        \n        <!-- Template CSS Files\n        ================================================== -->\n        <!-- Twitter Bootstrs CSS -->\n        <link rel=\"stylesheet\" href=\"plugins/bootstrap/bootstrap.min.css\">\n        <!-- Ionicons Fonts Css -->\n        <link rel=\"stylesheet\" href=\"plugins/ionicons/ionicons.min.css\">\n        <!-- animate css -->\n        <link rel=\"stylesheet\" href=\"plugins/animate-css/animate.css\">\n        <!-- Hero area slider css-->\n        <link rel=\"stylesheet\" href=\"plugins/slider/slider.css\">\n        <!-- owl craousel css -->\n        <link rel=\"stylesheet\" href=\"plugins/owl-carousel/owl.carousel.css\">\n        <link rel=\"stylesheet\" href=\"plugins/owl-carousel/owl.theme.css\">\n        <!-- Fancybox -->\n        <link rel=\"stylesheet\" href=\"plugins/facncybox/jquery.fancybox.css\">\n        <!-- template main css file -->\n        <link rel=\"stylesheet\" href=\"css/style.css\">\n    \n        <?php  \n        include(\"authenticator.php\");\n        include(\"/user_header.php\");   \n        ?> \n\n        <style>\n            /* Form Module */\n            .form-module {\n              position: relative;\n              background: #FCFCFC;\n              max-width: 600px;\n              width: 100%;\n              border-top: 10px solid #33b5e5;\n              -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);\n                      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);\n              margin: 0 auto;\n              margin-top: -5%;\n            }\n\n            .form-module .form {\n\n              padding: 30px ;\n            }\n            .form-module .form:nth-child(2) {\n              display: block;\n            }\n            .form-module h2 {\n              margin: 0 0 20px;\n              color: #33b5e5;\n              font-size: 18px;\n              font-weight: 400;\n              line-height: 1;\n            }\n            .form-module input {\n\n              width: 100%;\n              border: 1px solid #d9d9d9;\n              margin: 0 0 20px;\n              padding: 10px 15px;\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              font-wieght: 400;\n             \n            }\n\n            .form-module button {\n              cursor: pointer;\n              background: #33b5e5;\n              width: 30%;\n              border: 0;\n              padding: 10px 15px;\n              margin-left: 5%;\n              margin-right: 5%;\n              font-size: 1.5em;\n              color: #ffffff;\n              -webkit-transition: 0.3s ease;\n              transition: 0.3s ease;\n            }\n            .form-module button:hover {\n              background: #178ab4;\n            }\n\n            .form-module .cta a {\n              color: #333333;\n              text-decoration: none;\n            }\n\n            td{\n            vertical-align:top;\n            width: 270px;\n            font-family: arial;\n            font-weight: bold;\n            padding: 1%;\n          }\n\n        </style>\n\n    </head>\n       \n<!--\n==================================================\nGlobal Page Section Start\n================================================== -->\n<section class=\"global-page-header\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div id=\"user\"> \n                \n                </div>\n            <div class=\"col-md-12\" style=\"margin-top:  -4%;\">\n                <div class=\"block\" style=\"margin-top: -2%;\">\n                    <h2>View Quit Plan</h2>\n                </div>\n            </div>\n        </div>\n    </div>\n</section><!--/#Page header-->\n\n<section class=\"single-post\" >\n    <div class=\"container\" >\n        <div class=\"row\" >\n            <div class=\"col-md-12\" >\n                \n                <div class=\"post-content\">\n                    <!-- Form Module-->\n                    <div class=\"module form-module\">\n\n                      <div class=\"form\">\n                        <?php\n                        include(\"dbase.php\");                     \n                        $user_id = $_SESSION['SESS_USER_ID'];\n\n                      $query =\"SELECT quit_date, reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette, advisor_fk, user_fk, advisor_name,advisor_email, advisor_phone FROM quit_plan, advisor_info, user_info WHERE advisor_info.advisor_id=quit_plan.advisor_fk AND \n                        user_info.user_id=quit_plan.user_fk AND quit_plan.user_fk='$user_id'\"; \n\n                      $result = mysqli_query($conn,$query);\n                      if (mysqli_num_rows($result) > 0){ \n                      // output data of each row\n                      while($row = mysqli_fetch_assoc($result)){\n                      $quit_date = $row [\"quit_date\"];\n                      $reason = $row [\"reason\"];\n                      $frequency_smoke_weekly = $row [\"frequency_smoke_weekly\"];\n                      $frequency_smoke_daily = $row[\"frequency_smoke_daily\"];\n                      $when_craving = $row[\"when_craving\"];\n                      $price_cigarette = $row[\"price_cigarette\"];\n                      $advisor_name = $row[\"advisor_name\"];\n                      $advisor_email = $row[\"advisor_email\"];\n                      $advisor_phone = $row[\"advisor_phone\"];\n                        ?>\n                        <div style=\"font-size: 1.15em;\">\n                          <h1 style=\"text-align: center\">Well done on your first step!</h1>\n                          <h2 style=\"text-align: center; font-size: 1.3em;\">Contact your advisor for further discussion</h2>\n                            <table>\n\n                             <tr>\n                                <td >Your Name </p></td>\n                                <td >: <?php echo $_SESSION['SESS_NAME']; ?></td>\n                              </tr>\n                              \n                              <tr>\n                                <td >Your Quit Date </p></td>\n                                <td>: <?php echo $quit_date ?></td>\n                              </tr>\n                              \n                              <tr>\n                                <td >Your reason for quitting </p></td>\n                                <td>: <?php echo $reason ?></td>\n                              </tr>\n\n                              <tr>\n                                <td >Day(s) you smoke in a week </p></td>\n                                <td>: <?php echo $frequency_smoke_weekly ?></td>\n                              </tr>\n\n                              <tr>\n                                <td >Frequency of smoking daily </p></td>\n                                <td>: <?php echo $frequency_smoke_daily  ?></td>\n                              </tr>\n\n                              <tr>\n                                <td >Time in the day when craving </p></td>\n                                <td>: <?php echo $when_craving ?></td>\n                              </tr>\n\n                              <tr>\n                                <td >Price per cigarettes </p></td>\n                                <td>: $<?php echo $price_cigarette ?></td>\n                              </tr>\n\n                              <tr>\n                                <td>Your Advisor Name </p></td>\n                                <td>: <?php echo $advisor_name ?></td>\n                              </tr>\n\n                              <tr>\n                                <td>Your Advisor Email</td>\n                                <td>: <?php echo $advisor_email ?></td>\n                              </tr>\n\n                              <tr>\n                                <td>Your Advisor Phone</td>\n                                <td>: <?php echo $advisor_phone ?></td>\n                              </tr>\n\n                            </table>\n                            <button>Wish to edit?</button>   \n\n                            \n                                \n\n                                <?php\n                                }\n                }else{\n                    echo \"No results\";\n                }\n                ?>\n\n\n                            </div>\n                        </div>\n\n              \n            <div style=\"text-align: center;\">\n        </div>\n        </fieldset>  \n</form>  \n         \n                </div>\n            </div>\n        </div>\n    </div>\n\n</div>\n</section>\n</div>\n</section>\n\n\n  <!-- Template Javascript Files\n  ================================================== -->\n  <!-- jquery -->\n  <script src=\"plugins/jQurey/jquery.min.js\"></script>\n  <!-- Form Validation -->\n    <script src=\"plugins/form-validation/jquery.form.js\"></script> \n    <script src=\"plugins/form-validation/jquery.validate.min.js\"></script>\n  <!-- owl carouserl js -->\n  <script src=\"plugins/owl-carousel/owl.carousel.min.js\"></script>\n  <!-- bootstrap js -->\n  <script src=\"plugins/bootstrap/bootstrap.min.js\"></script>\n  <!-- wow js -->\n  <script src=\"plugins/wow-js/wow.min.js\"></script>\n  <!-- slider js -->\n  <script src=\"plugins/slider/slider.js\"></script>\n  <!-- Fancybox -->\n  <script src=\"plugins/facncybox/jquery.fancybox.js\"></script>\n  <!-- template main js -->\n  <script src=\"js/main.js\"></script>\n</html>",
-			"file": "user_view_plan.php",
-			"file_size": 10081,
-			"file_write_time": 131711352737653146,
+			"file": "advisor_addEntry.php",
 			"settings":
 			{
-				"buffer_size": 9868,
+				"buffer_size": 5235,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "user_header.php",
+			"file": "quit_plan_script.php",
 			"settings":
 			{
-				"buffer_size": 5901,
+				"buffer_size": 1187,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "advisor_header.php",
+			"settings":
+			{
+				"buffer_size": 5908,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "authenticator.php",
+			"settings":
+			{
+				"buffer_size": 394,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "advisor_addEntry_script.php",
+			"settings":
+			{
+				"buffer_size": 1333,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -399,27 +334,38 @@
 	],
 	"file_history":
 	[
+		"/C/xampp/htdocs/qsa/quit_plan.php",
+		"/C/xampp/htdocs/qsa/login.php",
+		"/C/xampp/htdocs/qsa/advisor_register_script.php",
+		"/C/xampp/htdocs/qsa/advisor_register.php",
+		"/C/xampp/htdocs/qsa/user_register_script.php",
+		"/C/xampp/htdocs/qsa/user_register.php",
+		"/C/xampp/htdocs/qsa/quit_plan_script.php",
+		"/C/xampp/htdocs/qsa/user_update_plan.php",
+		"/C/xampp/htdocs/qsa/user_update_plan_script.php",
+		"/C/xampp/htdocs/qsa/advisor_login-successful.php",
+		"/C/xampp/htdocs/qsa/user_view_plan.php",
+		"/C/xampp/htdocs/qsa/user_header.php",
+		"/C/xampp/htdocs/qsa/user_sessionHandler.php",
+		"/C/xampp/htdocs/qsa/advisor_addInfo_script.php",
+		"/C/xampp/htdocs/qsa/advisor_home.php",
+		"/C/xampp/htdocs/qsa/advisor_delete_pageEntry.php",
+		"/C/xampp/htdocs/qsa/logout.php",
+		"/C/xampp/htdocs/qsa/advisor_addEntry_script.php",
+		"/C/xampp/htdocs/qsa/advisor_view_infopage.php",
+		"/C/xampp/htdocs/qsa/advisor_addEntry.php",
+		"/C/xampp/htdocs/qsa/index.php",
+		"/C/xampp/htdocs/qsa/advisor_addInfo.php",
 		"/C/xampp/htdocs/qsa/user_login-successful.php",
 		"/C/xampp/htdocs/qsa/advisor_header.php",
 		"/C/xampp/htdocs/qsa/advisor_sessionHandler.php",
-		"/C/xampp/htdocs/qsa/index.php",
-		"/C/xampp/htdocs/qsa/quit_plan.php",
-		"/C/xampp/htdocs/qsa/user_register_script.php",
-		"/C/xampp/htdocs/qsa/user_register.php",
-		"/C/xampp/htdocs/qsa/advisor_register_script.php",
-		"/C/xampp/htdocs/qsa/logout.php",
-		"/C/xampp/htdocs/qsa/user_sessionHandler.php",
-		"/C/xampp/htdocs/qsa/quit_plan_script.php",
 		"/C/xampp/htdocs/qsa/view_quit_plan.php",
 		"/C/xampp/htdocs/qsa/header.php",
-		"/C/xampp/htdocs/qsa/login.php",
 		"/C/xampp/htdocs/qsa/login-failed.php",
 		"/C/xampp/htdocs/qsa/authenticator.php",
 		"/C/xampp/htdocs/qsa/dbase.php",
 		"/C/xampp/htdocs/qsa/custom range slider/index.html",
 		"/C/xampp/htdocs/qsa/gallery.html",
-		"/C/xampp/htdocs/qsa/advisor_register.php",
-		"/C/xampp/htdocs/qsa/advisor_login-successful.php",
 		"/C/xampp/htdocs/qsa/login-failed.html",
 		"/C/xampp/htdocs/qsa/loginss.php",
 		"/C/xampp/htdocs/qsa/cust_sessionHandler.php",
@@ -463,6 +409,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"session",
+			"SESS_MEMBER_ID ",
+			"sees_mem",
+			"color",
+			"margin",
 			"ordering",
 			"width",
 			"index",
@@ -548,349 +499,42 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "advisor_addInfo.php",
+					"file": "advisor_sessionHandler.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3034,
+						"buffer_size": 1875,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1369,
-								1443
+								1513,
+								1513
 							]
 						],
 						"settings":
 						{
 							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 672.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7702,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4999,
-								4999
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "advisor_addEntry.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5609,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2963,
-								0
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "advisor_view_infopage.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5903,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5866,
-								5807
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2640.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "advisor_addEntry_script.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1333,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1054,
-								1229
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 48.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "logout.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3003,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2028,
-								2028
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1680.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "advisor_delete_pageEntry.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								208,
-								208
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "advisor_home.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3643,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2321,
-								2343
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1442.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "advisor_addInfo_script.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1007,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5,
-								5
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "quit_plan.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13376,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4931,
-								4931
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2250.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "quit_plan_script.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1158,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								503,
-								503
-							]
-						],
-						"settings":
-						{
-							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 36.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
 					"file": "user_sessionHandler.php",
 					"semi_transient": false,
 					"settings":
@@ -914,27 +558,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 384.0,
+						"translation.y": 630.4,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "user_view_plan.php",
+					"buffer": 2,
+					"file": "advisor_addEntry.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9868,
+						"buffer_size": 5235,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8516,
-								8516
+								29,
+								29
 							]
 						],
 						"settings":
@@ -945,27 +589,58 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2914.4,
+						"translation.y": 1304.8,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "user_header.php",
+					"buffer": 3,
+					"file": "quit_plan_script.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5901,
+						"buffer_size": 1187,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3153,
-								3153
+								433,
+								396
+							]
+						],
+						"settings":
+						{
+							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "advisor_header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5908,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
 							]
 						],
 						"settings":
@@ -976,10 +651,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 864.0,
+						"translation.y": 1035.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "authenticator.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "advisor_addEntry_script.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								277,
+								277
+							]
+						],
+						"settings":
+						{
+							"git_savvy.repo_path": "C:\\xampp\\htdocs\\qsa",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -987,7 +722,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -1032,7 +767,7 @@
 	"project": "qsa.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1070,7 +805,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 319.0,
+	"side_bar_width": 186.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

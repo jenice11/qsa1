@@ -140,15 +140,13 @@
 
     </style>
 
-<?php  include("/header.php");   ?> 
+<?php  include("advisor_header.php");   ?> 
 
 <!--
  Filename: login-successful.php
  Purpose: To display protected web page if user is valid.
  Note: If you enter directly to this page, you will be checked by the authenticator, and then redirect to login-failed.html.
 -->
-
- <?php include("authenticator.php"); ?>
 
 
 <section id="hero-area" >
@@ -167,7 +165,7 @@
   </div>
   <div class="form">
     <?php echo "<h1><center>Welcome ".$_SESSION['SESS_NAME']." <br/><br/> Login Successfully </center></h3><br/>"; ?>
-                    <p style="font-size: 20pt;"><a href="index.html"> Redirect to the homepage</a></p>
+                    <p style="font-size: 20pt;"><a href="advisor_home.php"> Redirect to the homepage</a></p>
                     <hr>
                     <h2> Quicklinks</h2>
                     <p style="font-size: 16pt;"><a href="quit_plan.php"> Quit Plan </a></p>

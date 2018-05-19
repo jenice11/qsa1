@@ -9,7 +9,7 @@
   $frequency_smoke_daily = $_POST['frequency_smoke_daily'];
   $when_craving = $_POST['when_craving'];
   $price_cigarette = $_POST['price_cigarette'];
-  $user_id = $_SESSION['SESS_USER_ID'];
+  $user_id = $_SESSION['SESS_MEMBER_ID'];
   $advisor_id = $_POST['advisor_id'];
 
   $query = "SELECT advisor_id, from advisor_info WHERE advisor_id='$advisor_id'";
