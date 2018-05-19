@@ -86,7 +86,7 @@ Portfolio Section Start
                     <figcaption>
                     <h4>
                     <a href="#">
-                        <a href="user_view_pageEntry?id=<?php echo $id; ?>">
+                        <a href="user_view_pageEntry.php?id=<?php echo $id; ?>">
                            <div class="inner_content clearfix">
                                     <h2> <?php echo $page_name; ?></h2>
                                      <h3>By <?php echo $advisor_name; ?></h3>

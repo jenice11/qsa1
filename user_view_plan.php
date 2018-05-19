@@ -38,6 +38,24 @@
         include("authenticator.php");
         include("/user_header.php");   
         ?> 
+        <?php
+
+include("dbase.php");
+$foodid = $_GET['id'];
+
+$query = "SELECT f_name, f_photo, f_price FROM food_info WHERE food_id = '$foodid'";
+$result = mysqli_query($conn,$query) or die ("Could not order food");
+
+if (mysqli_num_rows($result) > 0){ 
+        // output data of each row
+        $row = mysqli_fetch_assoc($result);
+
+        $f_name = $row["f_name"];
+        $f_photo = $row["f_photo"];
+        $f_price = $row["f_price"];
+      }
+
+?>
 
         <style>
             /* Form Module */
