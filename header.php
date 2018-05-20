@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-
-        <?php  
-        include("authenticator.php");  ?> 
         <!-- Basic Page Needs
         ================================================== -->
         <meta charset="utf-8">
@@ -60,7 +57,7 @@
                     
                     <!-- logo -->
                     <div class="navbar-brand">
-                        <a href="advisor_home.php" >
+                        <a href="index.php" >
                             <img src="images/logo.png" alt="" >
                         </a>
 
@@ -72,11 +69,14 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <div class="main-menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li> <a><?php echo "Welcome, ".$_SESSION['SESS_NAME']?></a> </li>
                             <li>
-                                <a href="advisor_home.php" >Home</a>
+                                <a href="index.php" >Home</a>
                             </li>
-                            <li><a href="advisor_view_quitplan.php">View Quit Plan</a></li>
+                             <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quit Plan <span class="caret"></span></a>
+                                
+                            </li>
+                           
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
                                 <div class="dropdown-menu">
@@ -85,20 +85,7 @@
                                         <li><a href="cigarette_contains_what.php">Cigarette contains what?</a></li>
                                     </ul>
                                 </div>
-                            </li>         
-                            <li><a href="contact.php">Contact Us</a></li>
-                            <?php
-
-        if(isset($_GET['status'])) {
-          // echo "<script type='text/javascript'> $('.alert').alert() </script>";
-
-          echo "<script type='text/javascript'> 
-          document.getElementById('success_alert').style.visibility = 'visible'
-          </script>";
-        }
-        else  {
-        }
-        ?>                  
+                            </li>                        
                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
                                 <div class="dropdown-menu">
@@ -118,7 +105,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            
+                            </div>
                             
                         </ul>
                     </div>

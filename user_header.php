@@ -92,7 +92,6 @@
                                     <ul>
                                         <li><a href="health_effects.php">Health Effects</a></li>
                                         <li><a href="cigarette_contains_what.php">Cigarette contains what?</a></li>
-                                        <li><a href="why_smoke.php">Why Teenagers or Children Smoke</a></li>
                                     </ul>
                                 </div>
                             </li>         
