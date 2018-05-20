@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="no-js">
     <head>
@@ -39,11 +41,14 @@
         include("/user_header.php");   
         ?> 
 
+
+
         <?php 
         include("dbase.php");
-                 $id = $_GET['id'];
-                 ?>
+        ?>
 
+
+        
         <style>
             /* Form Module */
             .form-module {
@@ -135,7 +140,28 @@
         </style>
 
     </head>
-       
+
+     <?php
+
+                $user_id = $_SESSION['SESS_MEMBER_ID'];
+
+                $query = "SELECT user_fk, user_id, quit_plan_id FROM quit_plan, user_info WHERE quit_plan.user_fk=user_info.user_id AND quit_plan.user_fk='$user_id'";
+
+                      $result = mysqli_query($conn,$query);
+                      if (mysqli_num_rows($result) > 0){ 
+                      // output data of each row
+                      while($row = mysqli_fetch_assoc($result)){
+                        $user_id = $row ["user_id"];
+                         $quit_plan_id = $row ["quit_plan_id"];
+
+                        if ($result > 0)
+                        {
+                          echo "<script type= 'text/javascript'> alert('You already have a Quit Plan, redirecting you to view it')
+                          window.location='user_view_plan.php'</script>";
+                            
+                        } else {
+                          ?>
+                            
 <!--
 ==================================================
 Global Page Section Start
@@ -306,23 +332,31 @@ Global Page Section Start
 </section>
 
 
-	<!-- Template Javascript Files
-	================================================== -->
-	<!-- jquery -->
-	<script src="plugins/jQurey/jquery.min.js"></script>
-	<!-- Form Validation -->
+  <!-- Template Javascript Files
+  ================================================== -->
+  <!-- jquery -->
+  <script src="plugins/jQurey/jquery.min.js"></script>
+  <!-- Form Validation -->
     <script src="plugins/form-validation/jquery.form.js"></script> 
     <script src="plugins/form-validation/jquery.validate.min.js"></script>
-	<!-- owl carouserl js -->
-	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="plugins/bootstrap/bootstrap.min.js"></script>
-	<!-- wow js -->
-	<script src="plugins/wow-js/wow.min.js"></script>
-	<!-- slider js -->
-	<script src="plugins/slider/slider.js"></script>
-	<!-- Fancybox -->
-	<script src="plugins/facncybox/jquery.fancybox.js"></script>
-	<!-- template main js -->
-	<script src="js/main.js"></script>
+  <!-- owl carouserl js -->
+  <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <!-- wow js -->
+  <script src="plugins/wow-js/wow.min.js"></script>
+  <!-- slider js -->
+  <script src="plugins/slider/slider.js"></script>
+  <!-- Fancybox -->
+  <script src="plugins/facncybox/jquery.fancybox.js"></script>
+  <!-- template main js -->
+  <script src="js/main.js"></script>
+
+
+                            <?php 
+                            }}
+                        }
+                        ?>
+       
+
 </html>

@@ -76,7 +76,16 @@
                             <li>
                                 <a href="index.php" >Home</a>
                             </li>
-                            <li><a href="quit_plan.php">Quit Plan</a></li>
+                             <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quit Plan <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                         <li><a href="quit_plan.php">Create Quit Plan</a></li>
+                                        <li><a href="user_view_plan.php">View Quit Plan</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                           
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
                                 <div class="dropdown-menu">

@@ -161,7 +161,7 @@ Global Page Section Start
                           ?>
 
                             <button class="btn btn-info"><a href="user_updateComment.php?id=<?php echo $id; ?>">Edit</a></button>
-                            <p></p>
+
                               <form method="POST" action="user_delete_comment.php?id=<?php echo $id?>" enctype="multipart/form-data" id="pageform">
                                  <input type="hidden" name="page_id" value="<?php echo $page_id ?>">
                                  <button class="btn btn-danger">Delete</button>

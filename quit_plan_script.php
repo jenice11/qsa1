@@ -25,7 +25,7 @@ if($result){
         
   echo "<script type= 'text/javascript'> alert('Quit Plan Created')
   window.location='user_view_plan.php'</script>";
-  // echo $c_id;
+
 }
 ?>
   
