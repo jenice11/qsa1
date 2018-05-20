@@ -51,15 +51,19 @@ Portfolio Section Start
 ================================================== -->
 <section id="works" class="works">
     <div class="container">
-        <div class="section-heading">
-            <h1 class="title wow fadeInDown" data-wow-delay=".3s">Information posted by our Advisors</h1>
+        <div class="section-heading" style="margin-top: -5%; margin-bottom: -30%;">
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s" >Information posted by our Advisors</h1>
             <p class="wow fadeInDown" data-wow-delay=".5s">
                 These information may be useful!
             </p>
         </div>
-        
-                <div class="col-md-8" style="margin-left: 20%;" >
-                    <?php
+    </div>
+</section>
+<section id="blog-full-width">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <?php
                 include("dbase.php");
 
                 $query ="SELECT page_id, page_name, page_text, page_photo, page_date, advisor_name, advisor_id, advisor_fk from page_info, advisor_info WHERE advisor_info.advisor_id=page_info.advisor_fk";
@@ -78,45 +82,37 @@ Portfolio Section Start
 
                 
                 ?>
-        <div class="row">
-            <div class="column" style="display: block;">
-                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms" >
-                    <div class="img-wrapper" style="width:100%;" align="center" >
-                        <img src="<?php echo $page_photo; ?>" class="img-responsive" width="300px" height="300px"/>    
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        <a href="user_view_pageEntry.php?id=<?php echo $id; ?>">
-                           <div class="inner_content clearfix">
-                                    <h2> <?php echo $page_name; ?></h2>
-                                     <h3>By <?php echo $advisor_name; ?></h3>
-                                     <p><?php echo $page_text; ?></p>
-                                      <p>Posted at <?php echo $page_date ?></p>
-                            </div>
-                        </a>
-                    </h4>   
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-</div>
-</div>
-</div>
-
-             <?php
+                <hr>
+                <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                    <div class="blog-post-image">
+                        <a href="user_view_pageEntry.php?id=<?php echo $id; ?>"><img class="img-responsive" src="<?php echo $page_photo; ?>" alt="" width="250px" height="250px"/></a>
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blogpost-title">
+                        <a href="user_view_pageEntry.php?id=<?php echo $id; ?>"><?php echo $page_name ?></a>
+                        </h2>
+                        <div class="blog-meta">
+                            <span><?php echo $page_date ?>;</span>
+                            <span>by <?php echo $advisor_name ?></span>
+                        </div>
+                        <p><?php echo $page_text ?>
+                        </p>
+                        <a href="user_view_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-dafault btn-details">Read</a>
+                        <?php
 
                 }
                 }else{
                     echo "No results";
                 }
                 ?>
-            </p>
-        </div>
-           
+                    </div>
+                </article>
+            </div>
         </div>
     </div>
-</section> <!-- #works -->
-
+</section>
+             
+            </p>
 
             <!--
             ==================================================

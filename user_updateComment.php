@@ -1,19 +1,3 @@
-Skip to content
-Features
-Business
-Explore
-Marketplace
-Pricing
-This repository
-Search
-Sign in or Sign up
-0 0 0 jenice11/qsa1
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-qsa1/advisor_addEntry.php
-07464ed  19 hours ago
-@jenice11 jenice11 advisor page entry done
-     
-182 lines (152 sloc)  5.32 KB
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +5,7 @@ qsa1/advisor_addEntry.php
 </html>
 <?php 
 include("advisor_header.php");
+
 ?>
   <script>
      new WOW().init();
@@ -45,27 +30,29 @@ include("advisor_header.php");
           }
       });
   });
+
     $('#my-imageupload').imageupload(options);
+
+
    </script>
   
 <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
 <style type="text/css">
-#user {
-      padding-top: 45px;
-      padding-left: 250px;
-      position: absolute;
-    }
+
     /* Form Module */
             .form-module {
-              position: relative;
-              margin-left: 32%;
+
+              text-align: center;
               background: #FCFCFC;
               max-width: 800px; 
+              margin-left: 14%;
               width: 100%;
               border-top: 10px solid #33b5e5;
               -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
                       box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
             }
+
+
             .form-module h2 {
               margin: 0 0 20px;
               color: #33b5e5;
@@ -74,6 +61,7 @@ include("advisor_header.php");
               line-height: 1;
             }
             .form-module input {
+
               width: 100%;
               border: 1px solid #d9d9d9;
               margin: 0 0 20px;
@@ -83,6 +71,7 @@ include("advisor_header.php");
               font-weight: 400;
              
             }
+
             .form-module button {
               cursor: pointer;
               background: #33b5e5;
@@ -99,10 +88,12 @@ include("advisor_header.php");
             .form-module button:hover {
               background: #178ab4;
             }
+
             .form-module .cta a {
               color: #333333;
               text-decoration: none;
             }
+
 </style>
 
 </head>
@@ -118,7 +109,7 @@ Global Page Section Start
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Add New Entry</h2>
+                    <h2>Update Comment</h2>
                 </div>
             </div>
         </div>
@@ -132,49 +123,51 @@ Global Page Section Start
             <div class="col-md-12">
                <div class="post-content" style="margin-top: -3%;">
                <!-- Form Module-->
+               <?php
 
-               
-                      <div class="form" style="margin-top: -2%;">
-                        <form method="POST" action="advisor_addEntry_script.php" enctype="multipart/form-data" id="pageform">
-<div class="col-md-3">
-                <label class="control-label"><b>Add page image here:</b></label><br>
-                                  <input type="file" name="photo" onchange="loadFile(event)" accept="image/*">
-                                  <br><br>
-                            <img  id="output" width="200px"/>
-                              <script>
-                                var loadFile = function(event) {
-                                  var output = document.getElementById('output');
-                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                };
-                              </script>
-              </div>
+           include("dbase.php");                     
+                      $id = $_GET['id'];
+                      $user_id = $_SESSION['SESS_MEMBER_ID'];
 
+                      $query ="SELECT comment_id, page_fk, comment_text, user_fk, page_name FROM comment_table, page_info WHERE 
+                      comment_table.comment_id='$id' AND comment_table.user_fk='$user_id' AND page_info.page_id=comment_table.page_fk";
+
+                      $result = mysqli_query($conn,$query) or die ("Could not execute query");
+                      $row = mysqli_fetch_assoc($result);
+                      $comment_id = $row["comment_id"];
+                      $comment_text = $row["comment_text"];
+                      $page_fk = $row["page_fk"];
+                      $page_name = $row["page_name"];
+
+                      ?>
                     <!-- Form Module-->
+
+                    <form method="POST" action="user_updateComment_script.php?id=<?php echo $id?>" enctype="multipart/form-data" id="pageform">
                     <div class="module form-module">
 
-                      <div class="form" >
+                      <div class="form" align="center">
                         
-                          <table style="margin: 2.5%;">  
-                          <h1 style="text-align: center"> Page Info </h1>          
-                                <td width="19%" >Page Name </p></td>
-                                <td><input type="text" name="pagename" placeholder="Page Name">  </td>
-                              </tr>
-                              
-                              <tr>
-                                <td >Page Text </p></td>
-                                <td><textarea name="page_text" rows="10" cols="79"  form="pageform" style="resize: none" placeholder="Enter Here" ></textarea></td>
-                              </tr>
+                          <table>  
+                          <h1> Comment</h1>
+                          <h2 >For Page: <?php echo $page_name ?></h2>
+                          <tr>          
+                                <td ></p></td>
+                                <td><textarea name="comment_text" rows="5" cols="80"  form="pageform" style="resize: none" > <?php echo $comment_text; ?>
+                                  
+                                </textarea> </td>
+                        </tr>
+                        <td>
+                          <input type="hidden" name="page_fk" value="<?php echo $page_fk ?>">
+                        </td>
 
-                              <?php 
-                include("dbase.php"); 
-                $id = $_SESSION['SESS_MEMBER_ID'];
-                ?>
-
+                            
                               
                           </table>
                           <div style="text-align: center;">
-                          <input type="submit" name="submit" value="Submit"/>
+                            <br>
+                          <button>Edit Comment</button>
                           </div>
+                          <br>
 
                     
             </form>
@@ -185,16 +178,3 @@ Global Page Section Start
 </html>
 
 
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.

@@ -2,7 +2,7 @@
 <html>
 <head>
   <?php 
-include("advisor_header.php");
+include("user_header.php");
 include("authenticator.php");
 
 ?>
@@ -61,15 +61,15 @@ include("authenticator.php");
              float: left;
           }
 
-          #display {
-            width: 110%;
-            margin-left: 50%;
-            padding: 30px;
-            position: relative;
-            margin-top: -3%;
 
 
-          }
+
+         #displaypic {
+            width:100%;
+            max-width:500px;
+            max-height: :500px;
+            padding-bottom: 10px;
+        }
 
 </style>
 
@@ -88,25 +88,12 @@ Global Page Section Start
             <div id="user"> 
                 
                 </div>
-            <div class="col-md-12" style="margin-top:  -4%;">
-                <div class="block" style="margin-top: -2%;">
-                    <h2>View Quit Plan</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</section><!--/#Page header-->
+            <div class="col-md-12">
+               <?php
+                        include("dbase.php");
+                        $id = $_GET['id'];
 
-
-
-<section class="single-post" >
-    <div class="container" align="right">
-                    
-                        <?php
-                        include("dbase.php");                     
-                        $advisor_id = $_SESSION['SESS_MEMBER_ID'];
-
-                      $query ="SELECT page_id, advisor_name, advisor_fk, page_name, page_photo, page_text, page_date FROM page_info, advisor_info WHERE advisor_fk=$advisor_id AND advisor_info.advisor_id=page_info.advisor_fk"; 
+                      $query ="SELECT page_id, advisor_name, advisor_fk, page_name, page_photo, page_text, page_date FROM page_info, advisor_info WHERE page_id=$id AND page_info.advisor_fk=advisor_info.advisor_id"; 
 
                       $result = mysqli_query($conn,$query);
                       if (mysqli_num_rows($result) > 0){ 
@@ -120,61 +107,104 @@ Global Page Section Start
                       $page_text = $row["page_text"];
                       $page_date = $row["page_date"];
                       ?>
-                      
-                      <!-- Form Module-->
-                      <div style="display: block;" >
-                    <div class="row">
-                
-
-                <div class="col-sm-6" align="center">
-                
-                <div id="display">
-                  <hr>
-                  <table >
-                      <tr>
-                        <div class="col-sm-6" align="center" id="photo">
-                  <img src="<?php echo $page_photo; ?>" width="100%">
-              </div>
-                              <td width="40%">Page Name: </td>
-                              <td> <?php echo $page_name; ?></td>
-
-                            </tr>
-                              
-                             <tr>
-                              <td>Posted By: </td>
-                              <td><?php echo $advisor_name; ?></td>
-                              
-                            </tr>
-                              
-                              <tr>
-                                <td> Page Text: </td>
-                              <td style="padding-top: 10px;"> <textarea name="page_text" form="pageform" style="resize: none" readonly ><?php echo $page_text; ?></textarea></td>
-
-                            </tr>
-
-                              <tr>
-                              <td>Posted Time: </td>
-                                <td><?php echo $page_date;?></td>
-                            </tr>
-
-                            <tr>
-                              <td ><a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a></td>
-                              <td ><a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a></td>
-                            </tr> 
-                  </table>   
-                  </div>
-
-
+                <div class="block" style="margin-top: -2%;">
+                    <h2><?php echo $page_name ?></h2>
+                </div>
             </div>
-          </div>
         </div>
-        <?php
+    </div>
+</section><!--/#Page header-->
+                    
+  <section class="single-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post-img" align="center">
+                    <img class="img-responsive" id="displaypic" alt="" src="<?php echo $page_photo; ?>" style="margin-top: -2%" >
+                    <h3 align="center">Posted By <?php echo $advisor_name ?></h3>
+                    <h4 align="center">At <?php echo $page_date ?></h4>
+                </div>
+                <div class="post-content" align="center">
+                  <p><?php echo $page_text ?> </p>
+                </div>
+                <?php
         }
         }else{
           echo "No results";
         }
         ?>
 
+                <div class="col-sm-12">
+                  
+                    <h3>Comments: </h3>
+                  <?php 
+                   $query ="SELECT comment_id, comment_text, comment_date, user_fk, user_name, page_fk from comment_table, page_info, user_info WHERE user_info.user_id=comment_table.user_fk AND page_info.page_id=comment_table.page_fk ";
+                   $result = mysqli_query($conn,$query);
+                      if (mysqli_num_rows($result) > 0){ 
+                      // output data of each row
+
+                      while($row = mysqli_fetch_assoc($result)){
+                        $id = $row["comment_id"];
+                      $page_id = $row["page_fk"];
+                      $comment_text = $row["comment_text"];
+                      $user_name = $row["user_name"];
+                      $user_id = $row["user_fk"];
+                      $comment_date = $row["comment_date"];
+                    
+                    ?>
+                    <hr>
+                    <p><?php echo $comment_text ?> </p>
+                    <p>by <?php echo $user_name ?> at <?php echo $comment_date ?></p>
+                       <?php
+                        if ($_SESSION['SESS_MEMBER_ID'] = $user_id)
+                        {
+                          ?>
+
+                            <button class="btn btn-info"><a href="user_updateComment.php?id=<?php echo $id; ?>">Edit</a></button>
+                            <p></p>
+                              <form method="POST" action="user_delete_comment.php?id=<?php echo $id?>" enctype="multipart/form-data" id="pageform">
+                                 <input type="hidden" name="page_id" value="<?php echo $page_id ?>">
+                                 <button class="btn btn-danger">Delete</button>
+                               </form>
+
+                            <?php
+                        } else {
+                            echo " ";
+                        }
+
+
+                     }
+                }else{
+                    echo "No comment";
+                }
+                ?>
+
+
+                </div>
+                
+                <div class="col-sm-12">
+                  <hr>
+                  <form method="POST" action="user_addComment_pageEntry_script.php?id=<?php echo $id ?>" enctype="multipart/form-data" name="commentform" id="commentform">
+                  <table >
+            <tr>
+                              <td width="20%">Leave a comment:</td>
+                              <td width="50%">
+                                 <textarea name="comment_text" rows="3" cols="70"  form="commentform" style="resize: none" placeholder="Comment Here" ></textarea>
+                              </td>
+                            </tr>
+                            </table> 
+                             <input type="hidden" name="page_id" value="<?php echo $page_id ?>">
+                            <div align="center">
+                              <input type="submit" value="submit" name="button" class="btn btn-info"/>
+                          </div>
+                        </form>
+                         
+
+
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
 

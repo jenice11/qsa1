@@ -64,12 +64,18 @@ include("authenticator.php");
           #display {
             width: 110%;
             margin-left: 50%;
-            padding: 30px;
             position: relative;
-            margin-top: -3%;
+            margin-top: -15%;
 
 
           }
+           #displaypic {
+            width:100%;
+            max-width:200px;
+            max-height: :200px;
+            padding-top: 70px;
+            padding-bottom: 20px;
+        }
 
 </style>
 
@@ -122,18 +128,20 @@ Global Page Section Start
                       ?>
                       
                       <!-- Form Module-->
-                      <div style="display: block;" >
+
+<hr>
+
+                      <div style="display: block; padding-top: 10px;" >
                     <div class="row">
                 
 
-                <div class="col-sm-6" align="center">
+                <div class="col-sm-6" align="center" ">
                 
                 <div id="display">
-                  <hr>
+                  
                   <table >
                       <tr>
-                        <div class="col-sm-6" align="center" id="photo">
-                  <img src="<?php echo $page_photo; ?>" width="100%">
+                  <img id="displaypic" src="<?php echo $page_photo; ?>">
               </div>
                               <td width="40%">Page Name: </td>
                               <td> <?php echo $page_name; ?></td>
@@ -148,7 +156,7 @@ Global Page Section Start
                               
                               <tr>
                                 <td> Page Text: </td>
-                              <td style="padding-top: 10px;"> <textarea name="page_text" form="pageform" style="resize: none" readonly ><?php echo $page_text; ?></textarea></td>
+                              <td style="padding-top: 10px;"> <textarea name="page_text" form="pageform" style="resize: none" readonly rows="5" cols="50" ><?php echo $page_text; ?></textarea></td>
 
                             </tr>
 
@@ -156,13 +164,13 @@ Global Page Section Start
                               <td>Posted Time: </td>
                                 <td><?php echo $page_date;?></td>
                             </tr>
-
-                            <tr>
-                              <td ><a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a></td>
-                              <td ><a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a></td>
-                            </tr> 
                   </table>   
+                  <a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a>
+                                  <a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a>
+                              </td>
                   </div>
+
+               
 
 
             </div>
