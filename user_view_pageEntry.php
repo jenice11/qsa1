@@ -138,7 +138,7 @@ Global Page Section Start
                   
                     <h3>Comments: </h3>
                   <?php 
-                   $query ="SELECT comment_id, comment_text, comment_date, user_fk, user_name, page_fk from comment_table, page_info, user_info WHERE user_info.user_id=comment_table.user_fk AND page_info.page_id=comment_table.page_fk ";
+                   $query ="SELECT comment_id, comment_text, comment_date, user_fk, user_name, page_fk from comment_table, page_info, user_info WHERE user_info.user_id=comment_table.user_fk AND page_info.page_id=comment_table.page_fk AND page_fk='$id' ";
                    $result = mysqli_query($conn,$query);
                       if (mysqli_num_rows($result) > 0){ 
                       // output data of each row
@@ -156,7 +156,9 @@ Global Page Section Start
                     <p><?php echo $comment_text ?> </p>
                     <p>by <?php echo $user_name ?> at <?php echo $comment_date ?></p>
                        <?php
-                        if ($_SESSION['SESS_MEMBER_ID'] = $user_id)
+
+
+                        if ($_SESSION['SESS_MEMBER_ID'] === $user_id)
                         {
                           ?>
 
