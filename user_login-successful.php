@@ -169,7 +169,7 @@
                     <hr>
                     <h2> Quicklinks</h2>
                     <p style="font-size: 16pt;"><a href="quit_plan.php"> Quit Plan </a></p>
-                    <p style="font-size: 16pt;"><a href="health_effects.html"> Info Wall, Health Effects </a></p>
+                    <p style="font-size: 16pt;"><a href="health_effects.php"> Info Wall, Health Effects </a></p>
           </div>
         </div>
       </div>
