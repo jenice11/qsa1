@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="no-js">
     <head>
@@ -41,14 +39,11 @@
         include("/user_header.php");   
         ?> 
 
-
-
         <?php 
         include("dbase.php");
-        ?>
+                 $id = $_GET['id'];
+                 ?>
 
-
-        
         <style>
             /* Form Module */
             .form-module {
@@ -61,9 +56,7 @@
                       box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
               margin: 0 auto;
             }
-
             .form-module .form {
-
               padding: 30px ;
             }
             .form-module .form:nth-child(2) {
@@ -77,7 +70,6 @@
               line-height: 1;
             }
             .form-module input {
-
               width: 100%;
               border: 1px solid #d9d9d9;
               margin: 0 0 20px;
@@ -87,7 +79,6 @@
               font-wieght: 400;
              
             }
-
             .form-module button {
               cursor: pointer;
               background: #33b5e5;
@@ -104,33 +95,28 @@
             .form-module button:hover {
               background: #178ab4;
             }
-
             .form-module .cta a {
               color: #333333;
               text-decoration: none;
             }
-
             /* column */
             /* Create 5 equal columns that floats next to each other */
             .column1 {
                 float: left;
                 width: 18.4%;
                 padding: 1px;
-
             }
             .column2 {
                 float: left;
                 width: 8%;
                 padding: 1px;
             }
-
             /* Clear floats after the columns */
             .row1:after {
                 content: "";
                 display: table;
                 clear: both;
             }
-
             /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
             @media screen and (max-width: 600px) {
                 .column1 {
@@ -140,28 +126,7 @@
         </style>
 
     </head>
-
-     <?php
-
-                $user_id = $_SESSION['SESS_MEMBER_ID'];
-
-                $query = "SELECT user_fk, user_id, quit_plan_id FROM quit_plan, user_info WHERE quit_plan.user_fk=user_info.user_id AND quit_plan.user_fk='$user_id'";
-
-                      $result = mysqli_query($conn,$query);
-                      if (mysqli_num_rows($result) > 0){ 
-                      // output data of each row
-                      while($row = mysqli_fetch_assoc($result)){
-                        $user_id = $row ["user_id"];
-                         $quit_plan_id = $row ["quit_plan_id"];
-
-                        if ($result > 0)
-                        {
-                          echo "<script type= 'text/javascript'> alert('You already have a Quit Plan, redirecting you to view it')
-                          window.location='user_view_plan.php'</script>";
-                            
-                        } else {
-                          ?>
-                            
+       
 <!--
 ==================================================
 Global Page Section Start
@@ -170,6 +135,21 @@ Global Page Section Start
     <div class="container">
         <div class="row">
             <div id="user"> 
+                   <?php
+
+                $user_id = $_SESSION['SESS_MEMBER_ID'];
+
+                $query = "SELECT user_fk, user_id, quit_plan_id FROM quit_plan, user_info WHERE quit_plan.user_fk=user_info.user_id AND quit_plan.user_fk='$user_id'";
+
+                      $result = mysqli_query($conn,$query);
+
+                        if($result = 1){
+         
+                          echo "<script type= 'text/javascript'> alert('You already have a Quit Plan, redirecting you to view it')
+                          window.location='user_view_plan.php'</script>";
+                        }
+
+                        ?>
                 
                 </div>
             <div class="col-md-12" style="margin-top:  -4%;">
@@ -257,15 +237,11 @@ Global Page Section Start
                             <div>
                                 <?php
                                 $query ="SELECT advisor_id, advisor_name, advisor_email, advisor_age, advisor_gender, advisor_experience FROM advisor_info"; 
-
                                 $id = $id;
-
                                 $result = mysqli_query($conn,$query);
                                 if (mysqli_num_rows($result) > 0){ 
                                 // output data of each row
                                 while($row = mysqli_fetch_assoc($result)){
-
-
                                 $advisor_id = $row["advisor_id"];
                                 $advisor_name = $row["advisor_name"];
                                 $advisor_email = $row["advisor_email"];
@@ -351,12 +327,4 @@ Global Page Section Start
   <script src="plugins/facncybox/jquery.fancybox.js"></script>
   <!-- template main js -->
   <script src="js/main.js"></script>
-
-
-                            <?php 
-                            }}
-                        }
-                        ?>
-       
-
 </html>

@@ -87,22 +87,15 @@
 .form-module .form:nth-child(2) {
   display: block;
 }
-.form-module h2 {
-  margin: 0 0 20px;
-  color: #33b5e5;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1;
-}
-.form-module input {
 
+.form-module input {
   width: 100%;
   border: 1px solid #d9d9d9;
   margin: 0 0 20px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-wieght: 400;
+  font-weight: 400;
  
 }
 
@@ -127,7 +120,7 @@
 
 /* slide */
 #hero-area {
-  background: url('../images/slider.jpg') no-repeat 20%;
+  background: url('./images/slider.jpg');
   background-size: cover;
   background-attachment: fixed;
   margin-top: -215px;
@@ -138,24 +131,6 @@
 }
 
 
-#hero-area h1 {
-  font-size: 40px;
-  line-height: 50px;
-  color: #333;
-  font-weight: 700;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-}
-#hero-area h2 {
-  font-size: 18px;
-  font-weight: 300;
-  margin-bottom: 38px;
-  line-height: 27px;
-  text-transform: uppercase;
-  color: #666;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 25px;
-}
 
 .labelform{
   font-size: 12pt;
@@ -280,13 +255,15 @@
         <input type="email" placeholder="example@gmail.com" name="email" required>
 
         <label for="phonenumber" class="labelform"><b>Phone Number :</b></label>
-        <input type="tel" placeholder="0191234567" name="phonenumber" required>
+        <input type="text" name="phonenumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  required/>
 
         <label for="age" class="labelform"><b>Age :</b></label>
         <input type="number" placeholder="Age" name="age" required>
 
         <label for="gender" class="labelform"><b>Gender :</b></label>
-        <input type="text" placeholder="Male or Female" name="gender" required>
+        <br>
+        <label class="radio-inline"><input type="radio" style="width: 15px" name="gender" value="male" required>Male</label>
+        <label class="radio-inline"><input type="radio" style="width: 15px" name="gender" value="female">Female</label>
 
       </div>
         <button>Register</button>

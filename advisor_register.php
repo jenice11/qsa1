@@ -280,13 +280,15 @@
         <input type="email" placeholder="example@gmail.com" name="email" required>
 
         <label for="phonenumber" class="labelform"><b>Phone Number :</b></label>
-        <input type="tel" placeholder="0191234567" name="phonenumber" required>
+        <input type="text" name="phonenumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"required />
 
         <label for="age" class="labelform"><b>Age :</b></label>
         <input type="number" placeholder="Age" name="age" required>
 
         <label for="gender" class="labelform"><b>Gender :</b></label>
-        <input type="text" placeholder="Male or Female" name="gender" required>
+        <br>
+        <label class="radio-inline"><input type="radio" style="width: 15px" name="gender" value="male" required>Male</label>
+        <label class="radio-inline"><input type="radio" style="width: 15px" name="gender" value="female">Female</label><br><br>
 
         <label for="experience" class="labelform"><b>Any Experience as a medical practitioner:</b></label>
         <input type="text" placeholder="e.g: Resident in Hospital AAA for 5 years/ Private doctor" name="experience" required>

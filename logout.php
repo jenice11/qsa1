@@ -141,7 +141,6 @@ session_destroy();
   </div>
   <div class="form">
     <h1>You have logged out<br><br>Have a nice day</h1><br>
-                    <p style="font-size: 20pt;"><a href="index.php"> Redirect to the home page</a></p>
                     <hr>
                     <p style="font-size: 16pt;"><a href="login.php"> Login Again</a></p><br>
        

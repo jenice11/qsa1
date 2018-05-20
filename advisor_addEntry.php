@@ -1,19 +1,3 @@
-Skip to content
-Features
-Business
-Explore
-Marketplace
-Pricing
-This repository
-Search
-Sign in or Sign up
-0 0 0 jenice11/qsa1
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-qsa1/advisor_addEntry.php
-07464ed  19 hours ago
-@jenice11 jenice11 advisor page entry done
-     
-182 lines (152 sloc)  5.32 KB
 <!DOCTYPE html>
 <html>
 <head>
@@ -183,18 +167,3 @@ Global Page Section Start
       </div>
 </body>
 </html>
-
-
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.
