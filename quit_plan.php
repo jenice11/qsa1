@@ -142,15 +142,23 @@ Global Page Section Start
                 $query = "SELECT user_fk, user_id, quit_plan_id FROM quit_plan, user_info WHERE quit_plan.user_fk=user_info.user_id AND quit_plan.user_fk='$user_id'";
 
                       $result = mysqli_query($conn,$query);
+                      if (mysqli_num_rows($result) > 0){ 
+                      // output data of each row
+                      while($row = mysqli_fetch_assoc($result)){
+                      $user_fk = $row ["user_fk"];
 
-                        if($result = 1){
+                        if($user_id == $user_fk){
          
                           echo "<script type= 'text/javascript'> alert('You already have a Quit Plan, redirecting you to view it')
                           window.location='user_view_plan.php'</script>";
                         }
+                      }
+                }
 
-                        ?>
+                else{
+                   
                 
+                ?>            
                 </div>
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
@@ -286,6 +294,8 @@ Global Page Section Start
                 ?>
 
 
+
+
                             </div>
                         </div>
 
@@ -295,9 +305,11 @@ Global Page Section Start
             <button type="reset" >Reset</button>  
         </div>
         </fieldset>  
+
 </form>  
          
                 </div>
+
             </div>
         </div>
     </div>
@@ -306,6 +318,7 @@ Global Page Section Start
 </section>
 </div>
 </section>
+<?php } ?>
 
 
   <!-- Template Javascript Files

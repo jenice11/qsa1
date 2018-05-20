@@ -79,7 +79,7 @@
   background: url('../images/slider.jpg') no-repeat 20%;
   background-size: cover;
   background-attachment: fixed;
-  margin-top: -215px;
+  margin-top: -100px;
   padding: 50px 0;
   color: #fff;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);

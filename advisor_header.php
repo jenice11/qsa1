@@ -76,9 +76,19 @@
                             <li>
                                 <a href="advisor_home.php" >Home</a>
                             </li>
-                            <li><a href="advisor_view_quitplan.php">View Quit Plan</a></li>
+                            <li><a href="advisor_view_quitplan.php">Quit Plan List</a></li>
+
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page Entry<span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="advisor_addEntry.php">Add Page Entry</a></li>
+                                        <li><a href="advisor_view_infopage.php">View Page Entry List</a></li>
+                                    </ul>
+                                </div>
+                            </li>   
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info Wall<span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li><a href="health_effects.php">Health Effects</a></li>
@@ -86,7 +96,7 @@
                                     </ul>
                                 </div>
                             </li>         
-                            <li><a href="contact.php">Contact Us</a></li>
+                            
                             <?php
 
         if(isset($_GET['status'])) {

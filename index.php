@@ -37,7 +37,7 @@ Slider Section Start
                     <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
                         With the online quit smoking plan,<br> you can gain more years ahead in your life .
                     </h2>
-                    <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works">More Info about the plan</a>
+                    <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works">Click Here to see posted information</a>
                 </div>
             </div>
         </div>
