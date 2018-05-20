@@ -72,7 +72,8 @@
   position: relative;
   background: #FCFCFC;
   max-width: 400px;
-  padding-bottom: 20px;
+  padding-bottom: 70px;
+
   width: 100%;
   border-top: 10px solid #33b5e5;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -130,7 +131,7 @@
   background: url('../images/slider.jpg') no-repeat 20%;
   background-size: cover;
   background-attachment: fixed;
-  margin-top: -215px;
+  margin-top: -20px;
   padding: 50px 0;
   color: #fff;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -250,8 +251,21 @@
   <div class="toggle"><i class="fa fa-times fa-pencil"></i>
     
   </div>
-  <div class="form" style="padding-top: 40%">
+  <div class="form">
     <h1>Sorry <br> Please Login Again</h1><br>
+    <?php
+            // to display error message if username and password is invalid
+                if (isset($_SESSION['ERRMSG_ARR']))
+                {
+                    echo "<h1 class='ermsg'>Error found: ";
+                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
+                    {
+                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
+                    }
+                    echo "</h1>";
+                    unset($_SESSION['ERRMSG_ARR']);
+                }  
+            ?>
                     <p style="font-size: 20pt;"><a href="login.php"> Redirect to the login page</a></p>
                     <hr>
                     <h2> Don't have an account yet?</h2>

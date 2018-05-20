@@ -62,20 +62,14 @@ include("authenticator.php");
           }
 
           #display {
-            width: 110%;
+            width: 100%;
             margin-left: 50%;
             position: relative;
-            margin-top: -15%;
+
 
 
           }
-           #displaypic {
-            width:100%;
-            max-width:200px;
-            max-height: :200px;
-            padding-top: 70px;
-            padding-bottom: 20px;
-        }
+
 
 </style>
 
@@ -96,7 +90,7 @@ Global Page Section Start
                 </div>
             <div class="col-md-12" style="margin-top:  -4%;">
                 <div class="block" style="margin-top: -2%;">
-                    <h2>View Info Page</h2>
+                    <h2>View Quit Plan</h2>
                 </div>
             </div>
         </div>
@@ -112,21 +106,27 @@ Global Page Section Start
                         include("dbase.php");                     
                         $advisor_id = $_SESSION['SESS_MEMBER_ID'];
 
-                      $query ="SELECT page_id, advisor_name, advisor_fk, page_name, page_photo, page_text, page_date FROM page_info, advisor_info WHERE advisor_fk=$advisor_id AND advisor_info.advisor_id=page_info.advisor_fk"; 
+                      $query ="SELECT quit_plan_id, quit_date, reason, frequency_smoke_weekly, frequency_smoke_daily, when_craving, price_cigarette, advisor_fk, user_fk, user_name,user_email, user_phone, user_gender FROM quit_plan, advisor_info, user_info WHERE advisor_info.advisor_id=quit_plan.advisor_fk
+                       AND user_info.user_id=quit_plan.user_fk AND quit_plan.advisor_fk='$advisor_id'";
 
                       $result = mysqli_query($conn,$query);
                       if (mysqli_num_rows($result) > 0){ 
                       // output data of each row
 
                       while($row = mysqli_fetch_assoc($result)){
-                      $id = $row["page_id"];
-                      $advisor_name = $row["advisor_name"];
-                      $page_name = $row["page_name"];
-                      $page_photo = $row["page_photo"];
-                      $page_text = $row["page_text"];
-                      $page_date = $row["page_date"];
+                      $id = $row["quit_plan_id"];
+                      $quit_date = $row ["quit_date"];
+                      $reason = $row ["reason"];
+                      $frequency_smoke_weekly = $row ["frequency_smoke_weekly"];
+                      $frequency_smoke_daily = $row["frequency_smoke_daily"];
+                      $when_craving = $row["when_craving"];
+                      $price_cigarette = $row["price_cigarette"];
+                      $user_name = $row["user_name"];
+                      $user_email = $row["user_email"];
+                      $user_phone = $row["user_phone"];
+                      $user_gender = $row["user_gender"];
                       ?>
-                      
+
                       <!-- Form Module-->
 
 <hr>
@@ -140,35 +140,57 @@ Global Page Section Start
                 <div id="display">
                   
                   <table >
-                      <tr>
-                  <img id="displaypic" src="<?php echo $page_photo; ?>">
-              </div>
-                              <td width="40%">Page Name: </td>
-                              <td> <?php echo $page_name; ?></td>
+                    <h2>User</h2>
+                    <br>
+                            <tr>
+                              <td width="40%">User Name: </td>
+                              <td> <?php echo $user_name; ?></td>
+                            </tr>
 
+                            <tr>
+                                <td>User Email: </td>
+                                <td><?php echo $user_email; ?></td>
+                            </tr>
+
+                            <tr>
+                                <td>User Phone: </td>
+                                <td><?php echo $user_phone; ?></td>
+                            </tr>
+                            <tr>
+                                <td>User Gender: </td>
+                                <td><?php echo $user_gender; ?></td>
+                            </tr>
+
+                              
+                             <tr>
+                              <td>Quit Date: </td>
+                              <td><?php echo $quit_date; ?></td>
+                              
                             </tr>
                               
                              <tr>
-                              <td>Posted By: </td>
-                              <td><?php echo $advisor_name; ?></td>
-                              
-                            </tr>
-                              
-                              <tr>
-                                <td> Page Text: </td>
-                              <td style="padding-top: 10px;"> <textarea name="page_text" form="pageform" style="resize: none" readonly rows="5" cols="50" ><?php echo $page_text; ?></textarea></td>
-
+                                <td>Reason for Quitting: </td>
+                             <td><?php echo $reason; ?></td>
                             </tr>
 
                               <tr>
-                              <td>Posted Time: </td>
-                                <td><?php echo $page_date;?></td>
+                              <td>Frequency smoke weekly: </td>
+                              <td><?php echo $frequency_smoke_weekly;?></td>
+                            </tr>
+                            <tr>
+                                <td>Frequency smoke daily:  </td>
+                                <td><?php echo $frequency_smoke_daily; ?></td>
+                            </tr>
+                            <tr>
+                                <td>When craving: </td>
+                                <td><?php echo $when_craving; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price per Cigarette Paid: </td>
+                                 <td><?php echo $price_cigarette; ?></td>
                             </tr>
                   </table>   
-                  <a href="advisor_update_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-success"><b>Update</b></a>
-                                  <a href="advisor_delete_pageEntry.php?id=<?php echo $id; ?>" class="btn btn-danger "><b>Delete</b></a>
-                              </td>
-                  </div>
+                  <hr>
 
                
 

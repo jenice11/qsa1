@@ -17,6 +17,7 @@ if ($_POST['user_email'] == '')
 {
     $errmsg_arr[] = 'Email address missing';
     $errflag = true;
+    
 }
 
 if ($_POST['user_password'] == '')
@@ -68,7 +69,11 @@ if (isset($result))
     else
     {
         //Login Failed
+        
         header("location: login-failed.php");
+         
+
+
         exit();    
     }
 }

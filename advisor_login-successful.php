@@ -168,8 +168,9 @@
                     <p style="font-size: 20pt;"><a href="advisor_home.php"> Redirect to the homepage</a></p>
                     <hr>
                     <h2> Quicklinks</h2>
-                    <p style="font-size: 16pt;"><a href="quit_plan.php"> Quit Plan </a></p>
-                    <p style="font-size: 16pt;"><a href="health_effects.html"> Info Wall, Health Effects </a></p>
+                    <p style="font-size: 16pt;"><a href="advisor_addEntry.php"> Add New Page Entry </a></p>
+                    <p style="font-size: 16pt;"><a href="advisor_view_infopage.php"> View Page Entry List </a></p>
+                    <p style="font-size: 16pt;"><a href="advisor_view_quitplan.php"> View Quit Plan List under You</a></p>
           </div>
         </div>
       </div>

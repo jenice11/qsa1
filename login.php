@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="no-js">
     <head> 
@@ -73,7 +74,8 @@
   position: relative;
   background: #FCFCFC;
   max-width: 400px;
-  padding-bottom: 20px;
+  height: 600px;
+  padding-bottom: 30px;
   width: 100%;
   border-top: 10px solid #33b5e5;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -128,10 +130,9 @@
 
 /* slide */
 #hero-area {
-  background: url('../images/slider.jpg') no-repeat 20%;
+  background: url('../images/slider.jpg') no-repeat 30%;
   background-size: cover;
   background-attachment: fixed;
-  margin-top: -215px;
   padding: 50px 0;
   color: #fff;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -200,11 +201,8 @@
 }
 
 .ermsg {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      padding-right: 100px;
-      font-size: 16pt;
+      margin-top: 100%;
+      font-size: 5em;
     }
 
 
@@ -217,20 +215,7 @@
 */
  //Start Session
  session_start();
-
-            // to display error message if username and password is invalid
-                if (isset($_SESSION['ERRMSG_ARR']))
-                {
-                    echo "<h1 class='ermsg'>Error found: ";
-                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
-                    {
-                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
-                    }
-                    echo "</h1>";
-                    unset($_SESSION['ERRMSG_ARR']);
-                }  
-            ?>
-
+?>
             <!-- ==================================================
         Header Section Start
         ================================================== -->
@@ -303,16 +288,6 @@
             </div>
         </header>   
 
-<div class="side side-right" >
-
-        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success_alert" style="margin-bottom:-50px; visibility :hidden">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <strong>Sign Up successfull!</strong> You can login now!! Enjoy!!
-      </div>
-
-
       <?php
 
         if(isset($_GET['status'])) {
@@ -379,6 +354,20 @@
 
           <button type="submit">Advisor Login</button>
 
+             <?php
+            // to display error message if username and password is invalid
+                if (isset($_SESSION['ERRMSG_ARR']))
+                {
+                    echo "<h1 class='ermsg'>Error found: ";
+                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
+                    {
+                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
+                    }
+                    echo "</h1>";
+                    unset($_SESSION['ERRMSG_ARR']);
+                }  
+            ?>
+
         </form>
         </div>
 
@@ -398,19 +387,7 @@
         }
         </script>
 
-       <?php
-            // to display error message if username and password is invalid
-                if (isset($_SESSION['ERRMSG_ARR']))
-                {
-                    echo "<h1 class='ermsg'>Error found: ";
-                    for ($i=0; $i<count($_SESSION['ERRMSG_ARR']); $i++)
-                    {
-                        echo $_SESSION['ERRMSG_ARR'][$i]."!";
-                    }
-                    echo "</h1>";
-                    unset($_SESSION['ERRMSG_ARR']);
-                }  
-            ?>
+      
           </div>
         </div>
       </div>
